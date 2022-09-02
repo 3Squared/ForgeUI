@@ -9,7 +9,7 @@
     "network": "npm run build && vite preview --host"
   },
   "dependencies": {
-    "@3squared/forge-playground" : "1.0.0",
+    "@3squared/forge-playground": "1.0.0",
     "@3squared/forge-ui": "file:..",
     "bootstrap-vue": "2.22.0",
     "markdown-it-prism": "2.2.4",
@@ -32,6 +32,7 @@
     "vite-plugin-md": "0.17.1",
     "vite-plugin-pages": "^0.25.0",
     "vite-plugin-pwa": "0.12.0",
-    "vue-prism-component": "1.2.0"
+    "vue-prism-component": "1.2.0",
+    "vue-tsc": "^0.40.5"
   }
 }
