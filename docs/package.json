@@ -1,0 +1,37 @@
+{
+  "name": "forge-ui-styleguide",
+  "version": "2.0.0",
+  "private": true,
+  "scripts": {
+    "preview": "npm run build && vite preview",
+    "build": "vite build",
+    "dev": "vite",
+    "network": "npm run build && vite preview --host"
+  },
+  "dependencies": {
+    "@3squared/forge.playground" : "0.0.5",
+    "@3squared/forge-ui": "file:..",
+    "bootstrap-vue": "2.22.0",
+    "markdown-it-prism": "2.2.4",
+    "prismjs": "1.28.0",
+    "register-service-worker": "1.7.2",
+    "vue": "^2.7.7",
+    "vue-multiselect": "2.1.6",
+    "vue-router": "3.5.3",
+    "vue2-helpers": "1.1.7"
+  },
+  "devDependencies": {
+    "@types/prismjs": "1.26.0",
+    "@vitejs/plugin-vue2": "^1.1.2",
+    "@vue/compiler-sfc": "3.2.33",
+    "sass": "1.51.0",
+    "shelljs": "0.8.5",
+    "typescript": "4.6.4",
+    "vite": "2.9.14",
+    "vite-plugin-checker": "0.4.9",
+    "vite-plugin-md": "0.17.1",
+    "vite-plugin-pages": "^0.25.0",
+    "vite-plugin-pwa": "0.12.0",
+    "vue-prism-component": "1.2.0"
+  }
+}

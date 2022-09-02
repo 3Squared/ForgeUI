@@ -1,0 +1,8 @@
+.alternating-item-list {
+  & .item:nth-child(odd) {
+    background-color: $gray-200;
+  }
+  & .bi-x {
+    fill: $gray-700;
+  }
+}

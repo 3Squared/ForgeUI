@@ -1,0 +1,88 @@
+@import 'node_modules/flatpickr/dist/flatpickr.min';
+
+input.flatpickr-input[readonly],
+.flatpickr-wrapper input.form-control[readonly] {
+  background-color: #fff;
+  order: 1;
+}
+
+.flatpickr-wrapper input.form-control[readonly]:hover {
+  cursor: pointer;
+}
+
+.flatpickr-input + .form-control {
+  background-color: #fff;
+}
+
+.flatpickr-day.selected.startRange + .endRange:not(:nth-child(7n + 1)),
+.flatpickr-day.startRange.startRange + .endRange:not(:nth-child(7n + 1)),
+.flatpickr-day.endRange.startRange + .endRange:not(:nth-child(7n + 1)) {
+  box-shadow: -10px 0 0 #e6e6e6;
+}
+
+@each $color, $value in $theme-colors {
+  .flatpickr-calendar--#{$color} {
+    .flatpickr-day {
+      &.selected,
+      &.selected.prevMonthDay,
+      &.selected.nextMonthDay,
+      &.startRange,
+      &.startRange.prevMonthDay,
+      &.startRange.nextMonthDay,
+      &.endRange,
+      &.endRange.nextMonthDay,
+      &.endRange.nextMonthDay,
+      &.startRange,
+      &.endRange {
+        background-color: $value;
+        border-color: $value;
+
+        &:hover,
+        &:focus {
+          background-color: $value;
+          border-color: $value;
+        }
+      }
+    }
+  }
+}
+
+.flatpickr-wrapper {
+  display: flex;
+  flex: 1;
+}
+
+.flatpickr-calendar.open {
+  border: 1px solid $input-border-color;
+}
+
+.flatpickr-day {
+  &.prevMonthDay {
+    color: $gray-800;
+  }
+
+  &.nextMonthDay {
+    color: #393939;
+  }
+
+  &.flatpickr-disabled {
+    color: #ccc;
+  }
+}
+
+.forge-date-picker {
+  width: 100%;
+
+  &.is-invalid {
+    input {
+      @extend .is-invalid;
+    }
+  }
+}
+
+.forge-date-picker-icon {
+  @extend h4;
+  cursor: pointer;
+  height: 100%;
+  @extend .mb-0;
+}

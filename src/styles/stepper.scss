@@ -1,0 +1,78 @@
+.stepper {
+  display: flex;
+  width: 100%;
+  position: relative;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.divider {
+  position: absolute;
+  width: 80%;
+  margin: 0;
+  left: 10%;
+  top: 50%;
+}
+
+.step-block {
+  text-align: center;
+  z-index: 4;
+}
+
+.step-active {
+  .step-circle {
+    color: white;
+  }
+
+  span {
+    padding-bottom: 2px;
+
+  }
+}
+.stepper {
+  .step-inactive {
+    .step {
+      .step-circle {
+        background-color: $gray-300;
+        border-color: $gray-300;
+      }
+    }
+  }
+}
+
+.step {
+  background-color: white;
+  margin: 0 $spacer * 2;
+  padding: 15px $spacer 10px $spacer;
+
+  .step-circle {
+    font-size: $font-size-lg;
+    height: $spacer;
+    width: $spacer;
+    padding: $spacer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    @extend .rounded-circle;
+  }
+}
+
+@each $color, $value in $theme-colors {
+  .forge-stepper-#{$color} {
+    .step-active {
+      .step-circle {
+        background-color: $value;
+      }
+
+      span {
+        border-bottom: 2px solid $value;
+      }
+    }
+
+    .step {
+      .step-circle {
+        border: 2px solid $value;
+      }
+    }
+  }
+}

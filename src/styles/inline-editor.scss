@@ -1,0 +1,47 @@
+$clear-icon-padding: 5px;
+
+.forge-inline-editor {
+  .editor {
+    input.form-control {
+      padding-right: 2rem;
+
+      &.is-invalid {
+        background-position: right 1.5rem center;
+      }
+    }
+
+    .clear-icon {
+      cursor: pointer;
+      position: absolute;
+      right: $clear-icon-padding;
+      z-index: 5;
+    }
+  }
+
+  &.forge-inline-editor--datepicker {
+    .clear-icon {
+      right: calc(#{$clear-icon-padding} + 38px);
+    }
+  }
+
+  .forge-inline-editor--edit-icon {
+    padding: 0;
+    margin: 0;
+    color: $gray-800;
+
+    .b-icon.bi {
+      font-size: 100%;
+      vertical-align: text-top;
+    }
+  }
+
+  .value {
+    svg {
+      opacity: 0.2;
+    }
+
+    &:hover svg {
+      opacity: 1;
+    }
+  }
+}

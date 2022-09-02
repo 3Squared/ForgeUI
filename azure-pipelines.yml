@@ -1,0 +1,277 @@
+trigger:
+  - main
+
+parameters:
+  - name: shouldCreateBuildArtifact
+    displayName: Create Artifact?
+    type: boolean
+    default: false
+
+  - name: shouldForceTestRun
+    displayName: Force tests to run?
+    type: boolean
+    default: false
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  isMain: $[eq(variables['Build.SourceBranch'], 'refs/heads/main')]
+  isDevelop: $[eq(variables['Build.SourceBranch'], 'refs/heads/develop')]
+  isMergeToMain: $[eq(variables['System.PullRequest.TargetBranch'], 'refs/heads/main')]
+  isMergeToDevelop: $[eq(variables['System.PullRequest.TargetBranch'], 'refs/heads/develop')]
+  produceArtifact: $[or(eq(variables.isMain, true), eq('${{ parameters.shouldCreateBuildArtifact }}', 'true'))]
+  shouldRunTests: $[or(eq(variables.isMergeToMain, true), eq('${{ parameters.shouldForceTestRun }}', 'true'))]
+  isCIRelease: $[and(eq(variables.isMain, true), or(eq(variables['Build.Reason'], 'IndividualCI'), eq(variables['Build.Reason'], 'BatchedCI')))]
+  prServiceConnectionName: Forge UI PR
+  prResourceGroup: ks-rg-forge-pr-dev
+  prStorageAccount: kssaforgeprdev
+  prStaticSiteAddress: https://forge-ui-pr.azureedge.net/
+  forgeUiServiceConnection: Forge UI
+  forgeCdnServiceConnection: Forge CDN
+
+stages:
+  - stage: build
+    displayName: Build
+    jobs:
+      - job: buildPackage
+        displayName: Build
+        steps:
+          - checkout: self
+            persistCredentials: true
+
+          - bash: |
+              PR_TITLE="$(curl --silent -u azdo:$SYSTEM_ACCESSTOKEN \
+                $(System.CollectionUri)_apis/git/repositories/$(Build.Repository.ID)/pullRequests/$(System.PullRequest.PullRequestId)?api-version=5.1 \
+                | jq -r .title)"
+              echo 1 $PR_TITLE
+              echo "##vso[task.setvariable variable=Pr.Title]$PR_TITLE"
+              npm install -g @commitlint/cli @commitlint/config-conventional
+              echo "module.exports = {extends: ['@commitlint/config-conventional']}" > commitlint.config.js
+              echo $PR_TITLE | npx commitlint
+            env:
+              SYSTEM_ACCESSTOKEN: $(System.AccessToken)
+            displayName: Extract pull request title
+            condition: and(succeeded(), eq(variables.isMergeToMain, true))
+
+          - task: Npm@1
+            displayName: Restore node dependencies
+            inputs:
+              command: custom
+              customCommand: ci
+              
+          - task: Npm@1
+            displayName: Run Unit tests
+            condition: eq(variables.shouldRunTests, true)
+            inputs:
+              command: custom
+              customCommand: run coverage
+              
+          - task: Npm@1
+            displayName: Run E2E tests
+            condition: eq(variables.shouldRunTests, true)
+            inputs:
+              command: custom
+              customCommand: run test
+              
+          - task: PublishTestResults@2
+            displayName: Publish Test Results
+            inputs:
+              testResultsFormat: 'JUnit'
+              testResultsFiles: '**/test-results/**/*.xml'
+              mergeTestResults: true
+              testRunTitle: 'Test Results'    
+              
+          - task: PublishCodeCoverageResults@1
+            inputs:
+              codeCoverageTool: 'Cobertura' # Available options: 'JaCoCo', 'Cobertura'
+              summaryFileLocation: $(System.DefaultWorkingDirectory)/coverage/cobertura-coverage.xml
+              #pathToSources: # Optional
+              #reportDirectory: # Optional
+              #additionalCodeCoverageFiles: # Optional
+              #failIfCoverageEmpty: false # Optional
+
+          - bash: |
+              git reset --hard
+              branchName=`echo "$(Build.SourceBranch)" | sed 's/refs\/heads\///g'`
+              echo $(Build.SourceVersion)
+              git checkout "$branchName"
+              git config --global user.email "build@3squared.com"
+              git config --global user.name "Build Agent"
+              if [[ "$(isCIRelease)" == "True" ]]; then
+                npx standard-version -t ""
+                git push --follow-tags
+              else
+                npx standard-version --prerelease beta -t ""
+              fi
+            displayName: Auto version package
+
+          - task: Npm@1
+            displayName: Bundle build
+            inputs:
+              command: custom
+              customCommand: run build
+
+          - task: PublishPipelineArtifact@1
+            displayName: Publish Forge UI Assets
+            condition: and(succeeded(), eq(variables.produceArtifact, true))
+            inputs:
+              targetPath: 'dist'
+              artifactName: 'Forge-UI'
+
+          - task: npmAuthenticate@0
+            displayName: Authenticate with feed
+            inputs:
+              workingFile: .npmrc
+
+          - task: Npm@1
+            displayName: Publish package
+            inputs:
+              command: custom
+              customCommand: publish
+              customRegistry: useFeed
+              customFeed: 3sq_npm
+            #condition: and(succeeded(), eq(variables.isCIRelease, true))
+
+          - task: Npm@1
+            displayName: Restore node dependencies
+            inputs:
+              command: custom
+              workingDir: '$(Build.SourcesDirectory)/docs'
+              customCommand: ci --no-optional
+
+          - task: Npm@1
+            displayName: Build Style Guide PR
+            inputs:
+              command: custom
+              workingDir: '$(Build.SourcesDirectory)/docs'
+              customCommand: run build -- --base=$(Build.SourceVersion)
+            condition: and(succeeded(), eq(variables.isCIRelease, false))
+
+          - task: Npm@1
+            displayName: Build Style Guide
+            inputs:
+              command: custom
+              workingDir: '$(Build.SourcesDirectory)/docs'
+              customCommand: run build
+            condition: and(succeeded(), eq(variables.isCIRelease, true))
+
+          - task: PublishPipelineArtifact@1
+            displayName: Publish Forge UI Style Guide
+            condition: and(succeeded(), or(eq(variables.produceArtifact, true), eq(variables.isMergeToMain, true)))
+            inputs:
+              targetPath: 'docs/dist'
+              artifactName: 'Forge-UI-StyleGuide'
+
+      - deployment: deployPrSite
+        pool:
+          vmImage: windows-latest
+        displayName: Deploy PR site
+        environment: Forge UI - Style Guide PR
+        dependsOn:
+          - buildPackage
+        condition: and(succeeded(), eq(variables.isMergeToMain, true))
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - task: AzureFileCopy@4
+                  displayName: Deploy static site
+                  inputs:
+                    azureSubscription: $(prServiceConnectionName)
+                    sourcePath: '$(Pipeline.Workspace)/Forge-UI-StyleGuide/*'
+                    destination: azureBlob
+                    storage: $(prStorageAccount)
+                    containerName: '$web'
+                    blobPrefix: '$(Build.SourceVersion)/'
+
+                - powershell: |
+                    $body = @"
+                    {
+                        "comments": [
+                          {
+                            "parentCommentId": 0,
+                            "content": "PR Environment is [available here]($(prStaticSiteAddress)/$(Build.SourceVersion)/)",
+                            "commentType": 1
+                          }
+                        ],
+                        "status": 4
+                      }
+                    "@
+                    $url = "$($env:SYSTEM_TEAMFOUNDATIONCOLLECTIONURI)$env:SYSTEM_TEAMPROJECTID/_apis/git/repositories/$($env:Build_Repository_Name)/pullRequests/$($env:System_PullRequest_PullRequestId)/threads?api-version=5.1"
+                    $result = Invoke-RestMethod -Uri $url -Method POST -Headers @{Authorization = "Bearer $(System.AccessToken)"} -Body $Body -ContentType application/json
+                  displayName: Update PR
+
+  - stage: deployDevelopment
+    displayName: Deploy Development
+    pool:
+      vmImage: windows-latest
+    dependsOn: build
+    condition: and(succeeded(), eq(variables.isMain, true))
+    jobs:
+      - deployment: styleGuide
+        displayName: Deploy Style Guide
+        environment: Forge UI - Style Guide Development
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - task: AzureFileCopy@4
+                  displayName: Update static site
+                  inputs:
+                    azureSubscription: '$(forgeUiServiceConnection) Development'
+                    sourcePath: '$(Pipeline.Workspace)/Forge-UI-StyleGuide/*'
+                    destination: azureBlob
+                    storage: saforgestyleguide
+                    containerName: '$web'
+
+      - deployment: cdn
+        displayName: Deploy to CDN
+        environment: Forge UI - CDN Development
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - task: AzureFileCopy@4
+                  displayName: Update CDN
+                  inputs:
+                    azureSubscription: '$(forgeCdnServiceConnection) Development'
+                    sourcePath: '$(Pipeline.Workspace)/Forge-UI/*'
+                    destination: azureBlob
+                    storage: uksaforgecdnd
+                    containerName: '$web'
+                    blobPrefix: 'forge-ui@$(Build.BuildNumber)/'
+
+  - stage: deployProduction
+    displayName: Deploy Production
+    pool:
+      vmImage: windows-latest
+    dependsOn: deployDevelopment
+    condition: and(succeeded(), eq(variables.isMain, true))
+    jobs:
+      - deployment: cdn
+        displayName: Deploy to CDN
+        environment: Forge UI - CDN Production
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - task: AzureFileCopy@4
+                  displayName: Update CDN
+                  inputs:
+                    azureSubscription: '$(forgeCdnServiceConnection) Production'
+                    sourcePath: '$(Pipeline.Workspace)/Forge-UI/*'
+                    destination: azureBlob
+                    storage: uksaforgecdnp
+                    containerName: '$web'
+                    blobPrefix: 'forge-ui@$(Build.BuildNumber)/'
+                - task: AzureFileCopy@4
+                  displayName: Update CDN (latest)
+                  condition: and(succeeded(), eq(variables.isCIRelease, true))
+                  inputs:
+                    azureSubscription: '$(forgeCdnServiceConnection) Production'
+                    sourcePath: '$(Pipeline.Workspace)/Forge-UI/*'
+                    destination: azureBlob
+                    storage: uksaforgecdnp
+                    containerName: '$web'
+                    blobPrefix: 'forge-ui/'

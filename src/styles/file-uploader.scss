@@ -1,0 +1,44 @@
+.file-container {
+  max-height: 500px;
+  overflow-y: auto;
+  border-radius: 0.25rem;
+}
+
+.popover {
+  max-width: 100%;
+}
+
+.file-upload-table td{
+  vertical-align: middle;
+  border-top: 0 ;
+  border-bottom: 0 ;
+}
+
+.progress {
+  background-color: $gray-300;
+}
+
+.img-thumbnail {
+  min-width: 64px;
+}
+
+.file-thumbnail{
+  width: 52px;
+}
+
+.no-files-text-box {
+  padding: 2rem 1.75rem;
+  color: $gray-800
+}
+
+.border-dashed{
+    border: 1px $gray-300;
+}
+
+.drag-input {
+  background-color: $gray-200 !important;
+}
+
+.drag-border{
+  border: 3px theme-color('primary');
+}

@@ -1,0 +1,27 @@
+@mixin widgetSize($sizeMultipler) {
+  $height: 100px;
+  $width: 100px;
+  height: $height * $sizeMultipler;
+  width: $width * $sizeMultipler;
+}
+.widget {
+  &--sm {
+    @include widgetSize(1);
+    .value {
+      font-size: 3em;
+    }
+  }
+  &--md {
+    @include widgetSize(2);
+    .value {
+      font-size: 4em;
+    }
+  }
+
+  &--lg {
+    @include widgetSize(3);
+    .value {
+      font-size: 5em;
+    }
+  }
+}
