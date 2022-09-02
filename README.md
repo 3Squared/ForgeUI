@@ -1,4 +1,9 @@
-# Welcome to the Forge UI Framework Version 5!
+# Welcome to Forge UI!
+
+<div style="background-color : #282a36">
+<img src="https://cdn.3sq.app/assets/products/forge-ui/images/logo.svg" />
+</div>
+![alt](https://cdn.3sq.app/assets/products/forge-ui/images/logo.svg)
 
 ### Contents:
 
