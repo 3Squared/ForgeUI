@@ -18,7 +18,7 @@ import { ForgePageHeader, useForgeToasts } from "@3squared/forge-ui";
 import { BButton } from 'bootstrap-vue'
 import { computed } from "vue";
 import Prism from 'prismjs'
-import { usePlayground, Playground } from '@3squared/forge.playground';
+import { usePlayground, Playground } from '@3squared/forge-playground';
 import { ForgeToastType } from '@3squared/forge-ui/dist/types/src/helpers/types';
 const { forgeToast } = useForgeToasts()
 

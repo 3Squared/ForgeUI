@@ -15,7 +15,7 @@
 import { ForgePageHeader, useForgeToasts, ForgeInlineEditor } from "@3squared/forge-ui";
 import { computed, ref, watch } from "vue";
 import OPTIONS from './OPTIONS.md'
-import { usePlayground, Playground } from '@3squared/forge.playground';
+import { usePlayground, Playground } from '@3squared/forge-playground';
 
 const { forgeToast } = useForgeToasts()
 

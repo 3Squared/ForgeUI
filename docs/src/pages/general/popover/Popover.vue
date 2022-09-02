@@ -39,7 +39,7 @@
 import { ForgePageHeader } from "@3squared/forge-ui";
 import { BPopover, BButton, BFormSelect } from 'bootstrap-vue'
 import { computed } from "vue";
-import { usePlayground, Playground } from '@3squared/forge.playground';
+import { usePlayground, Playground } from '@3squared/forge-playground';
 import { baseVariants, boundary, fallbackPlacement, placement, triggers } from '../../../composables/playgroundOptions';
 
 const { options, propVals, config, reset } = usePlayground({

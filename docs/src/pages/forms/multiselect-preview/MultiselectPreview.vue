@@ -42,7 +42,7 @@
 import { ForgePageHeader, ForgeMultiSelectPreview } from "@3squared/forge-ui";
 import OPTIONS from './OPTIONS.md'
 import { computed } from "vue";
-import { usePlayground } from '@3squared/forge.playground';
+import { usePlayground } from '@3squared/forge-playground';
 
 const items = [
   { id: 1, label: 'Option 1' },

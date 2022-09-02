@@ -29,7 +29,7 @@ import { BFormInput, BFormSelect } from 'bootstrap-vue';
 import { computed, ref } from 'vue';
 import OPTIONS from './OPTIONS.md'
 import { baseVariants, sizes } from '../../../composables/playgroundOptions';
-import { usePlayground, Playground } from '@3squared/forge.playground';
+import { usePlayground, Playground } from '@3squared/forge-playground';
 
 const widgetContent = ref('Widget');
 const variant = ref(baseVariants[0]);

@@ -16,7 +16,7 @@
 import { ForgeLoader, ForgePageHeader } from '@3squared/forge-ui';
 import { computed } from 'vue';
 import OPTIONS from './OPTIONS.md'
-import { usePlayground, Playground } from '@3squared/forge.playground';
+import { usePlayground, Playground } from '@3squared/forge-playground';
 
 const { options, propVals, reset, config } = usePlayground({
   label: 'Loading...'

@@ -3,7 +3,7 @@ import VueRouter from 'vue-router';
 import App from './App.vue';
 import './styleguide.scss';
 import "prismjs"
-import '@3squared/forge.playground/dist/style.css';
+import '@3squared/forge-playground/dist/style.css';
 import routes from 'pages-generated';
 
 import { positiveNumberDirective, wholeNumberDirective, alphanumericCharacterDirective, maxNumericCharactersDirective } from '@3squared/forge-ui';

@@ -18,7 +18,7 @@
 import { ForgePageHeader, ForgeFormField } from "@3squared/forge-ui";
 import { computed } from "vue";
 import OPTIONS from './OPTIONS.md'
-import { usePlayground, Playground } from '@3squared/forge.playground';
+import { usePlayground, Playground } from '@3squared/forge-playground';
 import { inputTypes } from '../../../composables/playgroundOptions';
 
 const { options, propVals, config, reset } = usePlayground({

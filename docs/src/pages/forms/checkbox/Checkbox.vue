@@ -15,7 +15,7 @@ import { ForgePageHeader } from "@3squared/forge-ui";
 import { BFormCheckbox } from "bootstrap-vue";
 import { computed, ref } from "vue";
 import { buttonVariants, sizes } from '../../../composables/playgroundOptions';
-import { Playground, usePlayground } from '@3squared/forge.playground'
+import { Playground, usePlayground } from '@3squared/forge-playground'
 const checkboxLabel = ref('Checkbox')
 
 const { options, propVals, config, reset } = usePlayground({
