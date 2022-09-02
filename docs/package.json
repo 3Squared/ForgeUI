@@ -9,7 +9,7 @@
     "network": "npm run build && vite preview --host"
   },
   "dependencies": {
-    "@3squared/forge.playground" : "1.0.0",
+    "@3squared/forge-playground" : "1.0.0",
     "@3squared/forge-ui": "file:..",
     "bootstrap-vue": "2.22.0",
     "markdown-it-prism": "2.2.4",
