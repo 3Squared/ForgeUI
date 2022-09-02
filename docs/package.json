@@ -5,7 +5,7 @@
   "scripts": {
     "preview": "npm run build && vite preview",
     "build-bundle" : "cd .. && npm i && npm run build && cd docs",
-    "build": "vite build",
+    "build": "vite build --base=ForgeUI",
     "dev": "vite",
     "network": "npm run build && vite preview --host"
   },
