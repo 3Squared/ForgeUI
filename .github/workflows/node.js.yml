@@ -39,3 +39,4 @@ jobs:
         with:
           token: ${{ secrets.NPM_TOKEN }}
           greater-version-only: true
+          access: public
