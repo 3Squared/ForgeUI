@@ -5,44 +5,19 @@
     <OPTIONS />
     <playground :options="options" :config="config" :code="code">
       <template #component>
-        <component :is="ForgeMultiSelectPreview" v-bind="options" class="w-100"/>
+        <component :is="ForgeMultiSelectPreview" v-bind="options" v-model="selectedItems" class="w-100"/>
       </template>
     </playground>
-    <OPTIONS></OPTIONS>
   </div>
-<!--  <README>-->
-<!--    <template #OPTIONS>-->
-<!--      <OPTIONS></OPTIONS>-->
-<!--    </template>-->
-
-<!--    -->
-<!--    <template #example>-->
-<!--      <Demo :code="ExampleCode" :component="Example" />-->
-<!--    </template>-->
-
-<!--    <template #example2>-->
-<!--      <Demo :code="ExampleCode2" :component="Example2" />-->
-<!--    </template>-->
-
-<!--    <template #example3>-->
-<!--      <Demo :code="ExampleCode3" :component="Example3" />-->
-<!--    </template>-->
-
-<!--    <template #example4>-->
-<!--      <Demo :code="ExampleCode4" :component="Example4" />-->
-<!--    </template>-->
-
-<!--    <template #example5>-->
-<!--      <Demo :code="ExampleCode5" :component="Example5" />-->
-<!--    </template>-->
-<!--  </README>-->
 </template>
 
 <script setup lang="ts">
 import { ForgePageHeader, ForgeMultiSelectPreview } from "@3squared/forge-ui";
 import OPTIONS from './OPTIONS.md'
-import { computed } from "vue";
-import { usePlayground } from '@3squared/forge-playground';
+import { computed, ref } from "vue";
+import { usePlayground, Playground } from '@3squared/forge-playground';
+
+let selectedItems = ref([])
 
 const items = [
   { id: 1, label: 'Option 1' },
@@ -50,12 +25,24 @@ const items = [
   { id: 3, label: 'Option 3' }
 ]
 
+const orientations = ['horizontal', 'vertical', 'horizontal-reversed']
+
 const { options, propVals, config, reset } = usePlayground({
   items: items,
-  selectedItems: [{ id: 1, label: 'Option 1'}]
+  selectedItems: selectedItems,
+  vModel: 'selectedItemsArray',
+  title: 'Selected Items',
+  orientation: orientations[0],
+  height: '200px',
+  canRemoveItemFromPreview: true,
+  multiple: true,
+  trackBy: 'id',
+  label: 'label'
 }, {
+  vModel: { required: true, disabled: () => true },
   items: { required: true },
-  selectedItems: { required: true }
+  orientation: { type: 'select', options: orientations },
+  label: { type: 'select', options: Object.keys(items[0]) },
 })
 
 const code = computed(() => `<forge-multi-select-preview ${propVals.value.join(' ')}/>`)

@@ -1,7 +1,9 @@
 <template>
   <div :class="orientation === 'horizontal-reversed' ? 'row flex-row-reverse' : 'row'">
     <div :class="orientation === 'vertical' ? 'col-12 mb-1' : 'col'">
-      <forge-multi-select :multiple="true" :limit="0" :limit-text="limitText" :value="selectedItems" @input="update" :options="items">
+      <forge-multi-select :multiple="true" :limitText="limitText" :value="selectedItems" @input="update" :options="items">
+        <template #tag>{{ '' }}</template>
+        <template #selection><span class="pl-1" v-if="selectedItems.length > 0">{{ selectedItems.length }} items selected</span></template>
         <slot v-for="(_, name) in $slots" :name="name" :slot="name" />
         <!-- Pass on all scoped slots -->
         <template v-for="slot in Object.keys($scopedSlots)" v-slot:[slot]="scope"><slot :name="slot" v-bind="scope"/></template>
@@ -12,7 +14,7 @@
     <div :class="orientation === 'vertical' ? 'col-12' : 'col'">
       <div :style="{ height: height }" class="overflow-auto">
         <div class="border alternating-item-list">
-          <div v-if="title" class="bg-selected-info p-2 border-top border-bottom shadow-sm text-light bg-brand-dark">
+          <div v-if="title" class="bg-selected-info p-2 border-top border-bottom shadow-sm bg-brand-dark">
             <span v-if="selectedItems.length === 0">No </span><span>{{ title }}</span>
           </div>
           <div v-for="item in selectedItems" :key="item.id" class="p-2 item d-flex justify-content-between align-items-center">
