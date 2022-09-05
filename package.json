@@ -4,6 +4,7 @@
   "version": "0.0.1",
   "description": "ForgeUI is designed to be a wrapper around different libraries that provide a consistent UI style. It is comprised of many different packages that have been combined to create a one stop shop for UI requirements.",
   "license": "MIT",
+  "private": "false",
   "main": "dist/esm/forge-ui.mjs",
   "module": "dist/esm/forge-ui.mjs",
   "types": "dist/types/index.d.ts",
