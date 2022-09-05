@@ -32,7 +32,7 @@ import { BAlert, BButton, BFormCheckbox, BFormInput } from 'bootstrap-vue';
 import { ForgePageHeader } from '@3squared/forge-ui';
 import { computed, ref } from 'vue';
 import { baseVariants } from '../../../composables/playgroundOptions';
-import { usePlayground, Playground } from '@3squared/forge.playground';
+import { usePlayground, Playground } from '@3squared/forge-playground';
 
 const content = ref('Alert');
 

@@ -26,7 +26,7 @@ import { ForgePageHeader } from "@3squared/forge-ui";
 import { BCollapse, BButton, BCard, VBToggle } from "bootstrap-vue";
 import { computed } from "vue";
 import Prism from "prismjs";
-import { usePlayground } from '@3squared/forge.playground';
+import { usePlayground } from '@3squared/forge-playground';
 
 const vBToggle = VBToggle
 

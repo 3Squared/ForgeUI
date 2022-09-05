@@ -22,7 +22,7 @@ import { ForgePageHeader } from '@3squared/forge-ui';
 import { BButton, BFormInput } from 'bootstrap-vue';
 import { computed, ref, watch } from 'vue';
 import { buttonVariants, linkTargets, sizes } from '../../../composables/playgroundOptions';
-import { usePlayground, Playground } from '@3squared/forge.playground';
+import { usePlayground, Playground } from '@3squared/forge-playground';
 
 const content = ref('Button');
 

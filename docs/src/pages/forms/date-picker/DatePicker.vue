@@ -29,7 +29,7 @@ import { BIconInfoCircleFill, BTooltip, BIconXCircleFill, BFormCheckbox } from "
 import { computed, ref } from "vue";
 import OPTIONS from './OPTIONS.md'
 import { baseVariants } from '../../../composables/playgroundOptions';
-import { usePlayground, Playground } from '@3squared/forge.playground';
+import { usePlayground, Playground } from '@3squared/forge-playground';
 
 const hideBefore = ref(false)
 const hideAfter = ref(false)

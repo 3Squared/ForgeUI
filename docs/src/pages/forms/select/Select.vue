@@ -21,7 +21,7 @@
 import { ForgePageHeader } from "@3squared/forge-ui";
 import { BFormSelect, BFormInput, BButton } from "bootstrap-vue";
 import { computed, ref } from "vue";
-import { usePlayground, Playground } from '@3squared/forge.playground';
+import { usePlayground, Playground } from '@3squared/forge-playground';
 import { sizes, validationStates } from '../../../composables/playgroundOptions';
 
 const optionToAdd = ref('')

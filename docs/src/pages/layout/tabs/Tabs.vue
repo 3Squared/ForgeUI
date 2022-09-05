@@ -20,7 +20,7 @@
 import { BFormRadioGroup, BTabs, BTab } from "bootstrap-vue";
 import { ForgePageHeader } from "@3squared/forge-ui";
 import { computed, ref } from "vue";
-import { usePlayground } from '@3squared/forge.playground';
+import { usePlayground } from '@3squared/forge-playground';
 
 const mode = ref('b-tabs')
 const optionType = ['b-tabs', 'b-tab']

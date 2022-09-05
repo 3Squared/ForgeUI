@@ -16,7 +16,7 @@
 import OPTIONS from './OPTIONS.md';
 import { ForgeColumnBuilder, ForgePageHeader, ForgeTable } from '@3squared/forge-ui';
 import { computed } from 'vue';
-import { usePlayground, Playground } from '@3squared/forge.playground';
+import { usePlayground, Playground } from '@3squared/forge-playground';
 import { Person } from '../../../models/Person';
 
 const fields = computed(() => {

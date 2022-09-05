@@ -14,7 +14,7 @@
 import { ForgePageHeader } from "@3squared/forge-ui";
 import { BFormTextarea } from "bootstrap-vue";
 import { computed } from "vue";
-import { usePlayground, Playground } from '@3squared/forge.playground';
+import { usePlayground, Playground } from '@3squared/forge-playground';
 import { autoCompleteStates, sizes } from '../../../composables/playgroundOptions';
 
 const wrapOptions = ['soft', 'hard']

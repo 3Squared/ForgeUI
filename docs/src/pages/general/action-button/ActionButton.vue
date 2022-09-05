@@ -25,7 +25,7 @@ import { BFormCheckbox, BFormInput } from "bootstrap-vue";
 import { computed, ref, watch } from "vue";
 import { useForgeToasts } from "@3squared/forge-ui";
 import OPTIONS from './OPTIONS.md'
-import { usePlayground, Playground } from '@3squared/forge.playground';
+import { usePlayground, Playground } from '@3squared/forge-playground';
 import { buttonVariants } from '../../../composables/playgroundOptions';
 const { forgeToast } = useForgeToasts()
 

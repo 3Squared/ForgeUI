@@ -37,7 +37,7 @@ import { computed, ref } from "vue";
 import { useForgeToasts } from "@3squared/forge-ui";
 import { BButton, BFormCheckbox, BFormInput, VBModal } from 'bootstrap-vue'
 import OPTIONS from './OPTIONS.md'
-import { usePlayground, Playground } from '@3squared/forge.playground';
+import { usePlayground, Playground } from '@3squared/forge-playground';
 
 const { forgeToast } = useForgeToasts()
 const vBModal = VBModal

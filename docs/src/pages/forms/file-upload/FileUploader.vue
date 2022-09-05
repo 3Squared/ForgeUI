@@ -22,7 +22,7 @@ import { ForgePageHeader, ForgeFileUpload, useForgeToasts } from "@3squared/forg
 import { BFormInput } from "bootstrap-vue";
 import { computed, ref } from "vue";
 import OPTIONS from './OPTIONS.md'
-import { usePlayground, Playground } from '@3squared/forge.playground';
+import { usePlayground, Playground } from '@3squared/forge-playground';
 
 const { forgeToast } = useForgeToasts()
 

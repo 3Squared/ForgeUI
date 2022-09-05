@@ -15,7 +15,7 @@
 import { ForgePageHeader, ForgeMultiSelectPreview } from "@3squared/forge-ui";
 import OPTIONS from './OPTIONS.md'
 import { computed, ref } from "vue";
-import { usePlayground, Playground } from '@3squared/forge.playground';
+import { usePlayground, Playground } from '@3squared/forge-playground';
 
 let selectedItems = ref([])
 

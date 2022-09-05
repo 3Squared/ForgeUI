@@ -15,7 +15,7 @@
 import OPTIONS from './OPTIONS.md'
 import { ForgePageHeader } from "@3squared/forge-ui";
 import { computed } from "vue";
-import { usePlayground } from '@3squared/forge.playground';
+import { usePlayground } from '@3squared/forge-playground';
 
 const { options, propVals, config, reset } = usePlayground({
   title: 'Forge Page Header'

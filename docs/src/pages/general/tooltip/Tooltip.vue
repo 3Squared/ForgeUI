@@ -44,7 +44,7 @@ import { ForgePageHeader } from "@3squared/forge-ui";
 import { BButton, BTooltip, BFormInput, BFormSelect } from "bootstrap-vue";
 import { computed, ref } from "vue";
 import { baseVariants, boundary, fallbackPlacement, placement, triggers } from '../../../composables/playgroundOptions';
-import { usePlayground, Playground } from '@3squared/forge.playground';
+import { usePlayground, Playground } from '@3squared/forge-playground';
 
 
 const tooltipContent = ref('content')

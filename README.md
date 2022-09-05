@@ -1,4 +1,6 @@
-# Welcome to the Forge UI Framework Version 5!
+# Welcome to Forge UI!
+
+![alt](https://cdn.3sq.app/assets/products/forge-ui/images/logo.svg)
 
 ### Contents:
 

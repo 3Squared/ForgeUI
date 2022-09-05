@@ -21,7 +21,7 @@ import OPTIONS from './OPTIONS.md'
 import { ForgePageHeader, ForgeStepper } from "@3squared/forge-ui";
 import { computed } from "vue";
 import Prism from "prismjs";
-import { Playground, usePlayground } from '@3squared/forge.playground';
+import { Playground, usePlayground } from '@3squared/forge-playground';
 import { baseVariants } from "../../../composables/playgroundOptions";
 
 const { options, propVals, config, reset } = usePlayground({

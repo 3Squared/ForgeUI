@@ -16,7 +16,7 @@ import { ForgePageHeader } from '@3squared/forge-ui';
 import { BProgress } from 'bootstrap-vue';
 import { computed } from 'vue';
 import { baseVariants } from '../../../composables/playgroundOptions';
-import { usePlayground, Playground } from '@3squared/forge.playground';
+import { usePlayground, Playground } from '@3squared/forge-playground';
 
 const { options, propVals, config, reset } = usePlayground({
     animated: false,

@@ -21,7 +21,7 @@ import { ForgePageHeader, ForgeForm, useForgeToasts } from "@3squared/forge-ui";
 import { BFormInput } from "bootstrap-vue";
 import { computed, ref, watch } from "vue";
 import OPTIONS from './OPTIONS.md'
-import { usePlayground, Playground } from '@3squared/forge.playground';
+import { usePlayground, Playground } from '@3squared/forge-playground';
 const { forgeToast } = useForgeToasts()
 
 const loadingText = ref('')
