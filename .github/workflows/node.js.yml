@@ -21,7 +21,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
         
-      - name: build
+      - name: Build
         run: | 
             npm ci
             npm run build --if-present
