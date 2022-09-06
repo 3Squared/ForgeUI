@@ -1,6 +1,6 @@
 ﻿<template>
   <b-navbar type="dark" variant="dark">
-    <b-navbar-nav>
+    <b-navbar-nav class="w-100">
       <b-navbar-brand>
         <router-link :to="{path : '/'}">
           <img alt="" height="32px" src="https://cdn.3sq.app/assets/products/forge-ui/images/logo.svg" />
@@ -15,16 +15,9 @@
         </b-nav-item-dropdown>
         <b-nav-item v-for="page in pages" :key="page.label" :to="page.to">{{ page.label }}</b-nav-item>
       </div>
-
-      <div class="ml-lg-auto">
-        <div class="d-flex">
-          <div class="smallSearch">
-            <RouteSearcher class="position-relative smallSearch" />
-          </div>
-          <b-button class="mx-3 btn-sm btn-outline-success rounded" target="_blank" @click="openSlackHelp"
-          ><img class="slacklogo mr-1" src="../assets/slacklogo.png" /><span class="font-weight-bold">Get Help</span>
-          </b-button>
-        </div>
+      
+      <div class="d-flex mt-auto mb-auto ml-auto">
+        <RouteSearcher class="searcher" />
       </div>
     </b-navbar-nav>
   </b-navbar>
@@ -116,31 +109,12 @@ export default Vue.extend({
     pages(): Page[] {
       return this.navItems.filter(n => n.type === 'page') as Page[]
     }
-  },
-  methods: {
-    openSlackHelp() {
-      window.open(
-          'https://3squared.slack.com/app_redirect?channel=forge-ui',
-          'targetWindow',
-          `toolbar=no,
-      status=no,
-      width=600px,
-      height=400px`
-      );
-    }
   }
 });
 </script>
 
 <style>
-.slacklogo {
-  width: 16px;
-  position: relative;
-  top: -2px;
-}
-
-.smallSearch {
-  height: 10px !important;
-  top: -7px;
+.searcher {
+  width: 300px !important;
 }
 </style>
