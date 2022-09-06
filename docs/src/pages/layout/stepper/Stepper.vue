@@ -10,8 +10,8 @@
       </template>
     </playground>
     The ForgeStepperStep object takes the following format
-    <div class="position-relative">
-      <pre class="forge-code-block"><code v-html="ForgeStepperStep"></code></pre>
+    <div class="position-relative mt-3">
+      <pre class="position-relative p-3 rounded-lg code-block"><code class="text-white" v-html="ForgeStepperStep"></code></pre>
     </div>
   </div>
 </template>

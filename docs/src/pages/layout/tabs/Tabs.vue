@@ -2,7 +2,7 @@
     <div>
       <forge-page-header title="Tabs"/>
       <p>Further documentation and examples can be found in the <a class="link" target="_blank" href="https://saforgestyleguide.z33.web.core.windows.net/#/layout/tabs/tabs"><strong>Forge.UI documentation</strong></a>.</p>
-      <playground :options="options" :config="config" @reset="reset" :code="code">
+      <playground :options="options" :config="config.value" @reset="reset" :code="code">
         <template #header>
           <b-form-radio-group v-model="mode" :options="optionType" button-variant="outline-primary" buttons />
         </template>
@@ -20,7 +20,7 @@
 import { BFormRadioGroup, BTabs, BTab } from "bootstrap-vue";
 import { ForgePageHeader } from "@3squared/forge-ui";
 import { computed, ref } from "vue";
-import { usePlayground } from '@3squared/forge-playground';
+import { usePlayground, Playground } from '@3squared/forge-playground';
 
 const mode = ref('b-tabs')
 const optionType = ['b-tabs', 'b-tab']

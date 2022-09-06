@@ -15,8 +15,8 @@
       </template>
     </playground>
     Dont forget to register the b-toggle directive in your script setup section using
-    <div class="position-relative">
-      <pre class="forge-code-block"><code v-html="vBToggleExample"></code></pre>
+    <div class="position-relative mt-3">
+      <pre class="position-relative p-3 rounded-lg code-block"><code class="text-white" v-html="vBToggleExample"></code></pre>
     </div>
   </div>
 </template>
@@ -26,7 +26,7 @@ import { ForgePageHeader } from "@3squared/forge-ui";
 import { BCollapse, BButton, BCard, VBToggle } from "bootstrap-vue";
 import { computed } from "vue";
 import Prism from "prismjs";
-import { usePlayground } from '@3squared/forge-playground';
+import { usePlayground, Playground } from '@3squared/forge-playground';
 
 const vBToggle = VBToggle
 
@@ -39,6 +39,10 @@ const { options, propVals, config, reset } = usePlayground({
 }, {
   id: { required: true }
 })
+
+const copyToClipboard = (code: string) => {
+  navigator.clipboard.writeText(code);
+};
 
 const code = computed(() => {
   return `<b-button v-b-toggle.${options.value.id}>Toggle Collapse</b-button>
