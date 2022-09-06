@@ -1,14 +1,19 @@
 ﻿<template>
-  <multiselect :options="options.map((opt) => opt.shortName)" placeholder="Search for a component" @select="pushSelectedRoute"> </multiselect>
+  <forge-multi-select :options="options" label="shortName" :multiple="false" placeholder="Search for a component" @select="pushSelectedRoute">
+    <template #noResult>
+      No Results Found.
+    </template>
+  </forge-multi-select>
 </template>
 
 <script setup lang="ts">
-import Multiselect from 'vue-multiselect';
+
 //@ts-ignore
 import routes from 'pages-generated';
 /* search bar setup */
 import { computed, getCurrentInstance } from 'vue';
-import { Route, RouteConfig } from "vue-router";
+import { RouteConfig } from "vue-router";
+import { ForgeMultiSelect } from '@3squared/forge-ui'
 
 const router = getCurrentInstance()!.proxy.$router
 
@@ -47,5 +52,3 @@ function pushSelectedRoute(selected : string) {
   }
 }
 </script>
-
-<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
