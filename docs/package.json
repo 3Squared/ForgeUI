@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "preview": "npm run build && vite preview",
-    "build-bundle" : "cd .. && npm i && npm run build && cd docs",
+    "build-bundle": "cd .. && npm i && npm run build && cd docs",
     "build": "vite build --base=ForgeUI",
     "dev": "vite",
     "network": "npm run build && vite preview --host"
@@ -16,6 +16,7 @@
     "markdown-it-prism": "2.2.4",
     "prismjs": "1.28.0",
     "register-service-worker": "1.7.2",
+    "rgb-hex": "^4.0.0",
     "vue": "^2.7.7",
     "vue-multiselect": "2.1.6",
     "vue-router": "3.5.3",
