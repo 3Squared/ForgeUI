@@ -17,7 +17,7 @@
       </div>
       
       <div class="d-flex mt-auto mb-auto ml-auto">
-        <RouteSearcher class="searcher" />
+        <route-searcher class="searcher"/>
       </div>
     </b-navbar-nav>
   </b-navbar>

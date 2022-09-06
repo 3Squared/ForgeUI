@@ -15,6 +15,11 @@ import { computed, getCurrentInstance } from 'vue';
 import { RouteConfig } from "vue-router";
 import { ForgeMultiSelect } from '@3squared/forge-ui'
 
+interface Route {
+  shortName: string | undefined,
+  routeName: string | undefined
+}
+
 const router = getCurrentInstance()!.proxy.$router
 
 const options = computed(() => {
@@ -27,7 +32,7 @@ const options = computed(() => {
       };
     })
     .filter(
-      (route : { shortName: string | undefined, routeName: string | undefined }) =>
+      (route : Route) =>
         route.shortName!.indexOf('index') &&
         route.shortName!.indexOf('api Mock') &&
         route.shortName!.indexOf('data') &&
@@ -44,11 +49,8 @@ function fixRouteName(routeName : string) {
   return temp[temp.length - 1].replace(/([A-Z])/g, ' $1').trim();
 }
 
-function pushSelectedRoute(selected : string) {
-  const routeObj = options.value.filter((opt : { shortName: string | undefined, routeName: string | undefined }) => opt.shortName === selected);
-  if (routeObj?.length) {
-    console.log(`Pushing to ${routeObj[0].routeName}`);
-    router.push({ name: routeObj[0].routeName });
-  }
+function pushSelectedRoute(selected : Route) {
+  console.log(selected)
+  router.push({ name: selected.routeName });
 }
 </script>
