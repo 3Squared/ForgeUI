@@ -1,7 +1,6 @@
 ﻿<template>
   <div>
     <forge-page-header title="File Uploader" />
-    <p>Further documentation and examples can be found in the <a class="link" target="_blank" href="https://saforgestyleguide.z33.web.core.windows.net/#/forms/file-upload/fileuploader"><strong>Forge.UI documentation</strong></a>.</p>
     <OPTIONS/>
     <playground :options="options" :code="code" :config="config" @reset="reset">
       <template #component>

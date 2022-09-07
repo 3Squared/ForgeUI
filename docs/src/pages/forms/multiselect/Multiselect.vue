@@ -1,23 +1,22 @@
 ﻿<template>
   <div>
     <forge-page-header title='Multiselect' />
-    <p>Further documentation and examples can be found in the <a class='link'
-                                                                 href='https://saforgestyleguide.z33.web.core.windows.net/#/forms/multiselect/multiselect'
-                                                                 target='_blank'><strong>Forge.UI
-      documentation</strong></a>.</p>
+    <p>Further documentation and examples can be found in the <a class='link' href='https://vue-multiselect.js.org/' target='_blank'><strong>Vue-multiselect documentation</strong></a>.</p>
     <OPTIONS></OPTIONS>
     <playground :code='code' :config="config" :options='options' @reset='reset'>
       <template #component>
         <component :is='ForgeMultiSelect' v-model='selected' class='w-75' v-bind='options' />
       </template>
     </playground>
+    Here is an example of a multiselect options array
+    <code-block :code="optionsArrayExample"></code-block>
   </div>
 </template>
 
 <script lang='ts' setup>
 import OPTIONS from './OPTIONS.md';
 import { ForgeMultiSelect, ForgePageHeader } from '@3squared/forge-ui';
-import { Playground, usePlayground } from '@3squared/forge-playground';
+import { Playground, usePlayground, CodeBlock } from '@3squared/forge-playground';
 import { computed, ref, watchEffect } from 'vue';
 import { baseVariants, validationStates } from '../../../composables/playgroundOptions';
 
@@ -64,7 +63,7 @@ const { options, propVals, config, reset } = usePlayground({
 }, {
   variant: { type: 'select', options: baseVariants },
   state: { type: 'select', options: validationStates },
-  label: { type: 'select', options: Object.keys(multiSelectOptions.value[0]) },
+  label: { type: 'select', options: Object.keys(multiSelectOptions.value[0]), required: true },
   showSelectAll: { disabled: (): boolean => !options.value.multiple },
   showClearSelection: { disabled: (): boolean => !options.value.multiple },
   options: { required: true }
@@ -79,4 +78,10 @@ watchEffect(() => {
 });
 
 const code = computed(() => `<forge-multi-select ${propVals.value.join(' ')}/>`);
+const optionsArrayExample = computed(() => `<script setup lang="ts">
+ const optionsArray = ref([
+   { id: 1, label: 'option 1', value: 'opt_1'},
+   { id: 2, label: 'option 2', value: 'opt_2'}
+ ])
+\<\/script>`)
 </script>

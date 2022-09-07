@@ -1,7 +1,6 @@
 ﻿<template>
   <div>
     <forge-page-header title="Action Button"/>
-    <p>Further documentation and examples can be found in the <a class="link" target="_blank" href="https://saforgestyleguide.z33.web.core.windows.net/#/general/action-button/actionbutton"><strong>Forge.UI documentation</strong></a>.</p>
     <OPTIONS />
     <playground :options="options" :config="config" :code="code" @reset="reset">
       <template #component>

@@ -14,11 +14,15 @@
 | v-model                  | The list of items that have been selected in the multi-select and hence also displayed in the preview part | Array as () => MultiSelectOption<any>[]           | -                                               |                  |
 | canRemoveItemFromPreview | If set to false it will hide the cross in the preview part                                                 | boolean                                           | -                                               | true             |
 
-## Events
 
+
+
+## Events
 | Event name | Properties | Description |
 | ---------- | ---------- | ----------- |
-| input      |            |
+| input      |            |             |
+
+
 
 ## Slots
 
@@ -27,9 +31,6 @@
 | default            |                                                                                                        |          |
 | after-multi-select | If you need to display some content below the multi select such as validation content                  |          |
 | list-item          | Use this slot if the default labels is not enough, maybe for a b-link to redirect the user to the item |          |
-
-          ---
-
 <hr/>
 
 </div>

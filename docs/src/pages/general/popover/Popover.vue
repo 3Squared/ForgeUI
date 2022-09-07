@@ -1,10 +1,10 @@
 <template>
   <div>
     <forge-page-header title="Popover"/>
-    <p>Further documentation and examples can be found in the <a class="link" target="_blank" href="https://saforgestyleguide.z33.web.core.windows.net/#/general/popover/popover"><strong>Forge.UI documentation</strong></a>.</p>
+    <p>Further documentation and examples can be found in the <a class="link" target="_blank" href="https://bootstrap-vue.org/docs/components/popover"><strong>Bootstrap Vue documentation</strong></a>.</p>
     <playground :options="options" :code="code" :config="config" @reset="reset">
       <template #component>
-        <b-button id="popover-button" variant="primary">Button</b-button>
+        <b-button id="popover-button" variant="brand">Button</b-button>
         <component :is="BPopover" v-bind="options"/>
       </template>
       <template #placement>
@@ -71,7 +71,7 @@ const { options, propVals, config, reset } = usePlayground({
 })
 
 const code = computed(() => {
-  return `<b-button id="${options.value.target}" variant="primary">Button</b-button>
+  return `<b-button id="${options.value.target}" variant="brand">Button</b-button>
 <b-popover ${propVals.value.join(' ')}>
   <template #title>
    ${ options.value.title }

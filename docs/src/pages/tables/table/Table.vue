@@ -1,14 +1,14 @@
 ﻿<template>
   <div>
     <forge-page-header title='Table' />
-    <p>Further documentation and examples can be found in the <a class='link' href='https://saforgestyleguide.z33.web.core.windows.net/#/tables/table/table' target='_blank'><strong>Forge.UI
-      documentation</strong></a>.</p>
     <OPTIONS></OPTIONS>
     <playground :code='code' :config='config' :options='options' @reset='reset'>
       <template #component>
         <component :is='ForgeTable' v-bind='options' />
       </template>
     </playground>
+    Columns for the table can be created programmatically using the ForgeColumnBuilder method as shown below
+    <code-block :code="columnExample" />
   </div>
 </template>
 
@@ -16,7 +16,7 @@
 import OPTIONS from './OPTIONS.md';
 import { ForgeColumnBuilder, ForgePageHeader, ForgeTable } from '@3squared/forge-ui';
 import { computed } from 'vue';
-import { usePlayground, Playground } from '@3squared/forge-playground';
+import { usePlayground, Playground, CodeBlock } from '@3squared/forge-playground';
 import { Person } from '../../../models/Person';
 
 const fields = computed(() => {
@@ -106,4 +106,22 @@ const { options, propVals, config, reset } = usePlayground({
 });
 
 const code = computed(() => `<forge-table ${propVals.value.join(' ')}></forge-table>`);
+
+const columnExample = `\<script setup lang="ts">
+import { ForgeColumnBuilder } from '@3squared/forge-ui';
+import { computed } from 'vue';
+import { Person } from '../../../models/Person';
+
+
+const fields = computed(() => {
+  return new ForgeColumnBuilder<Person>()
+    .addColumn('id', col => col.enableAutoFilter('number'))
+    .addColumn('firstName', col => col.setLabel('First Name').enableAutoFilter())
+    .addColumn('age', col => col.enableAutoFilter('number'))
+    .addColumn('dateJoined')
+    .addColumn('actions', col => col.disableSorting())
+    .build();
+});
+\<\script>`
+
 </script>

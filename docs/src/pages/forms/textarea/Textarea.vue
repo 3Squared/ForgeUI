@@ -1,7 +1,7 @@
 ﻿<template>
   <div>
     <forge-page-header title="Text area" />
-    <p>Further documentation and examples can be found in the <a class="link" target="_blank" href="https://saforgestyleguide.z33.web.core.windows.net/#/forms/textarea/textarea"><strong>Forge.UI documentation</strong></a>.</p>
+    <p>Further documentation and examples can be found in the <a class="link" target="_blank" href="https://bootstrap-vue.org/docs/components/form-textarea"><strong>Bootstrap Vue documentation</strong></a>.</p>
     <playground :options="options" :config="config" :code="code" @reset="reset">
       <template #component>
         <component :is="BFormTextarea" v-bind="options" class="w-75"/>

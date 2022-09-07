@@ -1,8 +1,6 @@
 ﻿<template>
   <div>
     <forge-page-header title='Stat Widget' />
-    <p>Further documentation and examples can be found in the <a class='link' href='https://saforgestyleguide.z33.web.core.windows.net/#/general/stat-widget/statwidget' target='_blank'><strong>Forge.UI
-      documentation</strong></a>.</p>
     <OPTIONS />
     <playground :code='code' :config='config' :options='options' @reset='reset'>
       <template #component>

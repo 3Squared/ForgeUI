@@ -1,3 +1,5 @@
+import { ref } from "vue";
+
 const items = [
   { id: 1, label: "Andrew Powell (Senior)", labelShort: "Andrew Powell" }, 
   { id: 2, label: "Tom Smith (Senior)", labelShort: "Tom Smith" }, 
@@ -11,12 +13,12 @@ const items = [
 
 export { items };
 
-const selectedItems = [
+const selectedItems = ref([
   { id: 1, label: "Andrew Powell (Senior)", labelShort: "Andrew Powell" }, 
   { id: 2, label: "Tom Smith (Senior)", labelShort: "Tom Smith" }, 
   { id: 7, label: "Hamza Mahmood (Dev)", labelShort: "Hamza Mahmood" }, 
   { id: 8, label: "Isabel Mallon (Junior Dev)", labelShort: "Isabel Mallon" }
-];
+]);
 
 export { selectedItems };
 
