@@ -5,13 +5,9 @@
     <playground :code='code' :config='config' :options='options' @reset='reset'>
       <template #component>
         <!-- Remove bg-${variant} once the widget has been refactored to accept a variant. -->
-        <component :is='ForgeStatWidget' :class='`bg-${variant}`' v-bind='options'>{{ widgetContent }}</component>
+        <component :is='ForgeStatWidget' v-bind='options'>{{ widgetContent }}</component>
       </template>
       <template #additionalOptions>
-        <div class='mb-2'>
-          <label>variant</label>
-          <b-form-select v-model='variant' :options='baseVariants' />
-        </div>
         <div class='mb-2'>
           <label>widget content</label>
           <b-form-input v-model='widgetContent' />
@@ -34,20 +30,21 @@ const variant = ref(baseVariants[0]);
 
 
 const { options, propVals, config, reset } = usePlayground({
-    size: sizes[1].value
+    size: sizes[1].value,
+    variant: baseVariants[0]
   },
   {
     size: { type: 'select', options: sizes },
+    variant: { type: 'select', options: baseVariants }
   },
   () => {
     widgetContent.value = 'Widget';
-    variant.value = baseVariants[0];
   }
 );
 
 const code = computed(() => {
   // Remove bg-${variant.value} once the component has been refactored to accept a variant.
-  return `<forge-stat-widget ${propVals.value.join(' ')} class='bg-${variant.value}'>${widgetContent.value}</forge-stat-widget>`;
+  return `<forge-stat-widget ${propVals.value.join(' ')}>${widgetContent.value}</forge-stat-widget>`;
 });
 
 </script>

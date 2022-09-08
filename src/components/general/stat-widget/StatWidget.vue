@@ -1,5 +1,5 @@
 <template>
-  <div class="d-flex shadow m-2 align-items-center " :class="classes">
+  <div class="d-flex shadow m-2 align-items-center" :class="classes">
     <span class="value text-light w-100 text-center">
       <!-- @slot Use this slot to place the value for the stat -->
       <slot />
@@ -23,11 +23,15 @@ export const ForgeStatWidget = /*#__PURE__*/ Vue.extend({
       validator(value : string) {
         return ['sm', 'md', 'lg'].indexOf(value) !== -1;
       }
+    },
+    variant: {
+      type: String,
+      default: 'primary'
     }
   },
   computed: {
     classes() : string {
-      return `widget--${this.size}`;
+      return `widget--${this.size} bg-${this.variant}`;
     }
   }
 });
