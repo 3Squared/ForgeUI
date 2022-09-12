@@ -29,7 +29,12 @@ class BuildPipeline {
   this.functions.push(() => exec(`npx vue-docgen -c scripts/docgen-config.ts`));
   return this;
  }
-
+ 
+ generateCSS() {
+  this.functions.push(() => exec(`node ./scripts/generate-styles.js dist`));
+  return this;
+ }
+ 
  generateIDEHelpers() {
   this.functions.push(() => exec(`node ./scripts/generate-types.js`));
   return this;
@@ -67,5 +72,6 @@ new BuildPipeline()
   .generateIDEHelpers()
   .compileUtilities()
   .buildLibrary()
+  .generateCSS()
   .testTreeshaking()
   .go();
