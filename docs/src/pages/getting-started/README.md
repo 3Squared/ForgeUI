@@ -20,18 +20,18 @@ You must register your ForgeUI and BootstrapVue components in each SFC, so that 
 ```markup
 <template>
   <div>
+    <forge-page-header title="ForgeUI!"/>
     <b-button>A button</b-button>
-    <forge-footer version="2.3.0" />
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
-import { ForgeFooter } from '@3squared/forge-ui';
+import { Forge } from '@3squared/forge-ui';
 import { BButton } from 'bootstrap-vue';
 
 export default Vue.extend({
-  components: { ForgeFooter, BButton }
+  components: { ForgePageHeader, BButton }
 });
 </script>
 ```
