@@ -95,7 +95,6 @@ export default Vue.extend({
           )
           .addPage('Icons', (p) => p.to({ name: 'Icons-Icons' }))
           .addPage('Colours', (p) => p.to({ name: 'Colours' }))
-          .addPage('FAQs', (p) => p.to({ name: 'FAQs' }))
           .build();
     },
     sections(): Section[] {

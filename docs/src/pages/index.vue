@@ -4,22 +4,16 @@
     <div class="background" />
     <b-row class="mt-3 mb-4">
       <b-col cols="12 ">
-        <h2 class="font-weight-bold text-secondary my-3 display-4">Welcome to ForgeUI Style Guide <img
-            src="https://cdn.dev.3sq.app/assets/products/general/images/forge-favicon.ico" style="width: 48px; position: relative; top: -2px" alt="" /></h2>
+        <h2 class="font-weight-bold my-3 display-4">Welcome to ForgeUI Style Guide <img
+            src="https://cdn.dev.3sq.app/assets/products/general/images/forge-favicon.ico" alt="" /></h2>
       </b-col>
-      <hr class="bg-secondary" />
     </b-row>
     <b-row>
       <b-col cols="12" md="12" lg="6" offset-lg="0" class=" text-brand pt-3 h-50 ">
-        <p class="text-center lead description text-muted mt-0 fade-border px-5 mb-4">
-          <span style="font-weight:bold" class="text-brand-shade-3 px-2">ForgeUI</span> is designed to be a wrapper around different libraries that provide a consistent UI style.
-          It is comprised of many different packages that have been combined to create a one stop shop for UI requirements.
+        <p class="text-center lead description mt-0 fade-border px-5 mb-4">
+          <span style="font-weight:bold" class="text-brand-shade-3 px-2">ForgeUI</span>is designed to be a wrapper around different libraries that provide a consistent UI style.
+          It is comprised of many different packages that have been combined to create a one stop shop for UI.
         </p>
-        <b-row>
-          <b-col cols="12 mt-2" class="text-center">
-            <home-icons />
-          </b-col>
-        </b-row>
       </b-col>
       <b-col cols="12" lg="4" class="pl-4 mt-5 comp-search" offset-md="0">
         <RouteSearcher />
@@ -28,11 +22,7 @@
             <div>
               <b-col cols="12" class="pb-2">
                 <b-button class="m-2 btn text-light" variant="primary" :to="{path:'/Getting-Started/installation'}">Get Started</b-button>
-                <forge-action-button v-if="!isEnvPwa" variant="outline-success" class="btn-inline-block d-md-none installBtn" :action="download">Download Style-Guide</forge-action-button>
-                <forge-action-button v-if="!isEnvPwa" variant="outline-success" class="mx-auto d-none d-md-inline-block btn-brand installBtn my-2" :action="download">Download Style-Guide
-                </forge-action-button>
               </b-col>
-              <p class="font-italic mt-2">You can now use the <span class="text-brand font-weight-bold">style-guide</span> offline!</p>
             </div>
           </b-col>
         </b-row>
@@ -42,10 +32,9 @@
 </template>
 
 <script setup lang="ts">
-import HomeIcons from '../assets/HomeIcons.md'
 import RouteSearcher from '../components/RouteSearcher.vue'
 import { BRow, BCol, BButton } from "bootstrap-vue";
-import { ForgeActionButton, ForgeToasts } from '@3squared/forge-ui';
+import { ForgeToasts } from '@3squared/forge-ui';
 import Vue, { getCurrentInstance } from "vue";
 import { ref, onMounted } from "vue";
 
@@ -107,14 +96,5 @@ async function download() {
 
 .fade-border {
   border-right: 2px solid #eee;
-}
-
-
-.searchbar {
-  height: 40px;
-}
-
-.searchbtn {
-  cursor: pointer;
 }
 </style>
