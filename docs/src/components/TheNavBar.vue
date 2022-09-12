@@ -50,11 +50,6 @@ export default Vue.extend({
           .addSection('Getting Started', this.$route.name?.includes('getting-started-') ? true : false, (s) =>
               s
                   .addSubPage('Get Started', (sp) => sp.to({ name: 'getting-started-Installation' }))
-                  .addSubPage('Migrate v1 to v2', (sp) => sp.to({ name: 'getting-started-migrations-V1ToV2' }))
-                  .addSubPage('Migrate v2 to v3', (sp) => sp.to({ name: 'getting-started-migrations-V2ToV3' }))
-                  .addSubPage('Migrate v3 to v4', (sp) => sp.to({ name: 'getting-started-migrations-V3ToV4' }))
-                  .addSubPage('Migrate v4 to v5', (sp) => sp.to({ name: 'getting-started-migrations-V4ToV5' }))
-                  .addSubPage('Vue.js & .NET using Forge.Loader', (sp) => sp.to({ name: 'getting-started-integrations-ForgeLoader' }))
           )
           .addSection('Forms', this.$route.name?.includes('forms-') ? true : false, (s) =>
               s
