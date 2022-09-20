@@ -1,14 +1,24 @@
 ﻿<template>
-  <multiselect :options="options.map((opt) => opt.shortName)" placeholder="Search for a component" @select="pushSelectedRoute"> </multiselect>
+  <forge-multi-select :options="options" label="shortName" :multiple="false" placeholder="Search for a component" @select="pushSelectedRoute">
+    <template #noResult>
+      No Results Found.
+    </template>
+  </forge-multi-select>
 </template>
 
 <script setup lang="ts">
-import Multiselect from 'vue-multiselect';
+
 //@ts-ignore
 import routes from 'pages-generated';
 /* search bar setup */
 import { computed, getCurrentInstance } from 'vue';
-import { Route, RouteConfig } from "vue-router";
+import { RouteConfig } from "vue-router";
+import { ForgeMultiSelect } from '@3squared/forge-ui'
+
+interface Route {
+  shortName: string | undefined,
+  routeName: string | undefined
+}
 
 const router = getCurrentInstance()!.proxy.$router
 
@@ -22,7 +32,7 @@ const options = computed(() => {
       };
     })
     .filter(
-      (route : { shortName: string | undefined, routeName: string | undefined }) =>
+      (route : Route) =>
         route.shortName!.indexOf('index') &&
         route.shortName!.indexOf('api Mock') &&
         route.shortName!.indexOf('data') &&
@@ -39,13 +49,8 @@ function fixRouteName(routeName : string) {
   return temp[temp.length - 1].replace(/([A-Z])/g, ' $1').trim();
 }
 
-function pushSelectedRoute(selected : string) {
-  const routeObj = options.value.filter((opt : { shortName: string | undefined, routeName: string | undefined }) => opt.shortName === selected);
-  if (routeObj?.length) {
-    console.log(`Pushing to ${routeObj[0].routeName}`);
-    router.push({ name: routeObj[0].routeName });
-  }
+function pushSelectedRoute(selected : Route) {
+  console.log(selected)
+  router.push({ name: selected.routeName });
 }
 </script>
-
-<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>

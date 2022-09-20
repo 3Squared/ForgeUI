@@ -1,7 +1,6 @@
 ﻿<template>
   <div>
     <forge-page-header title="Remaining Characters"/>
-    <p>Further documentation and examples can be found in the <a class="link" target="_blank" href="https://saforgestyleguide.z33.web.core.windows.net/#/forms/remaining-characters/remainingcharacters"><strong>Forge.UI documentation</strong></a>.</p>
     <OPTIONS />
     <playground :options="options" :code="code" :config="config" @reset="reset">
       <template #component>

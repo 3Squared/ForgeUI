@@ -1,21 +1,22 @@
 {
   "name": "forge-ui-styleguide",
-  "version": "2.0.0",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "preview": "npm run build && vite preview",
-    "build-bundle" : "cd .. && npm i && npm run build && cd docs",
+    "build-bundle": "cd .. && npm i && npm run build && cd docs",
     "build": "vite build --base=ForgeUI",
     "dev": "vite",
     "network": "npm run build && vite preview --host"
   },
   "dependencies": {
-    "@3squared/forge-playground": "1.0.0",
+    "@3squared/forge-playground": "1.1.3",
     "@3squared/forge-ui": "file:..",
     "bootstrap-vue": "2.22.0",
     "markdown-it-prism": "2.2.4",
     "prismjs": "1.28.0",
     "register-service-worker": "1.7.2",
+    "rgb-hex": "^4.0.0",
     "vue": "^2.7.7",
     "vue-multiselect": "2.1.6",
     "vue-router": "3.5.3",

@@ -1,7 +1,7 @@
 ﻿<template>
   <div>
     <forge-page-header title="Select"/>
-    <p>Further documentation and examples can be found in the <a class="link" target="_blank" href="https://saforgestyleguide.z33.web.core.windows.net/#/forms/select/select"><strong>Forge.UI documentation</strong></a>.</p>
+    <p>Further documentation and examples can be found in the <a class="link" target="_blank" href="https://bootstrap-vue.org/docs/components/form-select"><strong>Bootstrap Vue documentation</strong></a>.</p>
     <playground :options="options" :config="config" :code="code" @reset="reset">
       <template #component>
         <component :is="BFormSelect" v-bind="options" class="w-75"/>
@@ -14,6 +14,8 @@
         </div>
       </template>
     </playground>
+    Here is an example of an options array
+    <code-block :code="optionsArrayExample" />
   </div>
 </template>
 
@@ -21,7 +23,7 @@
 import { ForgePageHeader } from "@3squared/forge-ui";
 import { BFormSelect, BFormInput, BButton } from "bootstrap-vue";
 import { computed, ref } from "vue";
-import { usePlayground, Playground } from '@3squared/forge-playground';
+import { usePlayground, Playground, CodeBlock } from '@3squared/forge-playground';
 import { sizes, validationStates } from '../../../composables/playgroundOptions';
 
 const optionToAdd = ref('')
@@ -60,5 +62,14 @@ const addOption = () => {
   optionToAdd.value = ''
 }
 
-const code = computed(() => `<b-form-select ${propVals.value.join(' ')} />`)
+const code = computed(() => `<b-form-select ${propVals.value.join(' ')}/>`)
+const optionsArrayExample = computed(() => `<script setup lang="ts">
+/* Here are all the different ways you can create an option for a select */
+ const optionsArray = ref([
+   { text: 'Option 1', value: 'option 1', disabled: false},
+   { text: 'Option 2', value: { a: 'a', b: 'b' }, disabled: true},
+   { html: '<b>Option 3</b>', value: 'option 3' },
+   'Option 4'
+ ])
+\<\/script>`)
 </script>

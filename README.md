@@ -20,7 +20,7 @@ npm install
 
 # Building Forge UI Framework
 
-Forge UI Framework Version 5 uses a combination of `Rollup` and `Vite` to create an `esm` bundle for each component in the library and a central entry point as well other items such as types and styles. It is vital an `esm` bundle is created so the consuming application can utilise tree shaking.
+Forge UI Framework Version uses a combination of `Rollup` and `Vite` to create an `esm` bundle for each component in the library and a central entry point as well other items such as types and styles. It is vital an `esm` bundle is created so the consuming application can utilise tree shaking.
 
 To run the build process which includes theme generation, web type generation, icon generation, bundle generation and tree shaking checks; run:
 
@@ -91,7 +91,7 @@ export default MyComponent;
 
 4. Develop your component with all the features you require, creating a subfolder of components or helpers if you need.
 
-5. You now need to register your component in the main entry file, and optionally include it in the legacy ForgeUI plugin.
+5. You now need to register your component in the main entry file.
 
 Go to `index.ts` and import, export and optionally register your new component.
 
@@ -120,8 +120,6 @@ export {
 }
 ```
 
-Note: With the introduction of Forge UI Framework Version 5, we now are going to advice against using the Forge UI plugin as it prevents tree-shaking from occurring in the consuming app, however we have kept it in so adoption can be gradual and there are no breaking changes - therefore it is optional to register your component in the plugin for people who want the component but haven't moved away from old-style consumption yet.
-
 ### Tips For Tree Shaking
 
 Most of the leg work for making tree shaking work is already in place - there are just two things you need to make sure you do:
@@ -132,12 +130,10 @@ Most of the leg work for making tree shaking work is already in place - there ar
   ```
 - When you install a new dependency, make sure to externalize it via the `external` section in `rollup.config.js`.
 
-Any other problems, please don't be afraid to shout up because tree shaking can be a bit 🤯🤯, Tom Smith (tom.smith@3squared.com) and Dom Barter (dom.barter@3squared.com) are good places to start!
-
 ## Documenting your new component
 
 Please consult `docs/README.md` on how you should document your new component and add examples to test it's functionality!
 
 # Publishing a new version
 
-To publish a new version of Forge UI Framework please open a PR targeting the `main` branch and the Azure Pipelines will take care of the rest!
+To publish a new version of Forge UI Framework please open a PR targeting the `main` branch and the GitHub Action will take care of the rest!

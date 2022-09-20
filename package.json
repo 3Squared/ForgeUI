@@ -1,8 +1,8 @@
 {
   "name": "@3squared/forge-ui",
-  "repository": "https://github.com/3Squared/ForgePlayground",
-  "version": "0.0.3",
-  "description": "ForgeUI is designed to be a wrapper around different libraries that provide a consistent UI style. It is comprised of many different packages that have been combined to create a one stop shop for UI requirements.",
+  "repository": "https://github.com/3Squared/ForgeUI",
+  "version": "1.0.0",
+  "description": "ForgeUI is designed to be a wrapper around different libraries that provide a consistent UI style. It is comprised of many different packages that have been combined to create a one stop shop for UI.",
   "license": "MIT",
   "main": "dist/esm/forge-ui.mjs",
   "module": "dist/esm/forge-ui.mjs",
@@ -68,6 +68,10 @@
   },
   "contributors": [
     {
+      "name": "Jacob Minor",
+      "email": "jacob.minor@3squared.com"
+    },
+    {
       "name": "Tom Smith",
       "email": "tom.smith@3quared.com"
     },
@@ -78,14 +82,6 @@
     {
       "name": "Richard Wilson",
       "email": "richard.wilson@3quared.com"
-    },
-    {
-      "name": "Josh Sexton-Jones",
-      "email": "josh.sexton-jones@3quared.com"
-    },
-    {
-      "name": "Dom Barter",
-      "email": "dom.barter@3sqaured.com"
     },
     {
       "name": "Alex Ashley",

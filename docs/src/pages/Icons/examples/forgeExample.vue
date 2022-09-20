@@ -1,5 +1,5 @@
 ﻿<template>
-  <b-icon-forge-map variant="primary" />
+  <b-icon-forge-map variant="brand" />
 </template>
 
 <script lang="ts">

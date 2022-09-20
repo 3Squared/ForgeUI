@@ -1,81 +1,81 @@
 ﻿<template>
-  <div class="position-absolute w-100 colours">
-    <h1>Colours</h1>
-    <div class="pl-5">
-      <h3 class="mt-4">- Brand Colours:</h3>
-      <div class="color-swatch">
-        <div class="bg-brand-shade-1"></div>
-        <div class="bg-brand-shade-2"></div>
-        <div class="bg-brand-shade-3"></div>
-        <div class="bg-brand"></div>
-        <div class="bg-brand-dark"></div>
-      </div>
-  
-      <h3 class="mt-4">- Greys:</h3>
-      
-      <div class="color-swatch">
-        <div class="bg-grey-100"></div>
-        <div class="bg-grey-200"></div>
-        <div class="bg-grey-300"></div>
-        <div class="bg-grey-400"></div>
-        <div class="bg-grey-500"></div>
-        <div class="bg-grey-600"></div>
-        <div class="bg-grey-700"></div>
-        <div class="bg-grey-800"></div>
-        <div class="bg-grey-900"></div>
-        <div class="bg-grey-1000"></div>
-      </div>
-  
-      <h3 class="mt-4">- Primary Colours:</h3>
-      <div class="color-swatch">
-        <div class="bg-primary-light"></div>
-        <div class="bg-primary"></div>
-        <div class="bg-primary-dark"></div>
-      </div>
-      
-      <h3 class="mt-4">- Success Colours:</h3>
-      <div class="color-swatch">
-        <div class="bg-success-light"></div>
-        <div class="bg-success"></div>
-        <div class="bg-success-dark"></div>
-      </div>
-  
-      <h3 class="mt-4">- Warning Colours:</h3>
-      <div class="color-swatch">
-        <div class="bg-warning-light"></div>
-        <div class="bg-warning"></div>
-        <div class="bg-warning-dark"></div>
-      </div>
-  
-      <h3 class="mt-4">- Danger Colours:</h3>
-      <div class="color-swatch">
-        <div class="bg-danger-light"></div>
-        <div class="bg-danger"></div>
-        <div class="bg-danger-dark"></div>
-      </div>
+  <div>
+    <div v-for="palette in palettes">
+      <h1 class="mb-4 pb-1">{{ palette.title }}</h1>
+      <template v-for="colours in palette.colours">
+        <div class="d-flex mb-4 pb-1">
+          <div v-for="shade in colours.shades" class="color-swatch d-flex flex-column h-100 pr-5">
+            <p class="text-center mb-1">{{ shade.label }}</p>
+            <div :id="`swatch-${shade.background}`" :class="shade.background"></div>
+            <b-dropdown text="Copy" variant="link" class="h-50" toggle-class="pt-1 p-0">
+              <b-dropdown-item @click="getColour(shade.background)">Hex Code</b-dropdown-item>
+              <b-dropdown-item @click="copyToClipboard(shade.background)">Background Class</b-dropdown-item>
+              <b-dropdown-item @click="copyToClipboard(shade.text)">Text Class</b-dropdown-item>
+            </b-dropdown>
+          </div>
+        </div>
+      </template>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import {ref} from "vue";
+import { BDropdown, BDropdownItem } from "bootstrap-vue";
+import rgbHex from "rgb-hex";
 
-const d = ref('a')
+const palettes = [
+  {
+    title: 'Neutral Shades', colours: [
+      {
+        shades: [
+          { background: 'bg-grey-900', text: 'text-grey-900', label: 'Grey 900' },
+          { background: 'bg-grey-800', text: 'text-grey-800', label: 'Grey 800' },
+          { background: 'bg-grey-700', text: 'text-grey-700', label: 'Grey 700' },
+          { background: 'bg-grey-600', text: 'text-grey-600', label: 'Grey 600' },
+          { background: 'bg-grey-500', text: 'text-grey-500', label: 'Grey 500' },
+          { background: 'bg-grey-400', text: 'text-grey-400', label: 'Grey 400' },
+          { background: 'bg-grey-300', text: 'text-grey-300', label: 'Grey 300' },
+          { background: 'bg-grey-200', text: 'text-grey-200', label: 'Grey 200' },
+          { background: 'bg-grey-100', text: 'text-grey-100', label: 'Grey 100' }
+        ]
+      }
+    ]
+  },
+  {
+    title: 'System Colours', colours: [
+      {
+        shades: [
+          { background: 'bg-primary', text: 'text-primary', label: 'Primary' },
+          { background: 'bg-secondary', text: 'text-secondary', label: 'Secondary' },
+          { background: 'bg-info', text: 'text-info', label: 'Info' },
+          { background: 'bg-success', text: 'text-success', label: 'Success' },
+          { background: 'bg-warning', text: 'text-warning', label: 'Warning' },
+          { background: 'bg-danger', text: 'text-danger', label: 'Danger' },
+          { background: 'bg-light', text: 'text-light', label: 'Light' },
+          { background: 'bg-dark', text: 'text-dark', label: 'Dark' }
+        ]
+      }
+    ]
+  }
+]
+
+const copyToClipboard = (value: string) => {
+  navigator.clipboard.writeText(value)
+}
+
+const getColour = (colour: string) => {
+  const swatch = document.getElementById(`swatch-${colour}`) as Element
+  const swatchStyles = getComputedStyle(swatch)
+  const hex = `#${rgbHex(swatchStyles.backgroundColor)}`
+  copyToClipboard(hex)
+}
 </script>
 
 <style lang="scss">
 .color-swatch {
-  display: flex;
-  height: 50px;
-  padding-left: 15px;;
-
   div {
-    height: 50px;
-    width: 50px;
+    height: 74px;
+    width: 74px;
   }
-}
-
-.colours {
-  left: 50px;
 }
 </style>

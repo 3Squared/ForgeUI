@@ -1,6 +1,6 @@
 ﻿<template>
   <b-navbar type="dark" variant="dark">
-    <b-navbar-nav>
+    <b-navbar-nav class="w-100">
       <b-navbar-brand>
         <router-link :to="{path : '/'}">
           <img alt="" height="32px" src="https://cdn.3sq.app/assets/products/forge-ui/images/logo.svg" />
@@ -15,16 +15,9 @@
         </b-nav-item-dropdown>
         <b-nav-item v-for="page in pages" :key="page.label" :to="page.to">{{ page.label }}</b-nav-item>
       </div>
-
-      <div class="ml-lg-auto">
-        <div class="d-flex">
-          <div class="smallSearch">
-            <RouteSearcher class="position-relative smallSearch" />
-          </div>
-          <b-button class="mx-3 btn-sm btn-outline-success rounded" target="_blank" @click="openSlackHelp"
-          ><img class="slacklogo mr-1" src="../assets/slacklogo.png" /><span class="font-weight-bold">Get Help</span>
-          </b-button>
-        </div>
+      
+      <div class="d-flex mt-auto mb-auto ml-auto">
+        <route-searcher class="searcher"/>
       </div>
     </b-navbar-nav>
   </b-navbar>
@@ -57,11 +50,6 @@ export default Vue.extend({
           .addSection('Getting Started', this.$route.name?.includes('getting-started-') ? true : false, (s) =>
               s
                   .addSubPage('Get Started', (sp) => sp.to({ name: 'getting-started-Installation' }))
-                  .addSubPage('Migrate v1 to v2', (sp) => sp.to({ name: 'getting-started-migrations-V1ToV2' }))
-                  .addSubPage('Migrate v2 to v3', (sp) => sp.to({ name: 'getting-started-migrations-V2ToV3' }))
-                  .addSubPage('Migrate v3 to v4', (sp) => sp.to({ name: 'getting-started-migrations-V3ToV4' }))
-                  .addSubPage('Migrate v4 to v5', (sp) => sp.to({ name: 'getting-started-migrations-V4ToV5' }))
-                  .addSubPage('Vue.js & .NET using Forge.Loader', (sp) => sp.to({ name: 'getting-started-integrations-ForgeLoader' }))
           )
           .addSection('Forms', this.$route.name?.includes('forms-') ? true : false, (s) =>
               s
@@ -107,7 +95,6 @@ export default Vue.extend({
           )
           .addPage('Icons', (p) => p.to({ name: 'Icons-Icons' }))
           .addPage('Colours', (p) => p.to({ name: 'Colours' }))
-          .addPage('FAQs', (p) => p.to({ name: 'FAQs' }))
           .build();
     },
     sections(): Section[] {
@@ -116,31 +103,12 @@ export default Vue.extend({
     pages(): Page[] {
       return this.navItems.filter(n => n.type === 'page') as Page[]
     }
-  },
-  methods: {
-    openSlackHelp() {
-      window.open(
-          'https://3squared.slack.com/app_redirect?channel=forge-ui',
-          'targetWindow',
-          `toolbar=no,
-      status=no,
-      width=600px,
-      height=400px`
-      );
-    }
   }
 });
 </script>
 
 <style>
-.slacklogo {
-  width: 16px;
-  position: relative;
-  top: -2px;
-}
-
-.smallSearch {
-  height: 10px !important;
-  top: -7px;
+.searcher {
+  width: 300px !important;
 }
 </style>

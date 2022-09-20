@@ -1,7 +1,7 @@
 ﻿<template>
   <div>
     <forge-page-header title="Date Picker" />
-    <p>Further documentation and examples can be found in the <a class="link" target="_blank" href="https://saforgestyleguide.z33.web.core.windows.net/#/forms/date-picker/datepicker"><strong>Forge.UI documentation</strong></a> and the <a class="link" target="_blank" href="https://flatpickr.js.org/options/"><strong>Flatpickr documentation</strong></a>.</p>
+    <p>Further documentation and examples can be found in the <a class="link" target="_blank" href="https://flatpickr.js.org/options/"><strong>Flatpickr documentation</strong></a>.</p>
     <OPTIONS></OPTIONS>
     <playground :options="options" :code="code" :config="config" @reset="reset">
       <template #component>

@@ -1,7 +1,7 @@
 ﻿<template>
   <div>
     <forge-page-header title='Alert' />
-    <p>Further documentation and examples can be found in the <a class='link' href='https://saforgestyleguide.z33.web.core.windows.net/#/general/alert/alert' target='_blank'><strong>Forge.UI
+    <p>Further documentation and examples can be found in the <a class='link' href='https://bootstrap-vue.org/docs/components/alert' target='_blank'><strong>Bootstrap Vue
       documentation</strong></a>.</p>
     <playground :code='code' :options='options' rerender @reset='reset' :config='config'>
       <template #re-render>

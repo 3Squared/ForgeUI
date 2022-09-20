@@ -28,8 +28,6 @@
 | before | Content placed before the Date Picker |          |
 | after  | Content placed after the Date Picker  |          |
 
-          ---
-
 <hr/>
 
 </div>
