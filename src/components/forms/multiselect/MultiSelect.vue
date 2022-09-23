@@ -41,7 +41,7 @@ export const ForgeMultiSelect = /*#__PURE__*/ Vue.extend({
   props: {
     variant: {
       type: String,
-      default: /*#__PURE__*/ Vue.prototype?.ForgeSettings?.MultiSelect?.variant ?? 'primary'
+      default: /*#__PURE__*/ () => Vue.prototype?.ForgeSettings?.MultiSelect?.variant ?? 'primary'
     },
     /**
      * When set to false will show a validation icon similar to boostrap form controls
