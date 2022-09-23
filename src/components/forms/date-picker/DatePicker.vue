@@ -85,7 +85,7 @@ export const ForgeDatePicker = /*#__PURE__*/ Vue.extend({
      */
     variant: {
       type: String,
-      default: 'primary'
+      default: () => Vue.prototype.ForgeSettings.DatePicker.variant ?? 'primary'
     },
 
     /**
@@ -93,7 +93,7 @@ export const ForgeDatePicker = /*#__PURE__*/ Vue.extend({
      */
     hideCalendarIcon: {
       type: Boolean,
-      default: false
+      default: () => Vue.prototype.ForgeSettings.DatePicker.hideCalendarIcon ?? false
     }
   },
 

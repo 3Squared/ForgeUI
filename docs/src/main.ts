@@ -2,11 +2,11 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import App from './App.vue';
 import './styleguide.scss';
-import "prismjs"
+import 'prismjs';
 import '@3squared/forge-playground/dist/style.css';
 import routes from 'pages-generated';
 
-import { positiveNumberDirective, wholeNumberDirective, alphanumericCharacterDirective, maxNumericCharactersDirective } from '@3squared/forge-ui';
+import { alphanumericCharacterDirective, ForgeGlobalConfigPlugin, maxNumericCharactersDirective, positiveNumberDirective, wholeNumberDirective } from '@3squared/forge-ui';
 
 // @ts-ignore
 // import {registerSW} from 'virtual:pwa-register'
@@ -21,6 +21,11 @@ Vue.directive('alphanumeric-character', alphanumericCharacterDirective);
 Vue.directive('max-numeric-characters', maxNumericCharactersDirective);
 
 Vue.config.productionTip = false;
+Vue.prototype['forgeSettings'] = {
+  Stepper: {
+    variant: 'danger'
+  }
+};
 
 const router = new VueRouter({
   routes,
@@ -29,10 +34,10 @@ const router = new VueRouter({
 
 // Router Hooks
 router.afterEach(() => {
-    window.scrollTo(0, 0)
-})
+  window.scrollTo(0, 0);
+});
 
 new Vue({
-    router,
-    render: h => h(App)
+  router,
+  render: h => h(App)
 }).$mount('#app');
