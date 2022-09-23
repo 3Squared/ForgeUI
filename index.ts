@@ -36,8 +36,10 @@ interface VariantConfig {
   variant?: string;
 }
 
-interface StepperConfig extends VariantConfig {
-}
+interface StepperConfig extends VariantConfig {}
+interface MultiSelectConfig extends VariantConfig {}
+interface StatWidgetConfig extends VariantConfig {}
+interface FilterHeaderConfig extends VariantConfig {}
 
 interface DatePickerConfig extends VariantConfig {
   hideCalendarIcon? : false
@@ -46,6 +48,9 @@ interface DatePickerConfig extends VariantConfig {
 interface ForgeGlobalConfig {
   Stepper?: StepperConfig;
   DatePicker?: DatePickerConfig;
+  MultiSelect?: MultiSelectConfig;
+  StatWidget?: StatWidgetConfig;
+  FilterHeader?: FilterHeaderConfig;
 }
 
 const ForgeGlobalConfigPlugin: PluginObject<any> = {

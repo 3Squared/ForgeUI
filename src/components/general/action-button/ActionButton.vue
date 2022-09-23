@@ -44,7 +44,7 @@ export const ForgeActionButton = /*#__PURE__*/ (Vue as VueConstructor<Vue & { $r
      */
     variant: {
       type: String,
-      default: () => 'primary'
+      default: 'primary'
     },
     /**
      * The error message you want to display if the action fails
