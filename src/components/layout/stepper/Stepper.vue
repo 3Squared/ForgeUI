@@ -46,7 +46,7 @@ export const ForgeStepper = /*#__PURE__*/ Vue.extend({
   props: {
     variant: {
       type: String,
-      default : () => Vue.prototype.ForgeSettings.Stepper.variant ?? 'primary'
+      default : () => Vue.prototype?.ForgeSettings?.Stepper?.variant ?? 'primary'
     },
     steps: {
       type: Array as PropType<ForgeStepperStep[]>,
