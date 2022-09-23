@@ -1,5 +1,5 @@
 <template>
-  <div :class="[`forge-stepper-${variant ?? 'primary'}`]">
+  <div :class="[`forge-stepper-${variant}`]">
     <div class="d-flex align-items-center bg-white">
       <b-button :disabled="isBackButtonDisabled" class="rounded-circle ml-2 px-2" @click="previousStep">
         <b-icon-chevron-left />
@@ -45,7 +45,8 @@ export const ForgeStepper = /*#__PURE__*/ Vue.extend({
   components: { BButton, BIconChevronLeft, BAlert },
   props: {
     variant: {
-      type: String
+      type: String,
+      default : () => Vue.prototype.ForgeSettings.Stepper.variant ?? 'primary'
     },
     steps: {
       type: Array as PropType<ForgeStepperStep[]>,

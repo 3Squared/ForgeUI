@@ -26,109 +26,127 @@ import { localize, validate, ValidationObserver, ValidationProvider } from 'vee-
 import { useForgeValidation } from './src/validation/forge-validation';
 
 // //Directives
-import {
-    alphanumericCharacterDirective,
-    maxNumericCharactersDirective,
-    positiveNumberDirective,
-    wholeNumberDirective
-} from './src/directives';
+import { alphanumericCharacterDirective, maxNumericCharactersDirective, positiveNumberDirective, wholeNumberDirective } from './src/directives';
 
 // ForgeUI Installer (not recommended if you want to tree-shake your project)
-import { VueConstructor } from 'vue';
+import { PluginObject, VueConstructor } from 'vue';
 import BootstrapVue, { BootstrapVueIcons } from 'bootstrap-vue';
 
+interface VariantConfig {
+  variant?: string;
+}
+
+interface StepperConfig extends VariantConfig {
+}
+
+interface DatePickerConfig extends VariantConfig {
+  hideCalendarIcon? : false
+}
+
+interface ForgeGlobalConfig {
+  Stepper?: StepperConfig;
+  DatePicker?: DatePickerConfig;
+}
+
+const ForgeGlobalConfigPlugin: PluginObject<any> = {
+  install(Vue, globalConfig: ForgeGlobalConfig) {
+    Vue.prototype['ForgeSettings'] = globalConfig;
+  }
+};
+
 const ForgeUI = {
-    install(Vue: VueConstructor) {
-        // Bootstrap
-        Vue.use(BootstrapVue, {
-            BButton: {variant: 'primary'}
-        });
+  install(Vue: VueConstructor) {
+    // Bootstrap
+    Vue.use(BootstrapVue, {
+      BButton: { variant: 'primary' }
+    });
 
-        //For some reason these have to be up hear or the icons page doesnt work
-        Vue.use(ForgeToasts);
-        Vue.use(ForgeModalHelper);
+    //For some reason these have to be up hear or the icons page doesnt work
+    Vue.use(ForgeToasts);
+    Vue.use(ForgeModalHelper);
 
-        Vue.use(BootstrapVueIcons);
+    Vue.use(BootstrapVueIcons);
 
-        // Forge
-        Vue.use(ForgeIcons);
+    // Forge
+    Vue.use(ForgeIcons);
 
-        function getComponentName(component: any) {
-            if (component.options && component.options.name) {
-                return component.options.name;
-            } else {
-                return component.name;
-            }
-        }
-
-        function registerComponent(component: any) {
-            Vue.component(getComponentName(component), component);
-        }
-
-        registerComponent(ForgeDatePicker);
-        registerComponent(ForgeStatWidget);
-        registerComponent(ForgeModal);
-        registerComponent(ForgeTable);
-        registerComponent(ForgeLoader);
-        registerComponent(ForgeFilterHeader);
-        registerComponent(ForgePaginationFooter);
-        registerComponent(ForgeForm);
-        registerComponent(ForgeActionButton);
-        registerComponent(ForgeInlineEditor);
-        registerComponent(ForgeMultiSelect);
-        registerComponent(ForgePageHeader);
-        registerComponent(ForgeMultiSelectPreview);
-        registerComponent(ForgeFormField);
-        registerComponent(ForgeStepper);
-        registerComponent(ForgeFileUpload);
-        registerComponent(ForgeRemainingCharacters);
-
-        Vue.directive('positive-number', positiveNumberDirective);
-        Vue.directive('whole-number', wholeNumberDirective);
-        Vue.directive('alphanumeric-character', alphanumericCharacterDirective);
-        Vue.directive('max-numeric-characters', maxNumericCharactersDirective);
+    function getComponentName(component: any) {
+      if (component.options && component.options.name) {
+        return component.options.name;
+      } else {
+        return component.name;
+      }
     }
+
+    function registerComponent(component: any) {
+      Vue.component(getComponentName(component), component);
+    }
+
+    registerComponent(ForgeDatePicker);
+    registerComponent(ForgeStatWidget);
+    registerComponent(ForgeModal);
+    registerComponent(ForgeTable);
+    registerComponent(ForgeLoader);
+    registerComponent(ForgeFilterHeader);
+    registerComponent(ForgePaginationFooter);
+    registerComponent(ForgeForm);
+    registerComponent(ForgeActionButton);
+    registerComponent(ForgeInlineEditor);
+    registerComponent(ForgeMultiSelect);
+    registerComponent(ForgePageHeader);
+    registerComponent(ForgeMultiSelectPreview);
+    registerComponent(ForgeFormField);
+    registerComponent(ForgeStepper);
+    registerComponent(ForgeFileUpload);
+    registerComponent(ForgeRemainingCharacters);
+
+    Vue.directive('positive-number', positiveNumberDirective);
+    Vue.directive('whole-number', wholeNumberDirective);
+    Vue.directive('alphanumeric-character', alphanumericCharacterDirective);
+    Vue.directive('max-numeric-characters', maxNumericCharactersDirective);
+  }
 };
 
 export {
-    // Components
-    ForgeDatePicker,
-    ForgeStatWidget,
-    ForgeTable,
-    ForgeFilterHeader,
-    ForgePaginationFooter,
-    ForgeIcons,
-    ForgeToasts,
-    ForgeModal,
-    ForgeModalHelper,
-    ForgeForm,
-    ForgeLoader,
-    ForgeActionButton,
-    ForgeInlineEditor,
-    ForgeMultiSelect,
-    ForgeChart,
-    ForgePageHeader,
-    ForgeMultiSelectPreview,
-    ForgeFormField,
-    ForgeStepper,
-    ForgeFileUpload,
-    ForgeRemainingCharacters,
-    // Validation
-    useForgeValidation,
-    ValidationProvider,
-    ValidationObserver,
-    validate,
-    localize,
-    // Directives
-    positiveNumberDirective,
-    wholeNumberDirective,
-    alphanumericCharacterDirective,
-    maxNumericCharactersDirective,
-    // ForgeUI Plugin
-    ForgeUI,
-    // Composables
-    useForgeToasts,
-    useForgeModal
+  // Components
+  ForgeDatePicker,
+  ForgeStatWidget,
+  ForgeTable,
+  ForgeFilterHeader,
+  ForgePaginationFooter,
+  ForgeIcons,
+  ForgeToasts,
+  ForgeModal,
+  ForgeModalHelper,
+  ForgeForm,
+  ForgeLoader,
+  ForgeActionButton,
+  ForgeInlineEditor,
+  ForgeMultiSelect,
+  ForgeChart,
+  ForgePageHeader,
+  ForgeMultiSelectPreview,
+  ForgeFormField,
+  ForgeStepper,
+  ForgeFileUpload,
+  ForgeRemainingCharacters,
+  // Validation
+  useForgeValidation,
+  ValidationProvider,
+  ValidationObserver,
+  validate,
+  localize,
+  // Directives
+  positiveNumberDirective,
+  wholeNumberDirective,
+  alphanumericCharacterDirective,
+  maxNumericCharactersDirective,
+  // ForgeUI Plugin
+  ForgeUI,
+  // Composables
+  useForgeToasts,
+  useForgeModal,
+  ForgeGlobalConfigPlugin
 };
 
 export default ForgeUI;
