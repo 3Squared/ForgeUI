@@ -26,7 +26,7 @@ export const ForgeStatWidget = /*#__PURE__*/ Vue.extend({
     },
     variant: {
       type: String,
-      default: 'primary'
+      default: () => Vue.prototype?.ForgeSettings?.StatWidget?.variant ?? 'primary'
     }
   },
   computed: {

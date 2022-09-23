@@ -166,7 +166,7 @@ export const ForgeFilterHeader = /*#__PURE__*/ Vue.extend({
     },
     variant: {
       type: String,
-      default: 'primary'
+      default: () => Vue.prototype?.ForgeSettings?.FilterHeader?.variant ?? 'primary'
     },
     placeholder: {
       type: String,
