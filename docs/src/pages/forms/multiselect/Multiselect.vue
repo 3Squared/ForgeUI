@@ -1,15 +1,17 @@
 ﻿<template>
   <div>
     <forge-page-header title='Multiselect' />
-    <p>Further documentation and examples can be found in the <a class='link' href='https://vue-multiselect.js.org/' target='_blank'><strong>Vue-multiselect documentation</strong></a>.</p>
+    <p>Further documentation and examples can be found in the <a class='link' href='https://vue-multiselect.js.org/'
+                                                                 target='_blank'><strong>Vue-multiselect
+      documentation</strong></a>.</p>
     <OPTIONS></OPTIONS>
-    <playground :code='code' :config="config" :options='options' @reset='reset'>
+    <playground :code='code' :config='config' :options='options' @reset='reset'>
       <template #component>
         <component :is='ForgeMultiSelect' v-model='selected' class='w-75' v-bind='options' />
       </template>
     </playground>
     Here is an example of a multiselect options array
-    <code-block :code="optionsArrayExample"></code-block>
+    <code-block :code='optionsArrayExample'></code-block>
   </div>
 </template>
 
@@ -37,6 +39,7 @@ const { options, propVals, config, reset } = usePlayground({
   options: multiSelectOptions,
   variant: baseVariants[0],
   label: 'label',
+  selectValue: '',
   state: validationStates[0],
   showSelectAll: true,
   showClearSelection: true,
@@ -78,10 +81,10 @@ watchEffect(() => {
 });
 
 const code = computed(() => `<forge-multi-select ${propVals.value.join(' ')}/>`);
-const optionsArrayExample = computed(() => `<script setup lang="ts">
+const optionsArrayExample = computed(() => `<script setup lang='ts'>
  const optionsArray = ref([
    { id: 1, label: 'option 1', value: 'opt_1'},
    { id: 2, label: 'option 2', value: 'opt_2'}
  ])
-\<\/script>`)
+\<\/script>`);
 </script>
