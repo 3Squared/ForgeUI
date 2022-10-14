@@ -16,7 +16,6 @@
 import OPTIONS from './OPTIONS.md'
 import { ForgePageHeader, ForgeStepper } from "@3squared/forge-ui";
 import { computed } from "vue";
-import Prism from "prismjs";
 import { Playground, usePlayground, CodeBlock } from '@3squared/forge-playground';
 
 const { options, propVals, config, reset } = usePlayground({
@@ -26,7 +25,8 @@ const { options, propVals, config, reset } = usePlayground({
     { key: 'C', text: 'Step C'},
     { key: 'D', text: 'Step D'}
   ],
-  currentStep: 0
+  currentStep: 0,
+  showSteps: true
 }, {
   steps: { required: true }
 })

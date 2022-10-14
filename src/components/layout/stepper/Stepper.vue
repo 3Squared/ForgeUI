@@ -1,27 +1,29 @@
 <template>
-  <div :class="[`forge-stepper-${variant}`]">
-    <div class="d-flex align-items-center bg-white">
-      <b-button :disabled="isBackButtonDisabled" class="rounded-circle ml-2 px-2" @click="previousStep">
-        <b-icon-chevron-left />
-      </b-button>
-      <div class="stepper">
-        <hr class="divider" />
-        <div
-            v-for="(step, index) in computedSteps"
-            :key="step.key"
-            :class="{ 'step-active': index === currentStepLocal, 'step-inactive': computedSteps[index].isDisabled, link: !computedSteps[index].isDisabled }"
-            class="step-block"
-            @click="changeStep(index)"
-        >
-          <div class="step">
-            <div class="step-circle">{{ index + 1 }}</div>
+  <div :class="[`forge-stepper-${variant}`]" class="w-100">
+    <div v-if="showSteps">
+      <div class="d-flex align-items-center bg-white">
+        <b-button :disabled="isBackButtonDisabled" class="rounded-circle ml-2 px-2" @click="previousStep">
+          <b-icon-chevron-left />
+        </b-button>
+        <div class="stepper">
+          <hr class="divider" />
+          <div
+              v-for="(step, index) in computedSteps"
+              :key="step.key"
+              :class="{ 'step-active': index === currentStepLocal, 'step-inactive': computedSteps[index].isDisabled, link: !computedSteps[index].isDisabled }"
+              class="step-block"
+              @click="changeStep(index)"
+          >
+            <div class="step">
+              <div class="step-circle">{{ index + 1 }}</div>
+            </div>
+            <span class="h5">{{ step.text }}</span>
           </div>
-          <span class="h5">{{ step.text }}</span>
         </div>
       </div>
+      <hr />
     </div>
-    <hr />
-    <div v-for="(step, index) in computedSteps" :key="step.key">
+    <div class="w-100" v-for="(step, index) in computedSteps" :key="step.key">
       <slot v-if="index === currentStepLocal" :name="step.key" :nextStep="nextStep" :previousStep="previousStep">
         <b-alert show variant="info">
           Please add Slot Content for the key {{ step.key }}
@@ -55,6 +57,10 @@ export const ForgeStepper = /*#__PURE__*/ Vue.extend({
     currentStep: {
       type: Number,
       default: 0
+    },
+    showSteps: {
+      type: Boolean,
+      default: true
     }
   },
   data() {
