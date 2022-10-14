@@ -1,5 +1,5 @@
 import Vue, { CreateElement, getCurrentInstance, VNode, VueConstructor } from 'vue';
-import { BAlert, BModal } from 'bootstrap-vue';
+import { BAlert, BModal, ModalPlugin } from 'bootstrap-vue';
 import { ForgeModalConfig } from '../../../helpers/types';
 
 function getBody(h: CreateElement, body: ForgeModalConfig['body'], bAlertVariant?: string): VNode {
@@ -87,6 +87,7 @@ const PROP_NAME_PRIV = '_forgeModalHelper';
 
 export default {
     install(Vue: VueConstructor) {
+        Vue.use(ModalPlugin)
         // Provide new instance of helper with current Vue instance
         Vue.mixin({
             beforeCreate() {
