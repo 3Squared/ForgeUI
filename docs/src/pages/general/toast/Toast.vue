@@ -13,12 +13,10 @@
 </template>
 
 <script setup lang="ts">
-import { ForgePageHeader, useForgeToasts } from "@3squared/forge-ui";
+import { ForgePageHeader, ForgeToastType, useForgeToasts } from "@3squared/forge-ui";
 import { BButton } from 'bootstrap-vue'
 import { computed } from "vue";
-import Prism from 'prismjs'
 import { usePlayground, Playground, CodeBlock } from '@3squared/forge-playground';
-import { ForgeToastType } from '@3squared/forge-ui/dist/types/src/helpers/types';
 const { forgeToast } = useForgeToasts()
 
 const toastTypes = computed(() => ['success', 'error'] as ForgeToastType[])
