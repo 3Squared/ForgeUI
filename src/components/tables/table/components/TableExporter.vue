@@ -6,13 +6,13 @@
 </template>
 
 <script lang="ts">
-import Vue, { PropType } from 'vue';
-import { BButton } from 'bootstrap-vue';
-import { BIconForgeExport } from '../../../../icons/icons';
-import { ForgeTableFieldArray, startCase } from '../../../../helpers';
+import Vue, { PropType } from "vue";
+import { BButton } from "bootstrap-vue";
+import { BIconForgeExport } from "../../../../icons/icons";
+import { ForgeTableFieldArray, startCase } from "../../../../helpers";
 
 export const ForgeTableExporter = /*#__PURE__*/ Vue.extend({
-  name: 'ForgeTableExporter',
+  name: "ForgeTableExporter",
   components: { BButton, BIconForgeExport },
   props: {
     customisedFields: {
@@ -30,8 +30,8 @@ export const ForgeTableExporter = /*#__PURE__*/ Vue.extend({
   },
   methods: {
     async exportData() {
-      const headers = [...this.customisedFields.map(f => (typeof f === 'string' ? { label: f, key: f } : { label: f.label ?? f.key, key: f.key }))];
-      const items = typeof this.items == 'function' ? await this.items() : this.items;
+      const headers = [...this.customisedFields.map(f => (typeof f === "string" ? { label: f, key: f } : { label: f.label ?? f.key, key: f.key }))];
+      const items = typeof this.items == "function" ? await this.items() : this.items;
       const rows = [
         headers.map(h => startCase(h.label)),
         ...items.map((row: { [s: string]: unknown }) => {
@@ -47,12 +47,12 @@ export const ForgeTableExporter = /*#__PURE__*/ Vue.extend({
           );
         })
       ];
-      let csvContent = 'data:text/csv;charset=utf-8,' + rows.map((e: any[]) => e.join(',')).join('\n');
+      let csvContent = "data:text/csv;charset=utf-8," + rows.map((e: any[]) => e.join(",")).join("\n");
 
       const encodedUri = encodeURI(csvContent);
-      const link = document.createElement('a');
-      link.setAttribute('href', encodedUri);
-      link.setAttribute('download', `${this.name}.csv`);
+      const link = document.createElement("a");
+      link.setAttribute("href", encodedUri);
+      link.setAttribute("download", `${this.name}.csv`);
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);

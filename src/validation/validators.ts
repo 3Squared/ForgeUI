@@ -8,7 +8,7 @@ function decimalPlaceValidator(value: string) {
 
 function telephoneNumberValidator(value: string) {
   //takes all extra characters out
-  const strippedValue = value.replace(/#|_|-|.|,|\+|\s|\(|\)/, '');
+  const strippedValue = value.replace(/#|_|-|.|,|\+|\s|\(|\)/, "");
   //regex checks that all characters are numeric
   return /^[0-9]*$/.test(strippedValue);
 }

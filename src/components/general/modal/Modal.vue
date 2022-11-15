@@ -26,11 +26,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import { BModal, BAlert, BvModalEvent } from 'bootstrap-vue';
-import ForgeLoader from '../loader/Loader.vue';
-import { parseError } from '../../../helpers';
-import cloneDeep from 'lodash/cloneDeep';
+import { defineComponent } from "vue";
+import { BModal, BAlert, BvModalEvent } from "bootstrap-vue";
+import ForgeLoader from "../loader/Loader.vue";
+import { parseError } from "../../../helpers";
+import cloneDeep from "lodash/cloneDeep";
 
 interface ModalError {
   hasError: boolean,
@@ -42,7 +42,7 @@ interface ModalError {
  * @displayName Modal
  **/
 export const ForgeModal = /*#__PURE__*/ defineComponent({
-  name: 'ForgeModal',
+  name: "ForgeModal",
   components: { BModal, BAlert, ForgeLoader },
   inheritAttrs: false,
   props: {
@@ -61,7 +61,7 @@ export const ForgeModal = /*#__PURE__*/ defineComponent({
       error: {} as ModalError,
       emptyError: {
         hasError: false,
-        header: '',
+        header: "",
         message: []
       }
     };
@@ -94,14 +94,14 @@ export const ForgeModal = /*#__PURE__*/ defineComponent({
     async reset(event : Event) {
       this.error = this.error = cloneDeep(this.emptyError);
       this.loading = false;
-      this.$emit('hidden', event);
+      this.$emit("hidden", event);
     },
     preventBackgroundScroll(open : boolean) {
       if (this.legacy) {
         if (open) {
-          document.body.classList.add('modal-open');
+          document.body.classList.add("modal-open");
         } else {
-          document.body.classList.remove('modal-open');
+          document.body.classList.remove("modal-open");
         }
       }
     },
@@ -110,7 +110,7 @@ export const ForgeModal = /*#__PURE__*/ defineComponent({
     mergedAttrs() : Object{
       return {
         centered: true,
-        cancelVariant: 'outline-secondary modal-cancel',
+        cancelVariant: "outline-secondary modal-cancel",
         hideHeaderClose: true,
         ...this.$attrs
       };

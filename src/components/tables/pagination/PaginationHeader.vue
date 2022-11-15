@@ -12,11 +12,11 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import { BFormSelect, BPagination } from 'bootstrap-vue';
+import Vue from "vue";
+import { BFormSelect, BPagination } from "bootstrap-vue";
 
 export const ForgePaginationHeader = /*#__PURE__*/ Vue.extend({
-  name: 'ForgePaginationHeader',
+  name: "ForgePaginationHeader",
   components: { BFormSelect, BPagination },
   props: {
     total: {
@@ -37,7 +37,7 @@ export const ForgePaginationHeader = /*#__PURE__*/ Vue.extend({
   methods: {
     pluralize(count: number, text: string) {
       if (count > 1) {
-        return text + 's';
+        return text + "s";
       }
       return text;
     }
@@ -45,7 +45,7 @@ export const ForgePaginationHeader = /*#__PURE__*/ Vue.extend({
   computed: {
     pageText(): string {
       const pages = Math.ceil(this.total / this.perPage);
-      return `${pages} ${this.pluralize(pages, 'page')}`;
+      return `${pages} ${this.pluralize(pages, "page")}`;
     }
   }
 });

@@ -33,12 +33,12 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import { BButton, BIconX } from 'bootstrap-vue';
-import { MultiSelectOption } from '../../../helpers/types';
-import ForgeMultiSelect from '../multiselect/MultiSelect.vue';
+import Vue from "vue";
+import { BButton, BIconX } from "bootstrap-vue";
+import { MultiSelectOption } from "../../../helpers/types";
+import ForgeMultiSelect from "../multiselect/MultiSelect.vue";
 
-export type MultiSelectPreviewOrientationType = 'horizontal' | 'vertical' | 'horizontal-reversed';
+export type MultiSelectPreviewOrientationType = "horizontal" | "vertical" | "horizontal-reversed";
 
 /**
  * Multi Select with Preview component
@@ -46,26 +46,26 @@ export type MultiSelectPreviewOrientationType = 'horizontal' | 'vertical' | 'hor
  * @displayName MultiSelect Preview
  **/
 export const ForgeMultiSelectPreview = /*#__PURE__*/ Vue.extend({
-  name: 'ForgeMultiSelectPreview',
+  name: "ForgeMultiSelectPreview",
   components: { BButton, BIconX, ForgeMultiSelect },
   // binds to v-model
   model: {
-    prop: 'selectedItems'
+    prop: "selectedItems"
   },
   props: {
     /**
      * The header text for the preview part
      */
-    title: { type: String, required: false, default: 'Selected Items' },
+    title: { type: String, required: false, default: "Selected Items" },
     /**
      * The orientation of the multi select and preview part
      * @values horizontal, vertical, horizontal-reversed
      */
-    orientation: { type: String as () => MultiSelectPreviewOrientationType, default: 'horizontal' },
+    orientation: { type: String as () => MultiSelectPreviewOrientationType, default: "horizontal" },
     /**
      * The hight that you want the preview part to be
      */
-    height: { type: String, default: '200px' },
+    height: { type: String, default: "200px" },
     /**
      * The list of items to be displayed in the multi-select
      */
@@ -81,7 +81,7 @@ export const ForgeMultiSelectPreview = /*#__PURE__*/ Vue.extend({
   },
   computed: {
     limitText() {
-      return (count : number) => `${count} selected`
+      return (count : number) => `${count} selected`;
     }
   },
   methods: {
@@ -93,7 +93,7 @@ export const ForgeMultiSelectPreview = /*#__PURE__*/ Vue.extend({
       this.update(this.selectedItems.filter(x => x.id != id));
     },
     update(items: MultiSelectOption<unknown>[]) {
-      this.$emit('input', items);
+      this.$emit("input", items);
     }
   }
 });

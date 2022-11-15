@@ -1,9 +1,9 @@
-import { DirectiveOptions } from 'vue';
+import { DirectiveOptions } from "vue";
 
 export const positiveNumberDirective: DirectiveOptions = {
   bind(el) {
-    el.addEventListener('keypress', event => {
-      if (event.key === '-') {
+    el.addEventListener("keypress", event => {
+      if (event.key === "-") {
         event.preventDefault();
       }
     });
@@ -12,8 +12,8 @@ export const positiveNumberDirective: DirectiveOptions = {
 
 export const wholeNumberDirective: DirectiveOptions = {
   bind(el) {
-    el.addEventListener('keypress', event => {
-      if (event.key === '.') {
+    el.addEventListener("keypress", event => {
+      if (event.key === ".") {
         event.preventDefault();
       }
     });
@@ -22,17 +22,17 @@ export const wholeNumberDirective: DirectiveOptions = {
 
 export const alphanumericCharacterDirective: DirectiveOptions = {
   bind(el) {
-    el.addEventListener('keypress', event => {
+    el.addEventListener("keypress", event => {
       if (!event.key.match(/^[a-zA-Z0-9]*$/)) {
         event.preventDefault();
       }
-    })
+    });
   }
 };
 
 export const maxNumericCharactersDirective: DirectiveOptions = {
   bind(el, binding) {
-    el.addEventListener('keypress', event => {
+    el.addEventListener("keypress", event => {
       const inputEl = <HTMLInputElement>event.target;
       if (inputEl.value && binding.value) {
         const val = parseFloat(inputEl.value);
@@ -43,6 +43,6 @@ export const maxNumericCharactersDirective: DirectiveOptions = {
           event.preventDefault();
         }
       }
-    })
+    });
   }
 };

@@ -1,7 +1,7 @@
-﻿import { mount } from 'cypress/vue2'
+﻿import { mount } from "cypress/vue2";
 import ForgeLoader from "./Loader.vue";
 import { defineComponent } from "vue";
-import "@/styles/loader.scss"
+import "@/styles/loader.scss";
 /***************************************************
  **************** WRAPPER SETUP ********************
  **************************************************/
@@ -25,7 +25,7 @@ const CustomLoaderWrapper = defineComponent({
   data() {
     return {
       customLoadingMessage: CustomLoadingMessage
-    }
+    };
   },
   
   components: {ForgeLoader},
@@ -49,23 +49,23 @@ const CustomLoaderWrapper = defineComponent({
 /**
  * Tests the default loader mounts correctly
  */
-it('mounts default loader', () => {
+it("mounts default loader", () => {
   cy.wait(500);
   mount(BaseLoaderWrapper as any);  
-  cy.get('#testLoader').should('exist');
-  cy.get('#testLoader').should('be.visible');
+  cy.get("#testLoader").should("exist");
+  cy.get("#testLoader").should("be.visible");
   cy.wait(1000);
 });
 
 /**
  * Tests the custom loader mounts correctly with valid custom text
  */
-it('mounts custom loader', () => {
+it("mounts custom loader", () => {
   cy.wait(500);
   mount(CustomLoaderWrapper as any);
-  cy.get('#testLoader').should('exist');
-  cy.get('#testLoader').should('be.visible');
-  cy.get('.sr-only').should('have.text', CustomLoadingMessage)
+  cy.get("#testLoader").should("exist");
+  cy.get("#testLoader").should("be.visible");
+  cy.get(".sr-only").should("have.text", CustomLoadingMessage);
 });
 
 

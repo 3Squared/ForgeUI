@@ -8,13 +8,13 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent } from "vue";
 /**
  *   The Forge Page Header is a component that you can put at the top of every page with the title on the left and the buttons on the right
  * @displayName Page Header
  **/
 export const ForgePageHeader = /*#__PURE__*/ defineComponent({
-  name: 'ForgePageHeader',
+  name: "ForgePageHeader",
   props: {
     title: {
       type: String,

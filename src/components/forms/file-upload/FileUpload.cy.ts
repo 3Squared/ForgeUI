@@ -1,5 +1,5 @@
-import { mount } from 'cypress/vue2';
-import FileUpload from './FileUpload.vue';
+import { mount } from "cypress/vue2";
+import FileUpload from "./FileUpload.vue";
 
 const mountFileUploader = () => {
   mount(FileUpload, {
@@ -14,22 +14,22 @@ const mountFileUploader = () => {
           }, 300);
         });
       },
-      acceptedFileTypes: 'image/gif, image/jpeg, image/png',
+      acceptedFileTypes: "image/gif, image/jpeg, image/png",
       maxFileSize: 52428800,
       "data-cy": "file-uploader-1"
     }
   });
-}
+};
 
-describe('File Uploader', () => {
+describe("File Uploader", () => {
   //Arrange
   beforeEach(() => {
-    mountFileUploader()
-  })
+    mountFileUploader();
+  });
   
-  it('should render correctly', () => {
+  it("should render correctly", () => {
     //Act/Assert
-    cy.get('[data-cy=file-uploader-1] div').should('contain.text',"Drag and drop files here").and('contain.text', 'Max file size: 52.4 MB')
-    cy.get('label[for="file-input"]').should('contain.text', "Browse your computer")
+    cy.get("[data-cy=file-uploader-1] div").should("contain.text","Drag and drop files here").and("contain.text", "Max file size: 52.4 MB");
+    cy.get("label[for=\"file-input\"]").should("contain.text", "Browse your computer");
   });
 });

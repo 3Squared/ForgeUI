@@ -87,7 +87,7 @@
 </template>
 
 <script lang="ts">
-import Vue, { PropType } from 'vue';
+import Vue, { PropType } from "vue";
 import {
   BRow,
   BCol,
@@ -105,18 +105,18 @@ import {
   BIconArrowClockwise,
   VBTooltip,  
   BTooltip  
-} from 'bootstrap-vue';
-import { BlockBlobClient, BlockBlobParallelUploadOptions } from '@azure/storage-blob';
-import { AbortController } from '@azure/abort-controller';
-import { FileType, formatFileSize, getFileType, trimFileName, getReplacementImage } from '../utils/fileUtilities';
+} from "bootstrap-vue";
+import { BlockBlobClient, BlockBlobParallelUploadOptions } from "@azure/storage-blob";
+import { AbortController } from "@azure/abort-controller";
+import { FileType, formatFileSize, getFileType, trimFileName, getReplacementImage } from "../utils/fileUtilities";
 
-type State = 'Not Uploaded' | 'Preparing' | 'Uploading' | 'Uploaded' | 'Failed' | 'Aborted' | 'Invalid';
+type State = "Not Uploaded" | "Preparing" | "Uploading" | "Uploaded" | "Failed" | "Aborted" | "Invalid";
 
 // This is not exported in @azure/storage-blob
 type TransferProgressEvent = { loadedBytes: number };
 
 export const FileInfo = /*#__PURE__*/ Vue.extend({
-  name: 'FileInfo',
+  name: "FileInfo",
   components: {
     BRow,
     BCol,
@@ -134,8 +134,8 @@ export const FileInfo = /*#__PURE__*/ Vue.extend({
     BTooltip
   },
   directives: {
-    'b-popover': VBPopover,
-    'b-tooltip': VBTooltip
+    "b-popover": VBPopover,
+    "b-tooltip": VBTooltip
   },
   props: {
     file: {
@@ -166,7 +166,7 @@ export const FileInfo = /*#__PURE__*/ Vue.extend({
   },
   data() {
     return {
-      state: 'Not Uploaded' as State,
+      state: "Not Uploaded" as State,
       fileUploadFailed: null as string | null,
       bytesUploaded: 0,
       originalName: null as string | null,
@@ -178,7 +178,7 @@ export const FileInfo = /*#__PURE__*/ Vue.extend({
   },
   computed: {
     validFileType(): boolean {
-      if(this.file.type === ''){
+      if(this.file.type === ""){
         return false;
       }
       return this.acceptedFileTypes.includes(this.file.type);
@@ -199,30 +199,30 @@ export const FileInfo = /*#__PURE__*/ Vue.extend({
       return `<img src="${this.previewUrl}" alt="${this.file.name}" style="max-width: 45vw;  max-height: 45vh;" />`;
     },
     async uploadBlob() {
-      this.state = 'Preparing';
+      this.state = "Preparing";
       if (!this.validFileType) {
-        this.fileUploadFailed = 'Upload failed: file type is not accepted';
-        this.state = 'Invalid';
+        this.fileUploadFailed = "Upload failed: file type is not accepted";
+        this.state = "Invalid";
       } else if (!this.validFileSize) {
-        this.fileUploadFailed = 'Upload failed: file size exceeds the ' + formatFileSize(this.maxFileSize) + ' limit';
-        this.state = 'Invalid';
+        this.fileUploadFailed = "Upload failed: file size exceeds the " + formatFileSize(this.maxFileSize) + " limit";
+        this.state = "Invalid";
       } else if (this.validFileType && this.validFileSize) {
         this.controller = new AbortController();
         const [uploadUrl, blobFileName] = await this.getFileUrlAction(this.file.name);
         if (!uploadUrl) {
-          this.fileUploadFailed = 'Upload failed: connection error, please try again';
-          this.state = 'Failed';
+          this.fileUploadFailed = "Upload failed: connection error, please try again";
+          this.state = "Failed";
           return;
         }
         this.bytesUploaded = 0;
 
         try {
-          this.state = 'Uploading';
+          this.state = "Uploading";
           const blockBlobClient = new BlockBlobClient(uploadUrl);
           const options = {
             abortSignal: this.controller.signal,
             onProgress: this.onFileUploadProgress,
-            tags: { temp: 'true' }
+            tags: { temp: "true" }
           } as BlockBlobParallelUploadOptions;
 
           // Upload directly to Azure Blob Storage
@@ -230,19 +230,19 @@ export const FileInfo = /*#__PURE__*/ Vue.extend({
           this.originalName = this.file.name;
           this.uploadUrl = uploadUrl;
 
-          this.state = 'Uploaded';
-          this.$emit('uploaded', blobFileName);
+          this.state = "Uploaded";
+          this.$emit("uploaded", blobFileName);
 
           this.fileUploadFailed = null;
         } catch (ex: Error | any) {
-          if (ex.name === 'AbortError') {
-            this.state = 'Aborted';
-            this.fileUploadFailed = 'Upload failed: user cancelled';
+          if (ex.name === "AbortError") {
+            this.state = "Aborted";
+            this.fileUploadFailed = "Upload failed: user cancelled";
           } else {
-            this.state = 'Failed';
-            this.fileUploadFailed = 'Upload failed: connection error, please try again';
+            this.state = "Failed";
+            this.fileUploadFailed = "Upload failed: connection error, please try again";
           }
-          this.$emit('upload-failed');
+          this.$emit("upload-failed");
         }
       }
     },
@@ -250,21 +250,21 @@ export const FileInfo = /*#__PURE__*/ Vue.extend({
       this.bytesUploaded = progress.loadedBytes;
     },
     async deleteFromBlob() {
-      if (this.state === 'Uploaded') {
+      if (this.state === "Uploaded") {
         if (this.uploadUrl != null) {
           try {
             const blockBlobClient = new BlockBlobClient(this.uploadUrl);
             await blockBlobClient.delete();
-            this.$emit('deleted');
+            this.$emit("deleted");
           } catch (ex) {
-            if (ex === 'BlobNotFound') {
-              this.$emit('deleted');
+            if (ex === "BlobNotFound") {
+              this.$emit("deleted");
             }
-            this.deleteFileFailed = 'Failed to delete: connection error, please try again';
+            this.deleteFileFailed = "Failed to delete: connection error, please try again";
           }
         }
       } else {
-        this.$emit('deleted');
+        this.$emit("deleted");
       }
     },
     previewImage() {

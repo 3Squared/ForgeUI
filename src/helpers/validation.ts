@@ -1,5 +1,5 @@
-import Vue, { VueConstructor } from 'vue';
-import { ValidationObserver, ValidationProvider } from 'vee-validate';
+import Vue, { VueConstructor } from "vue";
+import { ValidationObserver, ValidationProvider } from "vee-validate";
 
 export interface ValidationFlags {
   dirty: boolean;

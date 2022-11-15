@@ -8,8 +8,8 @@
 </template>
 
 <script lang="ts">
-import Vue, { VueConstructor } from 'vue';
-import { BButton, BSpinner } from 'bootstrap-vue';
+import Vue, { VueConstructor } from "vue";
+import { BButton, BSpinner } from "bootstrap-vue";
 
 /**
  * The Forge Action button is design to provide an easy way to perform async actions that do not require much UI,
@@ -22,7 +22,7 @@ import { BButton, BSpinner } from 'bootstrap-vue';
  * @displayName Action Button
  **/
 export const ForgeActionButton = /*#__PURE__*/ (Vue as VueConstructor<Vue & { $refs: { button: HTMLButtonElement } }>).extend({
-  name: 'ForgeActionButton',
+  name: "ForgeActionButton",
   components: { BButton, BSpinner },
   props: {
     /**
@@ -44,14 +44,14 @@ export const ForgeActionButton = /*#__PURE__*/ (Vue as VueConstructor<Vue & { $r
      */
     variant: {
       type: String,
-      default: 'primary'
+      default: "primary"
     },
     /**
      * The error message you want to display if the action fails
      */
     errorMessage: {
       type: String,
-      default: () => 'This action failed'
+      default: () => "This action failed"
     }
   },
   data() {
@@ -63,9 +63,9 @@ export const ForgeActionButton = /*#__PURE__*/ (Vue as VueConstructor<Vue & { $r
   computed: {
     width(): string {
       if (this.loading) {
-        return this.buttonWidth + 'px';
+        return this.buttonWidth + "px";
       } else {
-        return 'auto';
+        return "auto";
       }
     }
   },
@@ -76,7 +76,7 @@ export const ForgeActionButton = /*#__PURE__*/ (Vue as VueConstructor<Vue & { $r
       try {
         await this.action.apply(this, this.params);
       } catch (e) {
-        this.$forgeToast('error', typeof e == 'string' ? e : this.errorMessage);
+        this.$forgeToast("error", typeof e == "string" ? e : this.errorMessage);
       }
       this.loading = false;
     }

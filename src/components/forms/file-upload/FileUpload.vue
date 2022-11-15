@@ -64,12 +64,12 @@
   </div>
 </template>
 <script lang="ts">
-import Vue, { PropType, VueConstructor } from 'vue';
+import Vue, { PropType, VueConstructor } from "vue";
 import {
   BButton,
   BIconUpload
 } from "bootstrap-vue";
-import FileInfo from './components/FileInfo.vue';
+import FileInfo from "./components/FileInfo.vue";
 import { formatFileSize } from "./utils/fileUtilities";
 import { ForgeFileStatus } from "../../../helpers/types";
 
@@ -81,7 +81,7 @@ export const ForgeFileUpload = /*#__PURE__*/ (Vue as VueConstructor<Vue & {
     fileUpload: { value: FileList[] };
   };
 }>).extend({
-  name: 'ForgeFileUpload',
+  name: "ForgeFileUpload",
   components: {
     BButton,
     BIconUpload,
@@ -90,7 +90,7 @@ export const ForgeFileUpload = /*#__PURE__*/ (Vue as VueConstructor<Vue & {
   props: {
     placeholder: {
       type: String,
-      default: () => 'Browse your computer'
+      default: () => "Browse your computer"
     },
     getFileUrlAction: {
       // eslint-disable-next-line no-unused-vars
@@ -127,9 +127,9 @@ export const ForgeFileUpload = /*#__PURE__*/ (Vue as VueConstructor<Vue & {
   computed: {
     customAttributes(): "" | { multiple: boolean } {
       if (this.multiple) {
-        return { multiple: true }
+        return { multiple: true };
       } else {
-        return ''
+        return "";
       }
     },
     disableUpload(): boolean {
@@ -150,12 +150,12 @@ export const ForgeFileUpload = /*#__PURE__*/ (Vue as VueConstructor<Vue & {
   methods: {
     formatFileSize,
     addFiles(files: File[]) {
-      const checkFiles = this.files.flatMap(a => a.file)
+      const checkFiles = this.files.flatMap(a => a.file);
       this.files.forEach(b => b.duplicateWarning = false); 
       [...files].forEach(f => {
         const doesFileExist = checkFiles.findIndex(a => a.name === f.name);
         if (doesFileExist === -1) {
-          this.files.unshift({ file: f, status: 'NotUploaded', blobFileName: null, duplicateWarning: false })
+          this.files.unshift({ file: f, status: "NotUploaded", blobFileName: null, duplicateWarning: false });
         } else {
           this.files[doesFileExist].duplicateWarning = true;
         }
@@ -176,7 +176,7 @@ export const ForgeFileUpload = /*#__PURE__*/ (Vue as VueConstructor<Vue & {
       if ((files.length > this.maxNoOfFileInput && this.maxNoOfFileInput != null) || this.disableUpload) {
         e.preventDefault;
       } else {
-        this.addFiles(files)
+        this.addFiles(files);
       }
     },
     dragover(event: Event) {
@@ -190,7 +190,7 @@ export const ForgeFileUpload = /*#__PURE__*/ (Vue as VueConstructor<Vue & {
   },
   watch: {
     files() {
-      this.$emit('input', this.files);
+      this.$emit("input", this.files);
     },
   }
 });

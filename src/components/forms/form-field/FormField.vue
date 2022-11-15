@@ -24,16 +24,16 @@
 </template>
 
 <script lang="ts">
-import { ValidationProvider } from 'vee-validate';
-import Vue from 'vue';
-import { BFormGroup, BFormTextarea, BFormInput, BFormInvalidFeedback, BFormCheckbox } from 'bootstrap-vue';
-import { getValidationState } from '../../../helpers';
+import { ValidationProvider } from "vee-validate";
+import Vue from "vue";
+import { BFormGroup, BFormTextarea, BFormInput, BFormInvalidFeedback, BFormCheckbox } from "bootstrap-vue";
+import { getValidationState } from "../../../helpers";
 
 /**
  * @displayName Form Field
  **/
 export const ForgeFormField = /*#__PURE__*/ Vue.extend({
-  name: 'ForgeFormField',
+  name: "ForgeFormField",
   components: {
     ValidationProvider,
     BFormGroup,
@@ -52,7 +52,7 @@ export const ForgeFormField = /*#__PURE__*/ Vue.extend({
      */
     rules: {
       type: String,
-      default: () => ''
+      default: () => ""
     },
     value: {
       type: [String, Number, Object],
@@ -63,10 +63,10 @@ export const ForgeFormField = /*#__PURE__*/ Vue.extend({
      */
     type: {
       type: String,
-      default: () => 'text',
+      default: () => "text",
       validator: (value : string) => {
         // The value must match one of these strings
-        return ['text', 'number', 'email', 'password', 'search', 'url', 'tel', 'date', 'time', 'range', 'color', 'checkbox', 'textarea'].indexOf(value) !== -1;
+        return ["text", "number", "email", "password", "search", "url", "tel", "date", "time", "range", "color", "checkbox", "textarea"].indexOf(value) !== -1;
       }
     },
     disabled: {
@@ -84,11 +84,11 @@ export const ForgeFormField = /*#__PURE__*/ Vue.extend({
     placeholder: {
       type: String,
       required: false,
-      default: () => ''
+      default: () => ""
     },
     groupClass: {
       type: String,
-      default: () => ''
+      default: () => ""
     },
     labelCols: {
       type: [String, Boolean],
@@ -105,15 +105,15 @@ export const ForgeFormField = /*#__PURE__*/ Vue.extend({
       this.currentValue = val;
     },
     currentValue(val) {
-      this.$emit('input', val);
+      this.$emit("input", val);
     }
   },
   computed: {
     fieldName(): string {
       return (this.vid ??
         this.label
-          .replace(/\s+/g, '-')
-          .replace(':', '')
+          .replace(/\s+/g, "-")
+          .replace(":", "")
           .toLowerCase()) as string;
     }
   },

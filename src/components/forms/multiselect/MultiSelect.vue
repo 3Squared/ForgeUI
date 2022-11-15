@@ -30,21 +30,21 @@
 </template>
 
 <script lang='ts'>
-import Vue from 'vue';
-import { Multiselect } from 'vue-multiselect';
+import Vue from "vue";
+import { Multiselect } from "vue-multiselect";
 
 /**
  * @displayName MultiSelect
  **/
 export const ForgeMultiSelect = /*#__PURE__*/ Vue.extend({
-  name: 'ForgeMultiSelect',
+  name: "ForgeMultiSelect",
   components: {
     Multiselect
   },
   props: {
     variant: {
       type: String,
-      default: /*#__PURE__*/ () => Vue.prototype?.ForgeSettings?.MultiSelect?.variant ?? 'primary'
+      default: /*#__PURE__*/ () => Vue.prototype?.ForgeSettings?.MultiSelect?.variant ?? "primary"
     },
     /**
      * When set to false will show a validation icon similar to boostrap form controls
@@ -90,9 +90,9 @@ export const ForgeMultiSelect = /*#__PURE__*/ Vue.extend({
     },
     multiSelectDefaults(): object {
       return this.$attrs.multiple == null || this.$attrs.multiple ? {
-        'close-on-select': false,
-        'clear-on-select': false,
-        'preserve-search': true
+        "close-on-select": false,
+        "clear-on-select": false,
+        "preserve-search": true
       } : {};
     },
     shouldShowClearSelection(): boolean {
@@ -110,12 +110,12 @@ export const ForgeMultiSelect = /*#__PURE__*/ Vue.extend({
     mergedAttrs(): any {
       const options = this.$attrs.options as unknown as any[];
       return {
-        class: `${this.theme} ${this.state == false ? 'is-invalid' : ''} ${this.expandLeft ? 'multiselect--left' : ''} ${this.shouldShowClearSelection ? 'multiselect--showClearSelection' : ''}`,
+        class: `${this.theme} ${this.state == false ? "is-invalid" : ""} ${this.expandLeft ? "multiselect--left" : ""} ${this.shouldShowClearSelection ? "multiselect--showClearSelection" : ""}`,
         multiple: true,
-        label: 'label',
-        trackBy: 'id',
+        label: "label",
+        trackBy: "id",
         showPointer: !this.selectAllHighlighted,
-        placeholder: 'Select...',
+        placeholder: "Select...",
         allowEmpty: true,
         ...this.multiSelectDefaults,
         ...this.$attrs,
@@ -123,17 +123,17 @@ export const ForgeMultiSelect = /*#__PURE__*/ Vue.extend({
       };
     },
     optionHighlight(): string {
-      return 'multiselect__option' +
-        (this.selectAllHighlighted ? ' multiselect__option--highlight' : '') +
-        (this.isAllSelected ? ' multiselect__option--selected' : '');
+      return "multiselect__option" +
+        (this.selectAllHighlighted ? " multiselect__option--highlight" : "") +
+        (this.isAllSelected ? " multiselect__option--selected" : "");
     }
   },
   methods: {
     testFunc(values: any[] | Record<string, any>) {
       if (Array.isArray(values)) {
-        this.$emit('input', values.map(v => v[this.selectValue]));
+        this.$emit("input", values.map(v => v[this.selectValue]));
       } else {
-        this.$emit('input', values[this.selectValue]);
+        this.$emit("input", values[this.selectValue]);
       }
     },
     onMouseOver() {
@@ -143,7 +143,7 @@ export const ForgeMultiSelect = /*#__PURE__*/ Vue.extend({
       this.selectAllHighlighted = false;
     },
     clearSelected() {
-      this.$emit('input', (this.mergedAttrs as any).multiple ? [] : null);
+      this.$emit("input", (this.mergedAttrs as any).multiple ? [] : null);
       this.checkAllSelected([]);
     },
     toggleSelectAll() {
@@ -163,7 +163,7 @@ export const ForgeMultiSelect = /*#__PURE__*/ Vue.extend({
         this.clearSelected();
       } else {
         const selection = [...this.$attrs.options];
-        this.$emit('input', selection);
+        this.$emit("input", selection);
       }
       this.isAllSelected = !this.isAllSelected;
     }
