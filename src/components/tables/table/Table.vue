@@ -164,7 +164,6 @@ export const ForgeTable = /*#__PURE__*/ (Vue as VueConstructor<
       type: Function as PropType<() => any[]>,
       default: null
     },
-    stacked: { type: [Boolean, String] },
     legacyPaginationFooter: {
       type: Boolean,
       required: false,
