@@ -28,6 +28,7 @@
     "lib": ["esnext", "dom", "dom.iterable", "scripthost"],
     "jsx": "preserve"
   },
-  "include": ["src", "cypress/support/component.ts", "index.ts"],
+  "include": ["src",
+    "packages/ui/cypress/support/component.ts", "index.ts"],
   "exclude": ["node_modules", "dist", "docs", "*.md"]
 }

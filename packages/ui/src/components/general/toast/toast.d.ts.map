@@ -1,0 +1,1 @@
+{"version":3,"file":"toast.d.ts","sourceRoot":"","sources":["toast.tsx"],"names":[],"mappings":"AAAA,OAAO,EAAqC,cAAc,EAAE,MAAM,KAAK,CAAC;AACxE,OAAO,EAA6D,cAAc,EAAe,MAAM,eAAe,CAAC;AACvH,OAAO,EAAE,cAAc,EAAE,MAAM,wBAAwB,CAAC;AAGxD,QAAA,MAAM,WAAW;iBACA,cAAc;CAuB9B,CAAC;AAGF,wBAAgB,cAAc;uBAGA,cAAc,WAAW,MAAM;EAS5D;AAED,eAAe,WAAW,CAAC"}

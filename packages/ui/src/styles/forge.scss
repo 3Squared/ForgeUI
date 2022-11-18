@@ -1,0 +1,76 @@
+@import "variables";
+@import 'node_modules/bootstrap/scss/bootstrap';
+@import 'node_modules/bootstrap-vue/src/index.scss';
+
+
+@each $color, $value in $grays {
+  @include bg-variant(".bg-grey-#{$color}", $value, true);
+}
+
+.bg-warning-light {
+  background-color: theme-color-level(warning, -3);
+}
+.bg-success-light {
+  background-color: theme-color-level(success, -3);
+}
+
+.border-dashed {
+  border-style: dashed !important;
+}
+
+.btn-outline-primary {
+  background-color: $white;
+}
+
+button {
+  &.close {
+    font-weight: 100;
+  }
+
+  &.btn:disabled.btn-link:disabled {
+    color: $gray-900;
+    border-color: transparent;
+    background-color: transparent;
+  }
+}
+
+.custom-select {
+  -webkit-appearance: none;
+}
+
+.link {
+  cursor: pointer;
+  &:hover {
+    filter: brightness(115%);
+  }
+}
+
+.line-height-base {
+  line-height: $line-height-base;
+}
+
+.line-height-sm {
+  line-height: $line-height-sm;
+}
+
+.line-height-md {
+  line-height: $line-height-md;
+}
+
+.line-height-lg {
+  line-height: $line-height-lg;
+}
+
+
+@import 'datepicker';
+@import 'modal';
+@import 'stat-wdget';
+@import 'table';
+@import 'loader';
+@import 'multiselect';
+@import 'multiselectpreview';
+@import 'inline-editor';
+@import 'input';
+@import 'stepper';
+@import "file-uploader";
+@import "tooltip";

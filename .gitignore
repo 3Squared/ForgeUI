@@ -20,11 +20,11 @@ yarn-error.log*
 *.sln
 *.sw*
 docs/dist
-cypress/videos
+packages/ui/cypress/videos
 .vscode
 
 # Custom ignores
-utilities/index.js
+packages/ui/utilities/index.js
 /coverage/
 /.nyc_output/
 /test-results/

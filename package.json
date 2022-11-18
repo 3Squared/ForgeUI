@@ -1,110 +1,23 @@
 {
-  "name": "@3squared/forge-ui",
-  "repository": "https://github.com/3Squared/ForgeUI",
-  "version": "1.1.5",
-  "description": "ForgeUI is designed to be a wrapper around different libraries that provide a consistent UI style. It is comprised of many different packages that have been combined to create a one stop shop for UI.",
-  "license": "MIT",
-  "main": "dist/esm/forge-ui.mjs",
-  "module": "dist/esm/forge-ui.mjs",
-  "types": "dist/types/index.d.ts",
-  "files": [
-    "dist/*",
-    "src/styles/*",
-    "utilities/index.js"
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
   ],
-  "sideEffects": false,
   "scripts": {
-    "build": "node ./scripts/build.js",
-    "cy": "cypress open --component --browser chrome",
-    "test": "cypress run --component && npm run coverage && node ./scripts/merge.js",
-    "test-unit": "vitest --ui",
-    "coverage": "vitest run --coverage",
-    "is-tree-shakeable": "agadoo"
-  },
-  "dependencies": {
-    "@azure/abort-controller": "^1.0.4",
-    "@azure/storage-blob": "^12.8.0",
-    "bootstrap": "4.6.1",
-    "bootstrap-vue": "^2.23.1",
-    "chart.js": "3.7.1",
-    "dayjs": "^1.10.4",
-    "flatpickr": "^4.6.9",
-    "lodash": "4.17.21",
-    "ts-simple-nameof": "^1.3.0",
-    "vee-validate": "3.4.14",
-    "vue-multiselect": "2.1.6",
-    "vuedraggable": "2.24.3"
+    "build": "turbo run build",
+    "football" : "turbo run dev --filter=football-fixtures",
+    "dev": "turbo run dev --parallel",
+    "test": "turbo run test",
+    "lint": "turbo run lint",
+    "deploy": "turbo run deploy",
+    "format": "prettier --write \"**/*.{ts,tsx,md,vue}\""
   },
   "devDependencies": {
-    "@cypress/code-coverage": "^3.10.0",
-    "@types/lodash": "^4.14.182",
-    "@vitejs/plugin-vue2": "^1.1.2",
-    "@vitest/ui": "^0.19.1",
-    "@vue/babel-preset-jsx": "^1.2.4",
-    "@zerollup/ts-transform-paths": "^1.7.18",
-    "agadoo": "^2.0.0",
-    "c8": "^7.12.0",
-    "cypress": "10.3.1",
-    "fs-extra": "^10.1.0",
-    "sass": "1.51.0",
-    "shelljs": "^0.8.5",
-    "typescript": "4.6.4",
-    "vite": "^3.0.3",
-    "vite-plugin-istanbul": "^2.9.0",
-    "vitest": "^0.19.1",
-    "vue": "^2.7.10",
-    "vue-docgen-api": "4.44.23",
-    "vue-docgen-cli": "4.44.29",
-    "vue-docgen-web-types": "^0.1.7",
-    "vue-tsc": "^0.38.8"
-  },
-  "engines": {
-    "node": ">=12"
-  },
-  "web-types": "dist/web-types.json",
-  "vetur": {
-    "tags": "dist/vetur-tags.json",
-    "attributes": "dist/vetur-attributes.json"
-  },
-  "contributors": [
-    {
-      "name": "Jacob Minor",
-      "email": "jacob.minor@3squared.com"
-    },
-    {
-      "name": "Tom Smith",
-      "email": "tom.smith@3quared.com"
-    },
-    {
-      "name": "Lucas Maybury",
-      "email": "lucas.maybury@3quared.com"
-    },
-    {
-      "name": "Richard Wilson",
-      "email": "richard.wilson@3quared.com"
-    },
-    {
-      "name": "Alex Ashley",
-      "email": "alex.ashley@3squared.com"
-    }
-  ],
-  "nyc": {
-    "all": true,
-    "report-dir": "coverage/cypress",
-    "include": "*",
-    "exclude": "**/*.cy.ts",
-    "extension": [
-      ".js",
-      ".cjs",
-      ".mjs",
-      ".ts",
-      ".tsx",
-      ".jsx",
-      ".vue"
-    ],
-    "reporter": [
-      "json",
-      "cobertura"
-    ]
+    "eslint": "8.22.0",
+    "eslint-config-custom": "*",
+    "prettier": "^2.5.1",
+    "turbo": "latest",
+    "firebase-tools": "^11.16.0"
   }
 }

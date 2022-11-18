@@ -1,0 +1,1173 @@
+{
+  "framework": "vue",
+  "name": "@3squared/forge-ui",
+  "version": "1.1.5",
+  "contributions": {
+    "html": {
+      "description-markup": "markdown",
+      "types-syntax": "typescript",
+      "tags": [
+        {
+          "name": "ForgeActionButton",
+          "description": "",
+          "attributes": [
+            {
+              "name": "action",
+              "required": true,
+              "description": "This is a callback function that you want to happen when the button is clicked",
+              "value": {
+                "kind": "expression",
+                "type": "func"
+              }
+            },
+            {
+              "name": "params",
+              "description": "If the action that you want to perform needs data then you can pass the values in as an array",
+              "value": {
+                "kind": "expression",
+                "type": "array"
+              },
+              "default": "[]"
+            },
+            {
+              "name": "variant",
+              "description": "One of the standard theme variants e.g primary, secondary brand",
+              "value": {
+                "kind": "expression",
+                "type": "string"
+              },
+              "default": "'primary'"
+            },
+            {
+              "name": "errorMessage",
+              "description": "The error message you want to display if the action fails",
+              "value": {
+                "kind": "expression",
+                "type": "string"
+              },
+              "default": "() => 'This action failed'"
+            }
+          ],
+          "slots": [
+            {
+              "name": "default"
+            }
+          ],
+          "source": {
+            "module": "./src/components/general/action-button/ActionButton.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "ForgeChart",
+          "description": "",
+          "attributes": [
+            {
+              "name": "chartConfig",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "ChartConfiguration<any, any, any>"
+              }
+            }
+          ],
+          "source": {
+            "module": "./src/components/general/chart/Chart.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "ForgeDatePicker",
+          "description": "",
+          "attributes": [
+            {
+              "name": "value",
+              "description": "Date class differentiates with normalizer\nComponent is written with a normalizer to `string` for backwards compatability",
+              "value": {
+                "kind": "expression",
+                "type": "object|string|array|date"
+              },
+              "default": "null"
+            },
+            {
+              "name": "config",
+              "description": "Flatpickr configuration options",
+              "value": {
+                "kind": "expression",
+                "type": "flatpickr.Options.Options"
+              },
+              "default": "() => ({} as Config)"
+            },
+            {
+              "name": "normalizer",
+              "description": "Converts library date instances to native Javascript Date objects",
+              "value": {
+                "kind": "expression",
+                "type": "ForgeDatePickerNormalizer"
+              },
+              "default": "() => stringNormalizer"
+            },
+            {
+              "name": "state",
+              "description": "When set to false will show a validation icon similar to boostrap form controls",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "null"
+            },
+            {
+              "name": "variant",
+              "description": "One of the standard theme variants e.g primary, secondary, brand",
+              "value": {
+                "kind": "expression",
+                "type": "string"
+              },
+              "default": "() => Vue.prototype?.ForgeSettings?.DatePicker?.variant ?? 'primary'"
+            },
+            {
+              "name": "hideCalendarIcon",
+              "description": "Hides the calendar icon and expands the input field",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "() => Vue.prototype?.ForgeSettings?.DatePicker?.hideCalendarIcon ?? false"
+            }
+          ],
+          "events": [
+            {
+              "name": "input"
+            },
+            {
+              "name": "on-close",
+              "description": "Triggers when the number changes"
+            }
+          ],
+          "slots": [
+            {
+              "name": "before",
+              "description": "Content placed before the Date Picker"
+            },
+            {
+              "name": "after",
+              "description": "Content placed after the Date Picker"
+            }
+          ],
+          "source": {
+            "module": "./src/components/forms/date-picker/DatePicker.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "ForgeFileUpload",
+          "description": "",
+          "attributes": [
+            {
+              "name": "placeholder",
+              "value": {
+                "kind": "expression",
+                "type": "string"
+              },
+              "default": "() => 'Browse your computer'"
+            },
+            {
+              "name": "getFileUrlAction",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "(fileName: string) => Promise<[string, string]>"
+              }
+            },
+            {
+              "name": "autoUploadToBlob",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "true"
+            },
+            {
+              "name": "acceptedFileTypes",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "string"
+              }
+            },
+            {
+              "name": "maxFileSize",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "number"
+              }
+            },
+            {
+              "name": "multiple",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "true"
+            },
+            {
+              "name": "maxFileInput",
+              "value": {
+                "kind": "expression",
+                "type": "number"
+              },
+              "default": "null"
+            }
+          ],
+          "events": [
+            {
+              "name": "input"
+            }
+          ],
+          "slots": [
+            {
+              "name": "message"
+            }
+          ],
+          "source": {
+            "module": "./src/components/forms/file-upload/FileUpload.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "ForgeFilterHeader",
+          "description": "",
+          "attributes": [
+            {
+              "name": "name",
+              "required": false,
+              "description": "The name to use in the input and label",
+              "value": {
+                "kind": "expression",
+                "type": "string"
+              },
+              "default": "null"
+            },
+            {
+              "name": "type",
+              "required": true,
+              "description": "The type of filter that should be used for the header",
+              "value": {
+                "kind": "expression",
+                "type": "string"
+              },
+              "default": "'string'"
+            },
+            {
+              "name": "value",
+              "required": false,
+              "value": {
+                "kind": "expression",
+                "type": "string|array|object|number"
+              },
+              "default": "null"
+            },
+            {
+              "name": "options",
+              "required": false,
+              "value": {
+                "kind": "expression",
+                "type": "array"
+              },
+              "default": "[]"
+            },
+            {
+              "name": "debounceTimer",
+              "description": "How long to wait before actually searching, better for server side searching where you don't want to search each keypress",
+              "value": {
+                "kind": "expression",
+                "type": "number"
+              },
+              "default": "750"
+            },
+            {
+              "name": "config",
+              "value": {
+                "kind": "expression",
+                "type": "object"
+              },
+              "default": "() => {}"
+            },
+            {
+              "name": "variant",
+              "value": {
+                "kind": "expression",
+                "type": "string"
+              },
+              "default": "() => Vue.prototype?.ForgeSettings?.FilterHeader?.variant ?? 'primary'"
+            },
+            {
+              "name": "placeholder",
+              "value": {
+                "kind": "expression",
+                "type": "string"
+              },
+              "default": "null"
+            },
+            {
+              "name": "hideLabel",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            }
+          ],
+          "events": [
+            {
+              "name": "input"
+            },
+            {
+              "name": "reset"
+            }
+          ],
+          "source": {
+            "module": "./src/components/tables/filter-header/FilterHeader.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "ForgeForm",
+          "description": "",
+          "attributes": [
+            {
+              "name": "onSubmit",
+              "required": true,
+              "description": "Pass a function to call when the form is submited so Forge form can display a loading spinner and handle errors",
+              "value": {
+                "kind": "expression",
+                "type": "func"
+              }
+            },
+            {
+              "name": "showTitle",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "true"
+            },
+            {
+              "name": "title",
+              "value": {
+                "kind": "expression",
+                "type": "string"
+              },
+              "default": "'Forge Form Title'"
+            },
+            {
+              "name": "hideCancel",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "submitText",
+              "value": {
+                "kind": "expression",
+                "type": "string"
+              },
+              "default": "'Submit'"
+            },
+            {
+              "name": "loadingText",
+              "value": {
+                "kind": "expression",
+                "type": "string"
+              },
+              "default": "''"
+            }
+          ],
+          "events": [
+            {
+              "name": "cancel",
+              "description": "Triggered when the cancel button is clicked"
+            }
+          ],
+          "slots": [
+            {
+              "name": "error"
+            },
+            {
+              "name": "default"
+            },
+            {
+              "name": "cancel"
+            },
+            {
+              "name": "submit"
+            }
+          ],
+          "source": {
+            "module": "./src/components/forms/form/Form.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "ForgeFormField",
+          "description": "",
+          "attributes": [
+            {
+              "name": "label",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "string"
+              }
+            },
+            {
+              "name": "rules",
+              "description": "A list of rules that you want applied to the input from vee-validate",
+              "value": {
+                "kind": "expression",
+                "type": "string"
+              },
+              "default": "() => ''"
+            },
+            {
+              "name": "value",
+              "value": {
+                "kind": "expression",
+                "type": "string|number|object"
+              },
+              "default": "() => null"
+            },
+            {
+              "name": "type",
+              "description": "The input type e.g ['text', 'number', 'email', 'password', 'search', 'url', 'tel', 'date', 'time', 'range', 'color', 'checkbox', 'textarea']",
+              "value": {
+                "kind": "expression",
+                "type": "string"
+              },
+              "default": "() => 'text'"
+            },
+            {
+              "name": "disabled",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "() => false"
+            },
+            {
+              "name": "vid",
+              "required": false,
+              "description": "You can override the id of the element if you need it for server side validation",
+              "value": {
+                "kind": "expression",
+                "type": "string"
+              },
+              "default": "() => null"
+            },
+            {
+              "name": "placeholder",
+              "required": false,
+              "value": {
+                "kind": "expression",
+                "type": "string"
+              },
+              "default": "() => ''"
+            },
+            {
+              "name": "groupClass",
+              "value": {
+                "kind": "expression",
+                "type": "string"
+              },
+              "default": "() => ''"
+            },
+            {
+              "name": "labelCols",
+              "value": {
+                "kind": "expression",
+                "type": "string|boolean"
+              },
+              "default": "() => false"
+            }
+          ],
+          "events": [
+            {
+              "name": "input"
+            }
+          ],
+          "slots": [
+            {
+              "name": "default"
+            }
+          ],
+          "source": {
+            "module": "./src/components/forms/form-field/FormField.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "ForgeInlineEditor",
+          "description": "",
+          "attributes": [
+            {
+              "name": "value",
+              "value": {
+                "kind": "expression",
+                "type": "object|string|number|date"
+              },
+              "default": "() => null"
+            },
+            {
+              "name": "completeAction",
+              "value": {
+                "kind": "expression",
+                "type": "func"
+              },
+              "default": "() => {}"
+            },
+            {
+              "name": "params",
+              "value": {
+                "kind": "expression",
+                "type": "array"
+              },
+              "default": "[]"
+            },
+            {
+              "name": "readonly",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "() => false"
+            },
+            {
+              "name": "isValid",
+              "value": {
+                "kind": "expression",
+                "type": "func"
+              },
+              "default": "() => {}"
+            }
+          ],
+          "events": [
+            {
+              "name": "input"
+            }
+          ],
+          "slots": [
+            {
+              "name": "editor"
+            },
+            {
+              "name": "default"
+            }
+          ],
+          "source": {
+            "module": "./src/components/forms/inline-editor/InlineEditor.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "ForgeLoader",
+          "description": "",
+          "attributes": [
+            {
+              "name": "label",
+              "value": {
+                "kind": "expression",
+                "type": "string"
+              },
+              "default": "\"Loading...\""
+            }
+          ],
+          "source": {
+            "module": "./src/components/general/loader/Loader.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "ForgeModal",
+          "description": "",
+          "attributes": [
+            {
+              "name": "onConfirm",
+              "value": {
+                "kind": "expression",
+                "type": "func"
+              },
+              "default": "null"
+            },
+            {
+              "name": "legacy",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            }
+          ],
+          "events": [
+            {
+              "name": "hidden"
+            }
+          ],
+          "slots": [
+            {
+              "name": "default"
+            },
+            {
+              "name": "loader"
+            }
+          ],
+          "source": {
+            "module": "./src/components/general/modal/Modal.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "ForgeMultiSelect",
+          "description": "",
+          "attributes": [
+            {
+              "name": "variant",
+              "value": {
+                "kind": "expression",
+                "type": "string"
+              },
+              "default": "/*#__PURE__*/ () => Vue.prototype?.ForgeSettings?.MultiSelect?.variant ?? 'primary'"
+            },
+            {
+              "name": "state",
+              "description": "When set to false will show a validation icon similar to boostrap form controls",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "true"
+            },
+            {
+              "name": "showSelectAll",
+              "description": "Whether to show the 'select all' list option",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "true"
+            },
+            {
+              "name": "showClearSelection",
+              "description": "Whether or not to show the little X to clear the current selection",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "true"
+            },
+            {
+              "name": "expandLeft",
+              "description": "Whether to have the dropdown expand to the left or right when displaying lengthy options",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "selectValue",
+              "value": {
+                "kind": "expression",
+                "type": "string"
+              }
+            }
+          ],
+          "events": [
+            {
+              "name": "input"
+            }
+          ],
+          "slots": [
+            {
+              "name": "default"
+            }
+          ],
+          "source": {
+            "module": "./src/components/forms/multiselect/MultiSelect.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "ForgeMultiSelectPreview",
+          "description": "",
+          "attributes": [
+            {
+              "name": "title",
+              "required": false,
+              "description": "The header text for the preview part",
+              "value": {
+                "kind": "expression",
+                "type": "string"
+              },
+              "default": "'Selected Items'"
+            },
+            {
+              "name": "orientation",
+              "description": "The orientation of the multi select and preview part",
+              "value": {
+                "kind": "expression",
+                "type": "String as () => MultiSelectPreviewOrientationType"
+              },
+              "default": "'horizontal'"
+            },
+            {
+              "name": "height",
+              "description": "The hight that you want the preview part to be",
+              "value": {
+                "kind": "expression",
+                "type": "string"
+              },
+              "default": "'200px'"
+            },
+            {
+              "name": "items",
+              "required": true,
+              "description": "The list of items to be displayed in the multi-select",
+              "value": {
+                "kind": "expression",
+                "type": "Array as () => MultiSelectOption<unknown>[]"
+              }
+            },
+            {
+              "name": "v-model",
+              "required": true,
+              "description": "The list of items that have been selected in the multi-select and hence also displayed in the preview part",
+              "value": {
+                "kind": "expression",
+                "type": "Array as () => MultiSelectOption<any>[]"
+              }
+            },
+            {
+              "name": "canRemoveItemFromPreview",
+              "required": false,
+              "description": "If set to false it will hide the cross in the preview part",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "true"
+            }
+          ],
+          "events": [
+            {
+              "name": "input"
+            }
+          ],
+          "slots": [
+            {
+              "name": "default"
+            },
+            {
+              "name": "after-multi-select",
+              "description": "If you need to display some content below the multi select such as validation content"
+            },
+            {
+              "name": "list-item",
+              "description": "Use this slot if the default labels is not enough, maybe for a b-link to redirect the user to the item"
+            }
+          ],
+          "source": {
+            "module": "./src/components/forms/multiselect-preview/MultiSelectPreview.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "ForgePageHeader",
+          "description": "",
+          "attributes": [
+            {
+              "name": "title",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "string"
+              }
+            }
+          ],
+          "slots": [
+            {
+              "name": "default"
+            }
+          ],
+          "source": {
+            "module": "./src/components/layout/page-header/PageHeader.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "ForgePaginationFooter",
+          "description": "",
+          "attributes": [
+            {
+              "name": "total",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "number"
+              }
+            },
+            {
+              "name": "pageSizes",
+              "required": false,
+              "value": {
+                "kind": "expression",
+                "type": "array"
+              },
+              "default": "[5, 10, 25, 50, 100]"
+            },
+            {
+              "name": "perPage",
+              "required": false,
+              "value": {
+                "kind": "expression",
+                "type": "number"
+              },
+              "default": "10"
+            },
+            {
+              "name": "page",
+              "required": false,
+              "value": {
+                "kind": "expression",
+                "type": "number"
+              },
+              "default": "1"
+            },
+            {
+              "name": "includePageSizeAndPageCount",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              }
+            }
+          ],
+          "events": [
+            {
+              "name": "update:perPage"
+            },
+            {
+              "name": "update:page"
+            }
+          ],
+          "source": {
+            "module": "./src/components/tables/pagination/PaginationFooter.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "ForgePaginationHeader",
+          "description": "",
+          "attributes": [
+            {
+              "name": "total",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "number"
+              }
+            },
+            {
+              "name": "pageSizes",
+              "required": false,
+              "value": {
+                "kind": "expression",
+                "type": "array"
+              },
+              "default": "[5, 10, 25, 50, 100]"
+            },
+            {
+              "name": "perPage",
+              "required": false,
+              "value": {
+                "kind": "expression",
+                "type": "number"
+              },
+              "default": "10"
+            }
+          ],
+          "events": [
+            {
+              "name": "update:perPage"
+            }
+          ],
+          "source": {
+            "module": "./src/components/tables/pagination/PaginationHeader.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "ForgeStatWidget",
+          "description": "",
+          "attributes": [
+            {
+              "name": "size",
+              "description": "A Prop to show the size of the widget sm, md or lg",
+              "value": {
+                "kind": "expression",
+                "type": "string"
+              },
+              "default": "'md'"
+            },
+            {
+              "name": "variant",
+              "value": {
+                "kind": "expression",
+                "type": "string"
+              },
+              "default": "() => Vue.prototype?.ForgeSettings?.StatWidget?.variant ?? 'primary'"
+            }
+          ],
+          "slots": [
+            {
+              "name": "default",
+              "description": "Use this slot to place the value for the stat"
+            }
+          ],
+          "source": {
+            "module": "./src/components/general/stat-widget/StatWidget.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "ForgeStepper",
+          "description": "",
+          "attributes": [
+            {
+              "name": "variant",
+              "value": {
+                "kind": "expression",
+                "type": "string"
+              },
+              "default": "() => Vue.prototype?.ForgeSettings?.Stepper?.variant ?? 'primary'"
+            },
+            {
+              "name": "steps",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "ForgeStepperStep[]"
+              }
+            },
+            {
+              "name": "currentStep",
+              "value": {
+                "kind": "expression",
+                "type": "number"
+              },
+              "default": "0"
+            },
+            {
+              "name": "showSteps",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "true"
+            }
+          ],
+          "events": [
+            {
+              "name": "update:currentStep"
+            }
+          ],
+          "slots": [
+            {
+              "name": "default"
+            }
+          ],
+          "source": {
+            "module": "./src/components/layout/stepper/Stepper.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "ForgeTable",
+          "description": "",
+          "attributes": [
+            {
+              "name": "total",
+              "value": {
+                "kind": "expression",
+                "type": "number"
+              },
+              "default": "-1"
+            },
+            {
+              "name": "stickToPage",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "true"
+            },
+            {
+              "name": "fields",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "Array as () => ForgeTableFieldArray"
+              }
+            },
+            {
+              "name": "showColumnCustomiser",
+              "description": "Enables the column customiser",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "() => false"
+            },
+            {
+              "name": "showExporter",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "() => false"
+            },
+            {
+              "name": "filters",
+              "value": {
+                "kind": "expression",
+                "type": "object"
+              },
+              "default": "() => {}"
+            },
+            {
+              "name": "tableError",
+              "value": {
+                "kind": "expression",
+                "type": "string|object"
+              },
+              "default": "() => null"
+            },
+            {
+              "name": "clearColumn",
+              "description": "Allows you to customise which column you want the clear filters button to appear in",
+              "value": {
+                "kind": "expression",
+                "type": "string"
+              },
+              "default": "() => 'actions'"
+            },
+            {
+              "name": "exportItemsFunc",
+              "value": {
+                "kind": "expression",
+                "type": "() => any[]"
+              },
+              "default": "null"
+            },
+            {
+              "name": "legacyPaginationFooter",
+              "required": false,
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "autoColumnWidth",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            }
+          ],
+          "events": [
+            {
+              "name": "update:filters"
+            },
+            {
+              "name": "clearFilters"
+            },
+            {
+              "name": "update:tableError"
+            }
+          ],
+          "slots": [
+            {
+              "name": "default"
+            }
+          ],
+          "source": {
+            "module": "./src/components/tables/table/Table.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "ForgeTableColumnCustomiser",
+          "description": "",
+          "attributes": [
+            {
+              "name": "id",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "string"
+              }
+            },
+            {
+              "name": "v-model",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "Array as () => ForgeTableFieldArray"
+              }
+            }
+          ],
+          "events": [
+            {
+              "name": "change"
+            }
+          ],
+          "source": {
+            "module": "./src/components/tables/table-column-customiser/TableColumnCustomiser.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "RemainingCharacters",
+          "description": "",
+          "attributes": [
+            {
+              "name": "maxCount",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "number"
+              }
+            },
+            {
+              "name": "currentCount",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "number"
+              }
+            }
+          ],
+          "source": {
+            "module": "./src/components/forms/remaining-characters/RemainingCharacters.vue",
+            "symbol": "default"
+          }
+        }
+      ]
+    }
+  }
+}
