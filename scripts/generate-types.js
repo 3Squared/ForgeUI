@@ -9,6 +9,7 @@ function execShellCommand(cmd) {
   return new Promise((resolve, reject) => {
     const res = exec(cmd, (error, stdout, stderr) => {
       if (error) {
+        reject(error)
         console.warn(error);
       }
       resolve(stdout ? stdout : stderr);
@@ -83,9 +84,31 @@ const parseDocs = components => {
   return [tags, attributes];
 };
 
+const baseComponents = {
+  "ForgeModal" : "BModal",
+  "ForgeTable" : "BTable",
+  "ForgeForm" : "BForm"
+}
+
 const gen = async () => {
   //Create jet brains types
-  await execShellCommand('vue-docgen-web-types --c scripts/config.js');
+  await execShellCommand('npx vue-docgen-web-types --c scripts/config.js');
+  
+  //Load bootstrap vue types and merge with Forge
+  const bootstrapWebTypes = JSON.parse(fs.readFileSync('node_modules/bootstrap-vue/dist/web-types.json'));
+  const forgeWebTypes = JSON.parse(fs.readFileSync('dist/web-types.json'))
+
+  forgeWebTypes.contributions.html.tags.map(t => {
+    const bootstrapTags = baseComponents[t.name];
+    if (bootstrapTags){
+      console.log(bootstrapTags);
+      const foundTags = bootstrapWebTypes.contributions.html['vue-components'].find(t => t.name === bootstrapTags)
+      t.attributes = [...t.attributes, ...foundTags.props]
+      t.slots = [...t.slots, ...foundTags.slots]
+    }
+  })
+
+  fs.writeFileSync('dist/web-types.json', JSON.stringify(forgeWebTypes, null, 2));
   
   //Get bootstrap types for Vetur
   let bootstrapTags = JSON.parse(fs.readFileSync('node_modules/bootstrap-vue/dist/vetur-tags.json'));

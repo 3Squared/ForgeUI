@@ -53,9 +53,9 @@
     "vite-plugin-istanbul": "^2.9.0",
     "vitest": "^0.19.1",
     "vue": "^2.7.10",
-    "vue-docgen-api": "4.44.23",
-    "vue-docgen-cli": "4.44.29",
-    "vue-docgen-web-types": "^0.1.7",
+    "vue-docgen-api": "^4.54.2",
+    "vue-docgen-cli": "4.51.0",
+    "vue-docgen-web-types": "^0.1.8",
     "vue-tsc": "^0.38.8"
   },
   "engines": {
