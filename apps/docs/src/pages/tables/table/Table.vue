@@ -12,33 +12,33 @@
   </div>
 </template>
 
-<script lang='ts' setup>
-import OPTIONS from './OPTIONS.md';
-import { ForgeColumnBuilder, ForgePageHeader, ForgeTable } from '@3squared/forge-ui';
-import { computed } from 'vue';
-import { usePlayground, Playground, CodeBlock } from '@3squared/forge-playground';
-import { Person } from '../../../models/Person';
+<script lang='ts' setup> 
+import OPTIONS from "./OPTIONS.md";
+import { ForgeColumnBuilder, ForgePageHeader, ForgeTable } from "@3squared/forge-ui";
+import { computed } from "vue";
+import { usePlayground, Playground, CodeBlock } from "@3squared/forge-playground";
+import { Person } from "../../../models/Person";
 
 const fields = computed(() => {
   return new ForgeColumnBuilder<Person>()
-    .addColumn('id', col => col.enableAutoFilter('number'))
-    .addColumn('firstName', col => col.setLabel('First Name').enableAutoFilter())
-    .addColumn('age', col => col.enableAutoFilter('number'))
-    .addColumn('dateJoined')
-    .addColumn('actions', col => col.disableSorting())
+    .addColumn("id", col => col.enableAutoFilter("number"))
+    .addColumn("firstName", col => col.setLabel("First Name").enableAutoFilter())
+    .addColumn("age", col => col.enableAutoFilter("number"))
+    .addColumn("dateJoined")
+    .addColumn("actions", col => col.disableSorting())
     .build();
 });
 
 const columnNames = computed(() => fields.value.map((field) => field.key));
 
 const items = computed(() => [
-  { id: 1, firstName: 'Jake', age: 22, dateJoined: new Date('3/7/2022').toLocaleDateString() },
-  { id: 2, firstName: 'Bob', age: 32, dateJoined: new Date('3/2/2009').toLocaleDateString() }
+  { id: 1, firstName: "Jake", age: 22, dateJoined: new Date("3/7/2022").toLocaleDateString() },
+  { id: 2, firstName: "Bob", age: 32, dateJoined: new Date("3/2/2009").toLocaleDateString() }
 ]);
 
-const theming = [{ text: 'No Theming', value: null }, { text: 'Light Theming', value: 'light' }, { text: 'Dark Theming', value: 'dark' }];
-const selectModes = ['multi', 'single', 'range'];
-const sortDirections = ['asc', 'desc', 'last'];
+const theming = [{ text: "No Theming", value: null }, { text: "Light Theming", value: "light" }, { text: "Dark Theming", value: "dark" }];
+const selectModes = ["multi", "single", "range"];
+const sortDirections = ["asc", "desc", "last"];
 
 const { options, propVals, config, reset } = usePlayground({
   total: -1,
@@ -53,24 +53,24 @@ const { options, propVals, config, reset } = usePlayground({
   stacked: false,
   legacyPaginationFooter: false,
   autoColumnWidth: false,
-  apiUrl: '',
+  apiUrl: "",
   bordered: false,
   borderless: false,
   busy: false,
-  caption: '',
+  caption: "",
   captionTop: false,
   dark: false,
-  emptyFilteredText: 'There are no records matching your request',
-  emptyText: 'There are no records to show.',
+  emptyFilteredText: "There are no records matching your request",
+  emptyText: "There are no records to show.",
   fixed: false,
   footClone: false,
   footVariant: theming[0].value,
   headVariant: theming[0].value,
   hover: false,
-  id: '',
-  labelSortAsc: 'Click to sort ascending',
-  labelSortClear: 'Click to clear sorting',
-  labelSortDesc: 'Click to sort descending',
+  id: "",
+  labelSortAsc: "Click to sort ascending",
+  labelSortClear: "Click to clear sorting",
+  labelSortDesc: "Click to sort descending",
   noBorderCollapse: false,
   noFooterSorting: false,
   noProviderFiltering: false,
@@ -78,7 +78,7 @@ const { options, propVals, config, reset } = usePlayground({
   noProviderSorting: false,
   noSortReset: false,
   outlined: false,
-  primaryKey: '',
+  primaryKey: "",
   responsive: false,
   selectable: false,
   selectMode: selectModes[0],
@@ -93,19 +93,19 @@ const { options, propVals, config, reset } = usePlayground({
 }, {
   fields: { required: true },
   items: { required: true },
-  clearColumn: { type: 'select', options: columnNames.value, required: false },
-  footVariant: { type: 'select', options: theming, disabled: (): boolean => !options.value.footClone },
-  headVariant: { type: 'select', options: theming },
+  clearColumn: { type: "select", options: columnNames.value, required: false },
+  footVariant: { type: "select", options: theming, disabled: (): boolean => !options.value.footClone },
+  headVariant: { type: "select", options: theming },
   bordered: { disabled: (): boolean => options.value.borderless },
   borderless: { disabled: (): boolean => options.value.bordered },
   legacyPaginationFooter: { disabled: (): boolean => options.value.total === -1 },
   captionTop: { disabled: () => options.value.caption.length === 0 },
-  selectMode: { type: 'select', options: selectModes, disabled: (): boolean => !options.value.selectable },
-  sortBy: { type: 'select', options: selectModes },
-  sortDirection: { type: 'select', options: sortDirections }
+  selectMode: { type: "select", options: selectModes, disabled: (): boolean => !options.value.selectable },
+  sortBy: { type: "select", options: selectModes },
+  sortDirection: { type: "select", options: sortDirections }
 });
 
-const code = computed(() => `<forge-table ${propVals.value.join(' ')}></forge-table>`);
+const code = computed(() => `<forge-table ${propVals.value.join(" ")}></forge-table>`);
 
 const columnExample = `\<script setup lang='ts'>
 import { ForgeColumnBuilder } from '@3squared/forge-ui';
@@ -122,6 +122,6 @@ const fields = computed(() => {
     .addColumn('actions', col => col.disableSorting())
     .build();
 });
-\<\script>`
+\<\script>`;
 
 </script>

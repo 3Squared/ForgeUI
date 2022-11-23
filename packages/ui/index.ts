@@ -1,32 +1,32 @@
 // Components
-import ForgeDatePicker from "@/components/forms/date-picker/DatePicker.vue";
-import ForgeStatWidget from "@/components/general/stat-widget/StatWidget.vue";
-import ForgeTable from "@/components/tables/table/Table.vue";
-import ForgeFilterHeader from "@/components/tables/filter-header/FilterHeader.vue";
-import ForgePaginationFooter from "@/components/tables/pagination/PaginationFooter.vue";
-import ForgeIcons from "@/icons/icons";
-import ForgeToasts, { useForgeToasts } from "@/components/general/toast/toast";
-import ForgeModal from "@/components/general/modal/Modal.vue";
-import ForgeModalHelper, { useForgeModal } from "@/components/general/modal/forge-modal-helper";
-import ForgeForm from "@/components/forms/form/Form.vue";
-import ForgeLoader from "@/components/general/loader/Loader.vue"; 
-import ForgeActionButton from "@/components/general/action-button/ActionButton.vue";
-import ForgeInlineEditor from "@/components/forms/inline-editor/InlineEditor.vue";
-import ForgeFileUpload from "@/components/forms/file-upload/FileUpload.vue";
-import ForgeMultiSelect from "@/components/forms/multiselect/MultiSelect.vue";
-import ForgeChart from "@/components/general/chart/Chart.vue";
-import ForgePageHeader from "@/components/layout/page-header/PageHeader.vue";
-import ForgeMultiSelectPreview from "@/components/forms/multiselect-preview/MultiSelectPreview.vue";
-import ForgeFormField from "@/components/forms/form-field/FormField.vue";
-import ForgeRemainingCharacters from "@/components/forms/remaining-characters/RemainingCharacters.vue";
-import ForgeStepper from "@/components/layout/stepper/Stepper.vue";
+import ForgeDatePicker from "./src/components/forms/date-picker/DatePicker.vue";
+import ForgeStatWidget from "./src/components/general/stat-widget/StatWidget.vue";
+import ForgeTable from "./src/components/tables/table/Table.vue";
+import ForgeFilterHeader from "./src/components/tables/filter-header/FilterHeader.vue";
+import ForgePaginationFooter from "./src/components/tables/pagination/PaginationFooter.vue";
+import ForgeIcons from "./src/icons/icons";
+import ForgeToasts, { useForgeToasts } from "./src/components/general/toast/toast";
+import ForgeModal from "./src/components/general/modal/Modal.vue";
+import ForgeModalHelper, { useForgeModal } from "./src/components/general/modal/forge-modal-helper";
+import ForgeForm from "./src/components/forms/form/Form.vue";
+import ForgeLoader from "./src/components/general/loader/Loader.vue"; 
+import ForgeActionButton from "./src/components/general/action-button/ActionButton.vue";
+import ForgeInlineEditor from "./src/components/forms/inline-editor/InlineEditor.vue";
+import ForgeFileUpload from "./src/components/forms/file-upload/FileUpload.vue";
+import ForgeMultiSelect from "./src/components/forms/multiselect/MultiSelect.vue";
+import ForgeChart from "./src/components/general/chart/Chart.vue";
+import ForgePageHeader from "./src/components/layout/page-header/PageHeader.vue";
+import ForgeMultiSelectPreview from "./src/components/forms/multiselect-preview/MultiSelectPreview.vue";
+import ForgeFormField from "./src/components/forms/form-field/FormField.vue";
+import ForgeRemainingCharacters from "./src/components/forms/remaining-characters/RemainingCharacters.vue";
+import ForgeStepper from "./src/components/layout/stepper/Stepper.vue";
 
 // Validation
 import { localize, validate, ValidationObserver, ValidationProvider } from "vee-validate";
-import { useForgeValidation } from "@/validation/forge-validation";
+import { useForgeValidation } from "./src/validation/forge-validation";
 
 // //Directives
-import { alphanumericCharacterDirective, maxNumericCharactersDirective, positiveNumberDirective, wholeNumberDirective } from "@/directives/index";
+import { alphanumericCharacterDirective, maxNumericCharactersDirective, positiveNumberDirective, wholeNumberDirective } from "./src/directives/index";
 
 // ForgeUI Installer (not recommended if you want to tree-shake your project)
 import { PluginObject, VueConstructor } from "vue";
@@ -156,5 +156,5 @@ export {
 
 export default ForgeUI;
 
-export * from "@/helpers/index";
-export * from "@/icons/icons";
+export * from "./src/helpers/index";
+export * from "./src/icons/icons";

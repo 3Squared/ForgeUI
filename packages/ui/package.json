@@ -4,9 +4,9 @@
   "version": "1.1.5",
   "description": "ForgeUI is designed to be a wrapper around different libraries that provide a consistent UI style. It is comprised of many different packages that have been combined to create a one stop shop for UI.",
   "license": "MIT",
-  "main": "dist/esm/forge-ui.mjs",
-  "module": "dist/esm/forge-ui.mjs",
-  "types": "dist/index.d.ts",
+  "main": "./index.ts",
+  "module": "./index.ts",
+  "types": "./index.ts",
   "files": [
     "dist/*",
     "src/styles/*",
@@ -19,7 +19,7 @@
     "test": "cypress run --component && npm run coverage && node ./scripts/merge.js",
     "test-unit": "vitest --ui",
     "coverage": "vitest run --coverage",
-    "is-tree-shakeable": "agadoo"
+    "is-tree-shakeable": "agadoo dist/esm/forge-ui.mjs"
   },
   "dependencies": {
     "@azure/abort-controller": "^1.0.4",
