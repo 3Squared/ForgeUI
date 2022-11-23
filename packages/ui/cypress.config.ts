@@ -1,4 +1,4 @@
-import { defineConfig } from "./cypress";
+import { defineConfig } from "cypress";
 
 export default defineConfig({
   video: false,
@@ -7,25 +7,25 @@ export default defineConfig({
     specPattern: "**/**.cy.ts",
     devServer: {
       framework: "vue",
-      bundler: "vite",
+      bundler: "vite", 
     },
     viewportWidth: 1280,
     viewportHeight: 720,
     video: false,
     screenshotOnRunFailure: false,
-    reporter: 'junit',
+    reporter: "junit",
     reporterOptions: {
       testsuitesTitle: true,
       mochaFile: "./test-results/cypress.[hash].xml"
     },
     setupNodeEvents(on, config) {
-      require('@cypress/code-coverage/task')(on, config)
+      require("@cypress/code-coverage/task")(on, config);
 
-      on('file:preprocessor', require('@cypress/code-coverage/use-babelrc'));
+      on("file:preprocessor", require("@cypress/code-coverage/use-babelrc"));
       if (config.isTextTerminal) {
-        config.excludeSpecPattern = ['**/all.cy.ts']
+        config.excludeSpecPattern = ["**/all.cy.ts"];
       }
-      return config
+      return config;
     }
   }
 });

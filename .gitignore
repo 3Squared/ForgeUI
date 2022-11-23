@@ -26,7 +26,7 @@ packages/ui/cypress/videos
 
 # Custom ignores
 packages/ui/utilities/index.js
-/coverage/
-/.nyc_output/
-/test-results/
-/.turbo/
+coverage/
+.nyc_output/
+test-results/
+.turbo/
