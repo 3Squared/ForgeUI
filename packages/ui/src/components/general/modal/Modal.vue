@@ -28,7 +28,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { BModal, BAlert, BvModalEvent } from 'bootstrap-vue';
-import ForgeLoader from '../loader/Loader.vue.js';
+import ForgeLoader from '../loader/Loader.vue';
 import { parseError } from '../../../helpers/index';
 import cloneDeep from 'lodash/cloneDeep';
 

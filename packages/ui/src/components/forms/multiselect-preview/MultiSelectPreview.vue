@@ -36,7 +36,7 @@
 import Vue from 'vue';
 import { BButton, BIconX } from 'bootstrap-vue';
 import { MultiSelectOption } from '../../../helpers/types';
-import ForgeMultiSelect from '../multiselect/MultiSelect.vue.js';
+import ForgeMultiSelect from '../multiselect/MultiSelect.vue';
 
 export type MultiSelectPreviewOrientationType = 'horizontal' | 'vertical' | 'horizontal-reversed';
 

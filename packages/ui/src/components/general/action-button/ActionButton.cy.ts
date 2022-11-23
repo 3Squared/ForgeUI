@@ -1,5 +1,5 @@
 ﻿import { mount } from 'cypress/vue2'
-import ActionButton from "./ActionButton.vue.js";
+import ActionButton from "./ActionButton.vue";
 import { defineComponent } from "vue";
 
 

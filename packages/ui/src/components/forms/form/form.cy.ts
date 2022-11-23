@@ -1,5 +1,5 @@
 ﻿import { mount } from 'cypress/vue2';
-import ForgeForm from './Form.vue.js';
+import ForgeForm from './Form.vue';
 
 describe('Form', () => {
   describe('Title',() => {

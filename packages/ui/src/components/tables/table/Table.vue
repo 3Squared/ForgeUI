@@ -88,11 +88,11 @@ import { ForgeTableFieldArray, ForgeTableField } from '../../../helpers/types';
 import { getColumnKey } from '../table-column-customiser/column-customiser-helper';
 import { BvTableCtxObject, BTable, BAlert, BButton, BCollapse, BIcon, BIconArrowRepeat, BSpinner } from 'bootstrap-vue';
 import { BIconForgeFilter } from '../../../icons/icons';
-import ForgeTableExporter from './components/TableExporter.vue.js';
-import ForgeTableColumnCustomiser from '../table-column-customiser/TableColumnCustomiser.vue.js';
-import ForgeFilterHeader from '../filter-header/FilterHeader.vue.js';
-import ForgePaginationFooter from '../pagination/PaginationFooter.vue.js';
-import ForgePaginationHeader from '../pagination/PaginationHeader.vue.js';
+import ForgeTableExporter from './components/TableExporter.vue';
+import ForgeTableColumnCustomiser from '../table-column-customiser/TableColumnCustomiser.vue';
+import ForgeFilterHeader from '../filter-header/FilterHeader.vue';
+import ForgePaginationFooter from '../pagination/PaginationFooter.vue';
+import ForgePaginationHeader from '../pagination/PaginationHeader.vue';
 import { parseError } from '../../../helpers/index';
 
 /**

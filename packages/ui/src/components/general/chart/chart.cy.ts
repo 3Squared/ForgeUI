@@ -1,5 +1,5 @@
 ﻿import { mount } from 'cypress/vue2'
-import ForgeChart from "./Chart.vue.js";
+import ForgeChart from "./Chart.vue";
 import {defineComponent} from "vue";
 import { Chart, CategoryScale, LinearScale, PointElement, BarElement, BarController, Legend,  Tooltip} from 'chart.js';
 import {getColour} from "@/helpers/index";

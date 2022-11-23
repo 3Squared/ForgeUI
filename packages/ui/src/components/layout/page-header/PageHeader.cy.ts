@@ -1,4 +1,4 @@
-import ForgePageHeader from './PageHeader.vue.js';
+import ForgePageHeader from './PageHeader.vue';
 
 describe('PageHeader.vue', () => {
 

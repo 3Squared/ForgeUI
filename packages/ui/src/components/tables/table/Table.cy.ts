@@ -1,5 +1,5 @@
 import { mount } from 'cypress/vue2'
-import ForgeTable from './Table.vue.js'
+import ForgeTable from './Table.vue'
 
 const mountTable = (items : object[]) => {
   mount(ForgeTable, {

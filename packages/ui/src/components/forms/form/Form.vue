@@ -36,7 +36,7 @@
 <script lang="ts">
 import Vue from 'vue';
 import { BButton, BForm, BAlert } from 'bootstrap-vue';
-import ForgeLoader from '../../general/loader/Loader.vue.js';
+import ForgeLoader from '../../general/loader/Loader.vue';
 
 /**
  * The Forge Form provides the following features:

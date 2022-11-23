@@ -1,5 +1,5 @@
 ﻿import { mount } from 'cypress/vue2'
-import ForgeFormField from "./FormField.vue.js";
+import ForgeFormField from "./FormField.vue";
 
 it('shows a custom label based on passed through prop', () => {
   mount(ForgeFormField, {

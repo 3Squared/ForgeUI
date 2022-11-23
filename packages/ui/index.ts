@@ -1,25 +1,25 @@
 // Components
-import ForgeDatePicker from '@/components/forms/date-picker/DatePicker.vue.js';
-import ForgeStatWidget from '@/components/general/stat-widget/StatWidget.vue.js';
-import ForgeTable from '@/components/tables/table/Table.vue.js';
-import ForgeFilterHeader from '@/components/tables/filter-header/FilterHeader.vue.js';
-import ForgePaginationFooter from '@/components/tables/pagination/PaginationFooter.vue.js';
+import ForgeDatePicker from '@/components/forms/date-picker/DatePicker.vue';
+import ForgeStatWidget from '@/components/general/stat-widget/StatWidget.vue';
+import ForgeTable from '@/components/tables/table/Table.vue';
+import ForgeFilterHeader from '@/components/tables/filter-header/FilterHeader.vue';
+import ForgePaginationFooter from '@/components/tables/pagination/PaginationFooter.vue';
 import ForgeIcons from '@/icons/icons';
 import ForgeToasts, { useForgeToasts } from '@/components/general/toast/toast';
-import ForgeModal from '@/components/general/modal/Modal.vue.js';
+import ForgeModal from '@/components/general/modal/Modal.vue';
 import ForgeModalHelper, { useForgeModal } from '@/components/general/modal/forge-modal-helper';
-import ForgeForm from '@/components/forms/form/Form.vue.js';
-import ForgeLoader from '@/components/general/loader/Loader.vue.js';
-import ForgeActionButton from '@/components/general/action-button/ActionButton.vue.js';
-import ForgeInlineEditor from '@/components/forms/inline-editor/InlineEditor.vue.js';
-import ForgeFileUpload from '@/components/forms/file-upload/FileUpload.vue.js';
-import ForgeMultiSelect from '@/components/forms/multiselect/MultiSelect.vue.js';
-import ForgeChart from '@/components/general/chart/Chart.vue.js';
-import ForgePageHeader from '@/components/layout/page-header/PageHeader.vue.js';
+import ForgeForm from '@/components/forms/form/Form.vue';
+import ForgeLoader from '@/components/general/loader/Loader.vue';
+import ForgeActionButton from '@/components/general/action-button/ActionButton.vue';
+import ForgeInlineEditor from '@/components/forms/inline-editor/InlineEditor.vue';
+import ForgeFileUpload from '@/components/forms/file-upload/FileUpload.vue';
+import ForgeMultiSelect from '@/components/forms/multiselect/MultiSelect.vue';
+import ForgeChart from '@/components/general/chart/Chart.vue';
+import ForgePageHeader from '@/components/layout/page-header/PageHeader.vue';
 import ForgeMultiSelectPreview from '@/components/forms/multiselect-preview/MultiSelectPreview.vue';
-import ForgeFormField from '@/components/forms/form-field/FormField.vue.js';
-import ForgeRemainingCharacters from '@/components/forms/remaining-characters/RemainingCharacters.vue.js';
-import ForgeStepper from '@/components/layout/stepper/Stepper.vue.js';
+import ForgeFormField from '@/components/forms/form-field/FormField.vue';
+import ForgeRemainingCharacters from '@/components/forms/remaining-characters/RemainingCharacters.vue';
+import ForgeStepper from '@/components/layout/stepper/Stepper.vue';
 
 // Validation
 import { localize, validate, ValidationObserver, ValidationProvider } from 'vee-validate';

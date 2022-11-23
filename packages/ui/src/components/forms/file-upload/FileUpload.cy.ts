@@ -1,5 +1,5 @@
 import { mount } from 'cypress/vue2';
-import FileUpload from './FileUpload.vue.js';
+import FileUpload from './FileUpload.vue';
 
 const mountFileUploader = () => {
   mount(FileUpload, {

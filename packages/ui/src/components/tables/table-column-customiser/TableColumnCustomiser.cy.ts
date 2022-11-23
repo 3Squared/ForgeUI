@@ -1,5 +1,5 @@
 import { mount } from 'cypress/vue2';
-import ForgeTableColumnCustomiser from './TableColumnCustomiser.vue.js';
+import ForgeTableColumnCustomiser from './TableColumnCustomiser.vue';
 import { saveCustomisedColumns, loadCustomisedColumns } from './column-customiser-helper';
 
 const mountColumnCustomiser = (fields : object[]) => {

@@ -114,8 +114,8 @@
 <script lang="ts">
 import Vue from 'vue';
 import { BIconXCircle, BFormInput } from 'bootstrap-vue';
-import ForgeDatePicker from '../../forms/date-picker/DatePicker.vue.js';
-import ForgeMultiselect from '../../forms/multiselect/MultiSelect.vue.js';
+import ForgeDatePicker from '../../forms/date-picker/DatePicker.vue';
+import ForgeMultiselect from '../../forms/multiselect/MultiSelect.vue';
 
 /**
  * @displayName Filter Header

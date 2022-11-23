@@ -1,5 +1,5 @@
 ﻿import { mount } from 'cypress/vue2'
-import ForgeLoader from "./Loader.vue.js";
+import ForgeLoader from "./Loader.vue";
 import { defineComponent } from "vue";
 import "@/styles/loader.scss"
 /***************************************************

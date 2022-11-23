@@ -69,7 +69,7 @@ import {
   BButton,
   BIconUpload
 } from "bootstrap-vue";
-import FileInfo from './components/FileInfo.vue.js';
+import FileInfo from './components/FileInfo.vue';
 import { formatFileSize } from "./utils/fileUtilities";
 import { ForgeFileStatus } from "../../../helpers/types";
 
