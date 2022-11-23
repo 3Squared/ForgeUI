@@ -10,7 +10,6 @@
     "network": "npm run build && vite preview --host",
     "dev": "vite",
     "start": "vite preview --port=3000",
-    "test": "cypress run",
     "lint": "eslint src/**/*.{ts,vue} --fix"
   },
   "dependencies": {
