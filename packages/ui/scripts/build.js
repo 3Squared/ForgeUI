@@ -66,12 +66,12 @@ class BuildPipeline {
 }
 
 new BuildPipeline()
-  .cleanup()
+  /*.cleanup()
   .generateIcons()
   .generateComponentDocs()
-  .compileUtilities()
+  .compileUtilities()*/
   .buildLibrary()
-  .generateIDEHelpers()
-  .generateCSS()
+/*  .generateIDEHelpers()
+  .generateCSS()*/
   .testTreeshaking()
   .go();
