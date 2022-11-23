@@ -1,29 +1,31 @@
-﻿var sass = require('sass');
-var fs = require('fs')
+﻿var sass = require("sass");
+var fs = require("fs");
 
 
 const buildStyles = () => {
- const outputDir = process.argv.slice(2)[0]
- console.log(`Building theme to put in ${outputDir}`)
+  const outputDir = process.argv.slice(2)[0];
+  console.log(`Building theme to put in ${outputDir}`);
  
- if(!fs.existsSync(`${outputDir}/styles`)) {
-  fs.mkdirSync(`${outputDir}/styles`, {recursive: true})
- }
+  if(!fs.existsSync(`${outputDir}/styles`)) {
+    fs.mkdirSync(`${outputDir}/styles`, {recursive: true});
+  }
  
- sass.render({
-    file: `./src/styles/main.scss`,
+  sass.render({
+    file: "./src/styles/main.scss",
     sourceMap: true,
-    outFile: "style.css",
-    outputStyle: "compressed"
-   },
-   function (error, result) {
+    outFile: "style.css", 
+    outputStyle: "compressed",
+    includePaths: ["../../node_modules/bootstrap/dist/css"],
+    
+  },
+  function (error, result) {
     if (!error) {
-     fs.writeFile(`${outputDir}/styles/main.css`, result.css, () => {
-     });
+      fs.writeFile(`${outputDir}/styles/main.css`, result.css, () => {
+      });
     } else {
-     console.log(`${error}`)
+      console.log(`${error}`);
     }
-   });
-}
+  });
+};
 
 buildStyles();

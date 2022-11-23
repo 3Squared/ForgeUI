@@ -1,33 +1,35 @@
 /// <reference types="vitest" />
-const path = require("path");
-import { defineConfig } from 'vitest/config'
+import { resolve, join } from "path";
+import { defineConfig } from "vitest/config";
 import vue from "@vitejs/plugin-vue2";
-import istanbul from 'vite-plugin-istanbul';
+import istanbul from "vite-plugin-istanbul";
+import dts from "vite-plugin-dts";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
   esbuild: {
-    jsxFactory: 'h',
-    jsxFragment: 'Fragment'
-  }, 
+    jsxFactory: "h",
+    jsxFragment: "Fragment"
+  },
   resolve: {
     alias: [
       {
-        find: '@',
-        replacement: path.resolve(__dirname, 'src')
+        find: "@",
+        replacement: resolve(__dirname, "src")
       },
       {
         find: /~(.+)/,
-        replacement: path.join(process.cwd(), 'node_modules/$1'),
+        replacement: join(process.cwd(), "node_modules/$1"),
       },
     ],
-    extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.vue'],
+    extensions: [".mjs", ".js", ".ts", ".jsx", ".tsx", ".json", ".vue"],
   },
   plugins: [
     vue(),
+    dts(),
     istanbul({
-      include: 'src/*',
-      exclude: ['node_modules', 'test/'],
+      include: "src/*",
+      exclude: ["node_modules", "test/"],
       extension: [".js",
         ".cjs",
         ".mjs",
@@ -35,46 +37,47 @@ export default defineConfig(({ mode }) => ({
         ".tsx",
         ".jsx",
         ".vue"],
-      cypress: mode == 'test',
-      forceBuildInstrument: mode == 'test',
+      cypress: mode == "test",
+      forceBuildInstrument: mode == "test",
     }),
   ],
   build: {
     lib: {
-      entry: './index.ts',
+      entry: "./index.ts",
       name: "Forge.UI",
-      formats: ['es'],
+      formats: ["es"],
     },
 
     rollupOptions: {
       external: [
-        '@azure/storage-blob',
-        '@azure/abort-controller',
-        'bootstrap-vue',
-        'bootstrap-vue/src/icons/helpers/make-icon',
-        'chart.js',
-        'dayjs',
-        'flatpickr',
-        'lodash/cloneDeep',
-        'ts-simple-nameof',
-        'vee-validate',
-        'vee-validate/dist/rules',
-        'vee-validate/dist/types/types',
-        'vue',
-        'vuedraggable',
-        'v-click-outside',
-        'vue-multiselect'
+        "@azure/storage-blob",
+        "@azure/abort-controller",
+        "bootstrap-vue",
+        "bootstrap-vue/src/icons/helpers/make-icon",
+        "chart.js",
+        "dayjs",
+        "flatpickr",
+        "lodash/cloneDeep",
+        "ts-simple-nameof",
+        "vee-validate",
+        "vee-validate/dist/rules",
+        "vee-validate/dist/types/types",
+        "vue",
+        "vuedraggable",
+        "v-click-outside",
+        "vue-multiselect"
       ],
       output: {
-        dir: 'dist/esm',
-        format: 'esm',
-        exports: 'named',
+        dir: "dist/esm",
+        format: "esm",
+        exports: "named",
+
         preserveModules: true,
-        preserveModulesRoot: 'src',
+        preserveModulesRoot: "src",
         // Provide global variables to use in the UMD build
         // for externalized deps
         globals: {
-          vue: 'Vue'
+          vue: "Vue"
         }
       },
     }
@@ -86,8 +89,8 @@ export default defineConfig(({ mode }) => ({
       all: true,
       include: ["src"],
       exclude: ["**/*.cy.ts", "scripts", "**/*.test.ts"],
-      reportsDirectory: './coverage/vitest',
-      reporter: ['cobertura', 'html', 'json'],
+      reportsDirectory: "./coverage/vitest",
+      reporter: ["cobertura", "html", "json"],
     },
   }
-}))
+}));

@@ -1,15 +1,14 @@
 // vite.config.js
 import Pages from "vite-plugin-pages";
-const shell = require('shelljs');
-
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue2'
-import Markdown from 'vite-plugin-md'
-import checker from 'vite-plugin-checker'
+import { defineConfig } from "vite";
+import vue from "@vitejs/plugin-vue2";
+import Markdown from "vite-plugin-md";
+import checker from "vite-plugin-checker";
 //import {VitePWA} from 'vite-plugin-pwa'
-import markdownItPrism from 'markdown-it-prism'
-const path = require("path");
+import markdownItPrism from "markdown-it-prism";
+import shell from "shelljs";
 
+import path from "path";
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
   return {
@@ -17,8 +16,8 @@ export default defineConfig(({ mode }) => {
       port : 1234
     },
     esbuild: {
-      jsxFactory: 'h',
-      jsxFragment: 'Fragment'
+      jsxFactory: "h",
+      jsxFragment: "Fragment"
     },
     resolve: {
       alias: [
@@ -34,32 +33,32 @@ export default defineConfig(({ mode }) => {
           find: "node_modules",
           replacement: path.join(process.cwd(), "../../node_modules"),
         },
-      ],
-      dedupe: ['bootstrap-vue', 'vue'],
-      extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.vue'],
+      ], 
+      dedupe: ["bootstrap-vue", "vue"],
+      extensions: [".mjs", ".js", ".ts", ".jsx", ".tsx", ".json", ".vue"],
     },
     plugins: [
-/*      DocGenerator(),*/
+      /*      DocGenerator(),*/
       Pages({
-        extensions: ['vue', 'js', 'md'],
+        extensions: ["vue", "js", "md"],
         exclude: ["**/examples/*.vue"],
       }),
       vue({
         include: [/\.vue$/, /\.md$/],
       }),
-/*      Markdown({
+      Markdown({
         exposeFrontmatter: false,
         markdownItSetup(x) {
-                    x.use(markdownItPrism)
+          x.use(markdownItPrism);
           x.renderer.rules.table_open = function () {
-            return `<div class="forge-table"><table class="table"> `
-          }
+            return `<div class="forge-table"><table class="table"> `;
+          };
           x.renderer.rules.table_close = function () {
-            return `</table> </div>`
-          }
+            return `</table> </div>`;
+          };
         }
-      }),*/
-      checker({ vueTsc: mode !== 'test' }),
+      }),
+      checker({ vueTsc: mode !== "test" }),
       // This doesnt work as of 26/7, uncommenting requires some weird jsx error which causes the build to hang.
       // VitePWA({
       //   includeAssets: ['robots.txt', 'img/icons/favicon.ico'],
@@ -116,18 +115,18 @@ export default defineConfig(({ mode }) => {
       // })
     ],
 
-  }
+  };
 });
 
 
 function DocGenerator() {
   return {
-    name: 'docgen',
+    name: "docgen",
     async buildStart() {
       try {
-        shell.exec('cd .. && npx vue-docgen')
+        shell.exec("cd .. && npx vue-docgen");
       } catch (e) {
-        console.error(e)
+        console.error(e);
       }
     }
   };

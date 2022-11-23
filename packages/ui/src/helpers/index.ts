@@ -1,12 +1,12 @@
-import { MultiSelectOption, SelectListOption } from './types';
+import { MultiSelectOption, SelectListOption } from "./types";
 
-export * from './validation';
-export * from './types';
-export * from './table-column-builder';
-export * from './modal-builder';
-export * from './date-picker-normalizers';
-export * from './navbar.builder';
-import { nameof as tsNameOf } from 'ts-simple-nameof';
+export * from "./validation";
+export * from "./types";
+export * from "./table-column-builder";
+export * from "./modal-builder"; 
+export * from "./date-picker-normalizers";
+export * from "./navbar.builder";
+import { nameof as tsNameOf } from "ts-simple-nameof";
 
 export function stringFilterMatch(value: string | null, filter: string | null): boolean {
   if (filter == null) {
@@ -21,7 +21,7 @@ export function stringFilterMatch(value: string | null, filter: string | null): 
 }
 
 export function nameof<T>(name: Extract<keyof T, string> | ((obj: T) => any)): string {
-  if (typeof name == 'string') {
+  if (typeof name == "string") {
     return name;
   } else {
     return tsNameOf(name);
@@ -34,8 +34,8 @@ const RX_START_SPACE_WORD = /(\s|^)(\w)/g;
 
 export const startCase = (str: string) =>
   str
-    .replace(RX_UNDERSCORE, ' ')
-    .replace(RX_LOWER_UPPER, (_, $1, $2) => $1 + ' ' + $2)
+    .replace(RX_UNDERSCORE, " ")
+    .replace(RX_LOWER_UPPER, (_, $1, $2) => $1 + " " + $2)
     .replace(RX_START_SPACE_WORD, (_, $1, $2) => $1 + $2.toUpperCase());
 
 export function arraysEqual(a: any[], b: any[]) {
@@ -51,7 +51,7 @@ export function arraysEqual(a: any[], b: any[]) {
 
 export function parseError(error: any) {
   const result = {
-    errorMessage: '',
+    errorMessage: "",
     errorDetails: [] as string[]
   };
   if (error.exception) {
@@ -73,7 +73,7 @@ export function parseError(error: any) {
       result.errorDetails = parsedResponse.message;
     }
   }
-  if (result.errorMessage === '' && result.errorDetails.length === 0) {
+  if (result.errorMessage === "" && result.errorDetails.length === 0) {
     result.errorMessage = error;
   }
   return result;
@@ -87,34 +87,34 @@ export function enumToMultiSelectList<T>(items: readonly T[], formatter?: (val: 
   return items.map(i => ({ id: i, label: formatter ? formatter(i) : `${i}` }));
 }
 
-export const capitalize = (s: string): string => (s[0]?.toUpperCase() ?? '') + s.substring(1);
+export const capitalize = (s: string): string => (s[0]?.toUpperCase() ?? "") + s.substring(1);
 
 /**
  * `date-change` becomes `dateChange`
  */
 export const kebabToCamel = (s: string): string => {
-  const segments = s.split('-');
+  const segments = s.split("-");
 
   return segments.length > 1
     ? segments[0] +
         segments
           .splice(1)
           .map(capitalize)
-          .join('')
+          .join("")
     : s;
 };
 
 type AppColours =
-  | 'primary'
-  | 'success'
-  | 'warning'
-  | 'warning-dark'
-  | 'danger'
-  | 'light-grey'
-  | 'white'
-  | 'dark'
-  | 'info'
-  | 'secondary'
+  | "primary"
+  | "success"
+  | "warning"
+  | "warning-dark"
+  | "danger"
+  | "light-grey"
+  | "white"
+  | "dark"
+  | "info"
+  | "secondary"
 
 export function getColour(color: AppColours) {
   return getComputedStyle(document.body)

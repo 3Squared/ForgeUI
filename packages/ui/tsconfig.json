@@ -50,6 +50,7 @@
     "node_modules",
     "dist",
     "docs",
-    "*.md"
+    "*.md",
+    "**/*.cy.ts"
   ]
 }

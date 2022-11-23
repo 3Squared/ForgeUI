@@ -6,7 +6,6 @@
   ],
   "scripts": {
     "build": "turbo run build",
-    "football" : "turbo run dev --filter=football-fixtures",
     "dev": "turbo run dev --parallel",
     "test": "turbo run test",
     "lint": "turbo run lint",
