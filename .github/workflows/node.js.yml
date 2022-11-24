@@ -62,7 +62,7 @@ jobs:
         with:
           path: apps/docs/dist
 
-  publish-package:
+  publish-forge-ui-package-to-npm:
     runs-on: ubuntu-latest
     needs: [ build ]
     if: github.event_name == 'push'
@@ -85,7 +85,7 @@ jobs:
           greater-version-only: true
           access: public
           
-  deploy:
+  deploy-forge-ui-docs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
