@@ -2,56 +2,6 @@
 
 ![alt](https://cdn.3sq.app/assets/products/forge-ui/images/logo.svg)
 
-### Contents:
-
-1. Repository setup
-2. Building Forge UI Framework
-3. Running the styleguide to test your components
-4. Adding a new component
-5. Publishing a new version
-
-# Repository setup
-
-When you first clone forge to your machine you will want to run the following command to make sure all the necessary dependencies are installed. This could take a few minutes.
-
-```
-npm install
-```
-
-# Building Forge UI Framework
-
-Forge UI Framework Version uses a combination of `Rollup` and `Vite` to create an `esm` bundle for each component in the library and a central entry point as well other items such as types and styles. It is vital an `esm` bundle is created so the consuming application can utilise tree shaking.
-
-To run the build process which includes theme generation, web type generation, icon generation, bundle generation and tree shaking checks; run:
-
-```
-npm run build
-```
-
-Note: `agadoo` may fail if your bundle is not tree shakeable - please consult 'Adding a new component' for some tips and tricks.
-
-# Running the styleguide to test your components
-
-Differently to previous versions, the documentation for the components now lives in a separate `/docs` directory - where we have pages for each of the components instead of everything living in the `/src` directory.
-
-To enter the `/docs` project first run:
-
-```
-cd docs
-```
-
-And then run the following if it your first time running the styleguide:
-
-```
-npm install
-```
-
-The styleguide links directly to your components in the `/src` directory meaning you can benefit from hot reloading to test and develop your components. Run the following command to boot up the development server:
-
-```
-npm run dev
-```
-
 # Adding a new component
 
 ## Adding a new component in the `/src` directory

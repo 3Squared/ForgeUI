@@ -1,50 +1,50 @@
-import { required, email, alpha, length, max_value, min_value } from 'vee-validate/dist/rules';
-import { latlongValidator, decimalPlaceValidator, telephoneNumberValidator, urlValidator } from './validators';
-import { extend, ValidationProvider } from 'vee-validate';
-import { ValidationRule } from 'vee-validate/dist/types/types';
+import { required, email, alpha, length, max_value, min_value } from "vee-validate/dist/rules";
+import { latlongValidator, decimalPlaceValidator, telephoneNumberValidator, urlValidator } from "./validators";
+import { extend, ValidationProvider } from "vee-validate";
+import { ValidationRule } from "vee-validate/dist/types/types";
 
 function useForgeValidation(): (name: string, schema: ValidationRule) => void {
-  extend('required', {
+  extend("required", {
     ...required,
-    message: 'This field is required'
+    message: "This field is required"
   });
-  extend('email', {
+  extend("email", {
     ...email,
-    message: 'Email is not formatted correctly'
+    message: "Email is not formatted correctly"
   });
-  extend('telephone', {
+  extend("telephone", {
     validate: telephoneNumberValidator,
-    message: 'Must be a valid UK phone number'
+    message: "Must be a valid UK phone number" 
   });
-  extend('alpha', {
+  extend("alpha", {
     ...alpha,
-    message: 'Only alphabetical characters allowed'
+    message: "Only alphabetical characters allowed"
   });
-  extend('length', {
+  extend("length", {
     ...length,
-    message: 'Must be {length} characters long'
+    message: "Must be {length} characters long"
   });
-  extend('2decimalPlaces', {
+  extend("2decimalPlaces", {
     validate: decimalPlaceValidator,
-    message: '{_field_} must be a positive number to 2 decimal places'
+    message: "{_field_} must be a positive number to 2 decimal places"
   });
-  extend('latlong', {
+  extend("latlong", {
     validate: latlongValidator,
-    message: 'Lat / Long must be formatted as 2 decimal numbers eg. 1.23 , 45.6789'
+    message: "Lat / Long must be formatted as 2 decimal numbers eg. 1.23 , 45.6789"
   });
-  extend('max_value', {
+  extend("max_value", {
     ...max_value,
-    message: 'Must be no more than: {max}',
-    params: ['max']
+    message: "Must be no more than: {max}",
+    params: ["max"]
   });
-  extend('min_value', {
+  extend("min_value", {
     ...min_value,
-    message: 'Must be no less than: {min}',
-    params: ['min']
+    message: "Must be no less than: {min}",
+    params: ["min"]
   });
-  extend('url', {
+  extend("url", {
     validate: urlValidator,
-    message: '{_field_} must be a valid URL'
+    message: "{_field_} must be a valid URL"
   });
 
 
