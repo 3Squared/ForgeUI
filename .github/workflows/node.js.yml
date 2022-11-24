@@ -80,6 +80,7 @@ jobs:
       - name: Publish to NPM
         uses: JS-DevTools/npm-publish@v1
         with:
+          package: "packages/ui/package.json"
           token: ${{ secrets.NPM_TOKEN }}
           greater-version-only: true
           access: public
