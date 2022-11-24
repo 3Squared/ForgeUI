@@ -62,7 +62,7 @@ jobs:
         with:
           path: apps/docs/dist
 
-  publish-forge-ui-package-to-npm:
+  publish-forge-ui-package:
     runs-on: ubuntu-latest
     needs: [ build ]
     if: github.event_name == 'push'
