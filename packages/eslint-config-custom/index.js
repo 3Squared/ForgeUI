@@ -20,7 +20,7 @@ module.exports = {
   plugins: ["vue", "@typescript-eslint", "unused-imports"],
   rules: {
     indent: ["error", 2],
-    quotes: ["error", "double"],
+    quotes: ["error", "double", {"allowTemplateLiterals": true}],
     semi: ["error", "always"],
     "vue/multi-word-component-names": "off",
     "no-undef": "off",

@@ -17,7 +17,7 @@
     "build": "node scripts/build.js",
     "cy": "cypress open --component --browser chrome",
     "test": "cypress run --component && npm run coverage && node ./scripts/merge.js",
-    "test-unit": "vitest --ui",
+    "test-unit": "vitest --ui --coverage",
     "coverage": "vitest run --coverage",
     "is-tree-shakeable": "agadoo dist/esm/forge-ui.mjs"
   },
@@ -58,7 +58,8 @@
     "vue-docgen-cli": "4.44.29",
     "vue-docgen-web-types": "^0.1.7",
     "vue-template-compiler": "^2.7.14",
-    "vue-tsc": "^0.38.8"
+    "vue-tsc": "^0.38.8",
+    "@vue/test-utils": "1.3.3"
   },
   "engines": {
     "node": ">=12"
