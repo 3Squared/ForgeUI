@@ -83,6 +83,8 @@ export default defineConfig(({ mode }) => ({
     }
   },
   test: {
+    alias: [{ find: /^vue$/, replacement: "vue/dist/vue.runtime.common.js" }],
+  
     reporters: ["default", "junit"],
     outputFile: "test-results/vitest.xml",
     coverage: {

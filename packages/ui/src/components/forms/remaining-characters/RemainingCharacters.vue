@@ -9,15 +9,15 @@
 import { computed } from "vue";
 
 const props = defineProps({
-    maxCount: {
-      type: Number,
-      required: true
-    },
-    currentCount:{
-      type: Number,
-      required: true
-    }
-  });
+  maxCount: {
+    type: Number,
+    required: true
+  },
+  currentCount:{
+    type: Number,
+    required: true 
+  }
+});
 
 
 const remainingCount = computed(() => props.maxCount - props.currentCount);
