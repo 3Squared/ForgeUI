@@ -1,0 +1,14 @@
+$codeBlockBackground: #282c34;
+
+main {
+  padding: 1.5rem
+}
+
+.code-block {
+  background-color: black;
+}
+
+@import "@3squared/forge-ui/src/styles/main";
+@import '~prismjs/themes/prism-tomorrow.css';
+
+
