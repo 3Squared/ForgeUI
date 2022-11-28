@@ -34,9 +34,9 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import { BButton, BForm, BAlert } from 'bootstrap-vue';
-import ForgeLoader from '../../general/loader/Loader.vue';
+import Vue from "vue";
+import { BButton, BForm, BAlert } from "bootstrap-vue";
+import ForgeLoader from "../../general/loader/Loader.vue";
 
 /**
  * The Forge Form provides the following features:
@@ -47,8 +47,8 @@ import ForgeLoader from '../../general/loader/Loader.vue';
   - Default Cancel and Submit button
  * @displayName Form
  **/
-export const ForgeForm = /*#__PURE__*/ Vue.extend({
-  name: 'ForgeForm',
+export const ForgeForm = /*#__PURE__*/ defineComponent({
+  name: "ForgeForm",
   components: { BButton, BForm, BAlert, ForgeLoader },
   props: {
     /**
@@ -64,7 +64,7 @@ export const ForgeForm = /*#__PURE__*/ Vue.extend({
     },
     title: {
       type: String,
-      default: 'Forge Form Title'
+      default: "Forge Form Title"
     },
     hideCancel: {
       type: Boolean,
@@ -72,11 +72,11 @@ export const ForgeForm = /*#__PURE__*/ Vue.extend({
     },
     submitText: {
       type: String,
-      default: 'Submit'
+      default: "Submit"
     },
     loadingText: {
       type: String,
-      default: ''
+      default: ""
     }
   },
   data() {
@@ -84,7 +84,7 @@ export const ForgeForm = /*#__PURE__*/ Vue.extend({
       loading: false,
       error: {
         hasError: false,
-        message: ''
+        message: ""
       }
     };
   },

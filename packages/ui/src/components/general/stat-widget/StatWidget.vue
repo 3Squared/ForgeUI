@@ -8,29 +8,29 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import Vue from "vue";
 
 /**
  * @displayName Stat Widget
  **/
-export const ForgeStatWidget = /*#__PURE__*/ Vue.extend({
-  name: 'ForgeStatWidget',
+export const ForgeStatWidget = /*#__PURE__*/ defineComponent({
+  name: "ForgeStatWidget",
   props: {
     /** A Prop to show the size of the widget sm, md or lg */
     size: {
       type: String,
-      default: 'md',
-      validator(value : string) {
-        return ['sm', 'md', 'lg'].indexOf(value) !== -1;
+      default: "md",
+      validator(value: string) {
+        return ["sm", "md", "lg"].indexOf(value) !== -1;
       }
     },
     variant: {
       type: String,
-      default: () => Vue.prototype?.ForgeSettings?.StatWidget?.variant ?? 'primary'
+      default: () => Vue.prototype?.ForgeSettings?.StatWidget?.variant ?? "primary"
     }
   },
   computed: {
-    classes() : string {
+    classes(): string {
       return `widget--${this.size} bg-${this.variant}`;
     }
   }

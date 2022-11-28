@@ -5,7 +5,7 @@
 <script lang="ts">
 import Vue from "vue";
 import { BIconAlarm } from "bootstrap-vue";
-export default Vue.extend({
-  components: {BIconAlarm}
+export default defineComponent({
+  components: { BIconAlarm }
 });
 </script>

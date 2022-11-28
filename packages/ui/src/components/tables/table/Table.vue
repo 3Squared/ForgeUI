@@ -37,7 +37,7 @@
             <div>
               <b-button @click="errorDetailsOpen = !errorDetailsOpen" variant="link" class="p-0" size="sm">
                 Show
-                {{ errorDetailsOpen ? 'less' : 'more' }}
+                {{ errorDetailsOpen ? "less" : "more" }}
               </b-button>
               <b-collapse id="error-details" v-model="errorDetailsOpen" class="mt-2">
                 <p>{{ localTableErrorMessage }}</p>
@@ -83,29 +83,23 @@
 </template>
 
 <script lang="ts">
-import Vue, { PropType, VueConstructor } from 'vue';
-import { ForgeTableFieldArray, ForgeTableField } from '../../../helpers/types';
-import { getColumnKey } from '../table-column-customiser/column-customiser-helper';
-import { BvTableCtxObject, BTable, BAlert, BButton, BCollapse, BIcon, BIconArrowRepeat, BSpinner } from 'bootstrap-vue';
-import { BIconForgeFilter } from '../../../icons/icons';
-import ForgeTableExporter from './components/TableExporter.vue';
-import ForgeTableColumnCustomiser from '../table-column-customiser/TableColumnCustomiser.vue';
-import ForgeFilterHeader from '../filter-header/FilterHeader.vue';
-import ForgePaginationFooter from '../pagination/PaginationFooter.vue';
-import ForgePaginationHeader from '../pagination/PaginationHeader.vue';
-import { parseError } from '../../../helpers/index';
+import Vue, { defineComponent, PropType, VueConstructor } from "vue";
+import { ForgeTableFieldArray, ForgeTableField } from "../../../helpers/types";
+import { getColumnKey } from "../table-column-customiser/column-customiser-helper";
+import { BvTableCtxObject, BTable, BAlert, BButton, BCollapse, BIcon, BIconArrowRepeat, BSpinner } from "bootstrap-vue";
+import { BIconForgeFilter } from "../../../icons/icons";
+import ForgeTableExporter from "./components/TableExporter.vue";
+import ForgeTableColumnCustomiser from "../table-column-customiser/TableColumnCustomiser.vue";
+import ForgeFilterHeader from "../filter-header/FilterHeader.vue";
+import ForgePaginationFooter from "../pagination/PaginationFooter.vue";
+import ForgePaginationHeader from "../pagination/PaginationHeader.vue";
+import { parseError } from "../../../helpers/index";
 
 /**
  * @displayName Table
  **/
-export const ForgeTable = /*#__PURE__*/ (Vue as VueConstructor<
-  Vue & {
-    $refs: {
-      table: { localItems: any[] };
-    };
-  }
->).extend({
-  name: 'ForgeTable',
+export const ForgeTable = defineComponent({
+  name: "ForgeTable",
   components: {
     ForgeTableExporter,
     ForgeTableColumnCustomiser,
@@ -158,7 +152,7 @@ export const ForgeTable = /*#__PURE__*/ (Vue as VueConstructor<
      */
     clearColumn: {
       type: String,
-      default: () => 'actions'
+      default: () => "actions"
     },
     exportItemsFunc: {
       type: Function as PropType<() => any[]>,
@@ -189,23 +183,23 @@ export const ForgeTable = /*#__PURE__*/ (Vue as VueConstructor<
 
   methods: {
     updateFilters() {
-      this.$emit('update:filters', this.localFilters);
+      this.$emit("update:filters", this.localFilters);
       this.refreshTable();
     },
     refreshTable() {
-      this.$root.$emit('bv::refresh::table', this.$attrs.id);
+      this.$root.$emit("bv::refresh::table", this.$attrs.id);
     },
     clearFilters() {
       for (const key in this.localFilters) {
         const element = this.localFilters[key];
-        if (typeof element == 'string' || typeof element == 'number') {
+        if (typeof element == "string" || typeof element == "number") {
           this.localFilters[key] = null;
         } else if (Array.isArray(element)) {
           this.localFilters[key] = [];
         }
       }
-      this.$emit('update:filters', this.localFilters);
-      this.$emit('clearFilters');
+      this.$emit("update:filters", this.localFilters);
+      this.$emit("clearFilters");
       this.refreshTable();
     },
     getHeadSlot(name: string) {
@@ -213,7 +207,7 @@ export const ForgeTable = /*#__PURE__*/ (Vue as VueConstructor<
     },
     getColumnKey,
     async itemsWrapper(ctx: BvTableCtxObject) {
-      if (typeof this.$attrs.items == 'function') {
+      if (typeof this.$attrs.items == "function") {
         this.localTableErrorMessage = null;
         this.localTableErrorDetails = null;
         const getItemsFunc = this.$attrs.items as Function;
@@ -223,7 +217,7 @@ export const ForgeTable = /*#__PURE__*/ (Vue as VueConstructor<
           const result = parseError(e);
           this.localTableErrorMessage = result.errorMessage;
           this.localTableErrorDetails = result.errorDetails;
-          this.$emit('update:tableError', e);
+          this.$emit("update:tableError", e);
         }
       } else {
         return this.$attrs.items;
@@ -253,14 +247,14 @@ export const ForgeTable = /*#__PURE__*/ (Vue as VueConstructor<
       return {
         ...defaults,
         ...this.$attrs,
-        items: typeof this.$attrs.items == 'function' ? this.itemsWrapper : this.$attrs.items,
+        items: typeof this.$attrs.items == "function" ? this.itemsWrapper : this.$attrs.items,
         fields: this.customisedFields
       };
     },
     filtersConfig(): ({ key: string } & ForgeTableField)[] {
       return this.fields
-        .map(f => {
-          if (typeof f == 'object' && f.autoFilter) {
+        .map((f) => {
+          if (typeof f == "object" && f.autoFilter) {
             if (this.$scopedSlots[this.getHeadSlot(f.key)]) {
               //eslint-disable-next-line
               console.warn(
@@ -271,7 +265,7 @@ export const ForgeTable = /*#__PURE__*/ (Vue as VueConstructor<
           }
           return null;
         })
-        .filter(f => f !== null) as ({ key: string } & ForgeTableField)[];
+        .filter((f) => f !== null) as ({ key: string } & ForgeTableField)[];
     }
   },
   watch: {

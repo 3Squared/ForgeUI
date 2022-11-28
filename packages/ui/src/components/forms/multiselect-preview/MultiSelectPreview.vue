@@ -2,11 +2,13 @@
   <div :class="orientation === 'horizontal-reversed' ? 'row flex-row-reverse' : 'row'">
     <div :class="orientation === 'vertical' ? 'col-12 mb-1' : 'col'">
       <forge-multi-select :multiple="true" :limitText="limitText" :value="selectedItems" @input="update" :options="items">
-        <template #tag>{{ '' }}</template>
-        <template #selection><span class="pl-1" v-if="selectedItems.length > 0">{{ selectedItems.length }} items selected</span></template>
+        <template #tag>{{ "" }}</template>
+        <template #selection
+          ><span class="pl-1" v-if="selectedItems.length > 0">{{ selectedItems.length }} items selected</span></template
+        >
         <slot v-for="(_, name) in $slots" :name="name" :slot="name" />
         <!-- Pass on all scoped slots -->
-        <template v-for="slot in Object.keys($scopedSlots)" v-slot:[slot]="scope"><slot :name="slot" v-bind="scope"/></template>
+        <template v-for="slot in Object.keys($scopedSlots)" v-slot:[slot]="scope"><slot :name="slot" v-bind="scope" /></template>
       </forge-multi-select>
       <!-- @slot If you need to display some content below the multi select such as validation content-->
       <slot name="after-multi-select" />
@@ -33,39 +35,39 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import { BButton, BIconX } from 'bootstrap-vue';
-import { MultiSelectOption } from '../../../helpers/types';
-import ForgeMultiSelect from '../multiselect/MultiSelect.vue';
+import Vue from "vue";
+import { BButton, BIconX } from "bootstrap-vue";
+import { MultiSelectOption } from "../../../helpers/types";
+import ForgeMultiSelect from "../multiselect/MultiSelect.vue";
 
-export type MultiSelectPreviewOrientationType = 'horizontal' | 'vertical' | 'horizontal-reversed';
+export type MultiSelectPreviewOrientationType = "horizontal" | "vertical" | "horizontal-reversed";
 
 /**
  * Multi Select with Preview component
  * This can be ordered horizontal(default), horizontal-reversed or vertical
  * @displayName MultiSelect Preview
  **/
-export const ForgeMultiSelectPreview = /*#__PURE__*/ Vue.extend({
-  name: 'ForgeMultiSelectPreview',
+export const ForgeMultiSelectPreview = /*#__PURE__*/ defineComponent({
+  name: "ForgeMultiSelectPreview",
   components: { BButton, BIconX, ForgeMultiSelect },
   // binds to v-model
   model: {
-    prop: 'selectedItems'
+    prop: "selectedItems"
   },
   props: {
     /**
      * The header text for the preview part
      */
-    title: { type: String, required: false, default: 'Selected Items' },
+    title: { type: String, required: false, default: "Selected Items" },
     /**
      * The orientation of the multi select and preview part
      * @values horizontal, vertical, horizontal-reversed
      */
-    orientation: { type: String as () => MultiSelectPreviewOrientationType, default: 'horizontal' },
+    orientation: { type: String as () => MultiSelectPreviewOrientationType, default: "horizontal" },
     /**
      * The hight that you want the preview part to be
      */
-    height: { type: String, default: '200px' },
+    height: { type: String, default: "200px" },
     /**
      * The list of items to be displayed in the multi-select
      */
@@ -81,7 +83,7 @@ export const ForgeMultiSelectPreview = /*#__PURE__*/ Vue.extend({
   },
   computed: {
     limitText() {
-      return (count : number) => `${count} selected`
+      return (count: number) => `${count} selected`;
     }
   },
   methods: {
@@ -90,10 +92,10 @@ export const ForgeMultiSelectPreview = /*#__PURE__*/ Vue.extend({
      * Also fire the method that emits the change for the v-model linked list of items
      */
     removeSelectedItem(id: unknown) {
-      this.update(this.selectedItems.filter(x => x.id != id));
+      this.update(this.selectedItems.filter((x) => x.id != id));
     },
     update(items: MultiSelectOption<unknown>[]) {
-      this.$emit('input', items);
+      this.$emit("input", items);
     }
   }
 });

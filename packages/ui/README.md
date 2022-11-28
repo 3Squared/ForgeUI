@@ -32,7 +32,7 @@ location-picker/
 <script lang="ts">
 import Vue from 'vue';
 
-export const MyComponent = /*#__PURE__*/ Vue.extend({
+export const MyComponent = /*#__PURE__*/ defineComponent({
   name: 'MyComponent'
 });
 export default MyComponent;
@@ -76,7 +76,7 @@ Most of the leg work for making tree shaking work is already in place - there ar
 
 - In your Vue SFC make sure you include the PURE annotation via
   ```
-  export const MyComponent = /*#__PURE__*/ Vue.extend({..
+  export const MyComponent = /*#__PURE__*/ defineComponent({..
   ```
 - When you install a new dependency, make sure to externalize it via the `external` section in `rollup.config.js`.
 

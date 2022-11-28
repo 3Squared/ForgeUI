@@ -13,8 +13,8 @@
     "lint": "eslint src/**/*.{ts,vue} --fix"
   },
   "dependencies": {
-    "@3squared/forge-playground": "1.1.3",
-    "@3squared/forge-ui": "*",
+    "@3squared/forge-playground": "^2.0.0-beta.0",
+    "@3squared/forge-ui": "1.3.0-beta.0",
     "bootstrap-vue": "2.22.0",
     "prismjs": "1.28.0",
     "register-service-worker": "1.7.2",

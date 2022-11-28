@@ -3,11 +3,11 @@
 </template>
 
 <script lang="ts">
-import README from './README.md';
+import README from "./README.md";
 
-import Vue from 'vue';
+import Vue from "vue";
 
-export default Vue.extend({
+export default defineComponent({
   components: { README }
 });
 </script>

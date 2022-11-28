@@ -30,7 +30,7 @@ import Vue from 'vue';
 import { Forge } from '@3squared/forge-ui';
 import { BButton } from 'bootstrap-vue';
 
-export default Vue.extend({
+export default defineComponent({
   components: { ForgePageHeader, BButton }
 });
 </script>

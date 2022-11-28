@@ -10,19 +10,19 @@
 
     <b-pagination :value="page" @input="$emit('update:page', $event)" :total-rows="total" :per-page="perPage" aria-controls="table-example" />
 
-    <span v-if="includePageSizeAndPageCount" class="w-auto" data-cy="table-page-count">{{ total }} {{ pluralize(total, 'item') }} in {{ pageText }}</span>
+    <span v-if="includePageSizeAndPageCount" class="w-auto" data-cy="table-page-count">{{ total }} {{ pluralize(total, "item") }} in {{ pageText }}</span>
   </div>
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import { BFormSelect, BPagination } from 'bootstrap-vue';
+import Vue from "vue";
+import { BFormSelect, BPagination } from "bootstrap-vue";
 
 /**
  * @displayName Pagination Footer
  **/
-export const ForgePaginationFooter = /*#__PURE__*/ Vue.extend({
-  name: 'ForgePaginationFooter',
+export const ForgePaginationFooter = /*#__PURE__*/ defineComponent({
+  name: "ForgePaginationFooter",
   components: { BFormSelect, BPagination },
   props: {
     total: {
@@ -52,7 +52,7 @@ export const ForgePaginationFooter = /*#__PURE__*/ Vue.extend({
   methods: {
     pluralize(count: number, text: string) {
       if (count > 1) {
-        return text + 's';
+        return text + "s";
       }
       return text;
     }
@@ -60,7 +60,7 @@ export const ForgePaginationFooter = /*#__PURE__*/ Vue.extend({
   computed: {
     pageText(): string {
       const pages = Math.ceil(this.total / this.perPage);
-      return `${pages} ${this.pluralize(pages, 'page')}`;
+      return `${pages} ${this.pluralize(pages, "page")}`;
     }
   }
 });

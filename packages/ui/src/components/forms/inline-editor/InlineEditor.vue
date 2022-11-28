@@ -44,15 +44,15 @@
 </template>
 
 <script lang="ts">
-import { getValidationState, ValidationResult } from '../../../helpers/validation';
-import Vue from 'vue';
-import { BFormInput, BIconXCircle, BFormInvalidFeedback, BButton, BIconPencil } from 'bootstrap-vue';
+import { getValidationState, ValidationResult } from "../../../helpers/validation";
+import Vue from "vue";
+import { BFormInput, BIconXCircle, BFormInvalidFeedback, BButton, BIconPencil } from "bootstrap-vue";
 
 /**
  * @displayName Inline Editor
  **/
-export const ForgeInlineEditor = /*#__PURE__*/ Vue.extend({
-  name: 'ForgeInlineEditor',
+export const ForgeInlineEditor = /*#__PURE__*/ defineComponent({
+  name: "ForgeInlineEditor",
   components: { BFormInput, BIconXCircle, BFormInvalidFeedback, BButton, BIconPencil },
   props: {
     value: {
@@ -80,12 +80,12 @@ export const ForgeInlineEditor = /*#__PURE__*/ Vue.extend({
     return {
       localValue: null,
       editing: false,
-      valid: null as Boolean | null,
+      valid: null as boolean | null,
       validationErrors: [] as string[]
     };
   },
   computed: {
-    validationState(): Boolean | null {
+    validationState(): boolean | null {
       return this.valid == false ? false : null;
     }
   },
@@ -108,13 +108,13 @@ export const ForgeInlineEditor = /*#__PURE__*/ Vue.extend({
         return false;
       }
       if (this.localValue != this.value) {
-        this.$emit('input', this.localValue);
+        this.$emit("input", this.localValue);
         if (this.completeAction) {
           try {
             await this.completeAction.apply(this, this.params);
             this.editing = false;
           } catch (error) {
-            this.$forgeToast('error', 'Failed to update ' + error);
+            this.$forgeToast("error", "Failed to update " + error);
           }
         }
       } else {
