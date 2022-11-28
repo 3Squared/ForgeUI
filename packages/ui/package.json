@@ -1,12 +1,12 @@
 {
   "name": "@3squared/forge-ui",
   "repository": "https://github.com/3Squared/ForgeUI",
-  "version": "1.2.0",
+  "version": "1.2.0-fix",
   "description": "ForgeUI is designed to be a wrapper around different libraries that provide a consistent UI style. It is comprised of many different packages that have been combined to create a one stop shop for UI.",
   "license": "MIT",
-  "main": "./index.ts",
-  "module": "./index.ts",
-  "types": "./index.ts",
+  "main": "./dist/esm/forge-ui.mjs",
+  "module": "./dist/esm/forge-ui.mjs",
+  "types": "./dist/index.d.ts",
   "files": [
     "dist/*",
     "src/styles/*",
@@ -14,6 +14,7 @@
   ],
   "sideEffects": false,
   "scripts": {
+    "dev" : "vite build --watch",
     "build": "node scripts/build.js",
     "cy": "cypress open --component --browser chrome",
     "test": "cypress run --component && npm run coverage && node ./scripts/merge.js",
