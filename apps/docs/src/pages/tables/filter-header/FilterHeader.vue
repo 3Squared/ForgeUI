@@ -6,7 +6,7 @@
       <template #component>
         <forge-table :fields="fields">
           <template #head(column)>
-            <component :is="ForgeFilterHeader" v-bind="options" />
+            <component :is="ForgeFilterHeader" v-model="value" v-bind="options" />
           </template>
         </forge-table>
       </template>
@@ -17,16 +17,15 @@
 <script setup lang="ts">
 import OPTIONS from './OPTIONS.md'
 import { ForgePageHeader, ForgeTable, ForgeFilterHeader, ForgeColumnBuilder } from "@3squared/forge-ui";
-import { computed } from "vue";
+import { computed, ref } from "vue";
 import { baseVariants } from '../../../composables/playgroundOptions';
 import { Playground, usePlayground } from '@3squared/forge-playground';
 
 const inputTypes = ['string', 'number', 'select', 'multiSelect', 'date', 'dateRange', 'time']
-
+const value = ref(null)
 const { options, propVals, config, reset } = usePlayground({
   name: 'Column',
   type: inputTypes[0],
-  value: null,
   options: ['option 1', 'option 2'],
   debounceTimer: 750,
   variant: baseVariants[0],
