@@ -9,7 +9,7 @@
         type="number"
         :debounce="debounceTimer"
         :placeholder="placeHolderText"
-        :class="{ 'input-no-spinner': hideSpinnerWheel }"
+        :class="{ 'input-no-spinner': hideSpinnerWheel, 'has-clear-button': renderClearButton  }"
         v-bind="$attrs"
       />
 
@@ -21,6 +21,7 @@
         :debounce="debounceTimer"
         :placeholder="placeHolderText"
         v-bind="$attrs"
+        :class="{ 'has-clear-button': renderClearButton }"
       />
 
       <forge-multiselect
