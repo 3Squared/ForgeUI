@@ -1,6 +1,6 @@
 import { Directive } from "vue";
 
-export const pos : Directive<HTMLInputElement> = {
+export const positiveNumberDirective : Directive<HTMLInputElement> = {
   beforeMount(el){
     el.addEventListener("keypress", event => {
       if (event.key === "-") {

@@ -9,12 +9,12 @@ export interface ValidationResult {
   errors: string[];
 }
 
-interface InactiveRefCache {
+/*interface InactiveRefCache {
   id: string;
   errors: string[];
   flags: ValidationFlags;
   failedRules: Record<string, string>;
-}
+}*/
 
 export function getValidationState({ dirty, validated, valid }: ValidationFlags) {
   return dirty || validated ? (valid ? null : false) : null;

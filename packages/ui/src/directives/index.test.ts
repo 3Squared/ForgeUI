@@ -3,7 +3,6 @@
  */
 import { expect, it, describe, vi, test } from "vitest";
 import { shallowMount } from "@vue/test-utils";
-import Vue from "vue";
 import { positiveNumberDirective, wholeNumberDirective, alphanumericCharacterDirective, maxNumericCharactersDirective } from "@/directives";
 import KeyPressEvent = JQuery.KeyPressEvent;
 

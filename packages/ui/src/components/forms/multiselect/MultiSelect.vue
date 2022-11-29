@@ -93,12 +93,12 @@ export const ForgeMultiSelect = /*#__PURE__*/ defineComponent({
     multiSelectDefaults(): object {
       return this.$attrs.multiple == null || this.$attrs.multiple
         ? {
-            "close-on-select": false,
-            "clear-on-select": false,
-            "preserve-search": true
-          }
+          "close-on-select": false,
+          "clear-on-select": false,
+          "preserve-search": true
+        }
         : {};
-    },
+    }, 
     shouldShowClearSelection(): boolean {
       return !!(
         (this.$attrs.allowEmpty == null || this.$attrs.allowEmpty) &&
