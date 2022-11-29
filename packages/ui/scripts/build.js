@@ -65,13 +65,4 @@ class BuildPipeline {
   }
 }
 
-new BuildPipeline()
-  .cleanup()
-  .generateIcons()
-  .generateComponentDocs()
-  .compileUtilities()
-  .buildLibrary()
-  .generateIDEHelpers()
-  .generateCSS()
-  .testTreeshaking()
-  .go();
+new BuildPipeline().generateComponentDocs().compileUtilities().buildLibrary().generateIDEHelpers().generateCSS().testTreeshaking().go();

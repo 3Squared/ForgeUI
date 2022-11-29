@@ -21,6 +21,17 @@
     },
     "dev": {
       "cache": false
+    },
+
+    "@3squared/forge-ui#make-icons" : {
+      "inputs" : ["src/icons/icons/*.svg"],
+      "outputs" : ["src/icons/icons.ts"]
+    },
+    "@3squared/forge-ui#build": {
+      "dependsOn": [
+        "@3squared/forge-ui#make-icons"
+      ],
+      "outputs": []
     }
   }
 }
