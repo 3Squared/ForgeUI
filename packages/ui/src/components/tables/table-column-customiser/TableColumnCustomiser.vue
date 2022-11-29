@@ -33,19 +33,19 @@
 </template>
 
 <script lang="ts">
-import Vue, { VueConstructor } from 'vue';
-import { BDropdown, BFormCheckboxGroup, BListGroup, BListGroupItem, BButton, BIconJustify, BFormCheckbox } from 'bootstrap-vue';
-import { BIconForgeColumns } from '../../../icons/icons';
-import { startCase, arraysEqual } from '../../../helpers/index';
-import { ForgeTableFieldArray, ForgeTableField } from '../../../helpers/types';
-import draggable from 'vuedraggable';
-import { getColumnKey, loadCustomisedColumns, saveCustomisedColumns } from './column-customiser-helper';
+import Vue, { defineComponent } from "vue";
+import { BDropdown, BFormCheckboxGroup, BListGroup, BListGroupItem, BButton, BIconJustify, BFormCheckbox } from "bootstrap-vue";
+import { BIconForgeColumns } from "../../../icons/icons";
+import { startCase, arraysEqual } from "../../../helpers/index";
+import { ForgeTableFieldArray, ForgeTableField } from "../../../helpers/types";
+import draggable from "vuedraggable";
+import { getColumnKey, loadCustomisedColumns, saveCustomisedColumns } from "./column-customiser-helper";
 
 /**
  * @displayName Column Customiser
  **/
-export const ForgeTableColumnCustomiser = /*#__PURE__*/ (Vue as VueConstructor<Vue & { $refs: { dropdown: { hide(returnFocus: boolean): void } } }>).extend({
-  name: 'ForgeTableColumnCustomiser',
+export const ForgeTableColumnCustomiser = /*#__PURE__*/ defineComponent({
+  name: "ForgeTableColumnCustomiser",
   components: {
     draggable,
     BDropdown,
@@ -58,8 +58,8 @@ export const ForgeTableColumnCustomiser = /*#__PURE__*/ (Vue as VueConstructor<V
     BIconForgeColumns
   },
   model: {
-    prop: 'fields',
-    event: 'change'
+    prop: "fields",
+    event: "change"
   },
   props: {
     id: {
@@ -88,7 +88,7 @@ export const ForgeTableColumnCustomiser = /*#__PURE__*/ (Vue as VueConstructor<V
     this.orignalFields = [...orderedfields];
     this.lastSelectedFields = [...this.selectedFields];
     const newColumns = this.availableFields.filter(q => this.selectedFields.includes(getColumnKey(q))).map(s => s ?? { key: s });
-    this.$emit('change', newColumns);
+    this.$emit("change", newColumns);
   },
   computed: {
     hasChanges(): boolean {
@@ -108,7 +108,7 @@ export const ForgeTableColumnCustomiser = /*#__PURE__*/ (Vue as VueConstructor<V
   methods: {
     getColumnKey,
     getLabel(field: string | ({ key: string } & ForgeTableField)) {
-      if (typeof field == 'string') {
+      if (typeof field == "string") {
         return startCase(field);
       } else {
         return field.label ?? startCase(field.key);
@@ -135,11 +135,11 @@ export const ForgeTableColumnCustomiser = /*#__PURE__*/ (Vue as VueConstructor<V
     saveAndClose(newColumns: ForgeTableFieldArray) {
       this.lastSelectedFields = [...this.selectedFields];
       saveCustomisedColumns(this.id, newColumns);
-      this.$emit('change', newColumns);
+      this.$emit("change", newColumns);
       this.$refs.dropdown.hide(true);
     },
     canFieldBeHidden(field: string | ({ key: string } & ForgeTableField)): boolean {
-      if (typeof field == 'string') {
+      if (typeof field == "string") {
         return true;
       } else if (field.required == true) {
         return false;

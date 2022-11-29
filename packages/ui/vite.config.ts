@@ -1,7 +1,7 @@
 /// <reference types="vitest" />
 import { resolve, join } from "path";
 import { defineConfig } from "vitest/config";
-import vue from "@vitejs/plugin-vue2";
+import vue from "@vitejs/plugin-vue";
 import istanbul from "vite-plugin-istanbul";
 import dts from "vite-plugin-dts";
 
@@ -14,6 +14,10 @@ export default defineConfig(({ mode }) => ({
   resolve: {
     alias: [
       {
+        find: "vue",
+        replacement: "@vue/compat"
+      },
+      {
         find: "@",
         replacement: resolve(__dirname, "src")
       },
@@ -25,7 +29,15 @@ export default defineConfig(({ mode }) => ({
     extensions: [".mjs", ".js", ".ts", ".jsx", ".tsx", ".json", ".vue"]
   },
   plugins: [
-    vue(),
+    vue({
+      template: {
+        compilerOptions: {
+          compatConfig: {
+            MODE: 2
+          }
+        }
+      }
+    }),
     dts(),
     istanbul({
       include: "src/*",

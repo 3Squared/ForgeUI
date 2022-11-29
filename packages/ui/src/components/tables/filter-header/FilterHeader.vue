@@ -113,16 +113,16 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import { BIconXCircle, BFormInput } from 'bootstrap-vue';
-import ForgeDatePicker from '../../forms/date-picker/DatePicker.vue';
-import ForgeMultiselect from '../../forms/multiselect/MultiSelect.vue';
+import Vue, { defineComponent } from "vue";
+import { BIconXCircle, BFormInput } from "bootstrap-vue";
+import ForgeDatePicker from "../../forms/date-picker/DatePicker.vue";
+import ForgeMultiselect from "../../forms/multiselect/MultiSelect.vue";
 
 /**
  * @displayName Filter Header
  **/
-export const ForgeFilterHeader = /*#__PURE__*/ Vue.extend({
-  name: 'ForgeFilterHeader',
+export const ForgeFilterHeader = /*#__PURE__*/ defineComponent({
+  name: "ForgeFilterHeader",
   components: { BIconXCircle, BFormInput, ForgeDatePicker, ForgeMultiselect },
   props: {
     /**
@@ -139,9 +139,9 @@ export const ForgeFilterHeader = /*#__PURE__*/ Vue.extend({
     type: {
       type: String,
       required: true,
-      default: 'string',
-      validator(value : string) {
-        return ['string', 'number', 'select', 'multiSelect', 'date', 'dateRange', 'time'].indexOf(value) !== -1;
+      default: "string",
+      validator(value: string) {
+        return ["string", "number", "select", "multiSelect", "date", "dateRange", "time"].indexOf(value) !== -1;
       }
     },
     value: {
@@ -152,7 +152,7 @@ export const ForgeFilterHeader = /*#__PURE__*/ Vue.extend({
     options: {
       type: Array,
       required: false,
-      default: function() {
+      default: function () {
         return [];
       }
     },
@@ -167,7 +167,7 @@ export const ForgeFilterHeader = /*#__PURE__*/ Vue.extend({
     },
     variant: {
       type: String,
-      default: () => Vue.prototype?.ForgeSettings?.FilterHeader?.variant ?? 'primary'
+      default: () => Vue.prototype?.ForgeSettings?.FilterHeader?.variant ?? "primary"
     },
     placeholder: {
       type: String,
@@ -178,16 +178,16 @@ export const ForgeFilterHeader = /*#__PURE__*/ Vue.extend({
       default: false
     }
   },
-  methods: {
+  methods: { 
     update(value: string | any[] | null) {
       switch (this.type) {
-        case 'mulitSelect':
-          this.$emit('input', this.multiSelectValue);
-          break;
-        default: {
-          this.$emit('input', value ? (this.type === 'number' && typeof value === 'string' ? parseFloat(value) : value) : null);
-          break;
-        }
+      case "mulitSelect":
+        this.$emit("input", this.multiSelectValue);
+        break;
+      default: {
+        this.$emit("input", value ? (this.type === "number" && typeof value === "string" ? parseFloat(value) : value) : null);
+        break;
+      }
       }
     },
     updateDateRange(selectedDates: Date[], _dateStr: string, instance: any) {
@@ -205,7 +205,7 @@ export const ForgeFilterHeader = /*#__PURE__*/ Vue.extend({
     reset() {
       if (this.value != null) {
         this.update(null);
-        this.$emit('reset');
+        this.$emit("reset");
       }
     }
   },
@@ -214,11 +214,11 @@ export const ForgeFilterHeader = /*#__PURE__*/ Vue.extend({
       if (this.value?.length === 2) {
         return `${this.value[0]} to ${this.value[1]}`;
       } else {
-        return '';
+        return "";
       }
     },
     multiSelectValue(): any[] {
-      if (this.type == 'multiSelect' && !this.value) {
+      if (this.type == "multiSelect" && !this.value) {
         return [];
       } else {
         return this.value as [];
@@ -226,16 +226,16 @@ export const ForgeFilterHeader = /*#__PURE__*/ Vue.extend({
     },
     renderClearButton(): boolean {
       return (
-        this.type != 'select' &&
-        this.type != 'multiSelect' &&
-        ((this.type == 'dateRange' && this.value?.length > 0) || (this.value != null && this.type != 'dateRange'))
+        this.type != "select" &&
+        this.type != "multiSelect" &&
+        ((this.type == "dateRange" && this.value?.length > 0) || (this.value != null && this.type != "dateRange"))
       );
     },
     placeHolderText(): string {
       return this.placeholder || this.name;
     },
     hideSpinnerWheel(): boolean {
-      return !!this.$attrs.noWheel || this.$attrs['no-wheel'] !== undefined;
+      return !!this.$attrs.noWheel || this.$attrs["no-wheel"] !== undefined;
     }
   }
 });

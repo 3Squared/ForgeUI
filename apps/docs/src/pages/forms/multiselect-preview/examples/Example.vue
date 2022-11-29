@@ -5,17 +5,17 @@
 </template>
 
 <script lang="ts">
-import { items, selectedItems } from './example-data';
-import { ForgeMultiSelectPreview } from '@3squared/forge-ui'
+import { items, selectedItems } from "./example-data";
+import { ForgeMultiSelectPreview } from "@3squared/forge-ui";
 import Vue from "vue";
 
-export default Vue.extend({
-  components: {ForgeMultiSelectPreview},
+export default defineComponent({
+  components: { ForgeMultiSelectPreview },
   data() {
     return {
       users: items,
       selectedItems: selectedItems
     };
   }
-})
+});
 </script>

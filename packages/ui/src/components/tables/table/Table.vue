@@ -1,11 +1,13 @@
 <template>
   <div>
-    <div class="d-flex align-items-end mb-2" :class="{ 'justify-content-end': legacyPaginationFooter, 'justify-content-between': !legacyPaginationFooter }">
+    <div class="d-flex align-items-end mb-2"
+         :class="{ 'justify-content-end': legacyPaginationFooter, 'justify-content-between': !legacyPaginationFooter }">
       <span v-if="!legacyPaginationFooter">
         <forge-pagination-header v-if="total != -1" :per-page.sync="perPage" :page-sizes="pageSizes" :total="total" />
       </span>
       <span>
-        <forge-table-exporter v-if="showExporter" :customised-fields="customisedFields" :items="getItemsForExport" :name="$attrs.id" />
+        <forge-table-exporter v-if="showExporter" :customised-fields="customisedFields" :items="getItemsForExport"
+                              :name="$attrs.id" />
         <forge-table-column-customiser v-if="showColumnCustomiser" :id="$attrs.id" v-model="customisedFields" />
       </span>
     </div>
@@ -13,21 +15,22 @@
       <b-table ref="table" v-bind="mergedAttrs" v-on="$listeners">
         <template v-for="field in filtersConfig" #[getHeadSlot(getColumnKey(field))]="{ label }">
           <forge-filter-header
-            :key="getColumnKey(field)"
-            v-model="localFilters[getColumnKey(field)]"
-            :name="label"
-            :type="field.filterType"
-            @input="updateFilters"
+              :key="getColumnKey(field)"
+              v-model="localFilters[getColumnKey(field)]"
+              :name="label"
+              :type="field.filterType"
+              @input="updateFilters"
           />
         </template>
         <template #empty>
-          <h5 v-if="localTableErrorMessage == null && (localTableErrorDetails == null || localTableErrorDetails.length === 0)" class="text-center">
+          <h5 v-if="localTableErrorMessage == null && (localTableErrorDetails == null || localTableErrorDetails.length === 0)"
+              class="text-center">
             No records to display
           </h5>
           <b-alert
-            class="text-center m-n2"
-            variant="danger"
-            :show="localTableErrorMessage != null || (localTableErrorDetails != null && localTableErrorDetails.length > 0)"
+              class="text-center m-n2"
+              variant="danger"
+              :show="localTableErrorMessage != null || (localTableErrorDetails != null && localTableErrorDetails.length > 0)"
           >
             Unable to load data.
             <b-button variant="link" size="sm" @click="refreshTable">
@@ -37,7 +40,7 @@
             <div>
               <b-button @click="errorDetailsOpen = !errorDetailsOpen" variant="link" class="p-0" size="sm">
                 Show
-                {{ errorDetailsOpen ? 'less' : 'more' }}
+                {{ errorDetailsOpen ? "less" : "more" }}
               </b-button>
               <b-collapse id="error-details" v-model="errorDetailsOpen" class="mt-2">
                 <p>{{ localTableErrorMessage }}</p>
@@ -58,7 +61,8 @@
         <template #[getHeadSlot(clearColumn)]="{ label }">
           <div class="forge-filter-header">
             <label>{{ label }}</label>
-            <div id="clear-filters" @click="clearFilters" class="d-flex align-items-center position-relative" style="height: 38px">
+            <div id="clear-filters" @click="clearFilters" class="d-flex align-items-center position-relative"
+                 style="height: 38px">
               <b-icon-forge-filter class="mr-1" variant="primary" />
               <button class="btn btn-link p-0" type="button">
                 <u>Clear</u>
@@ -72,40 +76,34 @@
       </b-table>
     </div>
     <forge-pagination-footer
-      v-if="total != -1"
-      :page.sync="page"
-      :per-page.sync="perPage"
-      :page-sizes="pageSizes"
-      :total="total"
-      :include-page-size-and-page-count="legacyPaginationFooter"
+        v-if="total != -1"
+        :page.sync="page"
+        :per-page.sync="perPage"
+        :page-sizes="pageSizes"
+        :total="total"
+        :include-page-size-and-page-count="legacyPaginationFooter"
     />
   </div>
 </template>
 
 <script lang="ts">
-import Vue, { PropType, VueConstructor } from 'vue';
-import { ForgeTableFieldArray, ForgeTableField } from '../../../helpers/types';
-import { getColumnKey } from '../table-column-customiser/column-customiser-helper';
-import { BvTableCtxObject, BTable, BAlert, BButton, BCollapse, BIcon, BIconArrowRepeat, BSpinner } from 'bootstrap-vue';
-import { BIconForgeFilter } from '../../../icons/icons';
-import ForgeTableExporter from './components/TableExporter.vue';
-import ForgeTableColumnCustomiser from '../table-column-customiser/TableColumnCustomiser.vue';
-import ForgeFilterHeader from '../filter-header/FilterHeader.vue';
-import ForgePaginationFooter from '../pagination/PaginationFooter.vue';
-import ForgePaginationHeader from '../pagination/PaginationHeader.vue';
-import { parseError } from '../../../helpers/index';
+import Vue, { defineComponent, PropType } from "vue";
+import { ForgeTableFieldArray, ForgeTableField } from "../../../helpers/types";
+import { getColumnKey } from "../table-column-customiser/column-customiser-helper";
+import { BvTableCtxObject, BTable, BAlert, BButton, BCollapse, BIcon, BIconArrowRepeat, BSpinner } from "bootstrap-vue";
+import { BIconForgeFilter } from "../../../icons/icons";
+import ForgeTableExporter from "./components/TableExporter.vue";
+import ForgeTableColumnCustomiser from "../table-column-customiser/TableColumnCustomiser.vue";
+import ForgeFilterHeader from "../filter-header/FilterHeader.vue";
+import ForgePaginationFooter from "../pagination/PaginationFooter.vue";
+import ForgePaginationHeader from "../pagination/PaginationHeader.vue";
+import { parseError } from "../../../helpers/index";
 
 /**
  * @displayName Table
  **/
-export const ForgeTable = /*#__PURE__*/ (Vue as VueConstructor<
-  Vue & {
-    $refs: {
-      table: { localItems: any[] };
-    };
-  }
->).extend({
-  name: 'ForgeTable',
+export const ForgeTable = defineComponent({
+  name: "ForgeTable",
   components: {
     ForgeTableExporter,
     ForgeTableColumnCustomiser,
@@ -147,7 +145,8 @@ export const ForgeTable = /*#__PURE__*/ (Vue as VueConstructor<
     },
     filters: {
       type: Object,
-      default: () => {}
+      default: () => {
+      }
     },
     tableError: {
       type: [String, Object],
@@ -158,7 +157,7 @@ export const ForgeTable = /*#__PURE__*/ (Vue as VueConstructor<
      */
     clearColumn: {
       type: String,
-      default: () => 'actions'
+      default: () => "actions"
     },
     exportItemsFunc: {
       type: Function as PropType<() => any[]>,
@@ -189,23 +188,23 @@ export const ForgeTable = /*#__PURE__*/ (Vue as VueConstructor<
 
   methods: {
     updateFilters() {
-      this.$emit('update:filters', this.localFilters);
+      this.$emit("update:filters", this.localFilters);
       this.refreshTable();
     },
     refreshTable() {
-      this.$root.$emit('bv::refresh::table', this.$attrs.id);
+      this.$root.$emit("bv::refresh::table", this.$attrs.id);
     },
     clearFilters() {
       for (const key in this.localFilters) {
         const element = this.localFilters[key];
-        if (typeof element == 'string' || typeof element == 'number') {
+        if (typeof element == "string" || typeof element == "number") {
           this.localFilters[key] = null;
         } else if (Array.isArray(element)) {
           this.localFilters[key] = [];
         }
       }
-      this.$emit('update:filters', this.localFilters);
-      this.$emit('clearFilters');
+      this.$emit("update:filters", this.localFilters);
+      this.$emit("clearFilters");
       this.refreshTable();
     },
     getHeadSlot(name: string) {
@@ -213,17 +212,17 @@ export const ForgeTable = /*#__PURE__*/ (Vue as VueConstructor<
     },
     getColumnKey,
     async itemsWrapper(ctx: BvTableCtxObject) {
-      if (typeof this.$attrs.items == 'function') {
+      if (typeof this.$attrs.items == "function") {
         this.localTableErrorMessage = null;
         this.localTableErrorDetails = null;
-        const getItemsFunc = this.$attrs.items as Function;
+        const getItemsFunc = this.$attrs.items;
         try {
           return await getItemsFunc(ctx);
         } catch (e) {
           const result = parseError(e);
           this.localTableErrorMessage = result.errorMessage;
           this.localTableErrorDetails = result.errorDetails;
-          this.$emit('update:tableError', e);
+          this.$emit("update:tableError", e);
         }
       } else {
         return this.$attrs.items;
@@ -238,7 +237,7 @@ export const ForgeTable = /*#__PURE__*/ (Vue as VueConstructor<
     }
   },
   computed: {
-    mergedAttrs(): Object {
+    mergedAttrs(): Record<string, any> {
       let defaults = {
         showEmpty: true,
         striped: true,
@@ -253,17 +252,17 @@ export const ForgeTable = /*#__PURE__*/ (Vue as VueConstructor<
       return {
         ...defaults,
         ...this.$attrs,
-        items: typeof this.$attrs.items == 'function' ? this.itemsWrapper : this.$attrs.items,
+        items: typeof this.$attrs.items == "function" ? this.itemsWrapper : this.$attrs.items,
         fields: this.customisedFields
       };
     },
     filtersConfig(): ({ key: string } & ForgeTableField)[] {
       return this.fields
-        .map(f => {
-          if (typeof f == 'object' && f.autoFilter) {
-            if (this.$scopedSlots[this.getHeadSlot(f.key)]) {
+        .map((f) => {
+          if (typeof f == "object" && f.autoFilter) {
+            if (this.$scopedSlots[tnpmhis.getHeadSlot(f.key)]) {
               //eslint-disable-next-line
-              console.warn(
+                console.warn(
                 `You have declared the field '${f.key}' on table ${this.$attrs.id} as an autofilter column, but have also overridden the table header slot for this field. Please either remove the slot override, or remove autofilter on this column`
               );
             }
@@ -271,7 +270,7 @@ export const ForgeTable = /*#__PURE__*/ (Vue as VueConstructor<
           }
           return null;
         })
-        .filter(f => f !== null) as ({ key: string } & ForgeTableField)[];
+        .filter((f) => f !== null) as ({ key: string } & ForgeTableField)[];
     }
   },
   watch: {

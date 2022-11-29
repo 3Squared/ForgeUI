@@ -14,11 +14,12 @@
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
     "baseUrl": "./",
+    "skipLibCheck": true,
     "newLine": "lf",
     "types": [
       "node",
       "vue",
-      "cypress"
+      "cypress",
     ],
     "paths": {
       "@/*": [
@@ -44,7 +45,6 @@
   "include": [
     "src",
     "cypress/support/component.ts",
-    "index.ts"
   ],
   "exclude": [
     "node_modules",

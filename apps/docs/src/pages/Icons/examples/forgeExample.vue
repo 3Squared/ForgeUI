@@ -5,7 +5,7 @@
 <script lang="ts">
 import Vue from "vue";
 import { BIconForgeMap } from "@3squared/forge-ui";
-export default Vue.extend({
-  components: {BIconForgeMap}
+export default defineComponent({
+  components: { BIconForgeMap }
 });
 </script>

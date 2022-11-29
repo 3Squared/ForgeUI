@@ -2,16 +2,18 @@
   <div class="forge-inline-editor">
     <div v-if="!readonly">
       <div v-if="editing">
-        <div class="d-flex justify-content-between align-items-center editor position-relative" :class="{ 'is-invalid': !valid }">
-          <slot name="editor" :editFinished="editFinished" :val="localValue" :update="update" :cancel="cancel" :state="validationState">
+        <div class="d-flex justify-content-between align-items-center editor position-relative"
+             :class="{ 'is-invalid': !valid }">
+          <slot name="editor" :editFinished="editFinished" :val="localValue" :update="update" :cancel="cancel"
+                :state="validationState">
             <b-form-input
-              @keypress.enter="editFinished"
-              @keypress.esc="cancel"
-              ref="input"
-              @blur="editFinished"
-              @input="validate"
-              v-model.trim="localValue"
-              :state="validationState"
+                @keypress.enter="editFinished"
+                @keypress.esc="cancel"
+                ref="input"
+                @blur="editFinished"
+                @input="validate"
+                v-model.trim="localValue"
+                :state="validationState"
             />
           </slot>
           <b-icon-x-circle class="clear-icon" @click="reset" />
@@ -44,15 +46,15 @@
 </template>
 
 <script lang="ts">
-import { getValidationState, ValidationResult } from '../../../helpers/validation';
-import Vue from 'vue';
-import { BFormInput, BIconXCircle, BFormInvalidFeedback, BButton, BIconPencil } from 'bootstrap-vue';
+import { getValidationState, ValidationResult } from "../../../helpers/validation";
+import { defineComponent } from "vue";
+import { BFormInput, BIconXCircle, BFormInvalidFeedback, BButton, BIconPencil } from "bootstrap-vue";
 
 /**
  * @displayName Inline Editor
  **/
-export const ForgeInlineEditor = /*#__PURE__*/ Vue.extend({
-  name: 'ForgeInlineEditor',
+export const ForgeInlineEditor = /*#__PURE__*/ defineComponent({
+  name: "ForgeInlineEditor",
   components: { BFormInput, BIconXCircle, BFormInvalidFeedback, BButton, BIconPencil },
   props: {
     value: {
@@ -61,7 +63,8 @@ export const ForgeInlineEditor = /*#__PURE__*/ Vue.extend({
     },
     completeAction: {
       type: Function,
-      default: () => {}
+      default: () => {
+      }
     },
     params: {
       type: Array,
@@ -73,19 +76,20 @@ export const ForgeInlineEditor = /*#__PURE__*/ Vue.extend({
     },
     isValid: {
       type: Function,
-      default: () => {}
+      default: () => {
+      }
     }
   },
   data() {
     return {
       localValue: null,
       editing: false,
-      valid: null as Boolean | null,
+      valid: null as boolean | null,
       validationErrors: [] as string[]
     };
   },
   computed: {
-    validationState(): Boolean | null {
+    validationState(): boolean | null {
       return this.valid == false ? false : null;
     }
   },
@@ -108,13 +112,13 @@ export const ForgeInlineEditor = /*#__PURE__*/ Vue.extend({
         return false;
       }
       if (this.localValue != this.value) {
-        this.$emit('input', this.localValue);
+        this.$emit("input", this.localValue);
         if (this.completeAction) {
           try {
             await this.completeAction.apply(this, this.params);
             this.editing = false;
           } catch (error) {
-            this.$forgeToast('error', 'Failed to update ' + error);
+            this.$forgeToast("error", "Failed to update " + error);
           }
         }
       } else {

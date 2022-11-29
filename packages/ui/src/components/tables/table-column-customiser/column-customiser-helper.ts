@@ -1,7 +1,7 @@
-import { ForgeTableField, ForgeTableFieldArray } from '../../../helpers/types';
+import { ForgeTableField, ForgeTableFieldArray } from "@/helpers";
 
 export function getColumnKey(field: string | ({ key: string } & ForgeTableField)): string {
-  return typeof field == 'string' ? field : field.key;
+  return typeof field == "string" ? field : field.key; 
 }
 
 export function saveCustomisedColumns(id: string, columns: ForgeTableFieldArray) {

@@ -5,13 +5,13 @@
 </template>
 
 <script lang="ts">
-import { BSpinner } from 'bootstrap-vue';
-import Vue from "vue";
+import { BSpinner } from "bootstrap-vue";
+import Vue, { defineComponent } from "vue";
 /**
  * @displayName Loader
  **/
-export const ForgeLoader = /*#__PURE__*/ Vue.extend({
-  name: 'ForgeLoader',
+export const ForgeLoader = /*#__PURE__*/ defineComponent({
+  name: "ForgeLoader",
   props: {
     label: {
       type: String,
@@ -19,7 +19,7 @@ export const ForgeLoader = /*#__PURE__*/ Vue.extend({
     }
   },
   components: { BSpinner }
-})
+});
 
 export default ForgeLoader;
 </script>

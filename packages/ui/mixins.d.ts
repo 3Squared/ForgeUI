@@ -1,7 +1,7 @@
-import { BvToastOptions } from 'bootstrap-vue';
-import { ForgeToastType, ForgeModalConfig } from './src/helpers/types';
+import { BvToastOptions } from "bootstrap-vue";
+import { ForgeToastType, ForgeModalConfig } from "./src/helpers/types";
 
-declare module 'vue/types/vue' {
+declare module "vue/types/vue" {
   interface Vue {
     $forgeToast: (type: ForgeToastType, message: string, options?: BvToastOptions) => void;
 
@@ -10,4 +10,12 @@ declare module 'vue/types/vue' {
       confirm: (config: ForgeModalConfig) => Promise<boolean | null>;
     };
   }
+}
+declare module "vue" {
+  import { CompatVue } from "@vue/runtime-dom";
+  const Vue: CompatVue;
+  export default Vue;
+  export * from "@vue/runtime-dom";
+  const { configureCompat } = Vue;
+  export { configureCompat };
 }

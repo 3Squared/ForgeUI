@@ -127,7 +127,7 @@ An example might look like this:
 import Vue from 'vue';
 import { ForgeInlineEditor } from '@3squared/forge-ui';
 
-export default Vue.extend({
+export default defineComponent({
   components: { ForgeInlineEditor },
   data() {
     return {
