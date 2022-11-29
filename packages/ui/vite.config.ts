@@ -19,10 +19,10 @@ export default defineConfig(({ mode }) => ({
       },
       {
         find: /~(.+)/,
-        replacement: join(process.cwd(), "node_modules/$1"),
-      },
+        replacement: join(process.cwd(), "node_modules/$1")
+      }
     ],
-    extensions: [".mjs", ".js", ".ts", ".jsx", ".tsx", ".json", ".vue"],
+    extensions: [".mjs", ".js", ".ts", ".jsx", ".tsx", ".json", ".vue"]
   },
   plugins: [
     vue(),
@@ -30,22 +30,16 @@ export default defineConfig(({ mode }) => ({
     istanbul({
       include: "src/*",
       exclude: ["node_modules", "test/"],
-      extension: [".js",
-        ".cjs",
-        ".mjs",
-        ".ts",
-        ".tsx",
-        ".jsx",
-        ".vue"],
+      extension: [".js", ".cjs", ".mjs", ".ts", ".tsx", ".jsx", ".vue"],
       cypress: mode == "test",
-      forceBuildInstrument: mode == "test",
-    }),
+      forceBuildInstrument: mode == "test"
+    })
   ],
   build: {
     lib: {
       entry: "./index.ts",
       name: "Forge.UI",
-      formats: ["es"],
+      formats: ["es"]
     },
 
     rollupOptions: {
@@ -65,26 +59,27 @@ export default defineConfig(({ mode }) => ({
         "vue",
         "vuedraggable",
         "v-click-outside",
-        "vue-multiselect"
+        "vue-multiselect",
+        "lodash"
       ],
       output: {
         dir: "dist/esm",
         format: "esm",
-        exports: "named",
+        /* exports: 'named',
 
         preserveModules: true,
-        preserveModulesRoot: "src",
+        preserveModulesRoot: 'src',*/
         // Provide global variables to use in the UMD build
         // for externalized deps
         globals: {
           vue: "Vue"
         }
-      },
+      }
     }
   },
   test: {
     alias: [{ find: /^vue$/, replacement: "vue/dist/vue.runtime.common.js" }],
-  
+
     reporters: ["default", "junit"],
     outputFile: "test-results/vitest.xml",
     coverage: {
@@ -92,7 +87,7 @@ export default defineConfig(({ mode }) => ({
       include: ["src"],
       exclude: ["**/*.cy.ts", "scripts", "**/*.test.ts"],
       reportsDirectory: "./coverage/vitest",
-      reporter: ["cobertura", "html", "json"],
-    },
+      reporter: ["cobertura", "html", "json"]
+    }
   }
 }));

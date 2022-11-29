@@ -23,7 +23,7 @@ import Vue, { PropType } from 'vue';
 import { BIconCalendar3 } from 'bootstrap-vue';
 import flatpickr from 'flatpickr';
 import { ForgeDatePickerNormalizer, kebabToCamel } from '../../../helpers/index';
-import { stringNormalizer } from '../../../helpers/date-picker-normalizers';
+import { stringNormalizer } from '@/helpers/date-picker-normalizers';
 import { HtmlBooleanAttributes, IgnoredVueEvents } from './helpers';
 
 type Config = flatpickr.Options.Options;
@@ -132,10 +132,10 @@ export const ForgeDatePicker = /*#__PURE__*/ Vue.extend({
         wrap: true,
         static: false,
         appendTo,
-        onClose: (dates, currentDateString : string, instance, data) => {
+        onClose: (dates, currentDateString: string, instance, data) => {
           instance.setDate(currentDateString);
           this.onInput();
-          
+
           /**
            * Triggers when the number changes
            *
