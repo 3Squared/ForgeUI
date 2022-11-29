@@ -35,7 +35,7 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
+import Vue, { defineComponent } from "vue";
 import { BButton, BIconX } from "bootstrap-vue";
 import { MultiSelectOption } from "../../../helpers/types";
 import ForgeMultiSelect from "../multiselect/MultiSelect.vue";

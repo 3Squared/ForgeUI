@@ -25,7 +25,7 @@
 
 <script lang="ts">
 import { ValidationProvider } from "vee-validate";
-import Vue from "vue";
+import Vue, { defineComponent } from "vue";
 import { BFormGroup, BFormTextarea, BFormInput, BFormInvalidFeedback, BFormCheckbox } from "bootstrap-vue";
 import { getValidationState } from "../../../helpers/index";
 

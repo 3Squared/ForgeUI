@@ -2,16 +2,18 @@
   <div class="forge-inline-editor">
     <div v-if="!readonly">
       <div v-if="editing">
-        <div class="d-flex justify-content-between align-items-center editor position-relative" :class="{ 'is-invalid': !valid }">
-          <slot name="editor" :editFinished="editFinished" :val="localValue" :update="update" :cancel="cancel" :state="validationState">
+        <div class="d-flex justify-content-between align-items-center editor position-relative"
+             :class="{ 'is-invalid': !valid }">
+          <slot name="editor" :editFinished="editFinished" :val="localValue" :update="update" :cancel="cancel"
+                :state="validationState">
             <b-form-input
-              @keypress.enter="editFinished"
-              @keypress.esc="cancel"
-              ref="input"
-              @blur="editFinished"
-              @input="validate"
-              v-model.trim="localValue"
-              :state="validationState"
+                @keypress.enter="editFinished"
+                @keypress.esc="cancel"
+                ref="input"
+                @blur="editFinished"
+                @input="validate"
+                v-model.trim="localValue"
+                :state="validationState"
             />
           </slot>
           <b-icon-x-circle class="clear-icon" @click="reset" />
@@ -45,7 +47,7 @@
 
 <script lang="ts">
 import { getValidationState, ValidationResult } from "../../../helpers/validation";
-import Vue from "vue";
+import { defineComponent } from "vue";
 import { BFormInput, BIconXCircle, BFormInvalidFeedback, BButton, BIconPencil } from "bootstrap-vue";
 
 /**
@@ -61,7 +63,8 @@ export const ForgeInlineEditor = /*#__PURE__*/ defineComponent({
     },
     completeAction: {
       type: Function,
-      default: () => {}
+      default: () => {
+      }
     },
     params: {
       type: Array,
@@ -73,7 +76,8 @@ export const ForgeInlineEditor = /*#__PURE__*/ defineComponent({
     },
     isValid: {
       type: Function,
-      default: () => {}
+      default: () => {
+      }
     }
   },
   data() {

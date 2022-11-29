@@ -80,7 +80,7 @@
 </template>
 
 <script lang="ts">
-import Vue, { PropType } from "vue";
+import Vue, { defineComponent, PropType } from "vue";
 import {
   BRow,
   BCol,

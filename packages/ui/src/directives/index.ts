@@ -1,7 +1,7 @@
-import { DirectiveOptions } from "vue";
+import { Directive } from "vue";
 
-export const positiveNumberDirective: DirectiveOptions = {
-  bind(el) {
+export const pos : Directive<HTMLInputElement> = {
+  beforeMount(el){
     el.addEventListener("keypress", event => {
       if (event.key === "-") {
         event.preventDefault();
@@ -10,8 +10,8 @@ export const positiveNumberDirective: DirectiveOptions = {
   }
 };
 
-export const wholeNumberDirective: DirectiveOptions = {
-  bind(el) {
+export const wholeNumberDirective: Directive<HTMLInputElement> = {
+  beforeMount(el) {
     el.addEventListener("keypress", event => {
       if (event.key === ".") {
         event.preventDefault();
@@ -20,8 +20,8 @@ export const wholeNumberDirective: DirectiveOptions = {
   }
 };
 
-export const alphanumericCharacterDirective: DirectiveOptions = {
-  bind(el) {
+export const alphanumericCharacterDirective: Directive<HTMLInputElement> = {
+  beforeMount(el) {
     el.addEventListener("keypress", event => {
       if (!event.key.match(/^[a-zA-Z0-9]*$/)) {
         event.preventDefault();
@@ -30,8 +30,8 @@ export const alphanumericCharacterDirective: DirectiveOptions = {
   }
 };
 
-export const maxNumericCharactersDirective: DirectiveOptions = {
-  bind(el, binding) {
+export const maxNumericCharactersDirective: Directive<HTMLInputElement> = {
+  beforeMount(el, binding) {
     el.addEventListener("keypress", event => {
       const inputEl = <HTMLInputElement>event.target;
       if (inputEl.value && binding.value) {

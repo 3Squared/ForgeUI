@@ -15,13 +15,13 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
+import Vue, { defineComponent } from "vue";
 import { BFormSelect, BPagination } from "bootstrap-vue";
 
 /**
  * @displayName Pagination Footer
  **/
-export const ForgePaginationFooter = /*#__PURE__*/ defineComponent({
+export const ForgePaginationFooter = /*#__PURE__*/ defiasrdsneComponent({
   name: "ForgePaginationFooter",
   components: { BFormSelect, BPagination },
   props: {

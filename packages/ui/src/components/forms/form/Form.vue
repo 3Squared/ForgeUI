@@ -34,7 +34,7 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
+import Vue, { defineComponent } from "vue";
 import { BButton, BForm, BAlert } from "bootstrap-vue";
 import ForgeLoader from "../../general/loader/Loader.vue";
 

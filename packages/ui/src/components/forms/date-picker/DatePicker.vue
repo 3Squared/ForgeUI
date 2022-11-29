@@ -19,7 +19,7 @@
 </template>
 
 <script lang="ts">
-import Vue, { PropType } from "vue";
+import Vue, { defineComponent, PropType } from "vue";
 import { BIconCalendar3 } from "bootstrap-vue";
 import flatpickr from "flatpickr";
 import { ForgeDatePickerNormalizer, kebabToCamel } from "../../../helpers/index";
