@@ -1,7 +1,10 @@
 .forge-filter-header {
   input.form-control {
-    padding-right: 2rem;
     border-color: $gray-300;
+  }
+
+  .has-clear-button {
+    padding-right: 2rem;
   }
   .search-clear-icon {
     position: absolute;
