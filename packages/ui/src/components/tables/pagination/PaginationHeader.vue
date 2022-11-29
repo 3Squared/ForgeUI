@@ -12,7 +12,7 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
+import Vue, { defineComponent } from "vue";
 import { BFormSelect, BPagination } from "bootstrap-vue";
 
 export const ForgePaginationHeader = /*#__PURE__*/ defineComponent({

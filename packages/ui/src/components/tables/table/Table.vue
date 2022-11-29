@@ -1,11 +1,13 @@
 <template>
   <div>
-    <div class="d-flex align-items-end mb-2" :class="{ 'justify-content-end': legacyPaginationFooter, 'justify-content-between': !legacyPaginationFooter }">
+    <div class="d-flex align-items-end mb-2"
+         :class="{ 'justify-content-end': legacyPaginationFooter, 'justify-content-between': !legacyPaginationFooter }">
       <span v-if="!legacyPaginationFooter">
         <forge-pagination-header v-if="total != -1" :per-page.sync="perPage" :page-sizes="pageSizes" :total="total" />
       </span>
       <span>
-        <forge-table-exporter v-if="showExporter" :customised-fields="customisedFields" :items="getItemsForExport" :name="$attrs.id" />
+        <forge-table-exporter v-if="showExporter" :customised-fields="customisedFields" :items="getItemsForExport"
+                              :name="$attrs.id" />
         <forge-table-column-customiser v-if="showColumnCustomiser" :id="$attrs.id" v-model="customisedFields" />
       </span>
     </div>
@@ -13,21 +15,22 @@
       <b-table ref="table" v-bind="mergedAttrs" v-on="$listeners">
         <template v-for="field in filtersConfig" #[getHeadSlot(getColumnKey(field))]="{ label }">
           <forge-filter-header
-            :key="getColumnKey(field)"
-            v-model="localFilters[getColumnKey(field)]"
-            :name="label"
-            :type="field.filterType"
-            @input="updateFilters"
+              :key="getColumnKey(field)"
+              v-model="localFilters[getColumnKey(field)]"
+              :name="label"
+              :type="field.filterType"
+              @input="updateFilters"
           />
         </template>
         <template #empty>
-          <h5 v-if="localTableErrorMessage == null && (localTableErrorDetails == null || localTableErrorDetails.length === 0)" class="text-center">
+          <h5 v-if="localTableErrorMessage == null && (localTableErrorDetails == null || localTableErrorDetails.length === 0)"
+              class="text-center">
             No records to display
           </h5>
           <b-alert
-            class="text-center m-n2"
-            variant="danger"
-            :show="localTableErrorMessage != null || (localTableErrorDetails != null && localTableErrorDetails.length > 0)"
+              class="text-center m-n2"
+              variant="danger"
+              :show="localTableErrorMessage != null || (localTableErrorDetails != null && localTableErrorDetails.length > 0)"
           >
             Unable to load data.
             <b-button variant="link" size="sm" @click="refreshTable">
@@ -58,7 +61,8 @@
         <template #[getHeadSlot(clearColumn)]="{ label }">
           <div class="forge-filter-header">
             <label>{{ label }}</label>
-            <div id="clear-filters" @click="clearFilters" class="d-flex align-items-center position-relative" style="height: 38px">
+            <div id="clear-filters" @click="clearFilters" class="d-flex align-items-center position-relative"
+                 style="height: 38px">
               <b-icon-forge-filter class="mr-1" variant="primary" />
               <button class="btn btn-link p-0" type="button">
                 <u>Clear</u>
@@ -72,18 +76,18 @@
       </b-table>
     </div>
     <forge-pagination-footer
-      v-if="total != -1"
-      :page.sync="page"
-      :per-page.sync="perPage"
-      :page-sizes="pageSizes"
-      :total="total"
-      :include-page-size-and-page-count="legacyPaginationFooter"
+        v-if="total != -1"
+        :page.sync="page"
+        :per-page.sync="perPage"
+        :page-sizes="pageSizes"
+        :total="total"
+        :include-page-size-and-page-count="legacyPaginationFooter"
     />
   </div>
 </template>
 
 <script lang="ts">
-import Vue, { defineComponent, PropType, VueConstructor } from "vue";
+import Vue, { defineComponent, PropType } from "vue";
 import { ForgeTableFieldArray, ForgeTableField } from "../../../helpers/types";
 import { getColumnKey } from "../table-column-customiser/column-customiser-helper";
 import { BvTableCtxObject, BTable, BAlert, BButton, BCollapse, BIcon, BIconArrowRepeat, BSpinner } from "bootstrap-vue";
@@ -141,7 +145,8 @@ export const ForgeTable = defineComponent({
     },
     filters: {
       type: Object,
-      default: () => {}
+      default: () => {
+      }
     },
     tableError: {
       type: [String, Object],
@@ -210,7 +215,7 @@ export const ForgeTable = defineComponent({
       if (typeof this.$attrs.items == "function") {
         this.localTableErrorMessage = null;
         this.localTableErrorDetails = null;
-        const getItemsFunc = this.$attrs.items as Function;
+        const getItemsFunc = this.$attrs.items;
         try {
           return await getItemsFunc(ctx);
         } catch (e) {
@@ -232,7 +237,7 @@ export const ForgeTable = defineComponent({
     }
   },
   computed: {
-    mergedAttrs(): Object {
+    mergedAttrs(): Record<string, any> {
       let defaults = {
         showEmpty: true,
         striped: true,
@@ -255,9 +260,9 @@ export const ForgeTable = defineComponent({
       return this.fields
         .map((f) => {
           if (typeof f == "object" && f.autoFilter) {
-            if (this.$scopedSlots[this.getHeadSlot(f.key)]) {
+            if (this.$scopedSlots[tnpmhis.getHeadSlot(f.key)]) {
               //eslint-disable-next-line
-              console.warn(
+                console.warn(
                 `You have declared the field '${f.key}' on table ${this.$attrs.id} as an autofilter column, but have also overridden the table header slot for this field. Please either remove the slot override, or remove autofilter on this column`
               );
             }

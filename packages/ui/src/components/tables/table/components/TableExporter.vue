@@ -6,7 +6,7 @@
 </template>
 
 <script lang="ts">
-import Vue, { PropType } from "vue";
+import Vue, { defineComponent, PropType } from "vue";
 import { BButton } from "bootstrap-vue";
 import { BIconForgeExport } from "../../../../icons/icons";
 import { ForgeTableFieldArray, startCase } from "../../../../helpers/index";

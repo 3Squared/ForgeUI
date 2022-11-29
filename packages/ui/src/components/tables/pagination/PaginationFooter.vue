@@ -21,7 +21,7 @@ import { BFormSelect, BPagination } from "bootstrap-vue";
 /**
  * @displayName Pagination Footer
  **/
-export const ForgePaginationFooter = /*#__PURE__*/ defiasrdsneComponent({
+export const ForgePaginationFooter = /*#__PURE__*/ defineComponent({
   name: "ForgePaginationFooter",
   components: { BFormSelect, BPagination },
   props: {

@@ -178,16 +178,16 @@ export const ForgeFilterHeader = /*#__PURE__*/ defineComponent({
       default: false
     }
   },
-  methods: {
+  methods: { 
     update(value: string | any[] | null) {
       switch (this.type) {
-        case "mulitSelect":
-          this.$emit("input", this.multiSelectValue);
-          break;
-        default: {
-          this.$emit("input", value ? (this.type === "number" && typeof value === "string" ? parseFloat(value) : value) : null);
-          break;
-        }
+      case "mulitSelect":
+        this.$emit("input", this.multiSelectValue);
+        break;
+      default: {
+        this.$emit("input", value ? (this.type === "number" && typeof value === "string" ? parseFloat(value) : value) : null);
+        break;
+      }
       }
     },
     updateDateRange(selectedDates: Date[], _dateStr: string, instance: any) {
