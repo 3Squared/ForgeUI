@@ -18,33 +18,33 @@
 </template>
 
 <script lang='ts' setup>
-import { ForgePageHeader, ForgeStatWidget } from '@3squared/forge-ui';
-import { BFormInput, BFormSelect } from 'bootstrap-vue';
-import { computed, ref } from 'vue';
-import OPTIONS from './OPTIONS.md'
-import { baseVariants, sizes } from '../../../composables/playgroundOptions';
-import { usePlayground, Playground } from '@3squared/forge-playground';
+import { ForgePageHeader, ForgeStatWidget } from "@3squared/forge-ui";
+import { BFormInput, BFormSelect } from "bootstrap-vue";
+import { computed, ref } from "vue";
+import OPTIONS from "./OPTIONS.md";
+import { baseVariants, sizes } from "../../../composables/playgroundOptions";
+import { usePlayground, Playground } from "@3squared/forge-playground";
 
-const widgetContent = ref('Widget');
+const widgetContent = ref("Widget");
 const variant = ref(baseVariants[0]);
 
 
 const { options, propVals, config, reset } = usePlayground({
-    size: sizes[1].value,
-    variant: baseVariants[0]
-  },
-  {
-    size: { type: 'select', options: sizes },
-    variant: { type: 'select', options: baseVariants }
-  },
-  () => {
-    widgetContent.value = 'Widget';
-  }
+  size: sizes[1].value,
+  variant: baseVariants[0]
+},
+{
+  size: { type: "select", options: sizes },
+  variant: { type: "select", options: baseVariants }
+},
+() => {
+  widgetContent.value = "Widget";
+}
 );
-
+ 
 const code = computed(() => {
   // Remove bg-${variant.value} once the component has been refactored to accept a variant.
-  return `<forge-stat-widget ${propVals.value.join(' ')}>${widgetContent.value}</forge-stat-widget>`;
+  return `<forge-stat-widget ${propVals.value.join(" ")}>${widgetContent.value}</forge-stat-widget>`;
 });
 
 </script>
