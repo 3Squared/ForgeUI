@@ -9,13 +9,13 @@
   </div>
 </template>
 <script lang="ts">
-import Vue from 'vue';
-import pkg from '../package.json';
-import Changelog from './components/Changelog.vue';
-import TheNavBar from './components/TheNavBar.vue';
-import {BNavItemDropdown, BDropdownItem, BButton, BTooltip, VBTooltip, BNavItem } from 'bootstrap-vue';
+import Vue from "vue";
+import pkg from "../package.json";
+import Changelog from "./components/Changelog.vue";
+import TheNavBar from "./components/TheNavBar.vue";
+import {BNavItemDropdown, BDropdownItem, BButton, BTooltip, VBTooltip, BNavItem } from "bootstrap-vue";
 export default Vue.extend({
-  name: 'Home',
+  name: "Home",
   components: {
     Changelog,
     BNavItemDropdown,

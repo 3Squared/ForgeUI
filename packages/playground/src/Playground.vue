@@ -24,24 +24,24 @@
           <div class='scroll p-3'>
             <template v-for='(option, key) in props.options'>
               <slot :name='key' v-bind='props.options'>
-                <div v-if='config[key] && config[key].type && config[key].type === "select"'>
+                <div v-if='isSelect(getConfig(key))'>
                   <label>{{ key }}</label>
-                  <b-form-select v-model='props.options[key]' :options='config[key].options' class='mb-3'
-                                 :disabled='config[key] && config[key].disabled &&  config[key].disabled()' />
+                  <b-form-select v-model='props.options[key]' :options='getOptions(key)' class='mb-3'
+                                 :disabled='isDisabled(key)' />
                 </div>
                 <b-form-checkbox v-else-if="typeof option === 'boolean'" v-model='props.options[key]' class='mb-2'
-                                 :disabled='config[key] && config[key].disabled &&  config[key].disabled()'>
+                                 :disabled='isDisabled(key)'>
                   {{ key }}
                 </b-form-checkbox>
                 <template v-else-if="typeof option === 'number'">
                   <label>{{ key }}</label>
                   <b-form-input v-model.number='props.options[key]' class='mb-2' type="number"
-                                :disabled='config[key] && config[key].disabled &&  config[key].disabled()' />
+                                :disabled='isDisabled(key)' />
                 </template>
                 <template v-else-if="typeof option === 'string'">
                   <label>{{ key }}</label>
                   <b-form-input v-model='props.options[key]' class='mb-2'
-                                :disabled='config[key] && config[key].disabled &&  config[key].disabled()' />
+                                :disabled='isDisabled(key)' />
                 </template>
               </slot>
             </template>
@@ -55,18 +55,41 @@
 </template>
 
 <script lang='ts' setup>
-import { BButton, BCard, BFormCheckbox, BFormInput, BFormSelect } from 'bootstrap-vue';
-import { defineProps } from 'vue';
-import CodeBlock from './components/CodeBlock.vue'
-import { PropDefs } from './composables/useMapProp';
+import { BButton, BCard, BFormCheckbox, BFormInput, BFormSelect } from "bootstrap-vue";
+import { defineProps } from "vue";
+import CodeBlock from "./components/CodeBlock.vue";
+import { PropDefs, SelectPropDef } from "./composables/useMapProp";
 
 const props = defineProps({
-  code: { type: String, default: '', required: true },
+  code: { type: String, default: "", required: true },
   options: { type: Object, required: true },
   rerender: { type: Boolean, default: false },
-  config: { type: Object as () => Partial<Record<string, PropDefs>>, required: true}
+  config: { type: Object as () => Partial<Record<string, PropDefs>>, required: true }
 });
 
+function getConfig(key: string): PropDefs {
+  return props.config![key]! ?? {};
+}
+
+function isDisabled(key: string) {
+  const config = getConfig(key);
+  if (config.disabled) {
+    return config.disabled();
+  }
+  return false;
+}
+
+function isSelect(config: PropDefs): config is SelectPropDef {
+  return (config as SelectPropDef)?.type === "select" ?? false;
+}
+
+function getOptions(key: string) {
+  const config = getConfig(key);
+  if (isSelect(config)) {
+    return config.options;
+  }
+  return [];
+}
 
 </script>
 

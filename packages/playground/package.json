@@ -5,7 +5,7 @@
   "type": "module",
   "main": "./dist/forge-playground.js",
   "module": "./dist/forge-playground.js",
-  "types": "dist/types",
+  "types": "./dist/types",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

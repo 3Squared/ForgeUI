@@ -1,21 +1,21 @@
-﻿import { computed, ref } from 'vue';
+﻿import { computed, ref } from "vue";
 
-function formatKey(key: String) {
-  return key.replace(/[A-Z]/g, '-$&').toLowerCase();
+function formatKey(key: string) {
+  return key.replace(/[A-Z]/g, "-$&").toLowerCase();
 }
 
-function useStringifyProp(key: String, prop: String | Number | Boolean | Object) {
-  if (typeof prop === 'string' || typeof prop === 'number') {
+function useStringifyProp(key: string, prop: string | number | boolean | Object) {
+  if (typeof prop === "string" || typeof prop === "number") {
     return `${formatKey(key)}="${prop}"`;
-  } else if (typeof prop === 'boolean') {
-    if(prop === false) { return `:${formatKey(key)}="${prop}"` }
-    else { return `${formatKey(key)}` }
-  } else if (typeof prop === 'function') {
+  } else if (typeof prop === "boolean") {
+    if(prop === false) { return `:${formatKey(key)}="${prop}"`; }
+    else { return `${formatKey(key)}`; }
+  } else if (typeof prop === "function") {
     return `:${formatKey(key)}="${key}Function"`;
   } else if (prop instanceof Array) {
-    return `${formatKey(key)}="${key}Array"`;
+    return `${formatKey(key)}="${key}Array"`; 
   } else if (prop instanceof Object) {
-    return `:${formatKey(key)}="${key}Object"`
+    return `:${formatKey(key)}="${key}Object"`;
   }
 }
 
@@ -24,8 +24,8 @@ interface PropDef {
   disabled?: () => boolean;
 }
 
-interface SelectPropDef extends PropDef {
-  type: 'select';
+export interface SelectPropDef extends PropDef {
+  type: "select";
   options: any[];
 }
 

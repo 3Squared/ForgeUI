@@ -21,11 +21,11 @@ Vue.directive("alphanumeric-character", alphanumericCharacterDirective);
 Vue.directive("max-numeric-characters", maxNumericCharactersDirective);
 
 Vue.config.productionTip = false;
-Vue.prototype["forgeSettings"] = {
-  Stepper: {
+Vue.use(ForgeGlobalConfigPlugin, {
+  Button: {
     variant: "danger"
   }
-};
+});
 
 const router = new VueRouter({
   routes,
