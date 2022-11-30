@@ -6,7 +6,7 @@ import "prismjs";
 import "@3squared/forge-playground/dist/style.css";
 import routes from "pages-generated";
 
-import { alphanumericCharacterDirective, ForgeGlobalConfigPlugin, maxNumericCharactersDirective, positiveNumberDirective, wholeNumberDirective } from "@3squared/forge-ui";
+import { alphanumericCharacterDirective, maxNumericCharactersDirective, positiveNumberDirective, wholeNumberDirective } from "@3squared/forge-ui";
 
 // @ts-ignore 
 // import {registerSW} from 'virtual:pwa-register'
@@ -21,11 +21,6 @@ Vue.directive("alphanumeric-character", alphanumericCharacterDirective);
 Vue.directive("max-numeric-characters", maxNumericCharactersDirective);
 
 Vue.config.productionTip = false;
-Vue.use(ForgeGlobalConfigPlugin, {
-  Button: {
-    variant: "danger"
-  }
-});
 
 const router = new VueRouter({
   routes,
