@@ -21,6 +21,7 @@ const props = defineProps({
 
 
 const remainingCount = computed(() => props.maxCount - props.currentCount);
+
 </script>
 
 

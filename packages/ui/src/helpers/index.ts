@@ -21,11 +21,12 @@ export function stringFilterMatch(value: string | null, filter: string | null): 
   return false;
 }
 
-export function nameof<T>(name: Extract<keyof T, string> | ((obj: T) => any)): string {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function nameof<T extends Record<string, unknown>>(name: Extract<keyof T, string> | ((obj: T) => any)): string {
   if (typeof name == "string") {
     return name;
   } else {
-    return tsNameOf(name);
+    return tsNameOf<T>(name);
   }
 }
 

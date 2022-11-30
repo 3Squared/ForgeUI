@@ -15,10 +15,11 @@
     "sourceMap": true,
     "baseUrl": "./",
     "newLine": "lf",
+    "skipLibCheck": true,
     "types": [
       "node",
       "vue",
-      "cypress"
+      "cypress",
     ],
     "paths": {
       "@/*": [
@@ -51,6 +52,7 @@
     "dist",
     "docs",
     "*.md",
-    "**/*.cy.ts"
+    "**/*.cy.ts",
+    "**/*.test.ts"
   ]
 }

@@ -39,6 +39,7 @@
     "vuedraggable": "2.24.3"
   },
   "devDependencies": {
+    "vite-plugin-checker": "^0.5.1",
     "@cypress/code-coverage": "^3.10.0",
     "@types/lodash": "^4.14.182",
     "@vitejs/plugin-vue2": "^1.1.2",

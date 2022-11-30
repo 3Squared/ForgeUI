@@ -4,6 +4,7 @@ import { defineConfig } from "vitest/config";
 import vue from "@vitejs/plugin-vue2";
 import istanbul from "vite-plugin-istanbul";
 import dts from "vite-plugin-dts";
+import checker from "vite-plugin-checker";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
@@ -26,6 +27,7 @@ export default defineConfig(({ mode }) => ({
   },
   plugins: [
     vue(),
+    checker({vueTsc : true}),
     dts(),
     istanbul({
       include: "src/*",
