@@ -1,29 +1,29 @@
-import Vue from 'vue';
-import VueRouter from 'vue-router';
-import App from './App.vue';
-import './styleguide.scss';
-import 'prismjs';
-import '@3squared/forge-playground/dist/style.css';
-import routes from 'pages-generated';
+import Vue from "vue";
+import VueRouter from "vue-router";
+import App from "./App.vue";
+import "./styleguide.scss";
+import "prismjs";
+import "@3squared/forge-playground/dist/style.css";
+import routes from "pages-generated";
 
-import { alphanumericCharacterDirective, ForgeGlobalConfigPlugin, maxNumericCharactersDirective, positiveNumberDirective, wholeNumberDirective } from '@3squared/forge-ui';
+import { alphanumericCharacterDirective, ForgeGlobalConfigPlugin, maxNumericCharactersDirective, positiveNumberDirective, wholeNumberDirective } from "@3squared/forge-ui";
 
-// @ts-ignore
+// @ts-ignore 
 // import {registerSW} from 'virtual:pwa-register'
 //
-// registerSW();
+// registerSW(); 
 
 Vue.use(VueRouter);
 
-Vue.directive('positive-number', positiveNumberDirective);
-Vue.directive('whole-number', wholeNumberDirective);
-Vue.directive('alphanumeric-character', alphanumericCharacterDirective);
-Vue.directive('max-numeric-characters', maxNumericCharactersDirective);
+Vue.directive("positive-number", positiveNumberDirective);
+Vue.directive("whole-number", wholeNumberDirective);
+Vue.directive("alphanumeric-character", alphanumericCharacterDirective);
+Vue.directive("max-numeric-characters", maxNumericCharactersDirective);
 
 Vue.config.productionTip = false;
-Vue.prototype['forgeSettings'] = {
+Vue.prototype["forgeSettings"] = {
   Stepper: {
-    variant: 'danger'
+    variant: "danger"
   }
 };
 
@@ -40,4 +40,4 @@ router.afterEach(() => {
 new Vue({
   router,
   render: h => h(App)
-}).$mount('#app');
+}).$mount("#app");
