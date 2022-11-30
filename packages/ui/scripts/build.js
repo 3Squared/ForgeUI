@@ -15,25 +15,11 @@ class BuildPipeline {
     this.functions = [];
   }
 
-  cleanup() {
-    this.functions.push(() => exec("rimraf ./dist"));
-    return this;
-  }
-
-  generateIcons() {
-    this.functions.push(() => exec("node ./scripts/create-icons.js"));
-    return this;
-  }
-
   generateComponentDocs() {
     this.functions.push(() => exec("npx vue-docgen -c scripts/docgen-config.ts"));
     return this;
   }
 
-  generateCSS() {
-    this.functions.push(() => exec("vite build --config vite.config.styles.ts"));
-    return this;
-  }
 
   generateIDEHelpers() {
     this.functions.push(() => exec("node ./scripts/generate-types.js"));
@@ -65,4 +51,4 @@ class BuildPipeline {
   }
 }
 
-new BuildPipeline().generateComponentDocs().compileUtilities().buildLibrary().generateIDEHelpers().generateCSS().testTreeshaking().go();
+new BuildPipeline().generateComponentDocs().compileUtilities().buildLibrary().generateIDEHelpers().testTreeshaking().go();

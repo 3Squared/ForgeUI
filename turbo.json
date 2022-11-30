@@ -24,12 +24,22 @@
     },
 
     "@3squared/forge-ui#make-icons" : {
-      "inputs" : ["src/icons/icons/*.svg"],
+      "inputs" : ["src/icons/icons/*.svg", "src/icons/icons.ts"],
       "outputs" : ["src/icons/icons.ts"]
     },
+    "@3squared/forge-ui#create-css": {
+      "inputs": [
+        "src/styles/**"
+      ],
+      "outputs": [
+        "dist/styles/**"
+      ]
+    },
+    
     "@3squared/forge-ui#build": {
       "dependsOn": [
-        "@3squared/forge-ui#make-icons"
+        "@3squared/forge-ui#make-icons",
+        "@3squared/forge-ui#create-css"
       ],
       "outputs": []
     }
