@@ -1,7 +1,7 @@
-import { nameof } from './index';
-import { autoFilterType, ForgeTableFieldKeyed } from './types';
+import { nameof } from "./index";
+import { autoFilterType, ForgeTableFieldKeyed } from "./types";
 
-export class ForgeColumnBuilder<T> {
+export class ForgeColumnBuilder<T extends Record<string, unknown>> {
   private columns: ForgeColumnConfiguration<T>[] = [];
 
   addColumn(key: Extract<keyof T, string> | ((obj: T) => any), columnConfig?: (col: ForgeColumnConfiguration<T>) => void) {
@@ -43,7 +43,7 @@ class ForgeColumnConfiguration<T> {
     return this;
   }
 
-  enableAutoFilter(filterType: autoFilterType = 'string') {
+  enableAutoFilter(filterType: autoFilterType = "string") {
     this.column.autoFilter = true;
     this.column.filterType = filterType;
     return this;

@@ -15,7 +15,6 @@
     "eslint": "8.22.0",
     "eslint-config-custom": "*",
     "prettier": "^2.5.1",
-    "turbo": "latest",
-    "firebase-tools": "^11.16.0"
+    "turbo": "latest"
   }
 }

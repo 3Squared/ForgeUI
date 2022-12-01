@@ -21,7 +21,9 @@
         Triggered when the cancel button is clicked
         @event cancel
         -->
-        <b-button data-cy="cancel-btn" v-if="!hideCancel" @click="$emit('cancel')" type="reset" variant="outline-secondary"> Cancel </b-button>
+        <b-button data-cy="cancel-btn" v-if="!hideCancel" @click="$emit('cancel')" type="reset"
+                  variant="outline-secondary"> Cancel
+        </b-button>
       </slot>
       <slot name="submit" :submit="submit">
         <b-button data-cy="submit-btn" type="submit" variant="primary">
@@ -33,77 +35,60 @@
   </b-form>
 </template>
 
-<script lang="ts">
-import Vue from 'vue';
-import { BButton, BForm, BAlert } from 'bootstrap-vue';
-import ForgeLoader from '../../general/loader/Loader.vue';
+<script lang="ts" setup>
+import { BForm, BButton, BAlert } from "bootstrap-vue";
+import { ForgeLoader } from "@/components/general/loader/Loader.vue";
+import { ref } from "vue";
 
-/**
- * The Forge Form provides the following features:
- * 
-  - Automatic Loading state handling
-  - Automatic error handling
-  - Title Slot
-  - Default Cancel and Submit button
- * @displayName Form
- **/
-export const ForgeForm = /*#__PURE__*/ Vue.extend({
-  name: 'ForgeForm',
-  components: { BButton, BForm, BAlert, ForgeLoader },
-  props: {
-    /**
-     * Pass a function to call when the form is submited so Forge form can display a loading spinner and handle errors
-     */
-    onSubmit: {
-      type: Function,
-      required: true
-    },
-    showTitle: {
-      type: Boolean,
-      default: true
-    },
-    title: {
-      type: String,
-      default: 'Forge Form Title'
-    },
-    hideCancel: {
-      type: Boolean,
-      default: false
-    },
-    submitText: {
-      type: String,
-      default: 'Submit'
-    },
-    loadingText: {
-      type: String,
-      default: ''
-    }
+const props = defineProps({
+  /**
+   * Pass a function to call when the form is submited so Forge form can display a loading spinner and handle errors
+   */
+  onSubmit: {
+    type: Function,
+    required: true
   },
-  data() {
-    return {
-      loading: false,
-      error: {
-        hasError: false,
-        message: ''
-      }
-    };
+  showTitle: {
+    type: Boolean,
+    default: true
   },
-  methods: {
-    async submit() {
-      this.loading = true;
-      this.error.hasError = false;
-      try {
-        await this.onSubmit();
-      } catch (e: Error | any) {
-        this.error.hasError = true;
-        if (e.message) {
-          this.error.message = e.message;
-        }
-      }
-      this.loading = false;
-    }
+  title: {
+    type: String,
+    default: "Forge Form Title"
+  },
+  hideCancel: {
+    type: Boolean,
+    default: false
+  },
+  submitText: {
+    type: String,
+    default: "Submit"
+  },
+  loadingText: {
+    type: String,
+    default: ""
   }
 });
 
-export default ForgeForm;
+const loading = ref(false);
+const error = ref({
+  hasError: false,
+  message: ""
+});
+
+async function submit() {
+  loading.value = true;
+  error.value.hasError = false;
+  try {
+    await props.onSubmit();
+  } catch (e: Error | any) {
+    error.value.hasError = true;
+    if (e.message) {
+      error.value.message = e.message;
+    }
+  }
+  loading.value = false;
+
+}
+
 </script>

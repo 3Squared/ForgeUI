@@ -1,0 +1,20 @@
+﻿$codeBlockBackground: #282c34;
+
+.code-block {
+  background-color: $codeBlockBackground;
+}
+
+.copy-code {
+  z-index: 10;
+  right: 0;
+}
+
+.vh-60 {
+  height: 60vh
+}
+
+.card-body {
+  padding: 0
+}
+
+@import 'prismjs/themes/prism-tomorrow.css';
