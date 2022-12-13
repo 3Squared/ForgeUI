@@ -8,12 +8,12 @@
   }
   .search-clear-icon {
     position: absolute;
-    right: $spacer / 1.5;
+    right: calc($spacer / 1.5);
     z-index: 5;
   }
   .search-clear-icon-date {
     position: absolute;
-    right: $spacer * 2.75;
+    right: calc($spacer * 2.75);
     z-index: 5;
   }
 
