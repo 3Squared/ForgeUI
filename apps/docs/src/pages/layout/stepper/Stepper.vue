@@ -13,26 +13,29 @@
 </template>
 
 <script setup lang="ts">
-import OPTIONS from './OPTIONS.md'
+import OPTIONS from "./OPTIONS.md";
 import { ForgePageHeader, ForgeStepper } from "@3squared/forge-ui";
 import { computed } from "vue";
-import { Playground, usePlayground, CodeBlock } from '@3squared/forge-playground';
+import { Playground, usePlayground, CodeBlock } from "@3squared/forge-playground";
+import { buttonVariants } from "../../../composables/playgroundOptions";
 
 const { options, propVals, config, reset } = usePlayground({
   steps: [
-    { key: 'A', text: 'Step A'},
-    { key: 'B', text: 'Step B'},
-    { key: 'C', text: 'Step C'},
-    { key: 'D', text: 'Step D'}
+    { key: "A", text: "Step A"},
+    { key: "B", text: "Step B"},
+    { key: "C", text: "Step C"},
+    { key: "D", text: "Step D"}
   ],
   currentStep: 0,
-  showSteps: true
+  showSteps: true,
+  variant : "primary"
 }, {
-  steps: { required: true }
-})
+  steps: { required: true },
+  variant: { type: "select", options: buttonVariants, required: true },
+});
 
-const code = computed(() => `<forge-stepper ${propVals.value.join(' ')}/>`)
+const code = computed(() => `<forge-stepper ${propVals.value.join(" ")}/>`);
 
-const ForgeStepperStep = `{ key: string, text: string, noBack: boolean }`
+const ForgeStepperStep = `{ key: string, text: string, noBack: boolean }`;
 
 </script>

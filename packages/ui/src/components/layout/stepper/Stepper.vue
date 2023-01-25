@@ -2,7 +2,7 @@
   <div :class="[`forge-stepper-${variant}`]" class="w-100">
     <div v-if="showSteps">
       <div class="d-flex align-items-center bg-white">
-        <b-button :disabled="isBackButtonDisabled" class="rounded-circle ml-2 px-2" @click="previousStep">
+        <b-button :variant="variant" :disabled="isBackButtonDisabled" class="rounded-circle ml-2 px-2" @click="previousStep">
           <b-icon-chevron-left />
         </b-button>
         <div class="stepper">
@@ -35,20 +35,20 @@
 </template>
 
 <script lang="ts">
-import { ForgeStepperStep } from '../../../helpers/index';
-import Vue, { PropType } from 'vue';
-import { BAlert, BButton, BIconChevronLeft } from 'bootstrap-vue';
+import { ForgeStepperStep } from "../../../helpers/index";
+import Vue, { PropType } from "vue";
+import { BAlert, BButton, BIconChevronLeft } from "bootstrap-vue";
 
 /**
  * @displayName Stepper
  **/
 export const ForgeStepper = /*#__PURE__*/ Vue.extend({
-  name: 'ForgeStepper',
+  name: "ForgeStepper",
   components: { BButton, BIconChevronLeft, BAlert },
   props: {
     variant: {
       type: String,
-      default : () => Vue.prototype?.ForgeSettings?.Stepper?.variant ?? 'primary'
+      default : () => Vue.prototype?.ForgeSettings?.Stepper?.variant ?? "primary"
     },
     steps: {
       type: Array as PropType<ForgeStepperStep[]>,
@@ -85,7 +85,7 @@ export const ForgeStepper = /*#__PURE__*/ Vue.extend({
     changeStep(newStep: number) {
       if (newStep < this.currentStepLocal && !this.computedSteps[newStep].isDisabled) {
         this.currentStepLocal = newStep;
-        this.$emit('update:currentStep', newStep);
+        this.$emit("update:currentStep", newStep);
       }
     },
     nextStep() {
@@ -93,14 +93,14 @@ export const ForgeStepper = /*#__PURE__*/ Vue.extend({
         do {
           this.currentStepLocal++;
         } while (this.computedSteps[this.currentStepLocal].isDisabled);
-        this.$emit('update:currentStep', this.currentStepLocal);
+        this.$emit("update:currentStep", this.currentStepLocal);
       }
     },
     previousStep() {
       do {
         this.currentStepLocal--;
       } while (this.computedSteps[this.currentStepLocal].isDisabled);
-      this.$emit('update:currentStep', this.currentStepLocal);
+      this.$emit("update:currentStep", this.currentStepLocal);
     }
   },
   watch: {
