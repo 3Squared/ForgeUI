@@ -1,7 +1,7 @@
 import { nameof } from "./index";
 import { autoFilterType, ForgeTableFieldKeyed } from "./types";
 
-export class ForgeColumnBuilder<T extends Record<string, unknown>> {
+export class ForgeColumnBuilder<T extends Record<string, any>> {
   private columns: ForgeColumnConfiguration<T>[] = [];
 
   addColumn(key: Extract<keyof T, string> | ((obj: T) => any), columnConfig?: (col: ForgeColumnConfiguration<T>) => void) {
