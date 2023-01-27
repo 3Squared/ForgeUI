@@ -164,8 +164,8 @@ export const ForgeMultiSelect = /*#__PURE__*/ Vue.extend({
       } else {
         const selection = [...this.$attrs.options];
         this.$emit('input', selection);
+        this.isAllSelected = true;
       }
-      this.isAllSelected = !this.isAllSelected;
     }
   }
 });
