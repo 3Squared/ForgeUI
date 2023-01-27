@@ -1,7 +1,7 @@
 {
   "name": "@3squared/forge-ui",
   "repository": "https://github.com/3Squared/ForgeUI",
-  "version": "1.3.3",
+  "version": "1.3.4",
   "description": "ForgeUI is designed to be a wrapper around different libraries that provide a consistent UI style. It is comprised of many different packages that have been combined to create a one stop shop for UI.",
   "license": "MIT",
   "main": "./dist/esm/forge-ui.mjs",
@@ -58,9 +58,9 @@
     "vite-plugin-istanbul": "^2.9.0",
     "vitest": "^0.19.1",
     "vue": "^2.7.10",
-    "vue-docgen-api": "4.44.23",
-    "vue-docgen-cli": "4.44.29",
-    "vue-docgen-web-types": "^0.1.7",
+    "vue-docgen-api": "^4.56.4",
+    "vue-docgen-cli": "^4.57.1",
+    "vue-docgen-web-types": "^0.1.8",
     "vue-template-compiler": "^2.7.14",
     "vue-tsc": "^0.38.8",
     "@vue/test-utils": "1.3.3"
