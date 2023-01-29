@@ -15,10 +15,14 @@ import { ForgeLoader, ForgePageHeader } from '@3squared/forge-ui';
 import { computed } from 'vue';
 import OPTIONS from './OPTIONS.md'
 import { usePlayground, Playground } from '@3squared/forge-playground';
+import { baseVariants } from "../../../composables/playgroundOptions";
 
 const { options, propVals, reset, config } = usePlayground({
-  label: 'Loading...'
-});
+  label: 'Loading...',
+  variant: baseVariants[0]
+}, {
+  variant: { type: "select", options: baseVariants }
+},);
 
 const code = computed(() => {
   return `<forge-loader ${propVals.value.join(' ')}/>`;
