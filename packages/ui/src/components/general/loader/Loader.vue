@@ -1,6 +1,6 @@
 <template>
   <div class="forge-loader">
-    <b-spinner variant="primary" :label="label" />
+    <b-spinner :variant="variant" :label="label" />
   </div>
 </template>
 
@@ -16,6 +16,10 @@ export const ForgeLoader = /*#__PURE__*/ Vue.extend({
     label: {
       type: String,
       default: "Loading..."
+    },
+    variant: {
+      type: String,
+      default: () => Vue.prototype?.ForgeSettings?.StatWidget?.variant ?? "primary"
     }
   },
   components: { BSpinner }
