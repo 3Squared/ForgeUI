@@ -113,5 +113,8 @@
       "json",
       "cobertura"
     ]
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
