@@ -87,3 +87,4 @@ Please consult `docs/README.md` on how you should document your new component an
 # Publishing a new version
 
 To publish a new version of Forge UI Framework please open a PR targeting the `main` branch and the GitHub Action will take care of the rest!
+
