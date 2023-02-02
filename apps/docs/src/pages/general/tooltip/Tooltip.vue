@@ -4,7 +4,7 @@
     <p>Further documentation and examples can be found in the <a class="link" target="_blank" href="https://bootstrap-vue.org/docs/components/tooltip"><strong>Bootstrap Vue documentation</strong></a>.</p>
     <playground :options="options" :code="code" :config="config" @reset="reset">
       <template #component>
-        <b-button :id="options.target" variant="brand">Button</b-button>
+        <b-button :id="options.target">Button</b-button>
         <component :is="BTooltip" v-bind="options">{{tooltipContent}}</component>
       </template>
       <template #additionalOptions>
@@ -81,7 +81,7 @@ const { options, propVals, config, reset } = usePlayground({
 )
 
 const code = computed(() => {
-  return `<b-button id="${options.value.target}" variant="brand">Button</b-button>
+  return `<b-button id="${options.value.target}">Button</b-button>
 <b-popover ${propVals.value.join(' ')}>
   ${tooltipContent.value}
 </b-popover>`;

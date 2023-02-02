@@ -3,7 +3,7 @@
     <forge-page-header title="Toast" />
     <playground @reset="reset" :code="code" :options="options" :config="config">
       <template #component>
-        <component :is="BButton" @click="createToast" variant="brand">{{ buttonContent }}</component>
+        <component :is="BButton" @click="createToast">{{ buttonContent }}</component>
       </template>
     </playground>
     Dont forget to import ForgeToast in your main.ts file using <div class="position-relative">
@@ -37,7 +37,7 @@ const createToast = () => {
 
 const code = computed(() => `<template>
   <div>
-    <b-button variant="brand" @click="createToast">${buttonContent.value}</b-button>
+    <b-button @click="createToast">${buttonContent.value}</b-button>
   </div>
 </template>
 
