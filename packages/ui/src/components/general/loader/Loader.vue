@@ -20,7 +20,7 @@ export const ForgeLoader = /*#__PURE__*/ Vue.extend({
     },
     variant: {
       type: String,
-      default: () => Vue.prototype?.ForgeSettings?.StatWidget?.variant ?? "primary"
+      default: () => Vue.prototype?.ForgeSettings?.Loader?.variant ?? "primary"
     }
   }
 });
