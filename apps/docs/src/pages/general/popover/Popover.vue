@@ -4,7 +4,7 @@
     <p>Further documentation and examples can be found in the <a class="link" target="_blank" href="https://bootstrap-vue.org/docs/components/popover"><strong>Bootstrap Vue documentation</strong></a>.</p>
     <playground :options="options" :code="code" :config="config" @reset="reset">
       <template #component>
-        <b-button id="popover-button" variant="brand">Button</b-button>
+        <b-button id="popover-button">Button</b-button>
         <component :is="BPopover" v-bind="options"/>
       </template>
       <template #placement>
@@ -71,7 +71,7 @@ const { options, propVals, config, reset } = usePlayground({
 })
 
 const code = computed(() => {
-  return `<b-button id="${options.value.target}" variant="brand">Button</b-button>
+  return `<b-button id="${options.value.target}">Button</b-button>
 <b-popover ${propVals.value.join(' ')}>
   <template #title>
    ${ options.value.title }

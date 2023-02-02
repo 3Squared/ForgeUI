@@ -83,7 +83,7 @@
               no-body
               @click="clickedIcon(icon)"
               :class="{iconHoverSize: icon.isHovering}">
-            <b-icon :id="icon.name" variant="brand" :icon="icon.name"></b-icon>
+            <b-icon :id="icon.name" :icon="icon.name"></b-icon>
           </b-card>
           <b-form-text class="mt-2 text-break" :title="icon.name">{{ icon.name }}</b-form-text>
           <b-button variant="link" @click="downloadSvg(icon)">Download</b-button>
@@ -115,7 +115,7 @@
                 no-body
                 @click="clickedIcon(icon)"
                 :class="{iconHoverSize: icon.isHovering}">
-              <b-icon :id="icon.name" variant="brand" :icon="icon.name" ></b-icon>
+              <b-icon :id="icon.name" :icon="icon.name" ></b-icon>
             </b-card>
             <b-form-text class="mt-2 text-break" :title="icon.name">{{ icon.name }}</b-form-text>
             <b-button variant="link" @click="downloadSvg(icon)">Download</b-button>

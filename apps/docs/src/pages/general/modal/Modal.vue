@@ -4,7 +4,7 @@
     <OPTIONS />
     <playground :code="code" :options="options" :config="config" @reset="reset">
       <template #component>
-        <b-button v-b-modal.modal variant="brand">Show Modal</b-button>
+        <b-button v-b-modal.modal>Show Modal</b-button>
         <component :is="ForgeModal" v-bind="options" id="modal">
           <template #modal-header>
             {{ modalTitle }}
@@ -63,7 +63,7 @@ const { options, propVals, config, reset } = usePlayground({
 )
 
 const code = computed(() => {
-  return `<b-button v-b-modal.modal variant="brand">Show Modal</b-button>
+  return `<b-button v-b-modal.modal>Show Modal</b-button>
 <forge-modal ${propVals.value.join(' ')}>
   <template #modal-header>
     ${modalTitle.value}

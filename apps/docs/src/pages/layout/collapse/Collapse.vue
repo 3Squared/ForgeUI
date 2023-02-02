@@ -5,7 +5,7 @@
     <playground :options="options" :config="config" @reset="reset" :code="code">
       <template #component>
         <div class="d-flex flex-column">
-          <b-button v-b-toggle.collapse variant="brand">Toggle Collapse</b-button>
+          <b-button v-b-toggle.collapse>Toggle Collapse</b-button>
           <component id="collapse" :is="BCollapse" v-bind="options">
             <b-card>
               Collapse Content

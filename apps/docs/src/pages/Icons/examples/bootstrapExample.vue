@@ -1,5 +1,5 @@
 ﻿<template>
-  <b-icon-alarm variant="brand" />
+  <b-icon-alarm />
 </template>
 
 <script lang="ts">
