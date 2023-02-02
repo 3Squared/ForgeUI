@@ -2,14 +2,13 @@
 import ActionButton from "./ActionButton.vue";
 import { defineComponent } from "vue";
 
-
 it("should become disabled while action is resolving", () => {
   mount(ActionButton, {
     slots: {
-      default: "Some Text",
+      default: "Some Text"
     },
-    propsData: { 
-      action: () => new Promise(resolve => setTimeout(resolve, 1000))
+    propsData: {
+      action: () => new Promise((resolve) => setTimeout(resolve, 1000))
     },
     attrs: {
       disabled: false
@@ -23,10 +22,10 @@ it("should become disabled while action is resolving", () => {
 it("should reset to un disabled after an action", () => {
   mount(ActionButton, {
     slots: {
-      default: "Some Text",
+      default: "Some Text"
     },
     propsData: {
-      action: () => new Promise(resolve => setTimeout(resolve, 1000))
+      action: () => new Promise((resolve) => setTimeout(resolve, 1000))
     },
     attrs: {
       disabled: false
@@ -50,7 +49,7 @@ it("should reset to un disabled after an action", () => {
     methods: {
       exampleSave() {
         this.isButtonDisabled = true;
-        return new Promise(resolve => setTimeout(resolve, 1000));
+        return new Promise((resolve) => setTimeout(resolve, 1000));
       }
     },
     template: `

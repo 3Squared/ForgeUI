@@ -8,11 +8,11 @@
         <div class="stepper">
           <hr class="divider" />
           <div
-              v-for="(step, index) in computedSteps"
-              :key="step.key"
-              :class="{ 'step-active': index === currentStepLocal, 'step-inactive': computedSteps[index].isDisabled, link: !computedSteps[index].isDisabled }"
-              class="step-block"
-              @click="changeStep(index)"
+            v-for="(step, index) in computedSteps"
+            :key="step.key"
+            :class="{ 'step-active': index === currentStepLocal, 'step-inactive': computedSteps[index].isDisabled, link: !computedSteps[index].isDisabled }"
+            class="step-block"
+            @click="changeStep(index)"
           >
             <div class="step">
               <div class="step-circle">{{ index + 1 }}</div>
@@ -23,8 +23,8 @@
       </div>
       <hr />
     </div>
-    <div class="w-100" v-for="(step, index) in computedSteps" :key="step.key">
-      <slot v-if="index === currentStepLocal" :name="step.key" :nextStep="nextStep" :previousStep="previousStep">
+    <div v-for="(step, index) in computedSteps" :key="step.key" class="w-100">
+      <slot v-if="index === currentStepLocal" :name="step.key" :next-step="nextStep" :previous-step="previousStep">
         <b-alert show variant="info">
           Please add Slot Content for the key {{ step.key }}
           <b-button variant="outline-primary" @click="nextStep">Next</b-button>
@@ -48,7 +48,7 @@ export const ForgeStepper = /*#__PURE__*/ Vue.extend({
   props: {
     variant: {
       type: String,
-      default : () => Vue.prototype?.ForgeSettings?.Stepper?.variant ?? "primary"
+      default: () => Vue.prototype?.ForgeSettings?.Stepper?.variant ?? "primary"
     },
     steps: {
       type: Array as PropType<ForgeStepperStep[]>,
@@ -74,11 +74,16 @@ export const ForgeStepper = /*#__PURE__*/ Vue.extend({
       return this.steps.map((x, i) => ({
         ...x,
         isDisabled:
-            this.currentStepLocal >= noBackIndex && noBackIndex != -1 ? i < noBackIndex || i > this.currentStepLocal : i > this.currentStepLocal || x.isDisabled
+          this.currentStepLocal >= noBackIndex && noBackIndex != -1 ? i < noBackIndex || i > this.currentStepLocal : i > this.currentStepLocal || x.isDisabled
       }));
     },
     isBackButtonDisabled(): boolean {
-      return !(this.computedSteps.findIndex(x => !x.isDisabled) < this.currentStepLocal && this.computedSteps.findIndex(x => !x.isDisabled) > -1);
+      return !(this.computedSteps.findIndex((x) => !x.isDisabled) < this.currentStepLocal && this.computedSteps.findIndex((x) => !x.isDisabled) > -1);
+    }
+  },
+  watch: {
+    currentStep() {
+      this.currentStepLocal = this.currentStep;
     }
   },
   methods: {
@@ -101,11 +106,6 @@ export const ForgeStepper = /*#__PURE__*/ Vue.extend({
         this.currentStepLocal--;
       } while (this.computedSteps[this.currentStepLocal].isDisabled);
       this.$emit("update:currentStep", this.currentStepLocal);
-    }
-  },
-  watch: {
-    currentStep() {
-      this.currentStepLocal = this.currentStep;
     }
   }
 });

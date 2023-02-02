@@ -8,19 +8,16 @@ import { ForgeGlobalConfigPlugin } from "../../../../index";
 import Vue from "vue";
 
 describe("StatWidget.vue", () => {
-
   it("should apply size classes correctly", () => {
-
     const wrapper = shallowMount(ForgeStatWidget, {
       propsData: {
-        size: "sm",
+        size: "sm"
       }
     });
     expect(wrapper.find("div").classes()).toContain("widget--sm");
   });
 
   it("should apply variant classes correctly", () => {
-
     const wrapper = shallowMount(ForgeStatWidget, {
       propsData: {
         size: "sm",
@@ -31,10 +28,9 @@ describe("StatWidget.vue", () => {
   });
 
   it("should default to primary if no variant passed", () => {
-
     const wrapper = shallowMount(ForgeStatWidget, {
       propsData: {
-        size: "sm",
+        size: "sm"
       }
     });
     expect(wrapper.find("div").classes()).toContain("bg-primary");
@@ -46,7 +42,7 @@ describe("StatWidget.vue", () => {
     });
     const wrapper = shallowMount(ForgeStatWidget, {
       propsData: {
-        size: "sm",
+        size: "sm"
       }
     });
     expect(wrapper.find("div").classes()).toContain("bg-success");

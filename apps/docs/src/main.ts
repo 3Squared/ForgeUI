@@ -8,10 +8,9 @@ import routes from "pages-generated";
 
 import { alphanumericCharacterDirective, maxNumericCharactersDirective, positiveNumberDirective, wholeNumberDirective } from "@3squared/forge-ui";
 
-// @ts-ignore 
 // import {registerSW} from 'virtual:pwa-register'
 //
-// registerSW(); 
+// registerSW();
 
 Vue.use(VueRouter);
 
@@ -34,5 +33,5 @@ router.afterEach(() => {
 
 new Vue({
   router,
-  render: h => h(App)
+  render: (h) => h(App)
 }).$mount("#app");

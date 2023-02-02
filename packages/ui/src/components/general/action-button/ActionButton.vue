@@ -1,6 +1,5 @@
 <template>
-  <b-button :style="{ width: width }" ref="button" :variant="variant" :disabled="loading || $attrs.disabled"
-            @click="performAction">
+  <b-button ref="button" :style="{ width: width }" :variant="variant" :disabled="loading || $attrs.disabled" @click="performAction">
     <b-spinner v-if="loading" small></b-spinner>
     <span v-else>
       <slot></slot>

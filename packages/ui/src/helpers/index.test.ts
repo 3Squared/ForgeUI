@@ -1,7 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { enumToMultiSelectList, enumToSelectList, stringFilterMatch } from "@/helpers/index";
 
-
 describe("string filter tests", () => {
   it("should match on exact strings", () => {
     expect(stringFilterMatch("a", "a")).toBeTruthy();
@@ -33,12 +32,14 @@ describe("enumToSelectList", () => {
   });
 
   it("convert array of strings to select list format and formatters apply to text", () => {
-    expect(enumToSelectList(["a", "b", "c"], (v) => {
-      if (v === "a") {
-        return "This was a";
-      }
-      return v;
-    })).toStrictEqual([
+    expect(
+      enumToSelectList(["a", "b", "c"], (v) => {
+        if (v === "a") {
+          return "This was a";
+        }
+        return v;
+      })
+    ).toStrictEqual([
       { text: "This was a", value: "a" },
       { text: "b", value: "b" },
       { text: "c", value: "c" }
@@ -66,6 +67,5 @@ describe("enumToMultiSelectList", () => {
     expect(a).toStrictEqual({ id: "a", label: "This was a" });
     expect(b).toStrictEqual({ id: "b", label: "b" });
     expect(c).toStrictEqual({ id: "c", label: "c" });
-
   });
 });

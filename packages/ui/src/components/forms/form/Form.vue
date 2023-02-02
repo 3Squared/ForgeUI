@@ -1,5 +1,5 @@
 <template>
-  <b-form @submit.prevent="submit" novalidate class="position-relative shadow-sm border p-4 bg-white">
+  <b-form novalidate class="position-relative shadow-sm border p-4 bg-white" @submit.prevent="submit">
     <template v-if="showTitle">
       <h3 data-cy="form-title">
         {{ title }}
@@ -21,9 +21,7 @@
         Triggered when the cancel button is clicked
         @event cancel
         -->
-        <b-button data-cy="cancel-btn" v-if="!hideCancel" @click="$emit('cancel')" type="reset"
-                  variant="outline-secondary"> Cancel
-        </b-button>
+        <b-button v-if="!hideCancel" data-cy="cancel-btn" type="reset" variant="outline-secondary" @click="$emit('cancel')">Cancel</b-button>
       </slot>
       <slot name="submit" :submit="submit">
         <b-button data-cy="submit-btn" type="submit" variant="primary">
@@ -88,7 +86,5 @@ async function submit() {
     }
   }
   loading.value = false;
-
 }
-
 </script>

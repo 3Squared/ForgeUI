@@ -1,11 +1,11 @@
-import { BvTableField, BvMsgBoxOptions, BvToastOptions } from 'bootstrap-vue';
-import { VNode } from 'vue';
-import { CreateElement } from 'vue/types/umd';
-export type autoFilterType = 'string' | 'number' | 'date';
+import { BvTableField, BvMsgBoxOptions, BvToastOptions } from "bootstrap-vue";
+import { VNode } from "vue";
+import { CreateElement } from "vue/types/umd";
+export type autoFilterType = "string" | "number" | "date";
 export type ForgeTableFieldKeyed = { key: string } & ForgeTableField;
 export type ForgeTableField = BvTableField & { required?: boolean; autoFilter?: boolean; filterType?: autoFilterType };
 export type ForgeTableFieldArray = Array<string | ({ key: string } & ForgeTableField)>;
-export type ForgeStepperStep = { key: string, text: string, noBack?: boolean, isDisabled?: boolean }
+export type ForgeStepperStep = { key: string; text: string; noBack?: boolean; isDisabled?: boolean };
 export interface MultiSelectOption<T> {
   id: T;
   label: string;
@@ -27,19 +27,19 @@ export type ForgeModalConfig = {
 
 export interface ForgeFileStatus {
   file: File;
-  status: 'NotUploaded' | 'Uploaded' | 'Failed';
+  status: "NotUploaded" | "Uploaded" | "Failed";
   blobFileName: string | null;
   duplicateWarning: boolean;
 }
 
 export interface ForgeIcon {
-  component: string,
-  isForge: boolean,
-  isHovering: boolean,
-  name: string
+  component: string;
+  isForge: boolean;
+  isHovering: boolean;
+  name: string;
 }
 
-export type ForgeToastType = 'success' | 'error';
+export type ForgeToastType = "success" | "error";
 
 /**
  * Flatpickr uses nulls to represent no date
@@ -49,7 +49,7 @@ export type ForgeDatePickerNormalizer<TDate> = {
   toNative: (d: TDate | null) => Date | null;
 };
 
-declare module 'vue/types/vue' {
+declare module "vue/types/vue" {
   interface Vue {
     $forgeToast: (type: ForgeToastType, message: string, options?: BvToastOptions) => void;
 

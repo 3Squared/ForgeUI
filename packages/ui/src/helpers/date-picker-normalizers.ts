@@ -1,5 +1,5 @@
-import { ForgeDatePickerNormalizer } from './index';
-import dayjs, { Dayjs } from 'dayjs';
+import { ForgeDatePickerNormalizer } from "./index";
+import dayjs, { Dayjs } from "dayjs";
 
 export const stringNormalizer: ForgeDatePickerNormalizer<string> = {
   fromNative: (d: Date | null) => (d ? d.toISOString() : null),

@@ -27,7 +27,7 @@ export default defineConfig(({ mode }) => ({
   },
   plugins: [
     vue(),
-    checker({vueTsc : true}),
+    checker({ vueTsc: true }),
     dts(),
     istanbul({
       include: "src/*",

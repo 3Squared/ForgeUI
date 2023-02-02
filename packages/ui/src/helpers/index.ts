@@ -7,7 +7,7 @@ export * from "./modal-builder";
 export * from "./date-picker-normalizers";
 export * from "./navbar.builder";
 import { nameof as tsNameOf } from "ts-simple-nameof";
-import { capitalize, camelCase, startCase, isEqual, } from "lodash";
+import { capitalize, camelCase, startCase, isEqual } from "lodash";
 
 export function stringFilterMatch(value: string | null, filter: string | null): boolean {
   if (filter == null) {
@@ -29,7 +29,6 @@ export function nameof<T extends Record<string, unknown>>(name: Extract<keyof T,
     return tsNameOf<T>(name);
   }
 }
-
 
 export const arraysEqual = isEqual;
 
@@ -64,11 +63,11 @@ export function parseError(error: any) {
 }
 
 export function enumToSelectList<T>(items: readonly T[], formatter?: (val: T) => string): SelectListOption<T>[] {
-  return items.map(i => ({ value: i, text: formatter ? formatter(i) : `${i}` }));
+  return items.map((i) => ({ value: i, text: formatter ? formatter(i) : `${i}` }));
 }
 
 export function enumToMultiSelectList<T>(items: readonly T[], formatter?: (val: T) => string): MultiSelectOption<T>[] {
-  return items.map(i => ({ id: i, label: formatter ? formatter(i) : `${i}` }));
+  return items.map((i) => ({ id: i, label: formatter ? formatter(i) : `${i}` }));
 }
 
 /**
@@ -76,23 +75,10 @@ export function enumToMultiSelectList<T>(items: readonly T[], formatter?: (val: 
  */
 export const kebabToCamel = camelCase;
 
-type AppColours =
-  | "primary"
-  | "success"
-  | "warning"
-  | "warning-dark"
-  | "danger"
-  | "light-grey"
-  | "white"
-  | "dark"
-  | "info"
-  | "secondary"
+type AppColours = "primary" | "success" | "warning" | "warning-dark" | "danger" | "light-grey" | "white" | "dark" | "info" | "secondary";
 
 export function getColour(color: AppColours) {
-  return getComputedStyle(document.body)
-    .getPropertyValue(`--${color}`)
-    .trim();
+  return getComputedStyle(document.body).getPropertyValue(`--${color}`).trim();
 }
-
 
 export { capitalize, startCase };

@@ -1,27 +1,27 @@
 <template>
   <div class="forge-filter-header">
-    <label class="pl-2" :class="{ 'forge-filter-header-hidden': hideLabel }">{{ name }} </label>
-    <div @click.stop.prevent class="d-flex justify-content-between align-items-center position-relative">
+    <label class="pl-2" :class="{ 'forge-filter-header-hidden': hideLabel }">{{ name }}</label>
+    <div class="d-flex justify-content-between align-items-center position-relative" @click.stop.prevent>
       <b-form-input
         v-if="type == 'number'"
         :value="value"
-        @update="update"
         type="number"
         :debounce="debounceTimer"
         :placeholder="placeHolderText"
-        :class="{ 'input-no-spinner': hideSpinnerWheel, 'has-clear-button': renderClearButton  }"
+        :class="{ 'input-no-spinner': hideSpinnerWheel, 'has-clear-button': renderClearButton }"
         v-bind="$attrs"
+        @update="update"
       />
 
       <b-form-input
         v-else-if="type == 'string'"
         :value="value"
-        @update="update"
         type="text"
         :debounce="debounceTimer"
         :placeholder="placeHolderText"
         v-bind="$attrs"
         :class="{ 'has-clear-button': renderClearButton }"
+        @update="update"
       />
 
       <forge-multiselect
@@ -29,10 +29,10 @@
         :value="value"
         :multiple="false"
         :options="options"
-        @input="update"
         :variant="variant"
         v-bind="$attrs"
         style="width: 100%"
+        @input="update"
       />
 
       <forge-multiselect
@@ -41,18 +41,17 @@
         :value="multiSelectValue"
         :searchable="true"
         :options="options"
-        @input="update"
         select-label="Add"
         deselect-label="Remove"
         :variant="variant"
         v-bind="$attrs"
         style="width: 100%"
+        @input="update"
       />
 
       <forge-date-picker
         v-else-if="type == 'date'"
         :value="value"
-        @input="update"
         :config="{
           altInput: true,
           dateFormat: 'Y-m-d',
@@ -60,18 +59,18 @@
           enableTime: 'false',
           ...config
         }"
-        v-on="$listeners"
         :placeholder="placeHolderText"
         :hide-calendar-icon="value && value.length > 0 ? true : false"
-        @reset="reset"
         :variant="variant"
         v-bind="$attrs"
+        @input="update"
+        v-on="$listeners"
+        @reset="reset"
       />
 
       <forge-date-picker
         v-else-if="type == 'dateRange'"
         :value="value"
-        @on-change="updateDateRange"
         :config="{
           mode: 'range',
           altInput: true,
@@ -80,18 +79,18 @@
           enableTime: 'false',
           ...config
         }"
-        v-on="$listeners"
         :hide-calendar-icon="value && value.length > 0 ? true : false"
-        @reset="reset"
         :placeholder="placeHolderText"
         :variant="variant"
         v-bind="$attrs"
+        @on-change="updateDateRange"
+        v-on="$listeners"
+        @reset="reset"
       />
 
       <forge-date-picker
         v-else-if="type == 'time'"
         :value="value"
-        @input="update"
         :config="{
           noCalendar: true,
           enableTime: true,
@@ -99,30 +98,31 @@
           dateFormat: 'H:i',
           ...config
         }"
-        v-on="$listeners"
         :placeholder="placeHolderText"
         :hide-calendar-icon="value && value.length > 0 ? true : false"
-        @reset="reset"
         :variant="variant"
         v-bind="$attrs"
+        @input="update"
+        v-on="$listeners"
+        @reset="reset"
       />
 
-      <b-icon-x-circle tabindex="0" class="search-clear-icon" v-if="renderClearButton" @keypress.enter="reset" @click="reset" />
+      <b-icon-x-circle v-if="renderClearButton" tabindex="0" class="search-clear-icon" @keypress.enter="reset" @click="reset" />
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import { BIconXCircle, BFormInput } from 'bootstrap-vue';
-import ForgeDatePicker from '../../forms/date-picker/DatePicker.vue';
-import ForgeMultiselect from '../../forms/multiselect/MultiSelect.vue';
+import Vue from "vue";
+import { BIconXCircle, BFormInput } from "bootstrap-vue";
+import ForgeDatePicker from "../../forms/date-picker/DatePicker.vue";
+import ForgeMultiselect from "../../forms/multiselect/MultiSelect.vue";
 
 /**
  * @displayName Filter Header
  **/
 export const ForgeFilterHeader = /*#__PURE__*/ Vue.extend({
-  name: 'ForgeFilterHeader',
+  name: "ForgeFilterHeader",
   components: { BIconXCircle, BFormInput, ForgeDatePicker, ForgeMultiselect },
   props: {
     /**
@@ -139,9 +139,9 @@ export const ForgeFilterHeader = /*#__PURE__*/ Vue.extend({
     type: {
       type: String,
       required: true,
-      default: 'string',
-      validator(value : string) {
-        return ['string', 'number', 'select', 'multiSelect', 'date', 'dateRange', 'time'].indexOf(value) !== -1;
+      default: "string",
+      validator(value: string) {
+        return ["string", "number", "select", "multiSelect", "date", "dateRange", "time"].indexOf(value) !== -1;
       }
     },
     value: {
@@ -152,7 +152,7 @@ export const ForgeFilterHeader = /*#__PURE__*/ Vue.extend({
     options: {
       type: Array,
       required: false,
-      default: function() {
+      default: function () {
         return [];
       }
     },
@@ -167,7 +167,7 @@ export const ForgeFilterHeader = /*#__PURE__*/ Vue.extend({
     },
     variant: {
       type: String,
-      default: () => Vue.prototype?.ForgeSettings?.FilterHeader?.variant ?? 'primary'
+      default: () => Vue.prototype?.ForgeSettings?.FilterHeader?.variant ?? "primary"
     },
     placeholder: {
       type: String,
@@ -178,14 +178,43 @@ export const ForgeFilterHeader = /*#__PURE__*/ Vue.extend({
       default: false
     }
   },
+  computed: {
+    dateValue(): string {
+      if (this.value?.length === 2) {
+        return `${this.value[0]} to ${this.value[1]}`;
+      } else {
+        return "";
+      }
+    },
+    multiSelectValue(): any[] {
+      if (this.type == "multiSelect" && !this.value) {
+        return [];
+      } else {
+        return this.value as [];
+      }
+    },
+    renderClearButton(): boolean {
+      return (
+        this.type != "select" &&
+        this.type != "multiSelect" &&
+        ((this.type == "dateRange" && this.value?.length > 0) || (this.value != null && this.type != "dateRange"))
+      );
+    },
+    placeHolderText(): string {
+      return this.placeholder || this.name;
+    },
+    hideSpinnerWheel(): boolean {
+      return !!this.$attrs.noWheel || this.$attrs["no-wheel"] !== undefined;
+    }
+  },
   methods: {
     update(value: string | any[] | null) {
       switch (this.type) {
-        case 'mulitSelect':
-          this.$emit('input', this.multiSelectValue);
+        case "mulitSelect":
+          this.$emit("input", this.multiSelectValue);
           break;
         default: {
-          this.$emit('input', value ? (this.type === 'number' && typeof value === 'string' ? parseFloat(value) : value) : null);
+          this.$emit("input", value ? (this.type === "number" && typeof value === "string" ? parseFloat(value) : value) : null);
           break;
         }
       }
@@ -205,37 +234,8 @@ export const ForgeFilterHeader = /*#__PURE__*/ Vue.extend({
     reset() {
       if (this.value != null) {
         this.update(null);
-        this.$emit('reset');
+        this.$emit("reset");
       }
-    }
-  },
-  computed: {
-    dateValue(): string {
-      if (this.value?.length === 2) {
-        return `${this.value[0]} to ${this.value[1]}`;
-      } else {
-        return '';
-      }
-    },
-    multiSelectValue(): any[] {
-      if (this.type == 'multiSelect' && !this.value) {
-        return [];
-      } else {
-        return this.value as [];
-      }
-    },
-    renderClearButton(): boolean {
-      return (
-        this.type != 'select' &&
-        this.type != 'multiSelect' &&
-        ((this.type == 'dateRange' && this.value?.length > 0) || (this.value != null && this.type != 'dateRange'))
-      );
-    },
-    placeHolderText(): string {
-      return this.placeholder || this.name;
-    },
-    hideSpinnerWheel(): boolean {
-      return !!this.$attrs.noWheel || this.$attrs['no-wheel'] !== undefined;
     }
   }
 });

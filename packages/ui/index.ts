@@ -9,7 +9,7 @@ import ForgeToasts, { useForgeToasts } from "./src/components/general/toast/toas
 import ForgeModal from "./src/components/general/modal/Modal.vue";
 import ForgeModalHelper, { useForgeModal } from "./src/components/general/modal/forge-modal-helper";
 import ForgeForm from "./src/components/forms/form/Form.vue";
-import ForgeLoader from "./src/components/general/loader/Loader.vue"; 
+import ForgeLoader from "./src/components/general/loader/Loader.vue";
 import ForgeActionButton from "./src/components/general/action-button/ActionButton.vue";
 import ForgeInlineEditor from "./src/components/forms/inline-editor/InlineEditor.vue";
 import ForgeFileUpload from "./src/components/forms/file-upload/FileUpload.vue";
@@ -36,13 +36,13 @@ interface VariantConfig {
   variant?: string;
 }
 
-type StepperConfig = VariantConfig
-type MultiSelectConfig = VariantConfig
-type StatWidgetConfig = VariantConfig
-type FilterHeaderConfig = VariantConfig
+type StepperConfig = VariantConfig;
+type MultiSelectConfig = VariantConfig;
+type StatWidgetConfig = VariantConfig;
+type FilterHeaderConfig = VariantConfig;
 
 interface DatePickerConfig extends VariantConfig {
-  hideCalendarIcon? : false
+  hideCalendarIcon?: false;
 }
 
 interface ForgeGlobalConfig {
@@ -151,7 +151,7 @@ export {
   // Composables
   useForgeToasts,
   useForgeModal,
-  ForgeGlobalConfigPlugin,
+  ForgeGlobalConfigPlugin
 };
 
 export default ForgeUI;

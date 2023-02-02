@@ -6,9 +6,7 @@ import { describe, it, expect } from "vitest";
 import { shallowMount } from "@vue/test-utils";
 
 describe("PageHeader.vue", () => {
-
   it("renders correctly", () => {
-
     const wrapper = shallowMount(ForgePageHeader, {
       propsData: {
         title: "Hello world!",

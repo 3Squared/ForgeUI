@@ -3,7 +3,7 @@
  */
 import ForgeForm from "./Form.vue";
 import { describe, expect, it, vi } from "vitest";
-import { mount, shallowMount, } from "@vue/test-utils";
+import { mount, shallowMount } from "@vue/test-utils";
 
 const mockSubmit = { onSubmit: vi.fn() };
 describe("Form", () => {
@@ -38,7 +38,7 @@ describe("Form", () => {
       //Arrange
       const wrapper = mount(ForgeForm, {
         propsData: {
-          ...mockSubmit,
+          ...mockSubmit
         }
       });
 
@@ -47,7 +47,6 @@ describe("Form", () => {
       expect(wrapper.find(".forge-loader").exists());
       await wrapper.vm.$nextTick();
       expect(wrapper.find(".forge-loader").exists()).toBeFalsy();
-
     });
 
     it("should display an error if the submit function fails", async () => {
@@ -55,9 +54,9 @@ describe("Form", () => {
       const wrapper = mount(ForgeForm, {
         propsData: {
           onSubmit: async () => {
-            await new Promise(r => setTimeout(r, 1));
+            await new Promise((r) => setTimeout(r, 1));
             throw { message: "Bad stuff happened" };
-          },
+          }
         }
       });
 
@@ -65,15 +64,13 @@ describe("Form", () => {
       expect(wrapper.find("[role=alert]").exists()).toBeFalsy();
 
       await wrapper.find("form").trigger("submit.prevent");
-      await new Promise(r => setTimeout(r, 1));
+      await new Promise((r) => setTimeout(r, 1));
       expect(wrapper.find("[role=alert]").text()).toBe("Bad stuff happened");
 
       //Submitting form again should clear error
       await wrapper.find("form").trigger("submit.prevent");
       await wrapper.vm.$nextTick();
       expect(wrapper.find("[role=alert]").exists()).toBeFalsy();
-
-
     });
   });
 
@@ -121,11 +118,3 @@ describe("Form", () => {
     });
   });
 });
-
-
-
-
- 
-
-
-

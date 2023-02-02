@@ -1,11 +1,9 @@
 /// <reference types="vitest" />
 import path, { join } from "path";
 import { defineConfig } from "vitest/config";
-import vue from "@vitejs/plugin-vue2";
-import istanbul from "vite-plugin-istanbul";
 
 // https://vitejs.dev/config/
-export default defineConfig(({ mode }) => ({
+export default defineConfig(() => ({
   resolve: {
     alias: [
       {
@@ -14,18 +12,16 @@ export default defineConfig(({ mode }) => ({
       },
       {
         find: "node_modules",
-        replacement: join(process.cwd(), "../../node_modules"),
-      },
-    ],
+        replacement: join(process.cwd(), "../../node_modules")
+      }
+    ]
   },
-  plugins: [
-  ],
+  plugins: [],
   build: {
     lib: {
       entry: "./styles.ts",
-      name: "Forge.UI",
+      name: "Forge.UI"
     },
-    outDir : "dist/styles"
-  },
- 
+    outDir: "dist/styles"
+  }
 }));

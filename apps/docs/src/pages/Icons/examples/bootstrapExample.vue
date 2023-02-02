@@ -6,6 +6,6 @@
 import Vue from "vue";
 import { BIconAlarm } from "bootstrap-vue";
 export default Vue.extend({
-  components: {BIconAlarm}
+  components: { BIconAlarm }
 });
 </script>

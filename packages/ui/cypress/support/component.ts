@@ -12,16 +12,16 @@
 // You can read more here:
 // https://on.cypress.io/configuration
 // ***********************************************************
-import '@cypress/code-coverage/support'
+import "@cypress/code-coverage/support";
 
 // Import commands.js using ES2015 syntax:
-import './commands'
+import "./commands";
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
 
-import { mount } from 'cypress/vue'
-import { mount as mount2 } from 'cypress/vue2'
+import { mount } from "cypress/vue";
+import { mount as mount2 } from "cypress/vue2";
 
 // Augment the Cypress namespace to include type definitions for
 // your custom command.
@@ -30,11 +30,11 @@ import { mount as mount2 } from 'cypress/vue2'
 declare global {
   namespace Cypress {
     interface Chainable {
-      mount: typeof mount
+      mount: typeof mount;
     }
   }
 }
 
-Cypress.Commands.add('mount', mount2)
+Cypress.Commands.add("mount", mount2);
 // Example use:
 // cy.mount(MyComponent)

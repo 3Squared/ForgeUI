@@ -1,7 +1,11 @@
 ﻿<template>
   <div>
     <forge-page-header title="Checkbox" />
-    <p>Further documentation and examples can be found in the <a class="link" target="_blank" href="https://bootstrap-vue.org/docs/components/form-checkbox"><strong>Bootstrap Vue documentation</strong></a>.</p>
+    <p>
+      Further documentation and examples can be found in the
+      <a class="link" target="_blank" href="https://bootstrap-vue.org/docs/components/form-checkbox"><strong>Bootstrap Vue documentation</strong></a>
+      .
+    </p>
     <playground :options="options" :code="code" :config="config" @reset="reset">
       <template #component>
         <component :is="BFormCheckbox" v-bind="options">{{ checkboxLabel }}</component>
@@ -14,40 +18,40 @@
 import { ForgePageHeader } from "@3squared/forge-ui";
 import { BFormCheckbox } from "bootstrap-vue";
 import { computed, ref } from "vue";
-import { buttonVariants, sizes } from '../../../composables/playgroundOptions';
-import { Playground, usePlayground } from '@3squared/forge-playground'
-const checkboxLabel = ref('Checkbox')
+import { buttonVariants, sizes } from "../../../composables/playgroundOptions";
+import { Playground, usePlayground } from "@3squared/forge-playground";
+const checkboxLabel = ref("Checkbox");
 
-const { options, propVals, config, reset } = usePlayground({
-    value: 'true',
-    uncheckedValue: 'false',
+const { options, propVals, config, reset } = usePlayground(
+  {
+    value: "true",
+    uncheckedValue: "false",
     autofocus: false,
     button: false,
     buttonVariant: buttonVariants[0],
     disabled: false,
-    form: '',
-    id: '',
+    form: "",
+    id: "",
     indeterminate: false,
     inline: false,
-    name: 'name',
+    name: "name",
     plain: false,
     required: false,
     size: sizes[1].value,
     switch: false,
-    ariaLabel: '',
-    ariaLabelledby: ''
+    ariaLabel: "",
+    ariaLabelledby: ""
   },
   {
     buttonVariant: { type: "select", options: buttonVariants, required: false, disabled: () => !options.value.button },
-    size: { type: "select", options: sizes, required: false },
+    size: { type: "select", options: sizes, required: false }
   },
   () => {
-    checkboxLabel.value = "Checkbox"
+    checkboxLabel.value = "Checkbox";
   }
-)
+);
 
 const code = computed(() => {
-  return `<b-form-checkbox${propVals.value.length > 0 ? ' ' + propVals.value.join(' ') : ''}>${checkboxLabel.value}</b-form-checkbox>`;
-})
-
+  return `<b-form-checkbox${propVals.value.length > 0 ? " " + propVals.value.join(" ") : ""}>${checkboxLabel.value}</b-form-checkbox>`;
+});
 </script>

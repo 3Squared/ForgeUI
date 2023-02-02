@@ -9,7 +9,9 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "lint": "eslint . --ext .ts,.vue",
+    "lint:fix": "eslint . --ext .ts,.vue --fix"
   },
   "dependencies": {
     "@3squared/forge-ui": "*",
@@ -18,6 +20,7 @@
     "vue": "^2.7.10"
   },
   "devDependencies": {
+    "eslint-config-custom": "*",
     "@types/node": "^18.7.13",
     "@vitejs/plugin-vue2": "^1.1.2",
     "sass": "^1.54.5",

@@ -3,6 +3,5 @@
 </template>
 
 <script setup lang="ts">
-import buttonPlayground from './button.vue'
+import buttonPlayground from "./button.vue";
 </script>
-

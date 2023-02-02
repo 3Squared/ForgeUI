@@ -6,6 +6,6 @@
 import Vue from "vue";
 import { BIconForgeMap } from "@3squared/forge-ui";
 export default Vue.extend({
-  components: {BIconForgeMap}
+  components: { BIconForgeMap }
 });
 </script>

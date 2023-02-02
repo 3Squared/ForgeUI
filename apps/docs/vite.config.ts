@@ -6,14 +6,13 @@ import Markdown from "vite-plugin-md";
 import checker from "vite-plugin-checker";
 //import {VitePWA} from 'vite-plugin-pwa'
 import markdownItPrism from "markdown-it-prism";
-import shell from "shelljs";
 
 import path from "path";
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
   return {
-    server : { 
-      port : 1234
+    server: {
+      port: 1234
     },
     esbuild: {
       jsxFactory: "h",
@@ -23,28 +22,28 @@ export default defineConfig(({ mode }) => {
       alias: [
         {
           find: "@",
-          replacement: path.resolve(__dirname, "src"),
+          replacement: path.resolve(__dirname, "src")
         },
         {
           find: /~(.+)/,
-          replacement: path.join(process.cwd(), "../../node_modules/$1"),
+          replacement: path.join(process.cwd(), "../../node_modules/$1")
         },
         {
           find: "node_modules",
-          replacement: path.join(process.cwd(), "../../node_modules"),
-        },
-      ], 
+          replacement: path.join(process.cwd(), "../../node_modules")
+        }
+      ],
       dedupe: ["bootstrap-vue", "vue"],
-      extensions: [".mjs", ".js", ".ts", ".jsx", ".tsx", ".json", ".vue"],
+      extensions: [".mjs", ".js", ".ts", ".jsx", ".tsx", ".json", ".vue"]
     },
     plugins: [
       /*      DocGenerator(),*/
       Pages({
         extensions: ["vue", "js", "md"],
-        exclude: ["**/examples/*.vue"],
+        exclude: ["**/examples/*.vue"]
       }),
       vue({
-        include: [/\.vue$/, /\.md$/],
+        include: [/\.vue$/, /\.md$/]
       }),
       Markdown({
         exposeFrontmatter: false,
@@ -58,7 +57,7 @@ export default defineConfig(({ mode }) => {
           };
         }
       }),
-      checker({ vueTsc: mode !== "test" }),
+      checker({ vueTsc: mode !== "test" })
       // This doesnt work as of 26/7, uncommenting requires some weird jsx error which causes the build to hang.
       // VitePWA({
       //   includeAssets: ['robots.txt', 'img/icons/favicon.ico'],
@@ -113,21 +112,6 @@ export default defineConfig(({ mode }) => {
       //     ]
       //   }
       // })
-    ],
-
+    ]
   };
 });
-
-
-function DocGenerator() {
-  return {
-    name: "docgen",
-    async buildStart() {
-      try {
-        shell.exec("cd .. && npx vue-docgen");
-      } catch (e) {
-        console.error(e);
-      }
-    }
-  };
-}

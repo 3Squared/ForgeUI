@@ -1,6 +1,6 @@
 ﻿<template>
   <div>
-    <forge-page-header title="Action Button"/>
+    <forge-page-header title="Action Button" />
     <OPTIONS />
     <playground :options="options" :config="config" :code="code" @reset="reset">
       <template #component>
@@ -22,7 +22,7 @@
 import { ForgePageHeader, ForgeActionButton } from "@3squared/forge-ui";
 import { BFormCheckbox, BFormInput } from "bootstrap-vue";
 import { computed, ref, watch } from "vue";
-import { useForgeToasts } from "@3squared/forge-ui"; 
+import { useForgeToasts } from "@3squared/forge-ui";
 import OPTIONS from "./OPTIONS.md";
 import { usePlayground, Playground } from "@3squared/forge-playground";
 import { buttonVariants } from "../../../composables/playgroundOptions";
@@ -33,35 +33,38 @@ const hideSpinner = ref(false);
 const errorMessage = ref("This action failed");
 const content = ref("Action Button");
 
-
-const { options, propVals, config, reset } = usePlayground({
-  action: async () => {
-    if (!hideSpinner.value) {
-      await new Promise(resolve => setTimeout(resolve, 500));
-    }
-    if (throwError.value) {
-      throw errorMessage.value;
-    } else {
-      forgeToast("success", "Action completed successfully!");
-    }
+const { options, propVals, config, reset } = usePlayground(
+  {
+    action: async () => {
+      if (!hideSpinner.value) {
+        await new Promise((resolve) => setTimeout(resolve, 500));
+      }
+      if (throwError.value) {
+        throw errorMessage.value;
+      } else {
+        forgeToast("success", "Action completed successfully!");
+      }
+    },
+    disabled: false,
+    params: ["ArrayOfActionParams"],
+    variant: buttonVariants[0],
+    "error-message": errorMessage.value
   },
-  disabled: false,
-  params: ["ArrayOfActionParams"],
-  variant: buttonVariants[0],
-  "error-message": errorMessage.value
-},
-{
-  variant: { type: "select", options: buttonVariants, required: true },
-  action: { required: true }
-}, 
-() => {
-  content.value = "Action Button";
-  throwError.value = false;
-  hideSpinner.value = false;
-}
+  {
+    variant: { type: "select", options: buttonVariants, required: true },
+    action: { required: true }
+  },
+  () => {
+    content.value = "Action Button";
+    throwError.value = false;
+    hideSpinner.value = false;
+  }
 );
 
-watch(() => options.value["error-message"], (message) => errorMessage.value = message);
+watch(
+  () => options.value["error-message"],
+  (message) => (errorMessage.value = message)
+);
 
 const code = computed(() => `<forge-action-button ${propVals.value.join(" ")}>${content.value}</forge-action-button>`);
 </script>
