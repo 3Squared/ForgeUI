@@ -119,8 +119,12 @@ export const ForgeMultiSelect = /*#__PURE__*/ Vue.extend({
         allowEmpty: true,
         ...this.multiSelectDefaults,
         ...this.$attrs,
+        searchable: this.shouldDisplaySearch,
         value: this.selectValue ? options.filter(o => this.$attrs.value && this.$attrs.value.includes(o[this.selectValue])) : this.$attrs.value
       };
+    },
+    shouldDisplaySearch(): boolean {
+      return (this.$attrs.searchable == null || this.$attrs.searchable as unknown as boolean) && !this.isAllSelected;
     },
     optionHighlight(): string {
       return 'multiselect__option' +
