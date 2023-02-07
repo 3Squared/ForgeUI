@@ -40,6 +40,7 @@ type StepperConfig = VariantConfig;
 type MultiSelectConfig = VariantConfig;
 type StatWidgetConfig = VariantConfig;
 type FilterHeaderConfig = VariantConfig;
+type LoaderConfig = VariantConfig;
 
 interface DatePickerConfig extends VariantConfig {
   hideCalendarIcon?: false;
@@ -51,6 +52,7 @@ interface ForgeGlobalConfig {
   MultiSelect?: MultiSelectConfig;
   StatWidget?: StatWidgetConfig;
   FilterHeader?: FilterHeaderConfig;
+  Loader?: LoaderConfig;
 }
 
 const ForgeGlobalConfigPlugin: PluginObject<any> = {
