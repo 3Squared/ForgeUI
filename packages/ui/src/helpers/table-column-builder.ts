@@ -19,21 +19,19 @@ export class ForgeColumnBuilder<T extends Record<string, any>> {
   }
 
   disableSorting() {
-    this.columns.forEach(col => {
+    this.columns.forEach((col) => {
       col.disableSorting();
     });
     return this;
   }
 
   build(): ForgeTableFieldKeyed[] {
-    return this.columns.map(c => c.build());
+    return this.columns.map((c) => c.build());
   }
 }
 
 class ForgeColumnConfiguration<T> {
-  constructor(private column: ForgeTableFieldKeyed) {
-  }
-
+  constructor(private column: ForgeTableFieldKeyed) {}
 
   addFormatter(formatter: (key: string, val: any, item: T) => any, sortByFormatter?: boolean) {
     this.column.formatter = formatter;
@@ -88,5 +86,3 @@ class ForgeColumnConfiguration<T> {
     return this.column;
   }
 }
-
-

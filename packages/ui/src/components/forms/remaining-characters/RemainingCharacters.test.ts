@@ -5,7 +5,6 @@ import { describe, it, expect } from "vitest";
 import { shallowMount } from "@vue/test-utils";
 import ForgeRemainingCharacters from "./RemainingCharacters.vue";
 
-
 describe("remaining characters tests", () => {
   it("display remaining count", () => {
     const wrapper = shallowMount(ForgeRemainingCharacters, {
@@ -15,9 +14,7 @@ describe("remaining characters tests", () => {
       }
     });
     expect(wrapper.find("div").text()).toBe("Remaining characters: 10");
-
-  }); 
-  
+  });
 
   it("update remaining count", async () => {
     const wrapper = shallowMount(ForgeRemainingCharacters, {
@@ -31,7 +28,5 @@ describe("remaining characters tests", () => {
     });
     await wrapper.vm.$nextTick();
     expect(wrapper.text()).toBe("Remaining characters: 50");
-
   });
 });
-

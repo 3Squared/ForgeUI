@@ -14,7 +14,7 @@ function useForgeValidation(): (name: string, schema: ValidationRule) => void {
   });
   extend("telephone", {
     validate: telephoneNumberValidator,
-    message: "Must be a valid UK phone number" 
+    message: "Must be a valid UK phone number"
   });
   extend("alpha", {
     ...alpha,
@@ -46,7 +46,6 @@ function useForgeValidation(): (name: string, schema: ValidationRule) => void {
     validate: urlValidator,
     message: "{_field_} must be a valid URL"
   });
-
 
   return extend;
 }

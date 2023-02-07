@@ -25,50 +25,52 @@ import rgbHex from "rgb-hex";
 
 const palettes = [
   {
-    title: 'Neutral Shades', colours: [
+    title: "Neutral Shades",
+    colours: [
       {
         shades: [
-          { background: 'bg-grey-900', text: 'text-grey-900', label: 'Grey 900' },
-          { background: 'bg-grey-800', text: 'text-grey-800', label: 'Grey 800' },
-          { background: 'bg-grey-700', text: 'text-grey-700', label: 'Grey 700' },
-          { background: 'bg-grey-600', text: 'text-grey-600', label: 'Grey 600' },
-          { background: 'bg-grey-500', text: 'text-grey-500', label: 'Grey 500' },
-          { background: 'bg-grey-400', text: 'text-grey-400', label: 'Grey 400' },
-          { background: 'bg-grey-300', text: 'text-grey-300', label: 'Grey 300' },
-          { background: 'bg-grey-200', text: 'text-grey-200', label: 'Grey 200' },
-          { background: 'bg-grey-100', text: 'text-grey-100', label: 'Grey 100' }
+          { background: "bg-grey-900", text: "text-grey-900", label: "Grey 900" },
+          { background: "bg-grey-800", text: "text-grey-800", label: "Grey 800" },
+          { background: "bg-grey-700", text: "text-grey-700", label: "Grey 700" },
+          { background: "bg-grey-600", text: "text-grey-600", label: "Grey 600" },
+          { background: "bg-grey-500", text: "text-grey-500", label: "Grey 500" },
+          { background: "bg-grey-400", text: "text-grey-400", label: "Grey 400" },
+          { background: "bg-grey-300", text: "text-grey-300", label: "Grey 300" },
+          { background: "bg-grey-200", text: "text-grey-200", label: "Grey 200" },
+          { background: "bg-grey-100", text: "text-grey-100", label: "Grey 100" }
         ]
       }
     ]
   },
   {
-    title: 'System Colours', colours: [
+    title: "System Colours",
+    colours: [
       {
         shades: [
-          { background: 'bg-primary', text: 'text-primary', label: 'Primary' },
-          { background: 'bg-secondary', text: 'text-secondary', label: 'Secondary' },
-          { background: 'bg-info', text: 'text-info', label: 'Info' },
-          { background: 'bg-success', text: 'text-success', label: 'Success' },
-          { background: 'bg-warning', text: 'text-warning', label: 'Warning' },
-          { background: 'bg-danger', text: 'text-danger', label: 'Danger' },
-          { background: 'bg-light', text: 'text-light', label: 'Light' },
-          { background: 'bg-dark', text: 'text-dark', label: 'Dark' }
+          { background: "bg-primary", text: "text-primary", label: "Primary" },
+          { background: "bg-secondary", text: "text-secondary", label: "Secondary" },
+          { background: "bg-info", text: "text-info", label: "Info" },
+          { background: "bg-success", text: "text-success", label: "Success" },
+          { background: "bg-warning", text: "text-warning", label: "Warning" },
+          { background: "bg-danger", text: "text-danger", label: "Danger" },
+          { background: "bg-light", text: "text-light", label: "Light" },
+          { background: "bg-dark", text: "text-dark", label: "Dark" }
         ]
       }
     ]
   }
-]
+];
 
 const copyToClipboard = (value: string) => {
-  navigator.clipboard.writeText(value)
-}
+  navigator.clipboard.writeText(value);
+};
 
 const getColour = (colour: string) => {
-  const swatch = document.getElementById(`swatch-${colour}`) as Element
-  const swatchStyles = getComputedStyle(swatch)
-  const hex = `#${rgbHex(swatchStyles.backgroundColor)}`
-  copyToClipboard(hex)
-}
+  const swatch = document.getElementById(`swatch-${colour}`) as Element;
+  const swatchStyles = getComputedStyle(swatch);
+  const hex = `#${rgbHex(swatchStyles.backgroundColor)}`;
+  copyToClipboard(hex);
+};
 </script>
 
 <style lang="scss">

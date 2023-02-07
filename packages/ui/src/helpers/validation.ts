@@ -1,5 +1,5 @@
-import Vue, { VueConstructor } from 'vue';
-import { ValidationObserver, ValidationProvider } from 'vee-validate';
+import Vue, { VueConstructor } from "vue";
+import { ValidationObserver, ValidationProvider } from "vee-validate";
 
 export interface ValidationFlags {
   dirty: boolean;
@@ -23,13 +23,15 @@ export function getValidationState({ dirty, validated, valid }: ValidationFlags)
   return dirty || validated ? (valid ? null : false) : null;
 }
 
-export const ValidateableComponent = /*#__PURE__*/ (Vue as VueConstructor<
-  Vue & {
-    $refs: {
-      observer: InactiveRefCache & InstanceType<typeof ValidationObserver>;
-    };
-  }
->).extend({
+export const ValidateableComponent = /*#__PURE__*/ (
+  Vue as VueConstructor<
+    Vue & {
+      $refs: {
+        observer: InactiveRefCache & InstanceType<typeof ValidationObserver>;
+      };
+    }
+  >
+).extend({
   components: {
     ValidationObserver,
     ValidationProvider

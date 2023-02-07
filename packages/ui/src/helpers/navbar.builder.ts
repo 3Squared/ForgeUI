@@ -3,7 +3,7 @@ export interface Location {
   path?: string;
   hash?: string;
   query?: Record<string, string | (string | null)[] | null | undefined>;
-  params?: Record<string,  string>;
+  params?: Record<string, string>;
   append?: boolean;
   replace?: boolean;
 }
@@ -16,7 +16,7 @@ interface NavItem {
 }
 
 export interface Page extends NavItem {
-  type: 'page';
+  type: "page";
   to?: Location;
   active?: boolean;
   href?: string;
@@ -25,7 +25,7 @@ export interface Page extends NavItem {
 }
 
 export interface Section extends NavItem {
-  type: 'section';
+  type: "section";
   children: Page[];
   selected: boolean;
 }
@@ -64,8 +64,8 @@ export class ForgeNavbarBuilder {
 
 export class PageBuilder {
   private page: Page = {
-    type: 'page',
-    label: '',
+    type: "page",
+    label: "",
     active: false,
     disabled: false,
     visible: true,
@@ -125,8 +125,8 @@ export class PageBuilder {
 
 export class SectionBuilder {
   private section: Section = {
-    type: 'section',
-    label: '',
+    type: "section",
+    label: "",
     children: [],
     selected: false,
     disabled: false,

@@ -9,7 +9,7 @@
           <template #modal-header>
             {{ modalTitle }}
           </template>
-          {{ modalContent}}
+          {{ modalContent }}
           <template #loader>
             <div class="forge-loader">Loading...</div>
           </template>
@@ -31,47 +31,54 @@
 </template>
 
 <script setup lang="ts">
-import { ForgePageHeader, ForgeToasts, ForgeModal } from "@3squared/forge-ui";
+import { ForgePageHeader, ForgeModal } from "@3squared/forge-ui";
 import { computed, ref } from "vue";
 import { useForgeToasts } from "@3squared/forge-ui";
-import { BButton, BFormCheckbox, BFormInput, VBModal } from 'bootstrap-vue'
-import OPTIONS from './OPTIONS.md'
-import { usePlayground, Playground } from '@3squared/forge-playground';
+import { BButton, BFormCheckbox, BFormInput, VBModal } from "bootstrap-vue";
+import OPTIONS from "./OPTIONS.md";
+import { usePlayground, Playground } from "@3squared/forge-playground";
 
-const { forgeToast } = useForgeToasts()
-const vBModal = VBModal
-const showLoader = ref(false)
+const { forgeToast } = useForgeToasts();
+const vBModal = VBModal;
+const showLoader = ref(false);
 
-const modalTitle = ref('Title')
-const modalContent = ref('Content')
+const modalTitle = ref("Title");
+const modalContent = ref("Content");
 
-const { options, propVals, config, reset } = usePlayground({
+const { options, propVals, config, reset } = usePlayground(
+  {
     onConfirm: async () => {
-      if(showLoader.value){
-        await new Promise(resolve => setTimeout(resolve, 1000))
+      if (showLoader.value) {
+        await new Promise((resolve) => setTimeout(resolve, 1000));
       }
-      forgeToast('success', 'Modal Confirmed!')
+      forgeToast("success", "Modal Confirmed!");
     },
     legacy: false
-  }, {
+  },
+  {
     onConfirm: { required: true }
-  }, () => {
-    showLoader.value = false
-    modalTitle.value = 'Title'
-    modalContent.value = 'Content'
+  },
+  () => {
+    showLoader.value = false;
+    modalTitle.value = "Title";
+    modalContent.value = "Content";
   }
-)
+);
 
 const code = computed(() => {
   return `<b-button v-b-modal.modal>Show Modal</b-button>
-<forge-modal ${propVals.value.join(' ')}>
+<forge-modal ${propVals.value.join(" ")}>
   <template #modal-header>
     ${modalTitle.value}
   </template>
-  ${modalContent.value}${showLoader.value ? `
+  ${modalContent.value}${
+    showLoader.value
+      ? `
   <template #loader>
     <div class="forge-loader">Loading...</div>
-  </template>` : ``}
-</forge-modal>`
-})
+  </template>`
+      : ``
+  }
+</forge-modal>`;
+});
 </script>

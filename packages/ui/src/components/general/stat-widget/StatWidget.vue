@@ -15,12 +15,12 @@ import Vue from "vue";
  **/
 export const ForgeStatWidget = /*#__PURE__*/ Vue.extend({
   name: "ForgeStatWidget",
-  props: { 
+  props: {
     /** A Prop to show the size of the widget sm, md or lg */
     size: {
       type: String,
       default: "md",
-      validator(value : string) {
+      validator(value: string) {
         return ["sm", "md", "lg"].indexOf(value) !== -1;
       }
     },
@@ -30,7 +30,7 @@ export const ForgeStatWidget = /*#__PURE__*/ Vue.extend({
     }
   },
   computed: {
-    classes() : string {
+    classes(): string {
       return `widget--${this.size} bg-${this.variant}`;
     }
   }

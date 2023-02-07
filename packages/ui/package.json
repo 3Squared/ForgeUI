@@ -16,6 +16,8 @@
   "scripts": {
     "dev" : "vite build --watch",
     "build": "node scripts/build.js",
+    "lint": "eslint . --ext .ts,.vue",
+    "lint:fix": "eslint . --ext .ts,.vue --fix",
     "cy": "cypress open --component --browser chrome",
     "test": "cypress run --component && npm run coverage && node ./scripts/merge.js",
     "test-unit": "vitest --ui --coverage",
@@ -39,6 +41,7 @@
     "vuedraggable": "2.24.3"
   },
   "devDependencies": {
+    "eslint-config-custom": "*",
     "vite-plugin-checker": "^0.5.1",
     "@cypress/code-coverage": "^3.10.0",
     "@types/lodash": "^4.14.182",

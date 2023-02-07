@@ -1,3 +1,3 @@
-declare module '@3squared/forge-ui'
+declare module "@3squared/forge-ui";
 
-import '../index.ts'
+import "../index.ts";

@@ -1,13 +1,15 @@
 module.exports = {
+  ignorePatterns: ["*.vue.d.ts", "dist/**", "icons.ts"],
   env: {
     browser: true,
     es2021: true,
   },
   extends: [
     "eslint:recommended",
-    "plugin:vue/essential",
     "plugin:@typescript-eslint/recommended",
-    "prettier",
+    "plugin:vue/recommended",
+    "@vue/typescript",
+    "@vue/prettier",
   ],
   overrides: [],
   parser: "vue-eslint-parser",
@@ -16,15 +18,45 @@ module.exports = {
     sourceType: "module",
     parser: "@typescript-eslint/parser",
   },
-
-  plugins: ["vue", "@typescript-eslint", "unused-imports"],
+  plugins: ["unused-imports"],
   rules: {
-    indent: ["error", 2],
-    quotes: ["error", "double", {"allowTemplateLiterals": true}],
-    semi: ["error", "always"],
-    "vue/multi-word-component-names": "off",
+    "prettier/prettier": [
+      "error",
+      {
+        "tabWidth": 2,
+        "useTabs": false,
+        "printWidth": 160,
+        "singleQuote": false,
+        "trailingComma": "none",
+        "bracketSpacing": true,
+        "bracketSemiLine": false,
+        "arrowParens": "always",
+        "endOfLine": "auto",
+        htmlWhitespaceSensitivity: "ignore"
+      }
+    ],
+    "no-console": process.env.NODE_ENV === "production" ? "error" : "warn",
+    "no-debugger": process.env.NODE_ENV === "production" ? "error" : "warn",
     "no-undef": "off",
     "@typescript-eslint/no-non-null-assertion": "off",
+    "vue/require-prop-types": "error",
+    "vue/this-in-template": ["error", "never"],
+    "vue/max-attributes-per-line": "off",
+    "vue/require-v-for-key": "off",
+    "@typescript-eslint/ban-ts-comment": "warn",
+    "no-useless-escape": "warn",
+    "vue/html-closing-bracket-newline": [
+      "error",
+      {
+        singleline: "never",
+        multiline: "always"
+      }
+    ],
+    "vue/multi-word-component-names": "off",
     "vue/no-mutating-props": "off",
+    //turned off to pass build
+    "@typescript-eslint/no-empty-function": "warn",
+    "@typescript-eslint/no-namespace": "warn",
+    "@typescript-eslint/no-var-requires": "warn"
   },
 };

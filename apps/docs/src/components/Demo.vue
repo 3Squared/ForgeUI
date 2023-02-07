@@ -4,9 +4,7 @@
       <component :is="component"></component>
     </div>
     <div v-if="code">
-      <b-button class="mt-2" :variant="codeVisible ? 'primary' : 'outline-primary'" @click="codeVisible = !codeVisible"> 
-        View Code
-      </b-button>
+      <b-button class="mt-2" :variant="codeVisible ? 'primary' : 'outline-primary'" @click="codeVisible = !codeVisible">View Code</b-button>
       <b-collapse v-model="codeVisible" class="mt-2 position-relative">
         <b-button class="copy-code text-white" variant="link">
           Copy
@@ -19,12 +17,12 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import { BButton, BCollapse, BIconClipboard } from 'bootstrap-vue';
-import Prism from 'prismjs';
+import Vue from "vue";
+import { BButton, BCollapse, BIconClipboard } from "bootstrap-vue";
+import Prism from "prismjs";
 
 export default Vue.extend({
-  name: 'Demo',
+  name: "Demo",
   components: { BButton, BCollapse, BIconClipboard },
   props: {
     component: {
@@ -36,22 +34,22 @@ export default Vue.extend({
       required: true
     }
   },
+  data() {
+    return {
+      codeVisible: false
+    };
+  },
   computed: {
     formattedCode() {
-      const html = Prism.highlight(this.code, Prism.languages.markup, 'vue');
+      const html = Prism.highlight(this.code, Prism.languages.markup, "vue");
       return html;
     }
   },
   methods: {
     copyCode() {
       navigator.clipboard.writeText(this.code);
-      this.$forgeToast('success', 'Example Successfully Copied');
+      this.$forgeToast("success", "Example Successfully Copied");
     }
-  },
-  data() {
-    return {
-      codeVisible: false
-    };
   }
 });
 </script>
@@ -70,7 +68,6 @@ export default Vue.extend({
     color: white;
   }
 }
-
 
 .copy-code {
   position: absolute;

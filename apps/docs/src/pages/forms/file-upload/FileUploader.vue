@@ -1,11 +1,11 @@
 ﻿<template>
   <div>
     <forge-page-header title="File Uploader" />
-    <OPTIONS/>
+    <OPTIONS />
     <playground :options="options" :code="code" :config="config" @reset="reset">
       <template #component>
         <component :is="ForgeFileUpload" v-bind="options" class="w-100 p-2">
-          <template #message>{{message}}</template>
+          <template #message>{{ message }}</template>
         </component>
       </template>
       <template #additionalOptions>
@@ -20,34 +20,35 @@
 import { ForgePageHeader, ForgeFileUpload, useForgeToasts } from "@3squared/forge-ui";
 import { BFormInput } from "bootstrap-vue";
 import { computed, ref } from "vue";
-import OPTIONS from './OPTIONS.md'
-import { usePlayground, Playground } from '@3squared/forge-playground';
+import OPTIONS from "./OPTIONS.md";
+import { usePlayground, Playground } from "@3squared/forge-playground";
 
-const { forgeToast } = useForgeToasts()
+const { forgeToast } = useForgeToasts();
 
-const message = ref('Please upload your file.')
+const message = ref("Please upload your file.");
 
-const { options, propVals, config, reset } = usePlayground({
+const { options, propVals, config, reset } = usePlayground(
+  {
     autoUploadToBlob: true,
     multiple: true,
-    getFileUrlAction: (fileName: string) => forgeToast('success', `${fileName} has been uploaded!`),
-    placeholder: 'Browse your computer',
-    acceptedFileTypes: '',
+    getFileUrlAction: (fileName: string) => forgeToast("success", `${fileName} has been uploaded!`),
+    placeholder: "Browse your computer",
+    acceptedFileTypes: "",
     maxFileSize: 52428800,
     maxFileInput: 2
   },
   {
     getFileUrlAction: { required: true },
-    maxFileInput: { disabled: () => !options.value.multiple}
+    maxFileInput: { disabled: () => !options.value.multiple }
   },
   () => {
-    message.value = "Please upload your file."
+    message.value = "Please upload your file.";
   }
-)
+);
 
 const code = computed(() => {
-  return `<forge-file-upload ${propVals.value.join(' ')}>
+  return `<forge-file-upload ${propVals.value.join(" ")}>
   <template #message>${message.value}</template>
 </forge-file-upload>`;
-})
+});
 </script>

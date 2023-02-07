@@ -1,6 +1,15 @@
 <template>
-  <b-modal ref="modal" class="position-relative" @ok="success" v-bind="mergedAttrs" v-on="$listeners"
-           @hidden="reset($event); preventBackgroundScroll(false)" @show="preventBackgroundScroll(true)"
+  <b-modal
+    ref="modal"
+    class="position-relative"
+    v-bind="mergedAttrs"
+    @ok="success"
+    v-on="$listeners"
+    @hidden="
+      reset($event);
+      preventBackgroundScroll(false);
+    "
+    @show="preventBackgroundScroll(true)"
   >
     <template v-for="(_, slot) of $scopedSlots" #[slot]="scope">
       <div :key="slot" class="w-100">
@@ -16,7 +25,7 @@
         </template>
         <slot :name="slot" v-bind="scope" />
         <template v-if="slot === 'default'">
-          <slot name="loader" v-if="loading">
+          <slot v-if="loading" name="loader">
             <forge-loader></forge-loader>
           </slot>
         </template>
@@ -26,23 +35,23 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import { BModal, BAlert, BvModalEvent } from 'bootstrap-vue';
-import ForgeLoader from '../loader/Loader.vue';
-import { parseError } from '../../../helpers/index';
-import cloneDeep from 'lodash/cloneDeep';
+import { defineComponent } from "vue";
+import { BModal, BAlert, BvModalEvent } from "bootstrap-vue";
+import ForgeLoader from "../loader/Loader.vue";
+import { parseError } from "../../../helpers/index";
+import cloneDeep from "lodash/cloneDeep";
 
 interface ModalError {
-  hasError: boolean,
-  header: string,
-  message: string[]
+  hasError: boolean;
+  header: string;
+  message: string[];
 }
 
 /**
  * @displayName Modal
  **/
 export const ForgeModal = /*#__PURE__*/ defineComponent({
-  name: 'ForgeModal',
+  name: "ForgeModal",
   components: { BModal, BAlert, ForgeLoader },
   inheritAttrs: false,
   props: {
@@ -61,16 +70,26 @@ export const ForgeModal = /*#__PURE__*/ defineComponent({
       error: {} as ModalError,
       emptyError: {
         hasError: false,
-        header: '',
+        header: "",
         message: []
       }
     };
+  },
+  computed: {
+    mergedAttrs(): object {
+      return {
+        centered: true,
+        cancelVariant: "outline-secondary modal-cancel",
+        hideHeaderClose: true,
+        ...this.$attrs
+      };
+    }
   },
   created() {
     this.error = cloneDeep(this.emptyError);
   },
   methods: {
-    async success(event : BvModalEvent) {
+    async success(event: BvModalEvent) {
       if (this.onConfirm) {
         event.preventDefault();
 
@@ -91,31 +110,21 @@ export const ForgeModal = /*#__PURE__*/ defineComponent({
         this.loading = false;
       }
     },
-    async reset(event : Event) {
+    async reset(event: Event) {
       this.error = this.error = cloneDeep(this.emptyError);
       this.loading = false;
-      this.$emit('hidden', event);
+      this.$emit("hidden", event);
     },
-    preventBackgroundScroll(open : boolean) {
+    preventBackgroundScroll(open: boolean) {
       if (this.legacy) {
         if (open) {
-          document.body.classList.add('modal-open');
+          document.body.classList.add("modal-open");
         } else {
-          document.body.classList.remove('modal-open');
+          document.body.classList.remove("modal-open");
         }
       }
-    },
-  },
-  computed: {
-    mergedAttrs() : Object{
-      return {
-        centered: true,
-        cancelVariant: 'outline-secondary modal-cancel',
-        hideHeaderClose: true,
-        ...this.$attrs
-      };
     }
-  },
+  }
 });
 
 export default ForgeModal;

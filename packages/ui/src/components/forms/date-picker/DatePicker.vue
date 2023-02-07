@@ -5,7 +5,7 @@
       <slot name="before" />
     </div>
 
-    <input type="text" class="form-control flatpickr-input order-1" v-bind="$attrs" @input="onInput" data-input />
+    <input type="text" class="form-control flatpickr-input order-1" v-bind="$attrs" data-input @input="onInput" />
 
     <div v-if="!hideCalendarIcon" class="order-2">
       <b-icon-calendar3 class="forge-date-picker-icon ml-2" :variant="variant" data-toggle />
@@ -19,12 +19,12 @@
 </template>
 
 <script lang="ts">
-import Vue, { PropType } from 'vue';
-import { BIconCalendar3 } from 'bootstrap-vue';
-import flatpickr from 'flatpickr';
-import { ForgeDatePickerNormalizer, kebabToCamel } from '../../../helpers/index';
-import { stringNormalizer } from '@/helpers/date-picker-normalizers';
-import { HtmlBooleanAttributes, IgnoredVueEvents } from './helpers';
+import Vue, { PropType } from "vue";
+import { BIconCalendar3 } from "bootstrap-vue";
+import flatpickr from "flatpickr";
+import { ForgeDatePickerNormalizer, kebabToCamel } from "../../../helpers/index";
+import { stringNormalizer } from "@/helpers/date-picker-normalizers";
+import { HtmlBooleanAttributes, IgnoredVueEvents } from "./helpers";
 
 type Config = flatpickr.Options.Options;
 
@@ -32,17 +32,8 @@ type Config = flatpickr.Options.Options;
  * @displayName Date Picker
  */
 export const ForgeDatePicker = /*#__PURE__*/ Vue.extend({
-  name: 'ForgeDatePicker',
+  name: "ForgeDatePicker",
   components: { BIconCalendar3 },
-  data() {
-    return {
-      fpInstance: {} as flatpickr.Instance,
-
-      fpDefaultConfig: {
-        dateFormat: 'Z'
-      } as Config
-    };
-  },
 
   props: {
     /**
@@ -85,7 +76,7 @@ export const ForgeDatePicker = /*#__PURE__*/ Vue.extend({
      */
     variant: {
       type: String,
-      default: () => Vue.prototype?.ForgeSettings?.DatePicker?.variant ?? 'primary'
+      default: () => Vue.prototype?.ForgeSettings?.DatePicker?.variant ?? "primary"
     },
 
     /**
@@ -96,32 +87,26 @@ export const ForgeDatePicker = /*#__PURE__*/ Vue.extend({
       default: () => Vue.prototype?.ForgeSettings?.DatePicker?.hideCalendarIcon ?? false
     }
   },
+  data() {
+    return {
+      fpInstance: {} as flatpickr.Instance,
 
-  methods: {
-    /**
-     * Update v-model on <input> value change
-     */
-    onInput() {
-      const normalizedValue = this.fpSingle ? this.normalizer.fromNative(this.fpValue as Date) : (this.fpValue as Date[]).map(this.normalizer.fromNative);
-
-      this.$emit('input', normalizedValue);
-    },
-
-    datesEqual(d1: Date | null, d2: Date | null) {
-      return d1?.getTime() === d2?.getTime();
-    }
+      fpDefaultConfig: {
+        dateFormat: "Z"
+      } as Config
+    };
   },
 
   computed: {
     staticMountEl(): HTMLElement {
-      const id = 'flatpickr-calendar-static-mount';
+      const id = "flatpickr-calendar-static-mount";
       let el = document.getElementById(id);
 
       if (el) {
         return el;
       }
 
-      el = document.createElement('div');
+      el = document.createElement("div");
       el.id = id;
       return this.$root.$el.appendChild(el);
     },
@@ -144,7 +129,7 @@ export const ForgeDatePicker = /*#__PURE__*/ Vue.extend({
            * @property {string} currentDateString value that was set before the change
            * @property {any} data value that was set before the change
            */
-          this.$emit('on-close', dates, currentDateString, instance, data);
+          this.$emit("on-close", dates, currentDateString, instance, data);
         }
       };
     },
@@ -157,7 +142,7 @@ export const ForgeDatePicker = /*#__PURE__*/ Vue.extend({
     },
 
     fpSingle(): boolean {
-      return this.fpInstance.config.mode === 'single';
+      return this.fpInstance.config.mode === "single";
     },
 
     fpValue(): Date | Date[] {
@@ -197,10 +182,10 @@ export const ForgeDatePicker = /*#__PURE__*/ Vue.extend({
     },
 
     state() {
-      this.fpEl.classList[this.state === false ? 'add' : 'remove']('is-invalid');
+      this.fpEl.classList[this.state === false ? "add" : "remove"]("is-invalid");
     },
 
-    ['$attrs']: {
+    ["$attrs"]: {
       handler() {
         for (const [key, value] of Object.entries(this.$attrs)) {
           // Add/remove boolean attributes
@@ -238,13 +223,28 @@ export const ForgeDatePicker = /*#__PURE__*/ Vue.extend({
 
       // Backwards compatability
       // Warn v-on directives prefixed with 'on-' prefix
-      let resolvedName = kebabToCamel((!eventName.startsWith('on-') ? 'on-' : '') + eventName);
+      let resolvedName = kebabToCamel((!eventName.startsWith("on-") ? "on-" : "") + eventName);
 
       Object.assign(options, { [resolvedName]: eventFunc });
     }
     this.fpInstance = flatpickr(this.$el, options);
 
     this.fpInstance.calendarContainer.classList.add(`flatpickr-calendar--${this.variant}`);
+  },
+
+  methods: {
+    /**
+     * Update v-model on <input> value change
+     */
+    onInput() {
+      const normalizedValue = this.fpSingle ? this.normalizer.fromNative(this.fpValue as Date) : (this.fpValue as Date[]).map(this.normalizer.fromNative);
+
+      this.$emit("input", normalizedValue);
+    },
+
+    datesEqual(d1: Date | null, d2: Date | null) {
+      return d1?.getTime() === d2?.getTime();
+    }
   }
 });
 

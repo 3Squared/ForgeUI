@@ -1,34 +1,40 @@
 <template>
   <div>
-    <forge-page-header title="Popover"/>
-    <p>Further documentation and examples can be found in the <a class="link" target="_blank" href="https://bootstrap-vue.org/docs/components/popover"><strong>Bootstrap Vue documentation</strong></a>.</p>
+    <forge-page-header title="Popover" />
+    <p>
+      Further documentation and examples can be found in the
+      <a class="link" target="_blank" href="https://bootstrap-vue.org/docs/components/popover">
+        <strong>Bootstrap Vue documentation</strong>
+      </a>
+      .
+    </p>
     <playground :options="options" :code="code" :config="config" @reset="reset">
       <template #component>
         <b-button id="popover-button">Button</b-button>
-        <component :is="BPopover" v-bind="options"/>
+        <component :is="BPopover" v-bind="options" />
       </template>
       <template #placement>
         <div class="mb-2">
           <label>placement</label>
-          <b-form-select :options="placement" v-model="options.placement" />
+          <b-form-select v-model="options.placement" :options="placement" />
         </div>
       </template>
       <template #boundary>
         <div class="mb-2">
           <label>boundary</label>
-          <b-form-select :options="boundary" v-model="options.boundary" />
+          <b-form-select v-model="options.boundary" :options="boundary" />
         </div>
       </template>
       <template #fallback-placement>
         <div class="mb-2">
           <label>fallback-placement</label>
-          <b-form-select :options="fallbackPlacement" v-model="options.fallbackPlacement" />
+          <b-form-select v-model="options.fallbackPlacement" :options="fallbackPlacement" />
         </div>
       </template>
       <template #triggers>
         <div class="mb-2">
           <label>triggers</label>
-          <b-form-select :options="triggers" v-model="options.triggers" />
+          <b-form-select v-model="options.triggers" :options="triggers" />
         </div>
       </template>
     </playground>
@@ -37,46 +43,49 @@
 
 <script setup lang="ts">
 import { ForgePageHeader } from "@3squared/forge-ui";
-import { BPopover, BButton, BFormSelect } from 'bootstrap-vue'
+import { BPopover, BButton, BFormSelect } from "bootstrap-vue";
 import { computed } from "vue";
-import { usePlayground, Playground } from '@3squared/forge-playground';
-import { baseVariants, boundary, fallbackPlacement, placement, triggers } from '../../../composables/playgroundOptions';
+import { usePlayground, Playground } from "@3squared/forge-playground";
+import { baseVariants, boundary, fallbackPlacement, placement, triggers } from "../../../composables/playgroundOptions";
 
-const { options, propVals, config, reset } = usePlayground({
-  noFade: false,
-  disabled: false,
-  target: 'popover-button',
-  title: 'Popover Title',
-  variant: baseVariants[0],
-  content: 'Popover Content',
-  id: '',
-  placement: placement[0],
-  fallbackPlacement: fallbackPlacement[0],
-  triggers: triggers[0],
-  delay: 50,
-  offset: 0,
-  container: '',
-  boundary: boundary[0],
-  boundaryParent: 5,
-  customClass: ''
-}, {
-  target: { required: true },
-  title: { required: true },
-  variant: { type: "select", options: baseVariants, required: true },
-  content: { required: true },
-  placement: { type: "select", options: placement, required: false },
-  fallbackPlacement: { type: "select", options: fallbackPlacement, required: false },
-  triggers: { type: "select", options: triggers, required: false },
-  boundary: { type: "select", options: boundary, required: false },
-})
+const { options, propVals, config, reset } = usePlayground(
+  {
+    noFade: false,
+    disabled: false,
+    target: "popover-button",
+    title: "Popover Title",
+    variant: baseVariants[0],
+    content: "Popover Content",
+    id: "",
+    placement: placement[0],
+    fallbackPlacement: fallbackPlacement[0],
+    triggers: triggers[0],
+    delay: 50,
+    offset: 0,
+    container: "",
+    boundary: boundary[0],
+    boundaryParent: 5,
+    customClass: ""
+  },
+  {
+    target: { required: true },
+    title: { required: true },
+    variant: { type: "select", options: baseVariants, required: true },
+    content: { required: true },
+    placement: { type: "select", options: placement, required: false },
+    fallbackPlacement: { type: "select", options: fallbackPlacement, required: false },
+    triggers: { type: "select", options: triggers, required: false },
+    boundary: { type: "select", options: boundary, required: false }
+  }
+);
 
 const code = computed(() => {
   return `<b-button id="${options.value.target}">Button</b-button>
-<b-popover ${propVals.value.join(' ')}>
+<b-popover ${propVals.value.join(" ")}>
   <template #title>
-   ${ options.value.title }
+   ${options.value.title}
   </template>
-  ${ options.value.content }
+  ${options.value.content}
 </b-popover>`;
-})
+});
 </script>

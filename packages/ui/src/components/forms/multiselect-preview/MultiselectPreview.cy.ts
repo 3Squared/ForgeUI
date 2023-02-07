@@ -31,7 +31,7 @@ describe("MultiSelectPreview.vue", () => {
         "data-cy": "forge-multiselect-preview-1"
       }
     });
-    
+
     cy.get("[data-cy=forge-multiselect-preview-1]").contains("Andrew Powell (Senior)");
     cy.get("[data-cy=forge-multiselect-preview-1]").contains("Tom Smith (Senior)");
     cy.get("[data-cy=forge-multiselect-preview-1]").contains("Hamza Mahmood (Dev)");

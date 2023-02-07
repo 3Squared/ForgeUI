@@ -5,13 +5,14 @@
 </template>
 
 <script lang="ts">
-import { BSpinner } from 'bootstrap-vue';
+import { BSpinner } from "bootstrap-vue";
 import Vue from "vue";
 /**
  * @displayName Loader
  **/
 export const ForgeLoader = /*#__PURE__*/ Vue.extend({
-  name: 'ForgeLoader',
+  name: "ForgeLoader",
+  components: { BSpinner },
   props: {
     label: {
       type: String,
@@ -21,9 +22,8 @@ export const ForgeLoader = /*#__PURE__*/ Vue.extend({
       type: String,
       default: () => Vue.prototype?.ForgeSettings?.StatWidget?.variant ?? "primary"
     }
-  },
-  components: { BSpinner }
-})
+  }
+});
 
 export default ForgeLoader;
 </script>

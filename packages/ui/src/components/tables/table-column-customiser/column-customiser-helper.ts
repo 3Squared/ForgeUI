@@ -1,11 +1,11 @@
-import { ForgeTableField, ForgeTableFieldArray } from '../../../helpers/types';
+import { ForgeTableField, ForgeTableFieldArray } from "../../../helpers/types";
 
 export function getColumnKey(field: string | ({ key: string } & ForgeTableField)): string {
-  return typeof field == 'string' ? field : field.key;
+  return typeof field == "string" ? field : field.key;
 }
 
 export function saveCustomisedColumns(id: string, columns: ForgeTableFieldArray) {
-  window.localStorage.setItem(id, JSON.stringify(columns.map(c => getColumnKey(c))));
+  window.localStorage.setItem(id, JSON.stringify(columns.map((c) => getColumnKey(c))));
 }
 
 export function loadCustomisedColumns(id: string): string[] | null {
