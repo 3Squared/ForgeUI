@@ -20,21 +20,19 @@ import "./commands";
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
 
-import { mount } from "cypress/vue";
 import { mount as mount2 } from "cypress/vue2";
 
 // Augment the Cypress namespace to include type definitions for
 // your custom command.
 // Alternatively, can be defined in cypress/support/component.d.ts
 // with a <reference path="./component" /> at the top of your spec.
-declare global {
-  namespace Cypress {
-    interface Chainable {
-      mount: typeof mount;
-    }
-  }
-}
 
-Cypress.Commands.add("mount", mount2);
+// @ts-ignore
+Cypress.Commands.add("mount", (...args) => {
+  // @ts-ignore
+  return mount2(...args).then(({ wrapper }) => {
+    return cy.wrap(wrapper).as("vue");
+  });
+});
 // Example use:
 // cy.mount(MyComponent)
