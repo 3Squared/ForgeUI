@@ -8,16 +8,32 @@
   "semanticCommits": "enabled",
   "semanticCommitType": "chore",
   "ignorePresets": [":prHourlyLimit2"],
-  "azureAutoApprove": true,
+  "automergeStrategy": "squash",
   "platformAutomerge": true,
   "packageRules": [
     {
-      "matchPaths": ["+(package.json)"],
+      "matchPaths": ["+(package.json)", "packages/**"],
       "extends": [":pinOnlyDevDependencies"]
     },
     {
-      "matchPaths": ["docs/**"],
+      "matchPaths": ["apps/**"],
       "extends": [":pinAllExceptPeerDependencies"]
+    },
+    {
+      "matchPackageNames": ["vue"],
+      "allowedVersions": "<3.0.0"
+    },
+    {
+      "matchPackageNames": ["vue-router"],
+      "allowedVersions": "<4.0.0"
+    },
+    {
+      "matchPackageNames": ["bootstrap"],
+      "allowedVersions": "<5.0.0"
+    },
+    {
+      "matchPackageNames": ["@vue/test-utils"],
+      "allowedVersions": "<2.0.0"
     }
   ]
 }

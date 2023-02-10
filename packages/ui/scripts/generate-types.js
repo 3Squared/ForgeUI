@@ -95,7 +95,7 @@ const gen = async () => {
  await execShellCommand('npx vue-docgen-web-types --c scripts/config.js');
 
  //Load bootstrap vue types and merge with Forge
- const bootstrapWebTypes = JSON.parse(fs.readFileSync('node_modules/bootstrap-vue/dist/web-types.json'));
+ const bootstrapWebTypes = JSON.parse(fs.readFileSync('../../node_modules/bootstrap-vue/dist/web-types.json'));
  const forgeWebTypes = JSON.parse(fs.readFileSync('dist/web-types.json'))
  forgeWebTypes.contributions.html.tags.map(t => {
   const bootstrapTags = baseComponents[t.name];
@@ -109,8 +109,8 @@ const gen = async () => {
  fs.writeFileSync('dist/web-types.json', JSON.stringify(forgeWebTypes, null, 2));
 
  //Get bootstrap types for Vetur
- let bootstrapTags = JSON.parse(fs.readFileSync('node_modules/bootstrap-vue/dist/vetur-tags.json'));
- let bootstrapAttributes = JSON.parse(fs.readFileSync('node_modules/bootstrap-vue/dist/vetur-attributes.json'));
+ let bootstrapTags = JSON.parse(fs.readFileSync('../../node_modules/bootstrap-vue/dist/vetur-tags.json'));
+ let bootstrapAttributes = JSON.parse(fs.readFileSync('../../node_modules/bootstrap-vue/dist/vetur-attributes.json'));
 
  const components = await listComponents();
  const componentDocsPromises = components.map(c => parse(c, bootstrapTags, bootstrapAttributes));

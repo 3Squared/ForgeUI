@@ -2,15 +2,16 @@
   "name": "eslint-config-custom",
   "version": "0.0.0",
   "main": "index.js",
+  "private": true,
   "license": "MIT",
   "dependencies": {
     "@vue/eslint-config-prettier": "7.0.0",
     "@vue/eslint-config-typescript": "11.0.2",
-    "@typescript-eslint/eslint-plugin": "5.50.0",
-    "@typescript-eslint/parser": "5.50.0",
-    "eslint": "8.32.0",
+    "@typescript-eslint/eslint-plugin": "5.51.0",
+    "@typescript-eslint/parser": "5.51.0",
+    "eslint": "8.33.0",
     "eslint-plugin-vue": "9.9.0",
-    "eslint-plugin-unused-imports" :"^2.0.0"
+    "eslint-plugin-unused-imports" :"2.0.0"
   },
   "publishConfig": {
     "access": "public"

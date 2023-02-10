@@ -31,21 +31,15 @@ import { Playground, usePlayground, CodeBlock } from "@3squared/forge-playground
 
 const vBToggle = VBToggle;
 
-const { options, propVals, config, reset } = usePlayground(
-  {
-    accordion: "",
-    appear: false,
-    id: "collapse",
-    isNav: false,
-    tag: "div"
-  },
-  {
-    id: { required: true }
-  }
-);
+const { options, propVals, config, reset } = usePlayground({
+  accordion: "",
+  appear: false,
+  isNav: false,
+  tag: "div"
+});
 
 const code = computed(() => {
-  return `<b-button v-b-toggle.${options.value.id}>Toggle Collapse</b-button>
+  return `<b-button v-b-toggle.collapse>Toggle Collapse</b-button>
 <b-collapse ${propVals.value.join(" ")}>
   Hello
 </b-collapse>`;
