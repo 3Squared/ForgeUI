@@ -1,9 +1,9 @@
 <template>
   <b-form novalidate class="position-relative shadow-sm border p-4 bg-white" @submit.prevent="submit">
     <template v-if="showTitle">
-      <component :is="titleTag" data-cy="form-title" :class="titleClass">
-        {{ title }}
-      </component>
+      <slot name="title">
+        <h3 :class="titleClass" data-cy="form-title">{{ title }}</h3>
+      </slot>
       <hr />
     </template>
 
@@ -65,10 +65,6 @@ const props = defineProps({
   loadingText: {
     type: String,
     default: ""
-  },
-  titleTag: {
-    type: String,
-    default: "h3"
   },
   titleClass: {
     type: String,

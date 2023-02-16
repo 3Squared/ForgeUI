@@ -38,7 +38,6 @@ const { options, propVals, config, reset } = usePlayground(
     hideCancel: false,
     submitText: "Submit",
     loadingText: loadingText.value,
-    titleTag: "h3",
     titleClass: ""
   },
   {
