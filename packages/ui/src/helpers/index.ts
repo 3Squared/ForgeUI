@@ -71,6 +71,9 @@ export function enumToMultiSelectList<T>(items: readonly T[], formatter?: (val: 
 }
 
 export function convertToMultiSelectOption(id: string, label?: string, shortLabel?: string) {
+  if (!id) {
+    return null
+  }
   return { id: id, label: label ?? id, shortLabel: shortLabel ?? id }
 }
 
