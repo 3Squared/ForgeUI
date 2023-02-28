@@ -72,14 +72,17 @@ describe("enumToMultiSelectList", () => {
 
 describe("convertToMutliSelectOption", () => {
   it("should convert the parameters passed in to a multiselect option", () => {
-    expect(convertToMultiSelectOption("a", "a - label", "a - short label")).toStrictEqual({ id: "a", label: 'a - label', shortLabel: 'a - short label' });
+    expect(convertToMultiSelectOption("a", "a - label", "a - short label"))
+      .toStrictEqual({ id: "a", label: "a - label", shortLabel: "a - short label" });
   });
   
   it("should set the id as the label and short label if they aren't specified", () => {
-    expect(convertToMultiSelectOption("a")).toStrictEqual({ id: "a", label: "a", shortLabel: "a" });
+    expect(convertToMultiSelectOption("a"))
+      .toStrictEqual({ id: "a", label: "a", shortLabel: "a" });
   });
   
   it("should return null if id is null", () => {
-    expect(convertToMultiSelectOption(null)).toStrictEqual(null);
+    expect(convertToMultiSelectOption(null))
+      .toStrictEqual(null);
   });
 });
