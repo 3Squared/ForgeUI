@@ -5,15 +5,16 @@
 
 ## Props
 
-| Prop name         | Description | Type                                            | Values | Default                      |
-| ----------------- | ----------- | ----------------------------------------------- | ------ | ---------------------------- |
-| placeholder       |             | string                                          | -      | () => 'Browse your computer' |
-| getFileUrlAction  |             | (fileName: string) => Promise<[string, string]> | -      |                              |
-| autoUploadToBlob  |             | boolean                                         | -      | true                         |
-| acceptedFileTypes |             | string                                          | -      |                              |
-| maxFileSize       |             | number                                          | -      |                              |
-| multiple          |             | boolean                                         | -      | true                         |
-| maxFileInput      |             | number                                          | -      | null                         |
+| Prop name         | Description                               | Type                                            | Values | Default                      |
+|-------------------|-------------------------------------------|-------------------------------------------------| ------ |------------------------------|
+| placeholder       |                                           | string                                          | -      | () => 'Browse your computer' |
+| getFileUrlAction  |                                           | (fileName: string) => Promise<[string, string]> | -      |                              |
+| autoUploadToBlob  |                                           | boolean                                         | -      | true                         |
+| acceptedFileTypes |                                           | string                                          | -      |                              |
+| maxFileSize       |                                           | number                                          | -      |                              |
+| multiple          |                                           | boolean                                         | -      | true                         |
+| maxFileInput      |                                           | number                                          | -      | null                         |       
+| editableFileName  | Makes file name an inline editiable field | boolean                                         | -      | false                        |       
 
 ## Events
 

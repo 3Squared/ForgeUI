@@ -5,26 +5,34 @@
         <b-row class="align-items-center ml-0">
           <b-col cols="1" class="d-flex justify-content-center">
             <div v-if="fileType === 'Image'">
-              <b-img v-b-popover.hover.html.viewport="preview" class="img-thumbnail" :src="previewUrl" :alt="trimFileName(file.name, 20)" thumbnail />
+              <b-img v-b-popover.hover.html.viewport="preview" class="img-thumbnail" :src="previewUrl"
+                     :alt="trimFileName(file.name, 20)" thumbnail />
             </div>
             <div v-else>
-              <b-img v-b-tooltip.hover.viewport="file.name" class="file-thumbnail" :src="getReplacementImage(file.name)" :alt="file.name" />
+              <b-img v-b-tooltip.hover.viewport="file.name" class="file-thumbnail" :src="getReplacementImage(file.name)"
+                     :alt="file.name" />
             </div>
           </b-col>
           <b-col cols="4">
-            <div v-if="file.name.length < 50">{{ file.name }}</div>
-            <div v-if="file.name.length >= 50" v-b-tooltip.hover.viewport="file.name">
-              {{ trimFileName(file.name, 50) }}
+            <div v-if="editableFileName">
+              <forge-inline-editor :value="customFileName" @input="setFileName" :is-valid="checkCustomFileName">
+              </forge-inline-editor>
+            </div>
+            <div v-else>
+              <div v-if="file.name.length < 50">{{ file.name }}</div>
+              <div v-if="file.name.length >= 50" v-b-tooltip.hover.viewport="file.name">
+                {{ trimFileName(file.name, 50) }}
+              </div>
             </div>
           </b-col>
           <b-col cols="7">
             <div v-if="state === 'Uploading'">
               <b-progress :max="file.size" class="mt-2">
                 <b-progress-bar
-                  :value="bytesUploaded"
-                  :striped="true"
-                  :animated="true"
-                  :label="`${((bytesUploaded / file.size) * 100).toFixed(0)}%`"
+                    :value="bytesUploaded"
+                    :striped="true"
+                    :animated="true"
+                    :label="`${((bytesUploaded / file.size) * 100).toFixed(0)}%`"
                 ></b-progress-bar>
               </b-progress>
             </div>
@@ -39,7 +47,8 @@
             </div>
             <div v-if="duplicateWarning">
               <b-alert variant="danger" :show="true" class="mb-0 m-1">
-                Upload failed: This file has either just been uploaded, or has the same name as another file you have just uploaded
+                Upload failed: This file has either just been uploaded, or has the same name as another file you have
+                just uploaded
               </b-alert>
             </div>
           </b-col>
@@ -99,7 +108,14 @@ import {
 } from "bootstrap-vue";
 import { BlockBlobClient, BlockBlobParallelUploadOptions } from "@azure/storage-blob";
 import { AbortController } from "@azure/abort-controller";
-import { FileType, formatFileSize, getFileType, trimFileName, getReplacementImage } from "../utils/fileUtilities";
+import {
+  FileType,
+  formatFileSize,
+  getFileType,
+  trimFileName,
+  getReplacementImage
+} from "../utils/fileUtilities";
+import { ForgeInlineEditor, ValidationResult } from "../../../../../index";
 
 type State = "Not Uploaded" | "Preparing" | "Uploading" | "Uploaded" | "Failed" | "Aborted" | "Invalid";
 
@@ -120,7 +136,8 @@ export const FileInfo = /*#__PURE__*/ Vue.extend({
     BIconUpload,
     BIconXCircleFill,
     BIconTrash,
-    BIconArrowClockwise
+    BIconArrowClockwise,
+    ForgeInlineEditor
   },
   directives: {
     "b-popover": VBPopover,
@@ -151,6 +168,10 @@ export const FileInfo = /*#__PURE__*/ Vue.extend({
     duplicateWarning: {
       type: Boolean,
       default: false
+    },
+    editableFileName: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
@@ -162,7 +183,8 @@ export const FileInfo = /*#__PURE__*/ Vue.extend({
       uploadUrl: null as string | null,
       previewUrl: null as string | null,
       controller: new AbortController(),
-      deleteFileFailed: null as string | null
+      deleteFileFailed: null as string | null,
+      customFileName: null as string | null
     };
   },
   computed: {
@@ -177,7 +199,7 @@ export const FileInfo = /*#__PURE__*/ Vue.extend({
     },
     fileType(): FileType {
       return getFileType(this.file.name);
-    }
+    },
   },
   mounted() {
     this.previewImage();
@@ -186,6 +208,7 @@ export const FileInfo = /*#__PURE__*/ Vue.extend({
     if (this.autoUploadToBlob) {
       this.uploadBlob();
     }
+    this.customFileName = this.file.name;
   },
   methods: {
     formatFileSize,
@@ -194,6 +217,10 @@ export const FileInfo = /*#__PURE__*/ Vue.extend({
     getReplacementImage,
     preview() {
       return `<img src="${this.previewUrl}" alt="${this.file.name}" style="max-width: 45vw;  max-height: 45vh;" />`;
+    },
+    setFileName(value: string) {
+      this.customFileName = value;
+      this.$emit('edit-file-name', this.customFileName)
     },
     async uploadBlob() {
       this.state = "Preparing";
@@ -269,6 +296,17 @@ export const FileInfo = /*#__PURE__*/ Vue.extend({
     },
     cancel() {
       this.controller.abort();
+    },
+    checkCustomFileName(value: string) {
+      if (value.length == 0) {
+        return { errors: ['Enter name'], valid: false } as ValidationResult;
+      }
+
+      if (value.length > 501) {
+        return { errors: ['File name over 100 characters'], valid: false } as ValidationResult;
+      }
+
+      return { errors: [], valid: true } as ValidationResult;
     }
   }
 });

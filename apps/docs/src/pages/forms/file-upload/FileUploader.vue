@@ -35,7 +35,8 @@ const { options, propVals, config, reset } = usePlayground(
     placeholder: "Browse your computer",
     acceptedFileTypes: "",
     maxFileSize: 52428800,
-    maxFileInput: 2
+    maxFileInput: 2,
+    editableFileName: false
   },
   {
     getFileUrlAction: { required: true },

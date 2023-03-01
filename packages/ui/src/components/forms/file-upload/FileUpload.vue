@@ -3,20 +3,20 @@
     <div class="d-flex justify-content-between">
       <slot name="message"></slot>
       <div class="position-relative">
+        <input
+            id="file-input"
+            ref="fileUpload"
+            type="file"
+            class="custom-file-input position-absolute"
+            style="left: 0"
+            v-bind="customAttributes"
+            :accept="acceptedFileTypes"
+            :class="disableUpload ? 'd-none' : ''"
+            @input="onFileChange"
+        />
         <label for="file-input" class="w-100">
           <b-button block :disabled="disableUpload" variant="primary">{{ placeholder }}</b-button>
         </label>
-        <input
-          id="file-input"
-          ref="fileUpload"
-          type="file"
-          class="custom-file-input position-absolute"
-          style="left: 0"
-          v-bind="customAttributes"
-          :accept="acceptedFileTypes"
-          :class="disableUpload ? 'd-none' : ''"
-          @input="onFileChange"
-        />
       </div>
     </div>
     <div
@@ -53,7 +53,9 @@
                 file.status = 'Uploaded';
                 file.blobFileName = $event;
               "
+              @edit-file-name="file.customFileName = $event"
               @upload-failed="file.status = 'Failed'"
+              :editable-file-name="editableFileName"
             ></file-info>
           </template>
         </tbody>
@@ -118,6 +120,10 @@ export const ForgeFileUpload = /*#__PURE__*/ (
     maxFileInput: {
       type: Number,
       default: null
+    },
+    editableFileName: {
+      type: Boolean,
+      default: true
     }
   },
   data() {
@@ -162,7 +168,7 @@ export const ForgeFileUpload = /*#__PURE__*/ (
       [...files].forEach((f) => {
         const doesFileExist = checkFiles.findIndex((a) => a.name === f.name);
         if (doesFileExist === -1) {
-          this.files.unshift({ file: f, status: "NotUploaded", blobFileName: null, duplicateWarning: false });
+          this.files.unshift({ file: f, status: "NotUploaded", blobFileName: null, duplicateWarning: false, customFileName: null });
         } else {
           this.files[doesFileExist].duplicateWarning = true;
         }
