@@ -303,7 +303,7 @@ export const FileInfo = /*#__PURE__*/ Vue.extend({
       }
 
       if (value.length > 501) {
-        return { errors: ['File name over 100 characters'], valid: false } as ValidationResult;
+        return { errors: ['Enter name under 500 characters'], valid: false } as ValidationResult;
       }
 
       return { errors: [], valid: true } as ValidationResult;
