@@ -4,15 +4,15 @@
       <slot name="message"></slot>
       <div class="position-relative">
         <input
-            id="file-input"
-            ref="fileUpload"
-            type="file"
-            class="custom-file-input position-absolute"
-            style="left: 0"
-            v-bind="customAttributes"
-            :accept="acceptedFileTypes"
-            :class="disableUpload ? 'd-none' : ''"
-            @input="onFileChange"
+          id="file-input"
+          ref="fileUpload"
+          type="file"
+          class="custom-file-input position-absolute"
+          style="left: 0"
+          v-bind="customAttributes"
+          :accept="acceptedFileTypes"
+          :class="disableUpload ? 'd-none' : ''"
+          @input="onFileChange"
         />
         <label for="file-input" class="w-100">
           <b-button block :disabled="disableUpload" variant="primary">{{ placeholder }}</b-button>
@@ -48,6 +48,7 @@
               :max-file-size="maxFileSize"
               :accepted-file-types="acceptedFileTypes"
               :duplicate-warning="file.duplicateWarning"
+              :editable-file-name="editableFileName"
               @deleted="deleteFile(file.file)"
               @uploaded="
                 file.status = 'Uploaded';
@@ -55,7 +56,6 @@
               "
               @edit-file-name="file.customFileName = $event"
               @upload-failed="file.status = 'Failed'"
-              :editable-file-name="editableFileName"
             ></file-info>
           </template>
         </tbody>
