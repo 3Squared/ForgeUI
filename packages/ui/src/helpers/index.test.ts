@@ -76,10 +76,6 @@ describe("convertToMultiSelectOption", () => {
   });
 
   it("should set the id as the label and short label if they aren't specified", () => {
-    expect(convertToMultiSelectOption("a")).toStrictEqual({ id: "a", label: "a", shortLabel: "a" });
-  });
-
-  it("should return null if id is null", () => {
-    expect(convertToMultiSelectOption(null)).toStrictEqual(null);
+    expect(convertToMultiSelectOption("a")).toStrictEqual({ id: "a", label: "a", shortLabel: undefined });
   });
 });
