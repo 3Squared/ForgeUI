@@ -13,7 +13,7 @@
           </b-col>
           <b-col cols="4">
             <div v-if="editableFileName">
-              <forge-inline-editor :value="customFileName" :is-valid="checkCustomFileName" @input="setFileName"></forge-inline-editor>
+              <forge-inline-editor :value="customFileName" :is-valid="validateFileName" @input="setFileName"></forge-inline-editor>
             </div>
             <div v-else>
               <div v-if="file.name.length < 50">{{ file.name }}</div>
@@ -142,6 +142,11 @@ export const FileInfo = /*#__PURE__*/ Vue.extend({
       // eslint-disable-next-line no-unused-vars
       type: Function as PropType<(fileName: string) => Promise<[string, string]>>,
       required: true
+    },
+    validateFileName: {
+      // eslint-disable-next-line no-unused-vars
+      type: Function as PropType<(fileName: string) => Promise<ValidationResult>>,
+      required: false
     },
     autoUploadToBlob: {
       type: Boolean,
@@ -286,17 +291,6 @@ export const FileInfo = /*#__PURE__*/ Vue.extend({
     },
     cancel() {
       this.controller.abort();
-    },
-    checkCustomFileName(value: string) {
-      if (value.length == 0) {
-        return { errors: ["Enter name"], valid: false } as ValidationResult;
-      }
-
-      if (value.length > 501) {
-        return { errors: ["Enter name under 500 characters"], valid: false } as ValidationResult;
-      }
-
-      return { errors: [], valid: true } as ValidationResult;
     }
   }
 });

@@ -5,27 +5,28 @@
 
 ## Props
 
-| Prop name         | Description                               | Type                                            | Values | Default                      |
-|-------------------|-------------------------------------------|-------------------------------------------------| ------ |------------------------------|
-| placeholder       |                                           | string                                          | -      | () => 'Browse your computer' |
-| getFileUrlAction  |                                           | (fileName: string) => Promise<[string, string]> | -      |                              |
-| autoUploadToBlob  |                                           | boolean                                         | -      | true                         |
-| acceptedFileTypes |                                           | string                                          | -      |                              |
-| maxFileSize       |                                           | number                                          | -      |                              |
-| multiple          |                                           | boolean                                         | -      | true                         |
-| maxFileInput      |                                           | number                                          | -      | null                         |       
-| editableFileName  | Makes file name an inline editiable field | boolean                                         | -      | false                        |       
+| Prop name         | Description                                               | Type                                            | Values | Default                      |
+|-------------------|-----------------------------------------------------------|-------------------------------------------------|--------|------------------------------|
+| placeholder       |                                                           | string                                          | -      | () => 'Browse your computer' |
+| getFileUrlAction  |                                                           | (fileName: string) => Promise<[string, string]> | -      |                              |
+| autoUploadToBlob  |                                                           | boolean                                         | -      | true                         |
+| acceptedFileTypes |                                                           | string                                          | -      |                              |
+| maxFileSize       |                                                           | number                                          | -      |                              |
+| multiple          |                                                           | boolean                                         | -      | true                         |
+| maxFileInput      |                                                           | number                                          | -      | null                         |       
+| editableFileName  | Makes file name an inline editable field                  | boolean                                         | -      | false                        |       
+| validateFileName  | Validate file name when editable file name is set to true | (fileName: string) => Promise<ValidationResult> |        |                              |
 
 ## Events
 
 | Event name | Properties | Description |
-| ---------- | ---------- | ----------- |
+|------------|------------|-------------|
 | input      |            |
 
 ## Slots
 
 | Name    | Description | Bindings |
-| ------- | ----------- | -------- |
+|---------|-------------|----------|
 | message |             |          |
 
           ---

@@ -22,6 +22,7 @@ import { BFormInput } from "bootstrap-vue";
 import { computed, ref } from "vue";
 import OPTIONS from "./OPTIONS.md";
 import { usePlayground, Playground } from "@3squared/forge-playground";
+import { ValidationResult } from "@3squared/forge-ui/src/helpers";
 
 const { forgeToast } = useForgeToasts();
 
@@ -32,6 +33,17 @@ const { options, propVals, config, reset } = usePlayground(
     autoUploadToBlob: true,
     multiple: true,
     getFileUrlAction: (fileName: string) => forgeToast("success", `${fileName} has been uploaded!`),
+    validateFileName: (fileName: string) => {
+      if (fileName.length == 0) {
+        return { errors: ["Enter name"], valid: false } as ValidationResult;
+      }
+
+      if (fileName.length > 501) {
+        return { errors: ["Enter name under 500 characters"], valid: false } as ValidationResult;
+      }
+
+      return { errors: [], valid: true } as ValidationResult;
+    },
     placeholder: "Browse your computer",
     acceptedFileTypes: "",
     maxFileSize: 52428800,

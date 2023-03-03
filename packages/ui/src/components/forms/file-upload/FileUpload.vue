@@ -43,6 +43,7 @@
             <file-info
               :key="file.file.name"
               :get-file-url-action="getFileUrlAction"
+              :validate-file-name="validateFileName"
               :file="file.file"
               :auto-upload-to-blob="autoUploadToBlob"
               :max-file-size="maxFileSize"
@@ -72,6 +73,7 @@ import { BButton, BIconUpload } from "bootstrap-vue";
 import FileInfo from "./components/FileInfo.vue";
 import { formatFileSize } from "./utils/fileUtilities";
 import { ForgeFileStatus } from "../../../helpers/types";
+import { ValidationResult } from "@/helpers";
 
 /**
  * @displayName File Upload
@@ -101,6 +103,11 @@ export const ForgeFileUpload = /*#__PURE__*/ (
       type: Function as PropType<(fileName: string) => Promise<[string, string]>>,
       required: true
     },
+    validateFileName: {
+      // eslint-disable-next-line no-unused-vars
+      type: Function as PropType<(fileName: string) => Promise<ValidationResult>>,
+      required: false
+    },
     autoUploadToBlob: {
       type: Boolean,
       default: true
@@ -123,7 +130,7 @@ export const ForgeFileUpload = /*#__PURE__*/ (
     },
     editableFileName: {
       type: Boolean,
-      default: true
+      default: false
     }
   },
   data() {
