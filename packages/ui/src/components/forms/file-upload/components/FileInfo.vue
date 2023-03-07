@@ -12,9 +12,14 @@
             </div>
           </b-col>
           <b-col cols="4">
-            <div v-if="file.name.length < 50">{{ file.name }}</div>
-            <div v-if="file.name.length >= 50" v-b-tooltip.hover.viewport="file.name">
-              {{ trimFileName(file.name, 50) }}
+            <div v-if="editableFileName">
+              <forge-inline-editor :value="customFileName" :is-valid="validateFileName" @input="setFileName"></forge-inline-editor>
+            </div>
+            <div v-else>
+              <div v-if="file.name.length < 50">{{ file.name }}</div>
+              <div v-if="file.name.length >= 50" v-b-tooltip.hover.viewport="file.name">
+                {{ trimFileName(file.name, 50) }}
+              </div>
             </div>
           </b-col>
           <b-col cols="7">
@@ -100,6 +105,7 @@ import {
 import { BlockBlobClient, BlockBlobParallelUploadOptions } from "@azure/storage-blob";
 import { AbortController } from "@azure/abort-controller";
 import { FileType, formatFileSize, getFileType, trimFileName, getReplacementImage } from "../utils/fileUtilities";
+import { ForgeInlineEditor, ValidationResult } from "../../../../../index";
 
 type State = "Not Uploaded" | "Preparing" | "Uploading" | "Uploaded" | "Failed" | "Aborted" | "Invalid";
 
@@ -120,7 +126,8 @@ export const FileInfo = /*#__PURE__*/ Vue.extend({
     BIconUpload,
     BIconXCircleFill,
     BIconTrash,
-    BIconArrowClockwise
+    BIconArrowClockwise,
+    ForgeInlineEditor
   },
   directives: {
     "b-popover": VBPopover,
@@ -135,6 +142,11 @@ export const FileInfo = /*#__PURE__*/ Vue.extend({
       // eslint-disable-next-line no-unused-vars
       type: Function as PropType<(fileName: string) => Promise<[string, string]>>,
       required: true
+    },
+    validateFileName: {
+      // eslint-disable-next-line no-unused-vars
+      type: Function as PropType<(fileName: string) => Promise<ValidationResult>>,
+      required: false
     },
     autoUploadToBlob: {
       type: Boolean,
@@ -151,6 +163,10 @@ export const FileInfo = /*#__PURE__*/ Vue.extend({
     duplicateWarning: {
       type: Boolean,
       default: false
+    },
+    editableFileName: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
@@ -162,7 +178,8 @@ export const FileInfo = /*#__PURE__*/ Vue.extend({
       uploadUrl: null as string | null,
       previewUrl: null as string | null,
       controller: new AbortController(),
-      deleteFileFailed: null as string | null
+      deleteFileFailed: null as string | null,
+      customFileName: null as string | null
     };
   },
   computed: {
@@ -186,6 +203,7 @@ export const FileInfo = /*#__PURE__*/ Vue.extend({
     if (this.autoUploadToBlob) {
       this.uploadBlob();
     }
+    this.customFileName = this.file.name;
   },
   methods: {
     formatFileSize,
@@ -194,6 +212,10 @@ export const FileInfo = /*#__PURE__*/ Vue.extend({
     getReplacementImage,
     preview() {
       return `<img src="${this.previewUrl}" alt="${this.file.name}" style="max-width: 45vw;  max-height: 45vh;" />`;
+    },
+    setFileName(value: string) {
+      this.customFileName = value;
+      this.$emit("edit-file-name", this.customFileName);
     },
     async uploadBlob() {
       this.state = "Preparing";

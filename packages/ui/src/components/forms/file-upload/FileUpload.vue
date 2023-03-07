@@ -3,9 +3,6 @@
     <div class="d-flex justify-content-between">
       <slot name="message"></slot>
       <div class="position-relative">
-        <label for="file-input" class="w-100">
-          <b-button block :disabled="disableUpload" variant="primary">{{ placeholder }}</b-button>
-        </label>
         <input
           id="file-input"
           ref="fileUpload"
@@ -17,6 +14,9 @@
           :class="disableUpload ? 'd-none' : ''"
           @input="onFileChange"
         />
+        <label for="file-input" class="w-100">
+          <b-button block :disabled="disableUpload" variant="primary">{{ placeholder }}</b-button>
+        </label>
       </div>
     </div>
     <div
@@ -43,16 +43,19 @@
             <file-info
               :key="file.file.name"
               :get-file-url-action="getFileUrlAction"
+              :validate-file-name="validateFileName"
               :file="file.file"
               :auto-upload-to-blob="autoUploadToBlob"
               :max-file-size="maxFileSize"
               :accepted-file-types="acceptedFileTypes"
               :duplicate-warning="file.duplicateWarning"
+              :editable-file-name="editableFileName"
               @deleted="deleteFile(file.file)"
               @uploaded="
                 file.status = 'Uploaded';
                 file.blobFileName = $event;
               "
+              @edit-file-name="file.customFileName = $event"
               @upload-failed="file.status = 'Failed'"
             ></file-info>
           </template>
@@ -70,6 +73,7 @@ import { BButton, BIconUpload } from "bootstrap-vue";
 import FileInfo from "./components/FileInfo.vue";
 import { formatFileSize } from "./utils/fileUtilities";
 import { ForgeFileStatus } from "../../../helpers/types";
+import { ValidationResult } from "@/helpers";
 
 /**
  * @displayName File Upload
@@ -99,6 +103,11 @@ export const ForgeFileUpload = /*#__PURE__*/ (
       type: Function as PropType<(fileName: string) => Promise<[string, string]>>,
       required: true
     },
+    validateFileName: {
+      // eslint-disable-next-line no-unused-vars
+      type: Function as PropType<(fileName: string) => Promise<ValidationResult>>,
+      required: false
+    },
     autoUploadToBlob: {
       type: Boolean,
       default: true
@@ -118,6 +127,10 @@ export const ForgeFileUpload = /*#__PURE__*/ (
     maxFileInput: {
       type: Number,
       default: null
+    },
+    editableFileName: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
@@ -162,7 +175,7 @@ export const ForgeFileUpload = /*#__PURE__*/ (
       [...files].forEach((f) => {
         const doesFileExist = checkFiles.findIndex((a) => a.name === f.name);
         if (doesFileExist === -1) {
-          this.files.unshift({ file: f, status: "NotUploaded", blobFileName: null, duplicateWarning: false });
+          this.files.unshift({ file: f, status: "NotUploaded", blobFileName: null, duplicateWarning: false, customFileName: null });
         } else {
           this.files[doesFileExist].duplicateWarning = true;
         }

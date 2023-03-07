@@ -30,6 +30,7 @@ export interface ForgeFileStatus {
   status: "NotUploaded" | "Uploaded" | "Failed";
   blobFileName: string | null;
   duplicateWarning: boolean;
+  customFileName: string | null;
 }
 
 export interface ForgeIcon {
