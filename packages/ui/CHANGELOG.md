@@ -1,5 +1,12 @@
 # @3squared/forge-ui
 
+## 1.5.0
+
+### Minor Changes
+
+- e6f964f: Add ConvertToMultiSelectOption helper method
+- bd773fd: Added a prop to the file uploader to allow the File name to be editable
+
 ## 1.4.0
 
 ### Minor Changes
