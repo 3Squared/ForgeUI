@@ -62,7 +62,7 @@
     "vite-plugin-dts": "2.1.0",
     "vite-plugin-istanbul": "4.0.1",
     "vitest": "0.29.3",
-    "vue-docgen-api": "4.64.0",
+    "vue-docgen-api": "4.64.1",
     "vue-docgen-cli": "4.63.0",
     "vue-docgen-web-types": "0.1.8",
     "vue-template-compiler": "2.7.14",
