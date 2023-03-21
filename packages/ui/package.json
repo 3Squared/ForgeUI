@@ -63,7 +63,7 @@
     "vite-plugin-istanbul": "4.0.1",
     "vitest": "0.29.7",
     "vue-docgen-api": "4.64.1",
-    "vue-docgen-cli": "4.64.1",
+    "vue-docgen-cli": "4.65.0",
     "vue-docgen-web-types": "0.1.8",
     "vue-template-compiler": "2.7.14",
     "vue-tsc": "1.2.0",
