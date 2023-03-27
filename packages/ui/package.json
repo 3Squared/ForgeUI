@@ -45,7 +45,7 @@
     "eslint-config-custom": "*",
     "vite-plugin-checker": "0.5.6",
     "@cypress/code-coverage": "3.10.0",
-    "@types/lodash": "4.14.191",
+    "@types/lodash": "4.14.192",
     "@vitejs/plugin-vue2": "2.2.0",
     "@vitest/coverage-c8": "0.29.7",
     "@vitest/ui": "0.29.7",
