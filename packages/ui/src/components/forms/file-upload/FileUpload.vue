@@ -69,7 +69,7 @@
 </template>
 <script lang="ts">
 import Vue, { PropType, VueConstructor } from "vue";
-import { BButton, BIconUpload } from "bootstrap-vue";
+import { BIconUpload } from "bootstrap-vue";
 import FileInfo from "./components/FileInfo.vue";
 import { formatFileSize } from "./utils/fileUtilities";
 import { ForgeFileStatus } from "../../../helpers/types";
@@ -89,7 +89,6 @@ export const ForgeFileUpload = /*#__PURE__*/ (
 ).extend({
   name: "ForgeFileUpload",
   components: {
-    BButton,
     BIconUpload,
     FileInfo
   },
