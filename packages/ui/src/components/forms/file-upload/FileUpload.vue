@@ -1,71 +1,71 @@
 <template>
- <div>
-	<div class="d-flex justify-content-between">
-	 <slot name="message"></slot>
-	 <div>
-		<input
-		 id="file-input"
-		 ref="fileUpload"
-		 type="file"
-		 style="left: 0"
-		 v-bind="customAttributes"
-		 :accept="acceptedFileTypes"
-		 class="d-none"
-		 :disabled="disableUpload"
-		 @input="onFileChange"
-		/>
-		<label for="file-input" class="w-100 btn btn-primary" :class="{'disabled' : disableUpload}">
-		 {{ placeholder }}
-		</label>
-	 </div>
-	</div>
-	<div
-	 class="mt-3 file-container forge-table border-dashed"
-	 :class="dragInput ? 'drag-border' : ''"
-	 @drop.prevent="drop"
-	 @dragover.prevent
-	 @dragover="dragover"
-	 @dragleave="dragleave"
-	>
-	 <table class="table table-striped mb-0 table-bordered">
-		<tbody v-if="files.length <= 0">
-		<template>
-		 <div class="no-files-text-box d-flex align-items-center" :class="dragInput ? 'drag-input' : ''">
-			<div>Drag and drop files here</div>
-			<div class="p-1">
-			 <b-icon-upload font-scale="1.25" />
-			</div>
-		 </div>
-		</template>
-		</tbody>
-		<tbody v-else>
-		<template v-for="file in files">
-		 <file-info
-			:key="file.file.name"
-			:get-file-url-action="getFileUrlAction"
-			:validate-file-name="validateFileName"
-			:file="file.file"
-			:auto-upload-to-blob="autoUploadToBlob"
-			:max-file-size="maxFileSize"
-			:accepted-file-types="acceptedFileTypes"
-			:duplicate-warning="file.duplicateWarning"
-			:editable-file-name="editableFileName"
-			@deleted="deleteFile(file.file)"
-			@uploaded="
+  <div>
+    <div class="d-flex justify-content-between">
+      <slot name="message"></slot>
+      <div>
+        <input
+          id="file-input"
+          ref="fileUpload"
+          :accept="acceptedFileTypes"
+          :disabled="disableUpload"
+          class="d-none"
+          style="left: 0"
+          type="file"
+          v-bind="customAttributes"
+          @input="onFileChange"
+        />
+        <label :class="{ disabled: disableUpload }" class="w-100 btn btn-primary" for="file-input">
+          {{ placeholder }}
+        </label>
+      </div>
+    </div>
+    <div
+      :class="dragInput ? 'drag-border' : ''"
+      class="mt-3 file-container forge-table border-dashed"
+      @dragleave="dragleave"
+      @dragover="dragover"
+      @drop.prevent="drop"
+      @dragover.prevent
+    >
+      <table class="table table-striped mb-0 table-bordered">
+        <tbody v-if="files.length <= 0">
+          <template>
+            <div :class="dragInput ? 'drag-input' : ''" class="no-files-text-box d-flex align-items-center">
+              <div>Drag and drop files here</div>
+              <div class="p-1">
+                <b-icon-upload font-scale="1.25" />
+              </div>
+            </div>
+          </template>
+        </tbody>
+        <tbody v-else>
+          <template v-for="file in files">
+            <file-info
+              :key="file.file.name"
+              :accepted-file-types="acceptedFileTypes"
+              :auto-upload-to-blob="autoUploadToBlob"
+              :duplicate-warning="file.duplicateWarning"
+              :editable-file-name="editableFileName"
+              :file="file.file"
+              :get-file-url-action="getFileUrlAction"
+              :max-file-size="maxFileSize"
+              :validate-file-name="validateFileName"
+              @deleted="deleteFile(file.file)"
+              @uploaded="
                 file.status = 'Uploaded';
                 file.blobFileName = $event;
               "
-			@edit-file-name="file.customFileName = $event"
-			@upload-failed="file.status = 'Failed'"
-		 ></file-info>
-		</template>
-		</tbody>
-	 </table>
-	</div>
-	<div class="d-flex justify-content-end">
-	 <div>Max file size: {{ formatFileSize(maxFileSize) }}</div>
-	</div>
- </div>
+              @edit-file-name="file.customFileName = $event"
+              @upload-failed="file.status = 'Failed'"
+            ></file-info>
+          </template>
+        </tbody>
+      </table>
+    </div>
+    <div class="d-flex justify-content-end">
+      <div>Max file size: {{ formatFileSize(maxFileSize) }}</div>
+    </div>
+  </div>
 </template>
 <script lang="ts">
 import Vue, { PropType, VueConstructor } from "vue";
@@ -81,10 +81,10 @@ import { ValidationResult } from "@/helpers";
 export const ForgeFileUpload = /*#__PURE__*/ (
   Vue as VueConstructor<
     Vue & {
-    $refs: {
-      fileUpload: { value: FileList[] };
-    };
-  }
+      $refs: {
+        fileUpload: { value: FileList[] };
+      };
+    }
   >
 ).extend({
   name: "ForgeFileUpload",
