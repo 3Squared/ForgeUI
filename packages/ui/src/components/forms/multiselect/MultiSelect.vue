@@ -94,8 +94,7 @@ export const ForgeMultiSelect = /*#__PURE__*/ Vue.extend({
       return this.$attrs.multiple == null || this.$attrs.multiple
         ? {
             "close-on-select": false,
-            "clear-on-select": false,
-            "preserve-search": true
+            "clear-on-select": false
           }
         : {};
     },
