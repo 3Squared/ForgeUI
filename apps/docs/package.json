@@ -33,7 +33,7 @@
     "shelljs": "0.8.5",
     "typescript": "4.9.5",
     "vite": "4.3.9",
-    "vite-plugin-checker": "0.6.0",
+    "vite-plugin-checker": "0.6.1",
     "vite-plugin-pages": "0.31.0",
     "vite-plugin-pwa": "0.16.4",
     "vue-prism-component": "2.0.0",
