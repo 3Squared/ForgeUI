@@ -21,7 +21,7 @@
   },
   "devDependencies": {
     "eslint-config-custom": "*",
-    "@types/node": "18.16.16",
+    "@types/node": "18.16.18",
     "@vitejs/plugin-vue2": "2.2.0",
     "sass": "1.63.4",
     "typescript": "4.9.5",
