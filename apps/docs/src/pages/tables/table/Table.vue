@@ -4,7 +4,14 @@
     <OPTIONS></OPTIONS>
     <playground :code="code" :config="config" :options="options" @reset="reset">
       <template #component>
-        <component :is="ForgeTable" v-bind="options" />
+        <component :is="ForgeTable" v-bind="options">
+          <template v-if="showAboveTableSlot" #above-table>
+            <forge-action-button :action="true">This is next to the pagination</forge-action-button>
+          </template>
+        </component>
+      </template>
+      <template #additionalOptions>
+        <b-form-checkbox v-model="showAboveTableSlot" class="mb-2">Show slot above table</b-form-checkbox>
       </template>
     </playground>
     Columns for the table can be created programmatically using the ForgeColumnBuilder method as shown below
@@ -14,10 +21,13 @@
 
 <script lang="ts" setup>
 import OPTIONS from "./OPTIONS.md";
-import { ForgeColumnBuilder, ForgePageHeader, ForgeTable } from "@3squared/forge-ui";
-import { computed } from "vue";
+import { ForgeColumnBuilder, ForgePageHeader, ForgeActionButton, ForgeTable } from "@3squared/forge-ui";
+import { BFormCheckbox } from "bootstrap-vue";
+import { computed, ref } from "vue";
 import { usePlayground, Playground, CodeBlock } from "@3squared/forge-playground";
 import { Person } from "../../../models/Person";
+
+const showAboveTableSlot = ref(false);
 
 const fields = computed(() => {
   return new ForgeColumnBuilder<Person>()
@@ -109,10 +119,24 @@ const { options, propVals, config, reset } = usePlayground(
     selectMode: { type: "select", options: selectModes, disabled: (): boolean => !options.value.selectable },
     sortBy: { type: "select", options: selectModes },
     sortDirection: { type: "select", options: sortDirections }
+  },
+  function () {
+    showAboveTableSlot.value = false;
   }
 );
 
-const code = computed(() => `<forge-table ${propVals.value.join(" ")}></forge-table>`);
+const code = computed(
+  () =>
+    `<forge-table ${propVals.value.join(" ")}>${
+      !showAboveTableSlot.value
+        ? ""
+        : `
+    <template #above-table>
+      <forge-action-button :action="true">This is next to the pagination</forge-action-button>
+    </template>
+`
+    }</forge-table>`
+);
 
 const columnExample = `<script setup lang='ts'>
 import { ForgeColumnBuilder } from '@3squared/forge-ui';
