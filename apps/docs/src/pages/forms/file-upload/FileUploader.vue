@@ -45,7 +45,7 @@ const { options, propVals, config, reset } = usePlayground(
       return { errors: [], valid: true } as ValidationResult;
     },
     placeholder: "Browse your computer",
-    acceptedFileTypes: "",
+    acceptedFileTypes: "image/jpg, image/jpeg, image/png, image/gif, application/pdf, application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-xpsdocument,video/mp4,video/x-ms-wmv,video/x-m4v,video/quicktime",
     maxFileSize: 52428800,
     maxFileInput: 2,
     editableFileName: false

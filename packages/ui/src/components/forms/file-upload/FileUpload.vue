@@ -51,9 +51,8 @@
               :max-file-size="maxFileSize"
               :validate-file-name="validateFileName"
               @deleted="deleteFile(file.file)"
-              @uploaded="
-                file.status = 'Uploaded';
-                file.blobFileName = $event;
+              @uploaded="uploadedFile(file.file.name,
+                $event)
               "
               @edit-file-name="file.customFileName = $event"
               @upload-failed="file.status = 'Failed'"
@@ -135,7 +134,8 @@ export const ForgeFileUpload = /*#__PURE__*/ (
   data() {
     return {
       files: [] as ForgeFileStatus[],
-      dragInput: false
+      dragInput: false,
+	    invalidFiles: [] as string[]
     };
   },
   computed: {
@@ -179,13 +179,23 @@ export const ForgeFileUpload = /*#__PURE__*/ (
           });
         } else {
           this.files[doesFileExist].duplicateWarning = true;
-        }
+        }				
       });
       //if a file is uploaded then deleted, this will allow them to add it again
       this.$refs.fileUpload.value = [];
     },
     onFileChange(e: any) {
+	    this.invalidFiles = [];
       let files: File[] = [...e.target.files];
+	    // files.forEach(f =>{
+		  //   if(!this.acceptedFileTypes.includes(f.type)){
+			//     const index = files.findIndex((f) => f.name);
+			// 		files.splice(index)
+			//     console.log(f.name)
+			//     this.invalidFiles.push(f.name); 
+		  //   }
+	    // })
+	    // console.log(files)
       this.addFiles(files);
     },
     deleteFile(fileInfo: File) {
@@ -193,10 +203,20 @@ export const ForgeFileUpload = /*#__PURE__*/ (
     },
     drop(e: any) {
       this.dragInput = false;
+			this.invalidFiles = [];
       const files: File[] = e.dataTransfer.files;
       if ((files.length > this.maxNoOfFileInput && this.maxNoOfFileInput != null) || this.disableUpload) {
         e.preventDefault;
-      } else {
+      }
+			else {
+
+	      // files.forEach(f =>{
+		    //   if(!this.acceptedFileTypes.includes(f.type)){
+			  //     const index = files.findIndex((f) => f.name);
+			  //     files.splice(index);
+			  //     this.invalidFiles.push(f.name);
+		    //   }
+	      // })
         this.addFiles(files);
       }
     },
@@ -207,7 +227,16 @@ export const ForgeFileUpload = /*#__PURE__*/ (
     dragleave(event: Event) {
       event.preventDefault();
       this.dragInput = false;
-    }
+    },
+	  uploadedFile(name: string, newBlobFileName: string) {
+		  this.files.map((file) => {
+			  if (file.file.name === name) {
+				  file.status = "Uploaded";
+				  file.blobFileName = newBlobFileName;
+			  }
+		  });
+		  this.$emit("input", this.files);
+	  },
   }
 });
 
