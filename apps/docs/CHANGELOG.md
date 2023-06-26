@@ -1,5 +1,18 @@
 # forge-ui-styleguide
 
+## 1.2.0
+
+### Minor Changes
+
+- d59148b: Added a new slot ot the forge table component which allows for extra buttons or other components to be added above the table (and next to pagination)
+
+### Patch Changes
+
+- Updated dependencies [dfef40d]
+- Updated dependencies [7da3033]
+- Updated dependencies [d59148b]
+  - @3squared/forge-ui@1.6.0
+
 ## 1.1.0
 
 ### Minor Changes
