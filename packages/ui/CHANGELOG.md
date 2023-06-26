@@ -1,5 +1,16 @@
 # @3squared/forge-ui
 
+## 1.6.0
+
+### Minor Changes
+
+- d59148b: Added a new slot ot the forge table component which allows for extra buttons or other components to be added above the table (and next to pagination)
+
+### Patch Changes
+
+- dfef40d: remove preserve search as default multiselect
+- 7da3033: File Uploader 'Browse Your Computer' Hover not working because the button wasn't hovered
+
 ## 1.5.0
 
 ### Minor Changes
