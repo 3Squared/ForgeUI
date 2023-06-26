@@ -7,6 +7,7 @@
       <span>
         <forge-table-exporter v-if="showExporter" :customised-fields="customisedFields" :items="getItemsForExport" :name="$attrs.id" />
         <forge-table-column-customiser v-if="showColumnCustomiser" :id="$attrs.id" v-model="customisedFields" />
+        <slot name="above-table" />
       </span>
     </div>
     <div class="forge-table" :class="{ 'forge-table-sticky-page': stickToPage }">
