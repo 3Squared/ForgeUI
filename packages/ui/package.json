@@ -47,7 +47,7 @@
     "@cypress/code-coverage": "3.10.8",
     "@types/lodash": "4.14.195",
     "@vitejs/plugin-vue2": "2.2.0",
-    "@vitest/coverage-v8": "0.32.3",
+    "@vitest/coverage-v8": "0.32.4",
     "@vitest/ui": "0.32.4",
     "@vue/babel-preset-jsx": "1.4.0",
     "@zerollup/ts-transform-paths": "1.7.18",
