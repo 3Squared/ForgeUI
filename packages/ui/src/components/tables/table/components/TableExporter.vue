@@ -1,7 +1,7 @@
 <template>
   <b-button class="mr-2" variant="outline-primary" @click="exportData">
+    <b-icon-forge-export class="mr-1" />
     Export
-    <b-icon-forge-export class="ml-2" />
   </b-button>
 </template>
 

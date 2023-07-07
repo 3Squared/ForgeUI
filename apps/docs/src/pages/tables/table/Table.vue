@@ -62,6 +62,7 @@ const { options, propVals, config, reset } = usePlayground(
     items: items.value,
     showColumnCustomiser: false,
     showExporter: false,
+    showClearButton: true,
     filters: {},
     tableError: null,
     clearColumn: columnNames.value[4],

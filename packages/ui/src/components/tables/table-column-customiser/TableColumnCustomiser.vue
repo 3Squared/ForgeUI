@@ -1,11 +1,11 @@
 <template>
-  <b-dropdown ref="dropdown" :variant="hasChanges ? 'primary' : 'outline-primary'" class="forge-table-customise-columns-button" @hide="revert">
+  <b-dropdown ref="dropdown" :variant="hasChanges ? 'primary' : 'outline-primary'" class="forge-table-customise-columns-button mr-2" @hide="revert">
     <template #button-content>
+      <b-icon-forge-columns class="mr-1" />
       <span>
         Customise Columns
         <span v-if="hasChanges">({{ changesCount.selectedCount }}/{{ changesCount.availableCount }})</span>
       </span>
-      <b-icon-forge-columns class="ml-2 mr-2" />
     </template>
     <b-form-checkbox-group id="selectedColumns-group" v-model="selectedFields" name="selectedColumns" class="mt-3">
       <b-list-group>
