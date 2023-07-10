@@ -175,8 +175,7 @@ export const ForgeTableColumnCustomiser = /*#__PURE__*/ (
     saveAndClose(newColumns: ForgeTableFieldArray) {
       const sortedColumns = [...this.availableFields].map((column) => {
         const columnKey = getColumnKey(column);
-        const selected = this.selectedFields.includes(columnKey);
-        return { key: columnKey, selected } as ForgeTableColumnSelected;
+        return { key: getColumnKey(column), selected: this.selectedFields.includes(columnKey) } as ForgeTableColumnSelected;
       });
 
       this.orignalFields = [...this.availableFields];
