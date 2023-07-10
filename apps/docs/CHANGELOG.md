@@ -1,5 +1,16 @@
 # forge-ui-styleguide
 
+## 1.3.0
+
+### Minor Changes
+
+- 86377bd: Add option to show clear filters button above the table
+
+### Patch Changes
+
+- Updated dependencies [86377bd]
+  - @3squared/forge-ui@1.7.0
+
 ## 1.2.0
 
 ### Minor Changes
