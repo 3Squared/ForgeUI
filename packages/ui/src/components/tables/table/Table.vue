@@ -153,7 +153,7 @@ export const ForgeTable = /*#__PURE__*/ (
     },
     showClearButton: {
       type: Boolean,
-      default: () => true
+      default: () => false
     },
     filters: {
       type: Object,
