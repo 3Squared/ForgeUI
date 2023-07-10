@@ -1,7 +1,7 @@
 {
   "name": "@3squared/forge-ui",
   "repository": "https://github.com/3Squared/ForgeUI",
-  "version": "1.7.0",
+  "version": "1.7.1",
   "description": "ForgeUI is designed to be a wrapper around different libraries that provide a consistent UI style. It is comprised of many different packages that have been combined to create a one stop shop for UI.",
   "license": "MIT",
   "main": "./dist/esm/forge-ui.mjs",

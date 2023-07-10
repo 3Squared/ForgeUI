@@ -1,5 +1,13 @@
 # forge-ui-styleguide
 
+## 1.3.1
+
+### Patch Changes
+
+- 9c3c27e: Update ShowClearButton prop to default to false
+- Updated dependencies [9c3c27e]
+  - @3squared/forge-ui@1.7.1
+
 ## 1.3.0
 
 ### Minor Changes

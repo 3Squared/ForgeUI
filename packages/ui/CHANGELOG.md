@@ -1,5 +1,11 @@
 # @3squared/forge-ui
 
+## 1.7.1
+
+### Patch Changes
+
+- 9c3c27e: Update ShowClearButton prop to default to false
+
 ## 1.7.0
 
 ### Minor Changes
