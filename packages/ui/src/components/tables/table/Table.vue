@@ -5,6 +5,10 @@
         <forge-pagination-header v-if="total != -1" :per-page.sync="perPage" :page-sizes="pageSizes" :total="total" />
       </span>
       <span>
+        <b-button v-if="showClearButton" variant="outline-primary" class="mr-2" @click="clearFilters">
+          <b-icon-forge-filter class="mr-1" />
+          Clear
+        </b-button>
         <forge-table-exporter v-if="showExporter" :customised-fields="customisedFields" :items="getItemsForExport" :name="$attrs.id" />
         <forge-table-column-customiser v-if="showColumnCustomiser" :id="$attrs.id" v-model="customisedFields" />
         <slot name="above-table" />
@@ -146,6 +150,10 @@ export const ForgeTable = /*#__PURE__*/ (
     showExporter: {
       type: Boolean,
       default: () => false
+    },
+    showClearButton: {
+      type: Boolean,
+      default: () => true
     },
     filters: {
       type: Object,
