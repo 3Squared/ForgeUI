@@ -1,5 +1,11 @@
 # @3squared/forge-ui
 
+## 1.7.0
+
+### Minor Changes
+
+- 86377bd: Add option to show clear filters button above the table
+
 ## 1.6.0
 
 ### Minor Changes
