@@ -6,6 +6,9 @@ export type ForgeTableFieldKeyed = { key: string } & ForgeTableField;
 export type ForgeTableField = BvTableField & { required?: boolean; autoFilter?: boolean; filterType?: autoFilterType };
 export type ForgeTableFieldArray = Array<string | ({ key: string } & ForgeTableField)>;
 export type ForgeStepperStep = { key: string; text: string; noBack?: boolean; isDisabled?: boolean };
+export type ForgeTableColumnSelected = { key: string; selected: boolean };
+export type ForgeTableColumnSelectedArray = Array<ForgeTableColumnSelected>;
+
 export interface MultiSelectOption<T> {
   id: T;
   label: string;
