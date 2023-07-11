@@ -1,10 +1,5 @@
 <template>
-  <b-dropdown
-    ref="dropdown"
-    :variant="hasChanges ? 'primary' : 'outline-primary'"
-    class="forge-table-customise-columns-button mr-2"
-    @hide="revert"
-  >
+  <b-dropdown ref="dropdown" :variant="hasChanges ? 'primary' : 'outline-primary'" class="forge-table-customise-columns-button mr-2" @hide="revert">
     <template #button-content>
       <b-icon-forge-columns class="mr-1" />
       <span>
@@ -23,10 +18,7 @@
             <b-button variant="link" class="p-0 mr-2 text-secondary">
               <b-icon-justify class="handle" />
             </b-button>
-            <b-form-checkbox
-              :disabled="selectedFields.length == 1 && selectedFields[0] == getColumnKey(field)"
-              :value="getColumnKey(field)"
-            >
+            <b-form-checkbox :disabled="selectedFields.length == 1 && selectedFields[0] == getColumnKey(field)" :value="getColumnKey(field)">
               {{ getLabel(field) }}
             </b-form-checkbox>
           </b-list-group-item>
@@ -42,15 +34,7 @@
 
 <script lang="ts">
 import Vue, { VueConstructor } from "vue";
-import {
-  BDropdown,
-  BFormCheckboxGroup,
-  BListGroup,
-  BListGroupItem,
-  BButton,
-  BIconJustify,
-  BFormCheckbox,
-} from "bootstrap-vue";
+import { BDropdown, BFormCheckboxGroup, BListGroup, BListGroupItem, BButton, BIconJustify, BFormCheckbox } from "bootstrap-vue";
 import { BIconForgeColumns } from "../../../icons/icons";
 import { startCase, arraysEqual } from "../../../helpers/index";
 import { ForgeTableFieldArray, ForgeTableField, ForgeTableColumnSelected } from "../../../helpers/types";
@@ -60,9 +44,7 @@ import { getColumnKey, loadCustomisedColumns, saveCustomisedColumns } from "./co
 /**
  * @displayName Column Customiser
  **/
-export const ForgeTableColumnCustomiser = /*#__PURE__*/ (
-  Vue as VueConstructor<Vue & { $refs: { dropdown: { hide(returnFocus: boolean): void } } }>
-).extend({
+export const ForgeTableColumnCustomiser = /*#__PURE__*/ (Vue as VueConstructor<Vue & { $refs: { dropdown: { hide(returnFocus: boolean): void } } }>).extend({
   name: "ForgeTableColumnCustomiser",
   components: {
     draggable,
@@ -73,21 +55,21 @@ export const ForgeTableColumnCustomiser = /*#__PURE__*/ (
     BButton,
     BIconJustify,
     BFormCheckbox,
-    BIconForgeColumns,
+    BIconForgeColumns
   },
   model: {
     prop: "fields",
-    event: "change",
+    event: "change"
   },
   props: {
     id: {
       type: String,
-      required: true,
+      required: true
     },
     fields: {
       type: Array as () => ForgeTableFieldArray,
-      required: true,
-    },
+      required: true
+    }
   },
   data() {
     return {
@@ -95,7 +77,7 @@ export const ForgeTableColumnCustomiser = /*#__PURE__*/ (
       allfields: [] as ForgeTableFieldArray,
       selectedFields: [] as string[],
       orignalFields: [] as ForgeTableFieldArray,
-      availableFields: [] as ForgeTableFieldArray,
+      availableFields: [] as ForgeTableFieldArray
     };
   },
   computed: {
@@ -110,10 +92,8 @@ export const ForgeTableColumnCustomiser = /*#__PURE__*/ (
       return { selectedCount: selectedFieldCount.length, availableCount: availableFieldsThatCount.length };
     },
     newColumns(): ForgeTableFieldArray {
-      return this.availableFields
-        .filter((q) => this.selectedFields.includes(this.getColumnKey(q)))
-        .map((s) => s ?? { key: s });
-    },
+      return this.availableFields.filter((q) => this.selectedFields.includes(this.getColumnKey(q))).map((s) => s ?? { key: s });
+    }
   },
   mounted() {
     var customisedColumns = loadCustomisedColumns(this.id);
@@ -139,9 +119,7 @@ export const ForgeTableColumnCustomiser = /*#__PURE__*/ (
     this.availableFields = [...orderedfields];
     this.orignalFields = [...orderedfields];
     this.lastSelectedFields = [...this.selectedFields];
-    const newColumns = this.availableFields
-      .filter((q) => this.selectedFields.includes(getColumnKey(q)))
-      .map((s) => s ?? { key: s });
+    const newColumns = this.availableFields.filter((q) => this.selectedFields.includes(getColumnKey(q))).map((s) => s ?? { key: s });
     this.$emit("change", newColumns);
   },
   methods: {
@@ -191,8 +169,8 @@ export const ForgeTableColumnCustomiser = /*#__PURE__*/ (
         return false;
       }
       return true;
-    },
-  },
+    }
+  }
 });
 
 export default ForgeTableColumnCustomiser;
