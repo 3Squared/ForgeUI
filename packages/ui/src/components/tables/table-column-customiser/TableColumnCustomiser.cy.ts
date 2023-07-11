@@ -7,8 +7,8 @@ const mountColumnCustomiser = (fields: object[]) => {
     propsData: {
       id: "column-customiser-1",
       "data-cy": "column-customiser-1",
-      fields: fields,
-    },
+      fields: fields
+    }
   });
 };
 
@@ -20,14 +20,8 @@ describe.skip("Table Column Customiser", () => {
 
     //Act/Assert
     cy.get("[data-cy=column-customiser-1] input").should("have.length", 2);
-    cy.get("[data-cy=column-customiser-1] input")
-      .first()
-      .should("have.attr", "value", "id")
-      .and("have.attr", "type", "checkbox");
-    cy.get("[data-cy=column-customiser-1] input")
-      .last()
-      .should("have.attr", "value", "otherKey")
-      .and("have.attr", "type", "checkbox");
+    cy.get("[data-cy=column-customiser-1] input").first().should("have.attr", "value", "id").and("have.attr", "type", "checkbox");
+    cy.get("[data-cy=column-customiser-1] input").last().should("have.attr", "value", "otherKey").and("have.attr", "type", "checkbox");
   });
 });
 
@@ -48,12 +42,15 @@ describe.skip("column-customiser-helper.ts", () => {
   }
   const localStorage = new LocalStorageMock();
   Object.defineProperty(window, "localStorage", {
-    value: localStorage,
+    value: localStorage
   });
 
-  it('should save the order and selected state of the columns', () => {
-    saveCustomisedColumns('test', [{key:'FirstCol', selected: true }, { key: 'SecondCol', selected: false }]);
-    expect(localStorage.getItem('test')).toBe('[{"key":"FirstCol","selected":true},{"key":"SecondCol","selected":false}]');
+  it("should save the order and selected state of the columns", () => {
+    saveCustomisedColumns("test", [
+      { key: "FirstCol", selected: true },
+      { key: "SecondCol", selected: false }
+    ]);
+    expect(localStorage.getItem("test")).toBe('[{"key":"FirstCol","selected":true},{"key":"SecondCol","selected":false}]');
   });
 
   it("should save the keys of the columns to localStorage when saved with correct ID", () => {
@@ -65,13 +62,22 @@ describe.skip("column-customiser-helper.ts", () => {
     assert.isNull(loadCustomisedColumns("unknownId"));
   });
 
-  it('should load an return a ForgeTableColumnSelectedArray if there is data stored as ForgeTableColumnSelected', () => {
-    saveCustomisedColumns('knownId1', [{key:'FirstCol', selected: true }, {key: 'SecondCol', selected: false }]);
-    expect(loadCustomisedColumns('knownId1')).toStrictEqual([{ key: "FirstCol", selected: true },{ key: 'SecondCol', selected: false }]);
+  it("should load an return a ForgeTableColumnSelectedArray if there is data stored as ForgeTableColumnSelected", () => {
+    saveCustomisedColumns("knownId1", [
+      { key: "FirstCol", selected: true },
+      { key: "SecondCol", selected: false }
+    ]);
+    expect(loadCustomisedColumns("knownId1")).toStrictEqual([
+      { key: "FirstCol", selected: true },
+      { key: "SecondCol", selected: false }
+    ]);
   });
 
-  it('should load an return a ForgeTableColumnSelectedArray if saved data are strings', () => {
-    localStorage.setItem('knownId2', JSON.stringify(['FirstCol', 'SecondCol']));
-    expect(loadCustomisedColumns('knownId2')).toStrictEqual([{ key: "FirstCol", selected: true},{key:'SecondCol',selected: true}]);
+  it("should load an return a ForgeTableColumnSelectedArray if saved data are strings", () => {
+    localStorage.setItem("knownId2", JSON.stringify(["FirstCol", "SecondCol"]));
+    expect(loadCustomisedColumns("knownId2")).toStrictEqual([
+      { key: "FirstCol", selected: true },
+      { key: "SecondCol", selected: true }
+    ]);
   });
 });
