@@ -1,5 +1,11 @@
 # @3squared/forge-ui
 
+## 1.8.0
+
+### Minor Changes
+
+- 284f905: Fix ordering issues with the TableColumnCustomiser
+
 ## 1.7.1
 
 ### Patch Changes
