@@ -23,7 +23,7 @@ import Vue, { PropType } from "vue";
 import { BIconCalendar3 } from "bootstrap-vue";
 import flatpickr from "flatpickr";
 import { ForgeDatePickerNormalizer, kebabToCamel } from "../../../helpers/index";
-import { stringNormalizer } from "@/helpers/date-picker-normalizers";
+import { stringNormalizer } from "../../../helpers/date-picker-normalizers";
 import { HtmlBooleanAttributes, IgnoredVueEvents } from "./helpers";
 
 type Config = flatpickr.Options.Options;
