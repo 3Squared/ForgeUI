@@ -73,7 +73,7 @@ import { BIconUpload } from "bootstrap-vue";
 import FileInfo from "./components/FileInfo.vue";
 import { formatFileSize } from "./utils/fileUtilities";
 import { ForgeFileStatus } from "../../../helpers/types";
-import { ValidationResult } from "@/helpers";
+import { ValidationResult } from "../../../helpers";
 
 /**
  * @displayName File Upload
