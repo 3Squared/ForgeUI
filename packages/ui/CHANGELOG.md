@@ -1,5 +1,11 @@
 # @3squared/forge-ui
 
+## 1.8.1
+
+### Patch Changes
+
+- 0241e05: Fix Toggle All padding issue
+
 ## 1.8.0
 
 ### Minor Changes
