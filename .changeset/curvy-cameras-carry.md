@@ -1,5 +1,5 @@
 ---
-"@3squared/forge-ui": major
+"@3squared/forge-ui": patch
 ---
 
 Fix Toggle All padding issue
