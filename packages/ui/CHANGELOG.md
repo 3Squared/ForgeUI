@@ -1,5 +1,11 @@
 # @3squared/forge-ui
 
+## 1.8.2
+
+### Patch Changes
+
+- 7a22a46: Add provider to vite config
+
 ## 1.8.1
 
 ### Patch Changes
