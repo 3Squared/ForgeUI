@@ -89,7 +89,8 @@ export default defineConfig(({ mode }) => ({
       include: ["src"],
       exclude: ["**/*.cy.ts", "scripts", "**/*.test.ts"],
       reportsDirectory: "./coverage/vitest",
-      reporter: ["cobertura", "html", "json"]
+      reporter: ["cobertura", "html", "json"],
+      provider: "v8"
     }
   }
 }));
