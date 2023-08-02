@@ -1,5 +1,11 @@
 # @3squared/forge-ui
 
+## 1.8.3
+
+### Patch Changes
+
+- bbd91ed: Update where types are declared in package.json
+
 ## 1.8.2
 
 ### Patch Changes
