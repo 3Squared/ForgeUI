@@ -43,7 +43,30 @@ const columnNames = computed(() => fields.value.map((field) => field.key));
 
 const items = computed(() => [
   { id: 1, firstName: "Jake", age: 22, dateJoined: new Date("3/7/2022").toLocaleDateString() },
-  { id: 2, firstName: "Bob", age: 32, dateJoined: new Date("3/2/2009").toLocaleDateString() }
+  { id: 2, firstName: "Bob", age: 32, dateJoined: new Date("3/2/2009").toLocaleDateString() },
+  { id: 3, firstName: "Alice", age: 28, dateJoined: new Date("5/15/2015").toLocaleDateString() },
+  { id: 4, firstName: "Sarah", age: 26, dateJoined: new Date("8/9/2020").toLocaleDateString() },
+  { id: 5, firstName: "Tom", age: 35, dateJoined: new Date("2/14/2013").toLocaleDateString() },
+  { id: 6, firstName: "Emma", age: 24, dateJoined: new Date("11/11/2018").toLocaleDateString() },
+  { id: 7, firstName: "David", age: 29, dateJoined: new Date("9/3/2016").toLocaleDateString() },
+  { id: 8, firstName: "Olivia", age: 31, dateJoined: new Date("6/20/2014").toLocaleDateString() },
+  { id: 9, firstName: "Sophia", age: 27, dateJoined: new Date("4/1/2020").toLocaleDateString() },
+  { id: 10, firstName: "James", age: 30, dateJoined: new Date("7/25/2011").toLocaleDateString() },
+  { id: 11, firstName: "Grace", age: 23, dateJoined: new Date("10/5/2019").toLocaleDateString() },
+  { id: 12, firstName: "Ethan", age: 34, dateJoined: new Date("12/12/2012").toLocaleDateString() },
+  { id: 13, firstName: "Lily", age: 25, dateJoined: new Date("1/8/2017").toLocaleDateString() },
+  { id: 14, firstName: "Matthew", age: 33, dateJoined: new Date("2/22/2010").toLocaleDateString() },
+  { id: 15, firstName: "Ava", age: 29, dateJoined: new Date("6/7/2015").toLocaleDateString() },
+  { id: 16, firstName: "Benjamin", age: 27, dateJoined: new Date("4/19/2021").toLocaleDateString() },
+  { id: 17, firstName: "Lucy", age: 26, dateJoined: new Date("8/18/2018").toLocaleDateString() },
+  { id: 18, firstName: "Daniel", age: 32, dateJoined: new Date("3/16/2013").toLocaleDateString() },
+  { id: 19, firstName: "Mia", age: 30, dateJoined: new Date("7/30/2016").toLocaleDateString() },
+  { id: 20, firstName: "Liam", age: 25, dateJoined: new Date("1/14/2019").toLocaleDateString() },
+  { id: 21, firstName: "Chloe", age: 28, dateJoined: new Date("5/4/2017").toLocaleDateString() },
+  { id: 22, firstName: "Henry", age: 33, dateJoined: new Date("2/8/2014").toLocaleDateString() },
+  { id: 23, firstName: "Zoe", age: 24, dateJoined: new Date("11/28/2020").toLocaleDateString() },
+  { id: 24, firstName: "William", age: 31, dateJoined: new Date("6/13/2012").toLocaleDateString() },
+  { id: 25, firstName: "Ella", age: 26, dateJoined: new Date("8/27/2017").toLocaleDateString() }
 ]);
 
 const theming = [
@@ -105,7 +128,9 @@ const { options, propVals, config, reset } = usePlayground(
     sortDesc: false,
     sortDirection: sortDirections[0],
     sortNullLast: false,
-    striped: false
+    striped: false,
+    perPage: 20,
+    pageSizes: [10, 20, 50, 100]
   },
   {
     fields: { required: true },

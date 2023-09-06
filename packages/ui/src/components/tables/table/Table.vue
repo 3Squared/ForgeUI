@@ -182,12 +182,20 @@ export const ForgeTable = /*#__PURE__*/ (
     autoColumnWidth: {
       type: Boolean,
       default: false
+    },
+    pageSizes: {
+      type: Array,
+      required: false,
+      default: () => [10, 20, 50, 100]
+    },
+    perPage: {
+      type: Number,
+      required: false,
+      default: 20
     }
   },
   data() {
     return {
-      pageSizes: [10, 20, 50, 100],
-      perPage: 20,
       page: 1,
       customisedFields: [] as ForgeTableFieldArray,
       localFilters: {} as any,
