@@ -1,5 +1,11 @@
 # @3squared/forge-ui
 
+## 1.9.0
+
+### Minor Changes
+
+- 3dea70c: Added props for pagination on the table component for further customization
+
 ## 1.8.3
 
 ### Patch Changes
