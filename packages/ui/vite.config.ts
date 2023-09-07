@@ -28,7 +28,7 @@ export default defineConfig(({ mode }) => ({
   plugins: [
     vue(),
     checker({ vueTsc: true }),
-    dts(),
+    dts({ outDir: "dist/types" }),
     istanbul({
       include: "src/*",
       exclude: ["node_modules", "test/"],
