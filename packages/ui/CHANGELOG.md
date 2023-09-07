@@ -1,5 +1,11 @@
 # @3squared/forge-ui
 
+## 1.9.1
+
+### Patch Changes
+
+- bfe129e: Fix typings output
+
 ## 1.9.0
 
 ### Minor Changes
