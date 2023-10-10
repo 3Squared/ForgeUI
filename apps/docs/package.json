@@ -29,7 +29,7 @@
     "eslint-config-custom": "*",
     "@types/prismjs": "1.26.1",
     "@vitejs/plugin-vue2": "2.2.0",
-    "sass": "1.69.0",
+    "sass": "1.69.1",
     "shelljs": "0.8.5",
     "typescript": "4.9.5",
     "vite": "4.4.11",
