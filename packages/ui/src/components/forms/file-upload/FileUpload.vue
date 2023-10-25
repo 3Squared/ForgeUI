@@ -2,35 +2,35 @@
   <div>
     <div class="d-flex justify-content-between">
       <slot name="message"></slot>
-      <div class="position-relative">
+      <div>
         <input
           id="file-input"
           ref="fileUpload"
-          type="file"
-          class="custom-file-input position-absolute"
-          style="left: 0"
-          v-bind="customAttributes"
           :accept="acceptedFileTypes"
-          :class="disableUpload ? 'd-none' : ''"
+          :disabled="disableUpload"
+          class="d-none"
+          style="left: 0"
+          type="file"
+          v-bind="customAttributes"
           @input="onFileChange"
         />
-        <label for="file-input" class="w-100">
-          <b-button block :disabled="disableUpload" variant="primary">{{ placeholder }}</b-button>
+        <label :class="{ disabled: disableUpload }" class="w-100 btn btn-primary" for="file-input">
+          {{ placeholder }}
         </label>
       </div>
     </div>
     <div
-      class="mt-3 file-container forge-table border-dashed"
       :class="dragInput ? 'drag-border' : ''"
+      class="mt-3 file-container forge-table border-dashed"
+      @dragleave="dragleave"
+      @dragover="dragover"
       @drop.prevent="drop"
       @dragover.prevent
-      @dragover="dragover"
-      @dragleave="dragleave"
     >
       <table class="table table-striped mb-0 table-bordered">
         <tbody v-if="files.length <= 0">
           <template>
-            <div class="no-files-text-box d-flex align-items-center" :class="dragInput ? 'drag-input' : ''">
+            <div :class="dragInput ? 'drag-input' : ''" class="no-files-text-box d-flex align-items-center">
               <div>Drag and drop files here</div>
               <div class="p-1">
                 <b-icon-upload font-scale="1.25" />
@@ -42,14 +42,14 @@
           <template v-for="file in files">
             <file-info
               :key="file.file.name"
-              :get-file-url-action="getFileUrlAction"
-              :validate-file-name="validateFileName"
-              :file="file.file"
-              :auto-upload-to-blob="autoUploadToBlob"
-              :max-file-size="maxFileSize"
               :accepted-file-types="acceptedFileTypes"
+              :auto-upload-to-blob="autoUploadToBlob"
               :duplicate-warning="file.duplicateWarning"
               :editable-file-name="editableFileName"
+              :file="file.file"
+              :get-file-url-action="getFileUrlAction"
+              :max-file-size="maxFileSize"
+              :validate-file-name="validateFileName"
               @deleted="deleteFile(file.file)"
               @uploaded="
                 file.status = 'Uploaded';
@@ -69,11 +69,11 @@
 </template>
 <script lang="ts">
 import Vue, { PropType, VueConstructor } from "vue";
-import { BButton, BIconUpload } from "bootstrap-vue";
+import { BIconUpload } from "bootstrap-vue";
 import FileInfo from "./components/FileInfo.vue";
 import { formatFileSize } from "./utils/fileUtilities";
 import { ForgeFileStatus } from "../../../helpers/types";
-import { ValidationResult } from "@/helpers";
+import { ValidationResult } from "../../../helpers";
 
 /**
  * @displayName File Upload
@@ -89,7 +89,6 @@ export const ForgeFileUpload = /*#__PURE__*/ (
 ).extend({
   name: "ForgeFileUpload",
   components: {
-    BButton,
     BIconUpload,
     FileInfo
   },
@@ -148,11 +147,7 @@ export const ForgeFileUpload = /*#__PURE__*/ (
       }
     },
     disableUpload(): boolean {
-      if (this.maxNoOfFileInput != null && this.maxNoOfFileInput <= this.files.length) {
-        return true;
-      } else {
-        return false;
-      }
+      return this.maxNoOfFileInput != null && this.maxNoOfFileInput <= this.files.length;
     },
     maxNoOfFileInput(): number {
       if (!this.multiple) {
@@ -175,7 +170,13 @@ export const ForgeFileUpload = /*#__PURE__*/ (
       [...files].forEach((f) => {
         const doesFileExist = checkFiles.findIndex((a) => a.name === f.name);
         if (doesFileExist === -1) {
-          this.files.unshift({ file: f, status: "NotUploaded", blobFileName: null, duplicateWarning: false, customFileName: null });
+          this.files.unshift({
+            file: f,
+            status: "NotUploaded",
+            blobFileName: null,
+            duplicateWarning: false,
+            customFileName: null
+          });
         } else {
           this.files[doesFileExist].duplicateWarning = true;
         }

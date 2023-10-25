@@ -7,8 +7,10 @@
     <template v-if="mergedAttrs.multiple && showSelectAll && !mergedAttrs.async" #beforeList>
       <li class="multiselect__element" @click="selectAll" @mouseover="onMouseOver" @mouseleave="onMouseLeave">
         <span :class="optionHighlight">
-          <input :checked="isAllSelected" name="selected" type="checkbox" class="multiselect__option--checkbox" />
-          <span>Toggle all</span>
+          <span>
+            <input :checked="isAllSelected" name="selected" type="checkbox" class="multiselect__option--checkbox" />
+            Toggle all
+          </span>
         </span>
       </li>
     </template>
@@ -94,8 +96,7 @@ export const ForgeMultiSelect = /*#__PURE__*/ Vue.extend({
       return this.$attrs.multiple == null || this.$attrs.multiple
         ? {
             "close-on-select": false,
-            "clear-on-select": false,
-            "preserve-search": true
+            "clear-on-select": false
           }
         : {};
     },

@@ -1,11 +1,11 @@
 <template>
-  <b-dropdown ref="dropdown" :variant="hasChanges ? 'primary' : 'outline-primary'" class="forge-table-customise-columns-button" @hide="revert">
+  <b-dropdown ref="dropdown" :variant="hasChanges ? 'primary' : 'outline-primary'" class="forge-table-customise-columns-button mr-2" @hide="revert">
     <template #button-content>
+      <b-icon-forge-columns class="mr-1" />
       <span>
         Customise Columns
         <span v-if="hasChanges">({{ changesCount.selectedCount }}/{{ changesCount.availableCount }})</span>
       </span>
-      <b-icon-forge-columns class="ml-2 mr-2" />
     </template>
     <b-form-checkbox-group id="selectedColumns-group" v-model="selectedFields" name="selectedColumns" class="mt-3">
       <b-list-group>
@@ -37,7 +37,7 @@ import Vue, { VueConstructor } from "vue";
 import { BDropdown, BFormCheckboxGroup, BListGroup, BListGroupItem, BButton, BIconJustify, BFormCheckbox } from "bootstrap-vue";
 import { BIconForgeColumns } from "../../../icons/icons";
 import { startCase, arraysEqual } from "../../../helpers/index";
-import { ForgeTableFieldArray, ForgeTableField } from "../../../helpers/types";
+import { ForgeTableFieldArray, ForgeTableField, ForgeTableColumnSelected } from "../../../helpers/types";
 import draggable from "vuedraggable";
 import { getColumnKey, loadCustomisedColumns, saveCustomisedColumns } from "./column-customiser-helper";
 
@@ -74,6 +74,7 @@ export const ForgeTableColumnCustomiser = /*#__PURE__*/ (Vue as VueConstructor<V
   data() {
     return {
       lastSelectedFields: [] as string[],
+      allfields: [] as ForgeTableFieldArray,
       selectedFields: [] as string[],
       orignalFields: [] as ForgeTableFieldArray,
       availableFields: [] as ForgeTableFieldArray
@@ -95,10 +96,26 @@ export const ForgeTableColumnCustomiser = /*#__PURE__*/ (Vue as VueConstructor<V
     }
   },
   mounted() {
-    this.selectedFields = (loadCustomisedColumns(this.id) ?? this.fields).map(getColumnKey);
+    var customisedColumns = loadCustomisedColumns(this.id);
+    var fieldKeys = this.fields.map(this.getColumnKey);
+    if (customisedColumns) {
+      customisedColumns.forEach((column) => {
+        if (fieldKeys.indexOf(this.getColumnKey(column)) == -1) {
+          customisedColumns?.splice(customisedColumns?.indexOf(column), 1);
+        }
+      });
+    }
+
+    const selectedColumns = customisedColumns?.filter((c) => c.selected == true);
+    const customisedColumnKeys = ((customisedColumns ?? this.fields) as ForgeTableFieldArray).map(this.getColumnKey);
     const orderedfields = [...this.fields].sort((a, b) => {
-      return this.selectedFields.indexOf(this.getColumnKey(a)) - this.selectedFields.indexOf(this.getColumnKey(b));
+      return customisedColumnKeys.indexOf(this.getColumnKey(a)) - customisedColumnKeys.indexOf(this.getColumnKey(b));
     });
+
+    this.selectedFields = ((selectedColumns ?? this.fields) as ForgeTableFieldArray).map(this.getColumnKey);
+    this.availableFields = [...orderedfields];
+    this.orignalFields = [...orderedfields];
+    this.allfields = [...this.fields];
     this.availableFields = [...orderedfields];
     this.orignalFields = [...orderedfields];
     this.lastSelectedFields = [...this.selectedFields];
@@ -121,20 +138,27 @@ export const ForgeTableColumnCustomiser = /*#__PURE__*/ (Vue as VueConstructor<V
       }
 
       //Revert the options back to the order they were before the dropdown was opened
-      if (!arraysEqual(this.availableFields, this.fields)) {
+      if (!arraysEqual(this.availableFields, this.orignalFields)) {
         this.availableFields = [...this.orignalFields];
       }
     },
     reset() {
-      this.selectedFields = this.orignalFields.map(getColumnKey);
-      this.saveAndClose(this.orignalFields);
+      this.selectedFields = this.allfields.map(getColumnKey);
+      this.availableFields = [...this.allfields];
+      this.saveAndClose(this.allfields);
     },
     confirm() {
       this.saveAndClose(this.newColumns);
     },
     saveAndClose(newColumns: ForgeTableFieldArray) {
+      const sortedColumns = [...this.availableFields].map((column) => {
+        const columnKey = getColumnKey(column);
+        return { key: getColumnKey(column), selected: this.selectedFields.includes(columnKey) } as ForgeTableColumnSelected;
+      });
+
+      this.orignalFields = [...this.availableFields];
       this.lastSelectedFields = [...this.selectedFields];
-      saveCustomisedColumns(this.id, newColumns);
+      saveCustomisedColumns(this.id, sortedColumns);
       this.$emit("change", newColumns);
       this.$refs.dropdown.hide(true);
     },

@@ -35,7 +35,7 @@
 
 <script lang="ts" setup>
 import { BForm, BButton, BAlert } from "bootstrap-vue";
-import { ForgeLoader } from "@/components/general/loader/Loader.vue";
+import { ForgeLoader } from "../../general/loader/Loader.vue";
 import { ref } from "vue";
 
 const props = defineProps({

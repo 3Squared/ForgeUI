@@ -5,8 +5,13 @@
         <forge-pagination-header v-if="total != -1" :per-page.sync="perPage" :page-sizes="pageSizes" :total="total" />
       </span>
       <span>
+        <b-button v-if="showClearButton" variant="outline-primary" class="mr-2" @click="clearFilters">
+          <b-icon-forge-filter class="mr-1" />
+          Clear
+        </b-button>
         <forge-table-exporter v-if="showExporter" :customised-fields="customisedFields" :items="getItemsForExport" :name="$attrs.id" />
         <forge-table-column-customiser v-if="showColumnCustomiser" :id="$attrs.id" v-model="customisedFields" />
+        <slot name="above-table" />
       </span>
     </div>
     <div class="forge-table" :class="{ 'forge-table-sticky-page': stickToPage }">
@@ -146,6 +151,10 @@ export const ForgeTable = /*#__PURE__*/ (
       type: Boolean,
       default: () => false
     },
+    showClearButton: {
+      type: Boolean,
+      default: () => false
+    },
     filters: {
       type: Object,
       default: () => {}
@@ -173,12 +182,20 @@ export const ForgeTable = /*#__PURE__*/ (
     autoColumnWidth: {
       type: Boolean,
       default: false
+    },
+    pageSizes: {
+      type: Array,
+      required: false,
+      default: () => [10, 20, 50, 100]
+    },
+    perPage: {
+      type: Number,
+      required: false,
+      default: 20
     }
   },
   data() {
     return {
-      pageSizes: [10, 20, 50, 100],
-      perPage: 20,
       page: 1,
       customisedFields: [] as ForgeTableFieldArray,
       localFilters: {} as any,
