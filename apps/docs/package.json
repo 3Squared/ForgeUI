@@ -21,7 +21,7 @@
     "register-service-worker": "1.7.2",
     "rgb-hex": "4.1.0",
     "vue": "2.7.15",
-    "vue-multiselect": "2.1.7",
+    "vue-multiselect": "2.1.8",
     "vue-router": "3.6.5",
     "vue2-helpers": "2.1.1"
   },
