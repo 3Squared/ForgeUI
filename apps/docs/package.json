@@ -27,7 +27,7 @@
   },
   "devDependencies": {
     "eslint-config-custom": "*",
-    "@types/prismjs": "1.26.2",
+    "@types/prismjs": "1.26.3",
     "@vitejs/plugin-vue2": "2.2.0",
     "sass": "1.69.5",
     "shelljs": "0.8.5",
