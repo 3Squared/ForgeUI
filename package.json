@@ -12,7 +12,7 @@
     "lint": "turbo run lint --parallel"
   },
   "devDependencies": {
-    "@changesets/cli": "2.26.2",
+    "@changesets/cli": "2.27.0",
     "turbo": "latest"
   }
 }
