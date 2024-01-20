@@ -58,7 +58,7 @@
     "sass": "1.69.6",
     "shelljs": "0.8.5",
     "typescript": "4.9.5",
-    "vite": "4.5.1",
+    "vite": "4.5.2",
     "vite-plugin-dts": "3.7.0",
     "vite-plugin-istanbul": "5.0.0",
     "vitest": "0.34.6",
