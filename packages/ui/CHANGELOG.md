@@ -1,5 +1,11 @@
 # @3squared/forge-ui
 
+## 1.9.2
+
+### Patch Changes
+
+- 2352b46: Pass all relevant props to textarea in forge-form-field
+
 ## 1.9.1
 
 ### Patch Changes
