@@ -10,8 +10,8 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "lint": "eslint . --ext .ts,.vue",
-    "lint:fix": "eslint . --ext .ts,.vue --fix"
+    "lint": "eslint . --ext .ts,.vue --resolve-plugins-relative-to ./../../packages/eslint-config-custom/node_modules",
+    "lint:fix": "eslint . --ext .ts,.vue --fix --resolve-plugins-relative-to ./../../packages/eslint-config-custom/node_modules"
   },
   "dependencies": {
     "@3squared/forge-ui": "*",
