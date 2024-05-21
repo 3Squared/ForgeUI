@@ -16,8 +16,8 @@
   "scripts": {
     "dev": "vite build --watch",
     "build": "node scripts/build.js",
-    "lint": "eslint . --ext .ts,.vue",
-    "lint:fix": "eslint . --ext .ts,.vue --fix",
+    "lint": "eslint . --ext .ts,.vue --resolve-plugins-relative-to ./../../packages/eslint-config-custom/node_modules",
+    "lint:fix": "eslint . --ext .ts,.vue --fix --resolve-plugins-relative-to ./../../packages/eslint-config-custom/node_modules",
     "cy": "cypress open --component --browser chrome",
     "test": "cypress run --component && npm run coverage && node ./scripts/merge.js",
     "test-unit": "vitest --ui --coverage",
