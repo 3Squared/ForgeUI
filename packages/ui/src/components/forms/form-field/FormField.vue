@@ -6,7 +6,15 @@
           {{ label }}
           <b-form-checkbox v-model="currentValue" class="pb-2 ml-2"></b-form-checkbox>
         </div>
-        <b-form-textarea v-else-if="type == 'textarea'" v-model="currentValue" :state="getValidationState(validationContext)" />
+        <b-form-textarea
+          v-else-if="type == 'textarea'"
+          :id="fieldName"
+          v-model="currentValue"
+          :state="getValidationState(validationContext)"
+          :disabled="disabled"
+          :placeholder="placeholder"
+          trim
+        />
         <b-form-input
           v-else
           :id="fieldName"
