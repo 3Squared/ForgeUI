@@ -241,6 +241,10 @@ export const FileInfo = /*#__PURE__*/ Vue.extend({
           const options = {
             abortSignal: this.controller.signal,
             onProgress: this.onFileUploadProgress,
+            blobHTTPHeaders: {
+              blobContentType: this.file.type,
+              blobContentDisposition: `attachment; filename="${this.file.name}"`
+            },
             tags: { temp: "true" }
           } as BlockBlobParallelUploadOptions;
 
