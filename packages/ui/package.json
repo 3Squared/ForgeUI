@@ -53,7 +53,7 @@
     "@zerollup/ts-transform-paths": "1.7.18",
     "agadoo": "3.0.0",
     "c8": "9.1.0",
-    "cypress": "13.10.0",
+    "cypress": "13.11.0",
     "fs-extra": "11.2.0",
     "sass": "1.77.2",
     "shelljs": "0.8.5",
