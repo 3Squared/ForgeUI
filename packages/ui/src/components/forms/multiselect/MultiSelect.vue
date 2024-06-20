@@ -1,5 +1,5 @@
 <template>
-  <multiselect v-bind="mergedAttrs" v-on="mergedListeners" @remove="toggleSelectAll" @input="checkAllSelected">
+  <multiselect ref="internal-multiselect" v-bind="mergedAttrs" v-on="mergedListeners" @remove="toggleSelectAll" @input="checkAllSelected">
     <template #caret="{ toggle }">
       <i v-if="shouldShowClearSelection" class="multiselect__clear-icon" @mousedown.prevent.stop="clearSelected()" />
       <div class="multiselect__select" @mousedown.prevent.stop="toggle"></div>
@@ -16,12 +16,7 @@
     </template>
     <template v-if="mergedAttrs.multiple" #option="props">
       <span>
-        <input
-          :checked="$attrs.value.indexOf(selectValue ? props.option[selectValue] : props.option) !== -1"
-          name="selected"
-          type="checkbox"
-          class="multiselect__option--checkbox"
-        />
+        <input :checked="isSelected(props.option)" name="selected" type="checkbox" class="multiselect__option--checkbox" />
         {{ props.option[mergedAttrs.label] }}
       </span>
     </template>
@@ -159,6 +154,9 @@ export const ForgeMultiSelect = /*#__PURE__*/ Vue.extend({
     },
     onMouseLeave() {
       this.selectAllHighlighted = false;
+    },
+    isSelected(option: any) {
+      return (this.$refs["internal-multiselect"] as any).isSelected(option);
     },
     clearSelected() {
       this.$emit("input", (this.mergedAttrs as any).multiple ? [] : null);
