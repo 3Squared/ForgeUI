@@ -1,5 +1,11 @@
 # @3squared/forge-ui
 
+## 1.10.0
+
+### Minor Changes
+
+- 78e7612: New prop to stepper component to completely hide backbutton
+
 ## 1.9.3
 
 ### Patch Changes
