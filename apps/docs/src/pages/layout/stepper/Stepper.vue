@@ -29,6 +29,7 @@ const { options, propVals, config, reset } = usePlayground(
     ],
     currentStep: 0,
     showSteps: true,
+    showBackButton: true,
     variant: "primary"
   },
   {
