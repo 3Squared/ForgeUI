@@ -2,7 +2,7 @@
   <div :class="[`forge-stepper-${variant}`]" class="w-100">
     <div v-if="showSteps">
       <div class="d-flex align-items-center bg-white">
-        <b-button :variant="variant" :disabled="isBackButtonDisabled" class="rounded-circle ml-2 px-2" @click="previousStep">
+        <b-button v-if="showBackButton" :variant="variant" :disabled="isBackButtonDisabled" class="rounded-circle ml-2 px-2" @click="previousStep">
           <b-icon-chevron-left />
         </b-button>
         <div class="stepper">
@@ -59,6 +59,10 @@ export const ForgeStepper = /*#__PURE__*/ Vue.extend({
       default: 0
     },
     showSteps: {
+      type: Boolean,
+      default: true
+    },
+    showBackButton: {
       type: Boolean,
       default: true
     }
