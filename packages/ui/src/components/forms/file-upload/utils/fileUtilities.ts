@@ -1,4 +1,13 @@
-﻿export function formatFileSize(bytes: number, si = true, dp = 1) {
+﻿import { Mime } from 'mime';
+
+import standardTypes from 'mime/types/standard.js';
+import otherTypes from 'mime/types/other.js';
+const forgeMime = new Mime(standardTypes, otherTypes);
+forgeMime.define({'application/vnd.ms-outlook': ['pst']});
+
+export {forgeMime};
+
+export function formatFileSize(bytes: number, si = true, dp = 1) {
   const thresh = si ? 1000 : 1024;
 
   if (Math.abs(bytes) < thresh) {

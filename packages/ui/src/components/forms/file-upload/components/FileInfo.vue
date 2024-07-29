@@ -104,7 +104,7 @@ import {
 } from "bootstrap-vue";
 import { BlockBlobClient, BlockBlobParallelUploadOptions } from "@azure/storage-blob";
 import { AbortController } from "@azure/abort-controller";
-import { FileType, formatFileSize, getFileType, trimFileName, getReplacementImage } from "../utils/fileUtilities";
+import { FileType, formatFileSize, getFileType, trimFileName, getReplacementImage, forgeMime } from "../utils/fileUtilities";
 import { ForgeInlineEditor, ValidationResult } from "../../../../../index";
 
 type State = "Not Uploaded" | "Preparing" | "Uploading" | "Uploaded" | "Failed" | "Aborted" | "Invalid";
@@ -184,16 +184,22 @@ export const FileInfo = /*#__PURE__*/ Vue.extend({
   },
   computed: {
     validFileType(): boolean {
-      if (this.file.type === "") {
+      if (!this.fileMimeType) {
         return false;
       }
-      return this.acceptedFileTypes.includes(this.file.type);
+      return this.acceptedFileTypes.includes(this.fileMimeType!);
     },
     validFileSize(): boolean {
       return this.file.size <= this.maxFileSize;
     },
     fileType(): FileType {
       return getFileType(this.file.name);
+    },
+    fileMimeType(): string | null {
+      if(this.file.type){
+        return this.file.type;
+      }
+      return forgeMime.getType(this.file.name);
     }
   },
   mounted() {
@@ -242,7 +248,7 @@ export const FileInfo = /*#__PURE__*/ Vue.extend({
             abortSignal: this.controller.signal,
             onProgress: this.onFileUploadProgress,
             blobHTTPHeaders: {
-              blobContentType: this.file.type,
+              blobContentType: this.fileMimeType!,
               blobContentDisposition: `attachment; filename="${this.file.name}"`
             },
             tags: { temp: "true" }
