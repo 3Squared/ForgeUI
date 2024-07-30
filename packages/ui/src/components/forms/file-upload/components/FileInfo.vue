@@ -196,7 +196,7 @@ export const FileInfo = /*#__PURE__*/ Vue.extend({
       return getFileType(this.file.name);
     },
     fileMimeType(): string | null {
-      if(this.file.type){
+      if (this.file.type) {
         return this.file.type;
       }
       return forgeMime.getType(this.file.name);
