@@ -199,7 +199,7 @@ export const FileInfo = /*#__PURE__*/ Vue.extend({
       if (this.file.type) {
         return this.file.type;
       }
-      return forgeMime.getType(this.file.name);
+      return forgeMime().getType(this.file.name);
     }
   },
   mounted() {
