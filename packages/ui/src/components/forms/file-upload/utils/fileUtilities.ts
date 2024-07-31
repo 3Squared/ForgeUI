@@ -4,7 +4,7 @@ import otherTypes from "mime/types/other.js";
 let mime = null as Mime | null;
 
 export function forgeMime(): Mime {
-  if(mime == null) {
+  if (mime == null) {
     mime = new Mime(standardTypes, otherTypes);
     mime.define({ "application/vnd.ms-outlook": ["pst"] });
   }
