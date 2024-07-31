@@ -50,7 +50,7 @@ export function getFileType(fileName: string) {
   return fileType;
 }
 
-const iconFilesTypes = ["mp4", "wmv", "m4v", "mov", "mp3", "wav", "wma", "xls", "xlsx", "xps", "doc", "pdf", "docx"];
+const iconFilesTypes = ["mp4", "wmv", "m4v", "mov", "mp3", "wav", "wma", "xls", "xlsx", "xps", "doc", "pdf", "docx", "msg", "pst", "eml"];
 export function getReplacementImage(fileName: string) {
   const ext = fileExtension(fileName) as string;
   const iconExists = iconFilesTypes.includes(ext);
