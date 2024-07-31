@@ -1,14 +1,11 @@
 ﻿import { Mime } from "mime";
 import standardTypes from "mime/types/standard.js";
 import otherTypes from "mime/types/other.js";
-let mime = null as Mime | null;
 
-export function forgeMime(): Mime {
-  if (mime == null) {
-    mime = new Mime(standardTypes, otherTypes);
-    mime.define({ "application/vnd.ms-outlook": ["pst"] });
-  }
-  return mime;
+export function forgeMime() : Mime {
+  const mime = new Mime(standardTypes, otherTypes)
+  mime.define({ "application/vnd.ms-outlook": ["pst"] })
+  return mime
 }
 
 export function formatFileSize(bytes: number, si = true, dp = 1) {
