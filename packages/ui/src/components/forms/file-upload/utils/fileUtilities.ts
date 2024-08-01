@@ -1,4 +1,14 @@
-﻿export function formatFileSize(bytes: number, si = true, dp = 1) {
+﻿import { Mime } from "mime";
+import standardTypes from "mime/types/standard.js";
+import otherTypes from "mime/types/other.js";
+
+export function forgeMime(): Mime {
+  const mime = new Mime(standardTypes, otherTypes);
+  mime.define({ "application/vnd.ms-outlook": ["pst"] });
+  return mime;
+}
+
+export function formatFileSize(bytes: number, si = true, dp = 1) {
   const thresh = si ? 1000 : 1024;
 
   if (Math.abs(bytes) < thresh) {
@@ -40,7 +50,7 @@ export function getFileType(fileName: string) {
   return fileType;
 }
 
-const iconFilesTypes = ["mp4", "wmv", "m4v", "mov", "mp3", "wav", "wma", "xls", "xlsx", "xps", "doc", "pdf", "docx"];
+const iconFilesTypes = ["mp4", "wmv", "m4v", "mov", "mp3", "wav", "wma", "xls", "xlsx", "xps", "doc", "pdf", "docx", "msg", "pst", "eml"];
 export function getReplacementImage(fileName: string) {
   const ext = fileExtension(fileName) as string;
   const iconExists = iconFilesTypes.includes(ext);

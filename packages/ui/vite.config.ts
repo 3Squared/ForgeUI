@@ -54,6 +54,7 @@ export default defineConfig(({ mode }) => ({
         "dayjs",
         "flatpickr",
         "lodash/cloneDeep",
+        "mime",
         "ts-simple-nameof",
         "vee-validate",
         "vee-validate/dist/rules",
