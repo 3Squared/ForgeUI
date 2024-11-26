@@ -43,7 +43,7 @@
     "vuedraggable": "2.24.3"
   },
   "devDependencies": {
-    "@cypress/code-coverage": "3.13.4",
+    "@cypress/code-coverage": "3.13.7",
     "@types/lodash": "4.17.10",
     "@vitejs/plugin-vue2": "2.3.1",
     "@vitest/coverage-v8": "0.34.6",
