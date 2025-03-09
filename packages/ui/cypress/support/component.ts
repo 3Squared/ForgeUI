@@ -21,6 +21,7 @@ import "./commands";
 // require('./commands')
 
 import { mount as mount2 } from "cypress/vue2";
+import "../../src/styles/main.scss";
 
 // Augment the Cypress namespace to include type definitions for
 // your custom command.
