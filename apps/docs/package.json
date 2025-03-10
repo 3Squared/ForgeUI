@@ -17,7 +17,7 @@
     "@3squared/forge-playground": "*",
     "@3squared/forge-ui": "*",
     "bootstrap-vue": "2.23.1",
-    "prismjs": "1.29.0",
+    "prismjs": "1.30.0",
     "register-service-worker": "1.7.2",
     "rgb-hex": "4.1.0",
     "vue": "2.7.16",
