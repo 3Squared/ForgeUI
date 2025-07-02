@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "@3squared/forge-ui": "*",
-    "markdown-it-prism": "2.3.0",
+    "markdown-it-prism": "2.3.1",
     "prismjs": "1.30.0",
     "vue": "~2.7.0"
   },
