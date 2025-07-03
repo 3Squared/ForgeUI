@@ -34,7 +34,7 @@
     "typescript": "4.9.5",
     "vite": "4.5.14",
     "vite-plugin-checker": "0.9.3",
-    "vite-plugin-pages": "0.32.4",
+    "vite-plugin-pages": "0.33.1",
     "vite-plugin-pwa": "0.21.1",
     "vue-prism-component": "2.0.0",
     "vite-plugin-md": "0.21.5",
