@@ -35,6 +35,18 @@ const CustomLoaderWrapper = defineComponent({
       </div>`
 });
 
+/**
+ * Wrapper for testing the loader with a custom variant
+ */
+const VariantLoaderWrapper = defineComponent({
+  components: { ForgeLoader },
+
+  template: `
+      <div>
+        <forge-loader id="testLoader" variant="info" />
+      </div>`
+});
+
 /***************************************************
  ************* END OF WRAPPER SETUP ****************
  **************************************************/
@@ -64,6 +76,17 @@ it("mounts custom loader", () => {
   cy.get("#testLoader").should("exist");
   cy.get("#testLoader").should("be.visible");
   cy.get(".sr-only").should("have.text", CustomLoadingMessage);
+});
+
+/**
+ * Tests the custom loader mounts correctly with valid custom text
+ */
+it("mounts custom loader", () => {
+  cy.wait(500);
+  mount(VariantLoaderWrapper as any);
+  cy.get("#testLoader").should("exist");
+  cy.get("#testLoader").should("be.visible");
+  cy.get("#testLoader > span").should("have.class", "text-info");
 });
 
 /***************************************************
