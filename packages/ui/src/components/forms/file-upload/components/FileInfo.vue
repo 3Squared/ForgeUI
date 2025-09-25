@@ -102,7 +102,8 @@ import {
   BIconArrowClockwise,
   VBTooltip
 } from "bootstrap-vue";
-import { BlockBlobClient, BlockBlobParallelUploadOptions } from "@azure/storage-blob";
+import { BlockBlobClient, BlockBlobParallelUploadOptions, newPipeline } from "@azure/storage-blob";
+import { PipelinePolicy } from "@azure/core-rest-pipeline";
 import { AbortController } from "@azure/abort-controller";
 import { FileType, formatFileSize, getFileType, trimFileName, getReplacementImage, forgeMime } from "../utils/fileUtilities";
 import { ForgeInlineEditor, ValidationResult } from "../../../../../index";
@@ -167,6 +168,11 @@ export const FileInfo = /*#__PURE__*/ Vue.extend({
     editableFileName: {
       type: Boolean,
       default: false
+    },
+    storageServiceVersionOverride: {
+      type: String,
+      required: false,
+      default: null
     }
   },
   data() {
@@ -223,6 +229,32 @@ export const FileInfo = /*#__PURE__*/ Vue.extend({
       this.customFileName = value;
       this.$emit("edit-file-name", this.customFileName);
     },
+    createBlockBlobClient (uploadUrl: string, versionOverride?: string): BlockBlobClient {
+      let pipelineOptions = {};
+
+      if (versionOverride) {
+        const forceVersionPolicy: PipelinePolicy = {
+          name: "forceVersionPolicy",
+          sendRequest: async (req, next) => {
+            req.headers.set("x-ms-version", versionOverride);
+            return next(req);
+          }
+        };
+
+        pipelineOptions = {
+          // 👇 this is where additional policies go
+          additionalPolicies: [
+            { policy: forceVersionPolicy, position: "perRetry" }
+          ]
+        };
+
+        // Build a pipeline with the policy
+        const pipeline = newPipeline(undefined, pipelineOptions);
+        return new BlockBlobClient(uploadUrl, pipeline);
+      }
+
+      return new BlockBlobClient(uploadUrl);
+    },
     async uploadBlob() {
       this.state = "Preparing";
       if (!this.validFileType) {
@@ -243,7 +275,7 @@ export const FileInfo = /*#__PURE__*/ Vue.extend({
 
         try {
           this.state = "Uploading";
-          const blockBlobClient = new BlockBlobClient(uploadUrl);
+          const blockBlobClient = this.createBlockBlobClient(uploadUrl, this.storageServiceVersionOverride);
           const options = {
             abortSignal: this.controller.signal,
             onProgress: this.onFileUploadProgress,
