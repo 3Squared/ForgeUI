@@ -229,7 +229,7 @@ export const FileInfo = /*#__PURE__*/ Vue.extend({
       this.customFileName = value;
       this.$emit("edit-file-name", this.customFileName);
     },
-    createBlockBlobClient (uploadUrl: string, versionOverride?: string): BlockBlobClient {
+    createBlockBlobClient(uploadUrl: string, versionOverride?: string): BlockBlobClient {
       let pipelineOptions = {};
 
       if (versionOverride) {
@@ -243,9 +243,7 @@ export const FileInfo = /*#__PURE__*/ Vue.extend({
 
         pipelineOptions = {
           // 👇 this is where additional policies go
-          additionalPolicies: [
-            { policy: forceVersionPolicy, position: "perRetry" }
-          ]
+          additionalPolicies: [{ policy: forceVersionPolicy, position: "perRetry" }]
         };
 
         // Build a pipeline with the policy
