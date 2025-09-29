@@ -1,5 +1,11 @@
 # @3squared/forge-ui
 
+## 1.12.0
+
+### Minor Changes
+
+- 3e3da34: Add in the ability to be able to override the azure storage version ms-api-version header
+
 ## 1.11.0
 
 ### Minor Changes
