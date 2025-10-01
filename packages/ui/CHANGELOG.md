@@ -1,5 +1,11 @@
 # @3squared/forge-ui
 
+## 1.12.1
+
+### Patch Changes
+
+- 47835b1: Fix missing prop on forge file upload for azure storage override
+
 ## 1.12.0
 
 ### Minor Changes
