@@ -57,6 +57,7 @@
               "
               @edit-file-name="file.customFileName = $event"
               @upload-failed="file.status = 'Failed'"
+              :storage-service-version-override="storageServiceVersionOverride"
             ></file-info>
           </template>
         </tbody>
@@ -130,6 +131,11 @@ export const ForgeFileUpload = /*#__PURE__*/ (
     editableFileName: {
       type: Boolean,
       default: false
+    },
+    storageServiceVersionOverride: {
+      type: String,
+      required: false,
+      default: null
     }
   },
   data() {
