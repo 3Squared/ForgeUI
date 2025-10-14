@@ -22,7 +22,7 @@
   "devDependencies": {
     "eslint-config-custom": "*",
     "@types/node": "18.19.130",
-    "@vitejs/plugin-vue2": "2.3.3",
+    "@vitejs/plugin-vue2": "2.3.4",
     "sass": "1.93.2",
     "typescript": "4.9.5",
     "vite": "4.5.14",
